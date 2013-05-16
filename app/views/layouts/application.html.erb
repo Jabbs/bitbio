@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Science Market and Science Outsourcing | bitBIO</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <%= render 'layouts/shim' %>
+  <%= render 'layouts/google_analytics' %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <%= render 'layouts/header' %>
+  <div class="container" id="<%= controller_name %>_<%= action_name %>">
+  	<div class="row">
+  	  <div class="span2 sidebar">
+    	  <%= render 'shared/sidebar' %>
+    	</div>
+    	<div class="span10">
+    	  <% flash.each do |name, msg| %>
+      	  <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+      	    <a class="close" data-dismiss="alert">×</a>
+      	    <%= msg %>
+      	  </div>
+      	<% end %>
+    	  <%= yield %>
+    	</div>
+  	</div>
+  </div>
+  <%= render 'layouts/footer' %>
+</body>
+</html>

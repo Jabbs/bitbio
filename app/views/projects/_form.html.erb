@@ -1,0 +1,31 @@
+<%= form_for @project do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  
+  <div class="row">
+    <div class="span8 offset2">
+      <h1>Create My Project</h1>
+      <label>Type:</label>
+      <%= f.text_field :science_type, placeholder: "e.g. dna sequencing, proteomics, microscopy, etc.", class: 'span4' %>
+      <p>What type of project best defines your needs?</p>
+      <label>What are you outsourcing?</label>
+      
+      <label>Science</label>
+      <%= f.radio_button :service_need, "Science", checked: true  %>
+      <label>Services</label>
+      <%= f.radio_button :service_need, "Services"  %>
+      <label>Science + Services</label>
+      <%= f.radio_button :service_need, "Science + Services"  %>
+      
+      <label>Name:</label>
+      <%= f.text_field :name, placeholder: 'e.g. analyzing histone modification ChIP-seq data', class: 'span4' %>
+      <p>Choose a name that is unique to your project</p>
+      
+      <label>Description:</label>
+      <%= f.text_area :description, class: 'span6', rows: 5, placeholder: "In detail, describe your project." %>
+      <br>
+      
+      <%= f.submit 'Create My Project', class: "btn btn-success btn-large" %>
+    </div>
+  </div>
+  
+<% end %>

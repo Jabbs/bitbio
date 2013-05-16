@@ -1,0 +1,88 @@
+@import "bootstrap";
+
+/* COLORS */
+
+$darkergrey: #E8E8E8;
+$darkblue: #183469;
+$default-background: #F8F8F8;
+$header_background: #686868;
+$blue: #78A8E9;
+$gold: #C5C91A;
+$gold_dark: #AEB218;
+$green_light: #6DF45F;
+$green: #5DCE4F;
+$green_dark: #469D3D;
+$silver: #C0C0C0;
+
+#projects_index {
+  
+}
+
+#projects_new {
+  
+}
+
+/* layouts/header */
+
+header {
+	.navbar-inner {
+		background: $header_background;
+		height: 80px;
+		max-height: 80px;
+		box-shadow: none;
+		border-radius:0px;
+		.breadcrumbs {
+		  height: 40px;
+		}
+		ul {
+			li.on {
+				background: $header_background;
+				a {
+					color: $darkergrey;
+				}
+			}
+		}
+	}
+}
+
+.dropdown-menu {
+  background: white;
+  li a {
+    &:hover {
+      background: lighten($blue, 20%);
+      color: black;
+    }
+    i {
+      margin-bottom: 3px;
+      margin-right: 5px;
+    } 
+  }
+}
+
+.navbar .nav > li > a {
+  text-decoration: none;
+  text-shadow: none;
+  color: $blue;
+  b.caret {
+    border-top-color: $gold !important;
+    border-bottom-color: $gold !important;
+  }
+  &:hover {
+    color: white;
+  }
+}
+
+/* shared/error_messages */
+
+#error_explanation {
+  color: #f00;
+  ul {
+    list-style: none;
+    margin: 0 0 20px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .control-group;
+  @extend .error;
+ }
