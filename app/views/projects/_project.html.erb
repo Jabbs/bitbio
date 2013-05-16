@@ -1,7 +1,10 @@
 <div class="span3 project-well">
-  <h3><%= link_to truncate(project.name, length: 40), project_path(project) %></h3>
+  <div class="dates">
+    <%= project.created_at.strftime("%b %e, %Y") %>
+  </div>
+  <h3><%= link_to truncate(project.name, length: 66), project_path(project) %></h3>
   <h4>Type: <%= truncate(project.science_type, length: 30) %></h4>
   <h4>Owner: <%= link_to "#{project.user.first_name} #{project.user.last_name}", user_path(project.user) %></h4>
   <h5><%= project.service_need %></h5>
-  <p><%= truncate(project.description, length: 300) %></p>
+  <p><%= truncate(project.description, length: 240) %> (<%= link_to "more", project_path(project) %>)</p>
 </div>

@@ -9,13 +9,38 @@ $header_background: #686868;
 $blue: #78A8E9;
 $gold: #C5C91A;
 $gold_dark: #AEB218;
+$green_very_light: #D8FFD5;
 $green_light: #6DF45F;
 $green: #5DCE4F;
 $green_dark: #469D3D;
 $silver: #C0C0C0;
 
+@mixin rounded_border {
+	 -webkit-border-radius: 5px;
+	    -moz-border-radius: 5px;
+	         border-radius: 5px;
+}
+
 #projects_index {
-  
+  .project-well {
+    background: $green_very_light;
+    padding: 5px;
+    @include rounded_border;
+    h3 {
+      font-size: 1.0em;
+      line-height: 130%;
+      margin-bottom: 5px;
+    }
+    h4 {
+      font-size: 0.9em;
+    }
+    p {
+      background: white;
+      margin-top: 10px;
+      padding: 5px;
+      @include rounded_border;
+    }
+  }
 }
 
 #projects_new {
@@ -33,6 +58,13 @@ header {
 		border-radius:0px;
 		.breadcrumbs {
 		  height: 40px;
+		  h1 {
+		    color: white;
+		    font-size: 1.8em;
+		    display: inline;
+		    float: right;
+		    padding-top: 4px;
+		  }
 		}
 		ul {
 			li.on {
