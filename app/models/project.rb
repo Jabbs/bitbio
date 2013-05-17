@@ -3,7 +3,7 @@ class Project < ActiveRecord::Base
   friendly_id :name, use: [:slugged, :history]
   attr_accessible :description, :name, :science_type, :service_need, :start_date
   
-  TYPES = ['Next Gen', 'Micro Array', 'Microscopy']
+  TYPES = ['Service', 'Science', 'Service + Science', 'Data Analysis']
   
   belongs_to :user
   
@@ -14,6 +14,14 @@ class Project < ActiveRecord::Base
 
   def move_friendly_id_error_to_name
     errors.add :name, *errors.delete(:friendly_id) if errors[:friendly_id].present?
+  end
+  
+  def self.search(search)
+    if search
+      find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
+    else
+      find(:all)
+    end
   end
   
 end

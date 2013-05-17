@@ -4,21 +4,23 @@
   <div class="row">
     <div class="span9">
       <% if action_name == "edit" %>
-      <h1>Editing Account</h1>
+      <h2>Editing Account</h2>
       <% else %>
       <h2>Join bitBIO!</h2>
       <% end %>
+      <hr>
       <div class="row">
        <div class="span2">
           <label>Account Type:</label>
         </div>
-        <div class="span6">
+        <div class="span6" id="radio-account-types">
           <%= f.radio_button :account_type, "Researcher", checked: true  %>
-  		    <label style="display: inline; margin-right: 20px;">Researcher</label>
+  		    <label style="display: inline; margin-right: 20px;"><i class="icon-user icon-white"></i> Researcher</label>
   		    <%= f.radio_button :account_type, "Provider" %>
-  		    <label style="display: inline; margin-right: 20px;">Provider</label>
+  		    <label style="display: inline; margin-right: 20px;"><i class="icon-home icon-white"></i> Provider</label>
         </div>
       </div>
+      <hr>
       <div class="row">
         <div class="span2">
   				<label>Name:</label>
@@ -28,7 +30,7 @@
   				<%= f.text_field :last_name, class: "span2", placeholder: "Last" %>
   			</div>
       </div>
-      
+
       <div class="row">
         <div class="span2">
   				<label>Email:</label>
@@ -43,10 +45,10 @@
   				<label>Phone:</label>
   			</div>
   			<div class="span6">
-  		    <%= f.text_field :phone, class: "span3", placeholder: "Phone #" %> 
+  		    <%= f.text_field :phone, class: "span3", placeholder: "Phone" %> 
   			</div>
       </div>
-      
+      <hr>
       <div class="row">
         <div class="span2">
   				<label>Organization:</label>
@@ -62,10 +64,10 @@
   			</div>
   			<div class="span6">
   		    <%= f.text_area :description, class: "span3", class: 'span4', rows: 7, 
-  		        placeholder: "Please describe your scientific background" %> 
+  		        placeholder: "Please describe your scientific background or provide a brief description of your organization" %> 
   			</div>
       </div>
-      
+      <hr>
       <div class="row">
   			<div class="span2">
   				<label class="inline">Password:</label>
@@ -85,10 +87,10 @@
       
       <div class="row">
         <div class="span8">
-          <% if action_name == 'edit' %>
+          <% if action_name == 'edit' || action_name == 'update' %>
             <%= f.submit "Update Account", class: "btn btn-large" %>
           <% else %>
-            <%= f.submit "Create Account", class: "btn btn-large" %>
+            <%= f.submit "Create Account", class: "btn btn-large btn-success" %>
           <% end %>
         </div>
       </div>

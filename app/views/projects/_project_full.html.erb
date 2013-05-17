@@ -1,6 +1,7 @@
 <div class="row">
   <div class="span9 project-full-well">
-    <h2><%= @project.name %></h2>
+    <h2 class="inline"><%= @project.name %></h2>
+    <h4>Created: <%= @project.created_at.strftime("%b %e, %Y") %>, Start Date: <%= @project.start_date.strftime("%b %e, %Y")  %></h4>
     <h4>Type: <%= @project.science_type %></h4>
     <h5><%= @project.service_need %></h5>
     <p><%= @project.description %></p>

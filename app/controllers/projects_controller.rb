@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   def index
-    @projects = Project.all
+    @projects = Project.order("start_date ASC").search(params[:search])
   end
   
   def new

@@ -5,6 +5,9 @@
 $darkergrey: #B2B2B2;
 $header_background: #686868;
 $blue: #78A8E9;
+$red: #D33C3D;
+$teal: #00D6D4;
+$orange: #E18B15;
 $gold: #C5C91A;
 $gold_dark: #AEB218;
 $green_very_light: #D8FFD5;
@@ -48,11 +51,31 @@ h2 {
 #sidebar {
   position: absolute;
   top: 80px;
-  left: 0%;
+  left: 0px;
+  bottom: 0px;
   background: $silver;
   margin: 0px;
   height: 100%;
   width: 220px;
+  h2 {
+    margin-top: 5px;
+    margin-bottom: 0px;
+    margin-left: 8px;
+  }
+  input[name="start_date"] {
+    width: 90px;
+    margin-left: 8px;
+  }
+  input[name="end_date"] {
+    width: 90px;
+  }
+  input[name="search"] {
+    width: 193px;
+    margin-left: 8px;
+  }
+  input[type="submit"] {
+    margin-right: 9px;
+  }
 }
 
 /* projects/index */
@@ -64,20 +87,105 @@ h2 {
   margin-bottom: 20px;
   margin-right: 10px;
   margin-left: 0px;
+  height: 238px;
   @include rounded_border;
-  h3 {
-    font-size: 1.0em;
-    line-height: 130%;
-    margin-bottom: 5px;
+  .head {
+    height: 18px;
+    h3 {
+      width: 180px;
+      font-size: 1.0em;
+      line-height: 130%;
+    }
+    .date {
+      position: relative;
+      left: 168px;
+      top: -16px;
+      border: 1px solid $blue;
+      @include rounded_border;
+      margin-top: 0px;
+      width: 20px;
+      background: $header_background;
+      padding: 0;
+      width: 40px;
+      height: 40px;
+      .mm {
+        position: relative;
+        left: 11px;
+        top: -2px;
+        padding: 0;
+        margin: 0;
+        font-size: 0.8em;
+        color: white;
+        z-index: 2;
+      }
+      .dd {
+        position: relative;
+        width: 30px;
+        max-width: 30px;
+        left: 5px;
+        top: -16px;
+        padding: 0;
+        margin: 0;
+        z-index: 1;
+        .day {
+          font-size: 1.3em;
+          background: $header_background;
+          font-weight: bold;
+          text-align: center;
+          color: $blue;
+        }
+      }
+      .yyyy {
+        position: relative;
+        font-size: 0.7em;
+        width: 30px;
+        max-width: 30px;
+        left: 10px;
+        top: -36px;
+        padding: 0;
+        margin: 0;
+        z-index: 2;
+        color: white;
+      }
+    }
+  }
+  .service {
+    font-size: 0.9em;
+    margin-bottom: 0px;
+    margin-top: 10px;
+    padding: 0px 3px 0px 3px;
+    @include rounded_border;
+    color: white;
+  }
+  .sci_ser {
+    background: $red;
+    width: 104px;
+  }
+  .sci {
+    background: $teal;
+    width: 44px;
+  }
+  .ser {
+    background: $green;
+    width: 46px;
+  }
+  .dat {
+    background: $orange;
+    width: 74px;
+  }
+  
+  .more {
+    font-size: 80%;
   }
   h4 {
     font-size: 0.9em;
   }
   p {
     background: white;
-    margin-top: 10px;
+    margin-top: 5px;
     padding: 5px;
     @include rounded_border;
+    word-wrap: break-word;
   }
 }
 
@@ -86,7 +194,7 @@ h2 {
 #projects_new, #projects_create, #projects_edit, #projects_update {
   h2 {
     margin-top: -10px;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
   }
   p {
     font-size: 80%;
@@ -105,6 +213,31 @@ h2 {
       font-family: Arial;
       font-size: 16px;
       @include rounded_border;
+    }
+    input[type="radio"]:checked + label {
+      color: $gold;
+      text-shadow: none;
+      background-color: darken($silver, 50%);
+      @include rounded_border;
+    }
+  }
+}
+
+/* users/new */
+
+#users_new, #users_create, #users_edit, #users_create {
+  #radio-account-types {
+    label {
+      display:inline-block;
+      background-color: $silver;
+      margin-bottom: 10px;
+      padding: 4px 11px;
+      font-family: Arial;
+      font-size: 16px;
+      @include rounded_border;
+      i {
+        margin-top: 1px;
+      }
     }
     input[type="radio"]:checked + label {
       color: $gold;

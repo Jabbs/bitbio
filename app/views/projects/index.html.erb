@@ -1,8 +1,12 @@
 
 <div class="row">
   <div class="span9">
-    <% @projects.each do |project| %>
-      <%= render 'project', project: project %>
+    <% if @projects.empty? %>
+      <h3>No projects right now. Please <%= link_to 'sign up', new_user_path %> to create a project.</h3>
+    <% else %>
+      <% @projects.each do |project| %>
+        <%= render 'project', project: project %>
+      <% end %>
     <% end %>
   </div>
 </div>

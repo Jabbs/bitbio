@@ -1,10 +1,25 @@
 <div class="span3 project-well">
-  <div class="dates">
-    <%= project.created_at.strftime("%b %e, %Y") %>
+  <div class="head">
+    <h3><%= link_to truncate(project.name, length: 24), project_path(project) %></h3>
+    <div class="date">
+      <div class="mm"><%= project.start_date.strftime("%b") %></div>
+      <div class="dd"><p class="day"><%= project.start_date.strftime("%e") %></p></div>
+      <div class="yyyy"><%= project.start_date.strftime("%Y") %></div>
+    </div>
   </div>
-  <h3><%= link_to truncate(project.name, length: 66), project_path(project) %></h3>
-  <h4>Type: <%= truncate(project.science_type, length: 30) %></h4>
-  <h4>Owner: <%= link_to "#{project.user.first_name} #{project.user.last_name}", user_path(project.user) %></h4>
-  <h5><%= project.service_need %></h5>
-  <p><%= truncate(project.description, length: 200) %> (<%= link_to "more", project_path(project) %>)</p>
+  <h4><%= truncate(project.science_type, length: 30) %></h4>
+  <h4>Owner: <%= link_to "#{truncate(project.user.full_name, length: 22)}", user_path(project.user) %></h4>
+  
+  <% if project.service_need == "Science + Services" %>
+    <% back_color = "sci_ser" %>
+  <% elsif project.service_need == "Science" %>
+    <% back_color = "sci" %>
+  <% elsif project.service_need == "Services" %>
+    <% back_color = "ser" %>
+  <% elsif project.service_need == "Data Analysis" %>
+    <% back_color = "dat" %>
+  <% end %>
+    
+  <div class="service <%= back_color %>"><%= project.service_need %></div>
+  <p><%= truncate(project.description, length: 200) %> <%= link_to "more", project_path(project), class: 'more' %></p>
 </div>
