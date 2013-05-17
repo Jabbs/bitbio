@@ -1,13 +1,17 @@
 <div class="row">
-  <div class="span10">
+  <div class="span9">
     <h2>bitBIO Account: <%= @user.first_name %> <%= @user.last_name %></h2>
+    <% if current_user?(@user) %>
+      <%= link_to "Create New Project", new_project_path, class: 'btn btn-success btn-large pull-right' %>
+    <% end %>
   </div>
 </div>
+<hr>
 <div class="row">
-  <div class="span4">
-    <h2>Account Info</h2>
+  <div class="span3">
+    <h3>Account Info</h3>
     <% if current_user?(@user) %>
-      <p><%= link_to 'edit', edit_user_path %></p>
+      <p><%= link_to 'edit', edit_user_path, class: 'btn' %></p>
     <% end %>
     <dl>
       <dt>General</dt>
@@ -22,10 +26,7 @@
     </dl>
   </div>
   <div class="span6">
-    <h2>Projects</h2>
-    <% if current_user?(@user) %>
-      <p><%= link_to "Create a Project", new_project_path %></p>
-    <% end %>
+    <h3>Projects</h3>
     <% unless @projects.empty? %>
       <% @projects.each do |project| %>
         <%= render 'projects/project', project: project %>

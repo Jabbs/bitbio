@@ -9,6 +9,7 @@ gem 'bootstrap-will_paginate', '0.0.6'
 gem 'bootstrap-sass', '2.0.0'
 gem 'roadie'
 gem 'stripe'
+gem 'friendly_id'
 
 group :development, :test do
   gem 'rspec-rails', '2.11.0'

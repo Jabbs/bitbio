@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Science Market and Science Outsourcing | bitBIO</title>
+  <%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/flick/jquery-ui.css", "application" %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -13,10 +14,10 @@
   <%= render 'layouts/header' %>
   <div class="container" id="<%= controller_name %>_<%= action_name %>">
   	<div class="row">
-  	  <div class="span2 sidebar">
+  	  <div class="span3" id="sidebar">
     	  <%= render 'shared/sidebar' %>
     	</div>
-    	<div class="span10">
+    	<div class="span9 pull-right" id="main_container">
     	  <% flash.each do |name, msg| %>
       	  <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
       	    <a class="close" data-dismiss="alert">×</a>

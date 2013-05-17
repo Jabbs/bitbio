@@ -9,6 +9,23 @@ class ProjectsController < ApplicationController
   
   def show
     @project = Project.find(params[:id])
+    if request.path != project_path(@project)
+      redirect_to @project, status: :moved_permanently
+    end
+  end
+  
+  def edit
+    @project = Project.find(params[:id])
+  end
+  
+  def update
+    @project = Project.find(params[:id])
+
+    if @project.update_attributes(params[:project])
+      redirect_to @project, notice: 'Project was successfully updated.'
+    else
+      render action: "edit"
+    end
   end
   
   def create
@@ -19,5 +36,12 @@ class ProjectsController < ApplicationController
     else
       render 'new'
     end
+  end
+  
+  def destroy
+    @project = Project.find(params[:id])
+    @project.destroy
+    
+    redirect_to root_path, alert: "Your project has been removed."
   end
 end

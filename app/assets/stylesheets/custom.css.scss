@@ -2,9 +2,7 @@
 
 /* COLORS */
 
-$darkergrey: #E8E8E8;
-$darkblue: #183469;
-$default-background: #F8F8F8;
+$darkergrey: #B2B2B2;
 $header_background: #686868;
 $blue: #78A8E9;
 $gold: #C5C91A;
@@ -15,36 +13,119 @@ $green: #5DCE4F;
 $green_dark: #469D3D;
 $silver: #C0C0C0;
 
+/* MIXINS */
+
 @mixin rounded_border {
 	 -webkit-border-radius: 5px;
 	    -moz-border-radius: 5px;
 	         border-radius: 5px;
 }
 
-#projects_index {
-  .project-well {
-    background: $green_very_light;
+/* Universal */
+
+body {
+  min-height: 600px;
+}
+
+h2 {
+  color: $gold_dark;
+}
+
+#main_container {
+  margin-left: 190px;
+}
+
+#logo {
+  height: 80px;
+}
+
+.inline {
+  display: inline;
+}
+
+/* shared/sidebar */
+
+#sidebar {
+  position: absolute;
+  top: 80px;
+  left: 0%;
+  background: $silver;
+  margin: 0px;
+  height: 100%;
+  width: 220px;
+}
+
+/* projects/index */
+
+.project-well {
+  background: $green_very_light;
+  width: 210px;
+  padding: 5px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  margin-left: 0px;
+  @include rounded_border;
+  h3 {
+    font-size: 1.0em;
+    line-height: 130%;
+    margin-bottom: 5px;
+  }
+  h4 {
+    font-size: 0.9em;
+  }
+  p {
+    background: white;
+    margin-top: 10px;
     padding: 5px;
     @include rounded_border;
-    h3 {
-      font-size: 1.0em;
-      line-height: 130%;
-      margin-bottom: 5px;
+  }
+}
+
+/* projects/new */
+
+#projects_new, #projects_create, #projects_edit, #projects_update {
+  h2 {
+    margin-top: -10px;
+    margin-bottom: 10px;
+  }
+  p {
+    font-size: 80%;
+    color: $darkergrey;
+  }
+  label {
+    display: inline;
+    margin-right: 20px;
+  }
+  #radio-account-types {
+    label {
+      display:inline-block;
+      background-color: $silver;
+      margin-bottom: 10px;
+      padding: 4px 11px;
+      font-family: Arial;
+      font-size: 16px;
+      @include rounded_border;
     }
-    h4 {
-      font-size: 0.9em;
-    }
-    p {
-      background: white;
-      margin-top: 10px;
-      padding: 5px;
+    input[type="radio"]:checked + label {
+      color: $gold;
+      text-shadow: none;
+      background-color: darken($silver, 50%);
       @include rounded_border;
     }
   }
 }
 
-#projects_new {
-  
+/* users/show */
+
+#users_show {
+  h2 {
+    margin-top: -10px;
+    display: inline;
+  }
+  h3 {
+    color: $silver;
+    margin-bottom: 10px;
+  }
 }
 
 /* layouts/header */

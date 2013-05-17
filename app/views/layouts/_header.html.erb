@@ -2,12 +2,14 @@
 	<div class="navbar navbar-inverse">
 	  <div class="navbar-inner">
 	    <div class="container">
-        <%= link_to((image_tag 'bitbio_logo.png', alt: "bitBIO Logo"), root_path, class: 'pull-left') %>
+        <%= link_to((image_tag 'bitbio_logo.png', alt: "bitBIO Logo"), root_path, class: 'pull-left', id: 'logo') %>
         <div class="breadcrumbs">
-          home > projects > chip-seq
+          <% if Rails.env.development? %>
+            <%= controller_name %>_<%= action_name %>
+          <% end %>
           <h1>Science Market and Science Outsourcing</h1>
         </div>
-        <ul class="nav pull-left"> 
+        <ul class="nav"> 
 			    <li><%= link_to "Browse Projects", projects_path %></li>
 			    <li><%= link_to "Providers", providers_path %></li>
 			    <li><%= link_to "Researchers", researchers_path %></li>

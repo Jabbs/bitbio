@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :full_name, use: [:slugged, :history]
   attr_accessible :account_type, :description, :email, :first_name, :last_name, :organization,
                   :password, :password_confirmation, :phone
   has_secure_password
