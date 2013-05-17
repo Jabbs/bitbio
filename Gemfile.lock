@@ -70,6 +70,7 @@ GEM
     ffi (1.7.0)
     formatador (0.2.4)
     friendly_id (4.0.9)
+    geocoder (1.1.6)
     growl (1.0.3)
     guard (1.7.0)
       formatador (>= 0.2.4)
@@ -206,6 +207,7 @@ DEPENDENCIES
   factory_girl_rails (= 1.4.0)
   faker (= 1.0.1)
   friendly_id
+  geocoder
   growl (= 1.0.3)
   guard-rspec (= 0.5.5)
   guard-spork (= 0.3.2)

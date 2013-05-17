@@ -10,6 +10,7 @@ gem 'bootstrap-sass', '2.0.0'
 gem 'roadie'
 gem 'stripe'
 gem 'friendly_id'
+gem 'geocoder'
 
 group :development, :test do
   gem 'rspec-rails', '2.11.0'

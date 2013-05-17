@@ -2,7 +2,7 @@
 <div class="row">
   <div class="span9">
     <% if @projects.empty? %>
-      <h3>No projects right now. Please <%= link_to 'sign up', new_user_path %> to create a project.</h3>
+      <h3>No projects found.</h3>
     <% else %>
       <% @projects.each do |project| %>
         <%= render 'project', project: project %>
