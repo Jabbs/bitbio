@@ -21,7 +21,7 @@
   <% elsif project.service_need == "Data Analysis" %>
     <% back_color = "dat" %>
   <% end %>
-    
+  <%= truncate(project.user.country, length: 30) %>
   <div class="service <%= back_color %>"><%= project.service_need %></div>
   <p><%= truncate(project.description, length: 200) %> <%= link_to "more", project_path(project), class: 'more' %></p>
   <p class="time_ago pull-right"><small>Posted <%= time_ago_in_words(project.created_at) %> ago.</small></p>

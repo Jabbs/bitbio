@@ -16,9 +16,10 @@ class Project < ActiveRecord::Base
     errors.add :name, *errors.delete(:friendly_id) if errors[:friendly_id].present?
   end
   
-  def self.search(search)
+  def self.search(search, from, to)
     if search
-      find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
+      find(:all, conditions: ['name LIKE ?', "%#{search}%"])
+      where(start_date: ( from..to) ) unless from.blank? || to.blank?
     else
       find(:all)
     end

@@ -1,17 +1,18 @@
 <div class="span3 user-well">
-  <div style="height: 0;">
-    <% if user.researcher? %>
-      <%= image_tag "researcher.png" %>
-    <% elsif user.provider? %>
-      <%= image_tag "provider.png" %>
-    <% end %>
-  </div>
   <ul class="unstyled">
-    <li><%= link_to truncate(user.full_name, length: 40), user_path(user) %></li>
-    <li><%= truncate(user.email, length: 40) %></li>
-    <li><%= truncate(user.phone, length: 40) %></li>
-    <li>Organization: <%= truncate(user.organization, length: 40) %></li>
+    <li>
+      <% if user.researcher? %>
+        <i class="icon-user"></i> 
+      <% elsif user.provider? %>
+        <i class="icon-home"></i> 
+      <% end %>
+      <%= link_to truncate(user.full_name, length: 14), user_path(user) %>
+      <div class="pull-right"><%= truncate(user.country, length: 15) %></div>
+    </li>
+    <li><%= mail_to(truncate(user.email, length: 30)) %></li>
+    <li><%= truncate(user.phone, length: 30) %></li>
+    <li><%= truncate(user.organization, length: 30) %></li>
   </ul>
   <dt>Bio:</dt>
-  <p><%= user.description %></p>
+  <p><%= truncate(user.description, length: 80) %></p>
 </div>

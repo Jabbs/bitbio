@@ -1,12 +1,12 @@
 
 <div class="row">
   <div class="span9">
-    <% if @projects.empty? %>
-      <h3>No projects found.</h3>
-    <% else %>
+    <% if @projects %>
       <% @projects.each do |project| %>
         <%= render 'project', project: project %>
       <% end %>
+    <% else %>
+      <h3>No projects found.</h3>
     <% end %>
   </div>
 </div>

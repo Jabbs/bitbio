@@ -12,15 +12,26 @@
     <% end %>
     <dl>
       <dt>General</dt>
-      <dd>Type: <%= @user.account_type %></dd>
+      <dd>
+        <% if @user.researcher? %>
+          <i class="icon-user"></i> 
+        <% elsif @user.provider? %>
+          <i class="icon-home"></i> 
+        <% end %>
+        <%= @user.account_type %></dd>
       <dd><%= @user.full_name %></dd>
-      <dd><%= @user.email %></dd>
+      <dd><%= mail_to(@user.email) %></dd>
       <dd><%= @user.phone %></dd>
     </dl>
     <dl>
       <dt>Scientific</dt>
       <dd><%= @user.organization %></dd>
       <dd><%= @user.description %></dd>
+    </dl>
+    <dl>
+      <dt>Location</dt>
+      <dd><%= @user.address %></dd>
+      <dd><%= @user.city %>, <%= @user.state %>, <%= @user.zip %></dd>
     </dl>
   </div>
   <div class="span6">
@@ -30,7 +41,7 @@
         <%= render 'projects/project', project: project %>
       <% end %>
     <% else %>
-      <em>You do not have any projects.</em>
+      <em>n/a</em>
     <% end %>
   </div>
 </div>

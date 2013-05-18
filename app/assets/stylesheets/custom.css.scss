@@ -89,6 +89,13 @@ h2 {
   padding: 5px;
   float: left;
   margin: 0;
+  height: 160px;
+  @include rounded_border;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  ul {
+    margin-bottom: 0;
+  }
   img {
     position: relative;
   }

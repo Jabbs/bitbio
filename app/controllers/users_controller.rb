@@ -22,12 +22,12 @@ class UsersController < ApplicationController
   end
   
   def researchers_index
-    @users = User.where(account_type: "Researcher")
+    @users = User.where(account_type: "Researcher").order("last_name ASC")
     render template: "users/index"
   end
   
   def providers_index
-    @users = User.where(account_type: "Provider")
+    @users = User.where(account_type: "Provider").order("last_name ASC")
     render template: "users/index"
   end
   
