@@ -25,6 +25,14 @@ class User < ActiveRecord::Base
   
   has_many :projects
   
+  def researcher?
+    account_type == "Researcher" ? true : false
+  end
+  
+  def provider?
+    account_type == "Provider" ? true : false
+  end
+  
   def full_address
     "#{address}, #{city}, #{state} #{zip}"
   end

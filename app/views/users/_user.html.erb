@@ -1,9 +1,17 @@
-<div class="span3 project-well">
-  <h3><%= link_to truncate(user.full_name, length: 40), user_path(user) %></h3>
-  <h3><%= truncate(user.email, length: 40) %></h3>
-  <h3><%= truncate(user.phone, length: 40) %></h3>
-  <h3>Project Count: <%= user.projects.size %></h3>
-  <h4>Organization: <%= truncate(user.organization, length: 40) %></h4>
-  <h4>Bio:</h4>
+<div class="span3 user-well">
+  <div style="height: 0;">
+    <% if user.researcher? %>
+      <%= image_tag "researcher.png" %>
+    <% elsif user.provider? %>
+      <%= image_tag "provider.png" %>
+    <% end %>
+  </div>
+  <ul class="unstyled">
+    <li><%= link_to truncate(user.full_name, length: 40), user_path(user) %></li>
+    <li><%= truncate(user.email, length: 40) %></li>
+    <li><%= truncate(user.phone, length: 40) %></li>
+    <li>Organization: <%= truncate(user.organization, length: 40) %></li>
+  </ul>
+  <dt>Bio:</dt>
   <p><%= user.description %></p>
 </div>

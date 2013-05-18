@@ -79,6 +79,29 @@ h2 {
   }
 }
 
+
+
+/* users/index */
+
+.user-well {
+  background: $green_very_light;
+  width: 210px;
+  padding: 5px;
+  float: left;
+  margin: 0;
+  img {
+    position: relative;
+  }
+  p {
+    background: white;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    padding: 5px;
+    @include rounded_border;
+    word-wrap: break-word;
+  }
+}
+
 /* projects/index */
 
 .project-well {
@@ -93,7 +116,6 @@ h2 {
   .head {
     height: 18px;
     h3 {
-      width: 180px;
       font-size: 1.0em;
       line-height: 130%;
     }
