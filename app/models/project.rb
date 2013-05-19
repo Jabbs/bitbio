@@ -16,13 +16,22 @@ class Project < ActiveRecord::Base
     errors.add :name, *errors.delete(:friendly_id) if errors[:friendly_id].present?
   end
   
-  def self.search(search, from, to)
-    if search
-      find(:all, conditions: ['name LIKE ?', "%#{search}%"])
-      where(start_date: ( from..to) ) unless from.blank? || to.blank?
-    else
-      find(:all)
+  def self.search(keyword=nil, from=nil, to=nil, country=nil)
+    projects = self.scoped
+    unless keyword.blank? || keyword == nil
+      projects = projects.where("name LIKE ? OR description LIKE ? OR science_type LIKE ?", "%#{keyword}%","%#{keyword}%","%#{keyword}%")
     end
+    unless country.blank? || country == nil
+      projects = projects.joins(:user).where(users: {country: country})
+    end
+    unless from == nil || to == nil || from.blank? || to.blank?
+      projects = projects.where(start_date: ( from..to) )
+    end
+    projects
+  end
+  
+  def country
+    user.country
   end
   
 end

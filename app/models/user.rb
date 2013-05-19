@@ -2,13 +2,14 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :full_name, use: [:slugged, :history]
   geocoded_by :full_address
-  attr_accessible :account_type, :description, :email, :first_name, :last_name, :organization,
+  attr_accessible :account_type, :bio, :email, :first_name, :last_name, :organization,
                   :password, :password_confirmation, :phone, :address, :city, :state,
                   :zip, :country
   has_secure_password
   
   validates :first_name, presence: true, length: { maximum: 30 }
   validates :last_name, presence: true, length: { maximum: 30 }
+  validates :country, presence: true
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true, length: { minimum: 6 }, on: :create
   validates :password_confirmation, presence: true, on: :create

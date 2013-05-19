@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130517220901) do
+ActiveRecord::Schema.define(:version => 20130519155919) do
 
   create_table "friendly_id_slugs", :force => true do |t|
     t.string   "slug",                         :null => false
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(:version => 20130517220901) do
     t.string   "account_type"
     t.string   "organization"
     t.string   "phone"
-    t.text     "description"
+    t.text     "bio"
     t.string   "password_digest"
     t.string   "auth_token"
     t.string   "password_reset_token"

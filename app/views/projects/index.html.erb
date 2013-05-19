@@ -1,13 +1,14 @@
 
 <div class="row">
   <div class="span9">
-    <% if @projects %>
+    <% if @projects && !@projects.empty? %>
       <% @projects.each do |project| %>
         <%= render 'project', project: project %>
       <% end %>
     <% else %>
-      <h3>No projects found.</h3>
+      <h3><em>n/a</em></h3>
     <% end %>
   </div>
 </div>
+<%= will_paginate %>
 
