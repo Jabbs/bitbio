@@ -1,11 +1,28 @@
 <div class="row">
-  <div class="span9 project-full-well">
-    <h2 class="inline"><%= @project.name %></h2>
-    <h4>Created: <%= @project.created_at.strftime("%b %e, %Y") %>, Start Date: <%= @project.start_date.strftime("%b %e, %Y")  %></h4>
-    <h4>Type: <%= @project.science_type %></h4>
-    <h5><%= @project.service_need %></h5>
+  <div class="span6 project-full-well">
+    <h2><%= @project.name %></h2>
+    <h4><%= @project.science_type %></h4>
+    <h5>Created: <%= @project.created_at.strftime("%b %e, %Y") %>, Start Date: <%= @project.start_date.strftime("%b %e, %Y")  %></h5>
+    <div style="height: 0;">
+      <div class="date">
+        <div class="mm">starts in</div>
+        <div class="dd"><p class="day"><%= (@project.start_date - Date.today).to_i %></p></div>
+        <div class="yyyy">days</div>
+      </div>
+    </div>
+    <% if @project.service_need == "Science + Services" %>
+      <% back_color = "sci_ser" %>
+    <% elsif @project.service_need == "Science" %>
+      <% back_color = "sci" %>
+    <% elsif @project.service_need == "Services" %>
+      <% back_color = "ser" %>
+    <% elsif @project.service_need == "Data Analysis" %>
+      <% back_color = "dat" %>
+    <% end %>
+    <div class="service <%= back_color %>"><%= @project.service_need %></div>
     <p><%= @project.description %></p>
   </div>
+  <%= render 'users/user', user: @project.user %>
 </div>
 <% if current_user?(@project.user) %>
 <div class="row">

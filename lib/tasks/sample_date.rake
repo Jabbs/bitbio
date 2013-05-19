@@ -5,13 +5,14 @@ namespace :db do
     unless User.find_by_email('petejabbour1@gmail.com')
       User.create!(first_name: 'Peter', last_name: 'Jabbour', email: 'petejabbour1@gmail.com', password: 'testing', password_confirmation: 'testing',
                    account_type: 'Researcher', organization: 'The Stowers Institute', phone: '785-550-8670',
-                   description: Faker::Lorem.paragraph)
+                   bio: Faker::Lorem.paragraph, address: "3049 W Fullerton #1", city: "Chicago",
+                   state: "IL", zip: "60647", country: "United States")
     end
     
     40.times do
       User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, 
                     password: 'testing', password_confirmation: 'testing', account_type: ['Researcher', 'Provider'].shuffle.first, 
-                    organization: Faker::Company.name, phone: Faker::PhoneNumber.phone_number, description: Faker::Lorem.paragraph,
+                    organization: Faker::Company.name, phone: Faker::PhoneNumber.phone_number, bio: Faker::Lorem.paragraph,
                     address: Faker::Address.street_address, city: Faker::Address.city, state: Faker::Address.state_abbr,
                     zip: Faker::Address.zip_code, country: User::COUNTRIES.shuffle.first)
     end
