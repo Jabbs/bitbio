@@ -5,12 +5,12 @@
 </div>
 <div class="row">
   <div class="span9">
-    <% if @users.empty? %>
-      <h4><em>None. Please sign up <%= link_to 'here', new_user_path %>.</em></h4>
-    <% else %>
+    <% if @users %>
       <% @users.each do |user| %>
         <%= render 'user', user: user %>
       <% end %>
+    <% else %>
+      <h4><em>None. Please sign up <%= link_to 'here', new_user_path %>.</em></h4>
     <% end %>
   </div>
 </div>

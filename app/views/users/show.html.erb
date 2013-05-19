@@ -1,3 +1,8 @@
+<% if @user.researcher? %>
+  <%= link_to '← back', researchers_path %>
+<% elsif @user.provider? %>
+  <%= link_to '← back', providers_path %>
+<% end %>
 <div class="row">
   <div class="span9">
     <h2>bitBIO Account: <%= @user.first_name %> <%= @user.last_name %></h2>

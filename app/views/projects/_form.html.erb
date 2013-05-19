@@ -64,6 +64,7 @@
     <hr>
     <div class="row">
       <div class="span9">
+        <%= link_to 'cancel', :back %>
         <% if action_name == 'edit' || action_name == 'update' %>
           <%= f.submit 'Update Project', class: "btn btn-success btn-large", disable_with: 'Submitting...' %>
         <% else %>

@@ -3,17 +3,60 @@
 	  <div class="navbar-inner">
 	    <div class="container">
         <%= link_to((image_tag 'bitbio_logo.png', alt: "bitBIO Logo"), root_path, class: 'pull-left', id: 'logo') %>
-        <div class="breadcrumbs">
-          <% if Rails.env.development? %>
-            <%= controller_name %>_<%= action_name %>
-          <% end %>
+        <div class="span4">
+          <ul class="breadcrumb">
+            <li><%= link_to 'Home', root_path %><span class="divider">/</span></li>
+            
+            <% if controller_name == 'projects' && action_name == 'index' %>
+              <li class="active">Projects</li>
+            <% elsif controller_name == 'projects' && action_name == 'show' %>
+              <li><a href="/projects">Projects<span class="divider">/</span></a></li>
+              <li class="active"><%= @project.name %></li>
+            <% elsif controller_name == 'users' && action_name == 'researchers_index' %>
+              <li class="active">Researchers</li>
+            <% elsif controller_name == 'users' && action_name == 'providers_index' %>
+              <li class="active">Providers</li>
+            <% elsif controller_name == 'users' && action_name == 'show' %>
+              <% if @user.researcher? %>
+                <li><a href="/researchers">Researchers<span class="divider">/</span></a></li>
+              <% elsif @user.provider? %>
+                <li><a href="/providers">Providers<span class="divider">/</span></a></li>
+              <% end %>
+              <li class="active"><%= @user.full_name %></li>
+            <% elsif controller_name == 'sessions' && (action_name == 'new' || action_name == 'create') %>
+              <li class="active">Sign In</li>
+            <% elsif controller_name == 'users' && (action_name == 'new' || action_name == 'create') %>
+              <li class="active">New Account</li>
+            <% elsif controller_name == 'users' && (action_name == 'edit' || action_name == 'update') %>
+              <li class="active">Editing Account</li>
+            <% elsif controller_name == 'projects' && (action_name == 'edit' || action_name == 'update') %>
+              <li class="active">Editing Project</li>
+            <% elsif controller_name == 'projects' && (action_name == 'new' || action_name == 'create') %>
+              <li class="active">New Project</li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="top">
           <h1>Science Market and Science Outsourcing</h1>
         </div>
-        <ul class="nav"> 
-			    <li><%= link_to "Browse Projects", projects_path %></li>
-			    <li><%= link_to "Providers", providers_path %></li>
-			    <li><%= link_to "Researchers", researchers_path %></li>
-			  </ul>
+        <div class="span5">
+          <ul class="nav">
+            <% x = "on" if request.path == '/' || request.path == '/projects' %>
+            <% y = "on" if request.path == '/providers' %>
+            <% z = "on" if request.path == '/researchers' %>
+            <% if @user %>
+              <% if @user.researcher? %>
+                <% z = 'on' %>
+              <% elsif @user.provider? %>
+                <% y = 'on' %>
+              <% end %>
+            <% end %>
+            
+  			    <li class=<%= x %>><%= link_to "Browse Projects", projects_path %></li>
+  			    <li class=<%= y %>><%= link_to "Providers", providers_path %></li>
+  			    <li class=<%= z %>><%= link_to "Researchers", researchers_path %></li>
+  			  </ul>
+        </div>
         
 				<% if current_user %>
   				<ul class="nav pull-right">
