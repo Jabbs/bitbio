@@ -10,28 +10,23 @@
 <div class="row" style="margin-bottom: 5px;">
   <%= link_to '← back', projects_path %>
 </div>
-<%= render 'project_full' %>
-
+<%= render 'projects/project_full' %>
 <div class="row">
   <div class="span9 new-comment-well">
-    <%= form_for @comment do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-      <div class="row">
-        <div class="span2">
-  				<label>Comment:</label>
-  			</div>
-  			<div class="span6">
-  		    <%= f.text_area :content, class: "span3", class: 'span4', rows: 7, 
-  		        placeholder: "Leave a comment..." %> 
-  			</div>
-      </div>
-      <div class="row">
-        <div class="span9">
-          <%= f.submit "Submit Comment", class: "btn btn-success", disable_with: 'Submitting...' %>
-        </div>
-      </div>
-    <% end %>
-    
+  <% if current_user %>
+      <%= form_for @comment do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+  			<%= f.hidden_field :project_id, value: @project.id %>
+  			<%= f.hidden_field :user_id, value: current_user.id %>
+
+		    <%= f.text_area :content, class: 'span4', rows: 2, 
+		        placeholder: "Leave a comment..." %> 
+        <%= f.submit "Submit Comment", class: "btn", disable_with: 'Submitting...' %>
+      <% end %>  
+  <% else %>
+
+    <em><%= link_to 'Sign in', new_user_path %> to leave a comment.</em>
+  <% end %>
   </div>
 </div>
 
