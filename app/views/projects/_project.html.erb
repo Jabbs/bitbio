@@ -29,8 +29,8 @@
   
   <p><%= truncate(project.description, length: 195) %> <%= link_to "more", project_path(project), class: 'more' %></p>
 
-  <label class="checkbox" style="display: inline; padding-left: 0px; margin-left: 0px; margin-top: 5px; font-size: 70%;">
+  <!-- <label class="checkbox" style="display: inline; padding-left: 0px; margin-left: 0px; margin-top: 5px; font-size: 70%;">
     <input type="checkbox" style="display: inline; padding-left: 0px; margin-left: 0px; margin-right: 3px;"> Favorite
-  </label>
+  </label> -->
   <p class="time_ago pull-right"><small>Posted <%= time_ago_in_words(project.created_at) %> ago.</small></p>
 </div>

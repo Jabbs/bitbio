@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Science Market and Science Outsourcing | bitBIO</title>
+  <% if !ENV['STAGING'].present? || Rails.env.development? %>
+    <link rel="image_src" href="<%= image_path('bitbio_logo.png') %>" />
+    <title><%= content_for?(:title) ? yield(:title) : t('application.root.title') %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : t('application.root.description') %>">
+  <% else %>
+    <title>bitBIO Staging Site</title>
+  <% end %>
+  
+  <title></title>
   <%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/flick/jquery-ui.css", "application" %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>

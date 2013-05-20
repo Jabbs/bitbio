@@ -2,4 +2,8 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  application:
+    root:
+      description: "Science community and resource used to exchange science services and projects, outsourcing science, and to market science to interested providers."
+      title: "Science Community, Science Market, and Science Outsourcing | bitBIO"
+      title_with_tag_line: "%{tag_line} | bitBIO"

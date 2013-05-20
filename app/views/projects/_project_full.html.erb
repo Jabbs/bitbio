@@ -1,8 +1,12 @@
 <div class="row">
   <div class="span6 project-full-well">
-    <h2><%= @project.name %></h2>
+    <h2><%= @project.name %> 
+      <% if current_user?(@user) %>
+        <%= link_to "Edit", edit_project_path(@project) %>
+      <% end %>
+    </h2>
     <h4><%= @project.science_type %></h4>
-    <h5>Created: <%= @project.created_at.strftime("%b %e, %Y") %>, Start Date: <%= @project.start_date.strftime("%b %e, %Y")  %></h5>
+    <h5>Start Date: <%= @project.start_date.strftime("%b %e, %Y")  %></h5>
     <div style="height: 0;">
       <div class="date">
         <div class="mm">starts in</div>
@@ -21,14 +25,8 @@
     <% end %>
     <div class="service <%= back_color %>"><%= @project.service_need %></div>
     <p><%= @project.description %></p>
+    <p class="time_ago pull-right"><small>Posted <%= time_ago_in_words(@project.created_at) %> ago.</small></p>
   </div>
   <%= render 'users/user', user: @project.user %>
 </div>
-<% if current_user?(@project.user) %>
-<div class="row">
-  <div class="span9">
-    <%= link_to "Edit", edit_project_path(@project), class: 'btn' %>
-    <%= link_to "Remove", project_path(@project), method: :delete, confirm: "Are you sure?", class: 'btn btn-danger' %>
-  </div>
-</div>
-<% end %>
+

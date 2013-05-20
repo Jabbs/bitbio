@@ -9,6 +9,8 @@ class ProjectsController < ApplicationController
   
   def show
     @project = Project.find(params[:id])
+    @comments = @project.comments
+    @comment = Comment.new
     if request.path != project_path(@project)
       redirect_to @project, status: :moved_permanently
     end

@@ -6,6 +6,7 @@ class Project < ActiveRecord::Base
   TYPES = ['Service', 'Science', 'Service + Science', 'Data Analysis']
   
   belongs_to :user
+  has_many :comments
   
   validates :description, presence: true, length: { minimum: 90, maximum: 2000 }
   validates :science_type, presence: true

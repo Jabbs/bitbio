@@ -1,3 +1,22 @@
+<% if !ENV['STAGING'].present? || Rails.env.development? %>
+  <% if request.path == '/researchers' %>
+    <% content_for :title do %>
+      <%= t('application.root.title_with_tag_line', tag_line: "Researchers in the science community") %>
+    <% end %>
+    <% content_for :description do %>
+      A list of researchers in the science community looking to exchange science services and projects with other
+      researchers and science service providers.
+    <% end %>
+  <% elsif request.path == '/providers' %>  
+    <% content_for :title do %>
+      <%= t('application.root.title_with_tag_line', tag_line: "Science service providers") %>
+    <% end %>
+    <% content_for :description do %>
+      A list of providers in the science community looking to exchange science services, find new research
+      projects, or collaborate on new scientific endeavors.
+    <% end %>
+  <% end %>
+<% end %>
 
 <div class="row">
   <div class="span9">

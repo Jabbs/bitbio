@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   
   validates :first_name, presence: true, length: { maximum: 30 }
   validates :last_name, presence: true, length: { maximum: 30 }
+  validates :bio, presence: true, length: { minimum: 30 }
   validates :country, presence: true
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true, length: { minimum: 6 }, on: :create
@@ -24,7 +25,8 @@ class User < ActiveRecord::Base
   before_save { self.last_name.strip.capitalize! }
   before_create { generate_token(:auth_token) }
   
-  has_many :projects
+  has_many :projects, dependent: :destroy
+  has_many :comments
   
   def researcher?
     account_type == "Researcher" ? true : false

@@ -1,3 +1,12 @@
+<% if !ENV['STAGING'].present? || Rails.env.development? %>
+  <% content_for :title do %>
+    <%= t('application.root.title_with_tag_line', tag_line: "#{@user.full_name}") %>
+  <% end %>
+  <% content_for :description do %>
+    <%= @user.full_name %> - <%= @user.bio %>
+  <% end %>
+<% end %>
+
 <% if @user.researcher? %>
   <%= link_to '← back', researchers_path %>
 <% elsif @user.provider? %>
@@ -5,16 +14,17 @@
 <% end %>
 <div class="row">
   <div class="span9">
-    <h2>bitBIO Account: <%= @user.first_name %> <%= @user.last_name %></h2>
+    <h2>bitBIO Account: <%= @user.full_name %> 
+    <% if current_user?(@user) %>
+      <%= link_to 'edit', edit_user_path %>
+    <% end %>  
+    </h2>
   </div>
 </div>
 <hr>
 <div class="row">
   <div class="span3">
     <h3>Account Info</h3>
-    <% if current_user?(@user) %>
-      <p><%= link_to 'edit', edit_user_path, class: 'btn' %></p>
-    <% end %>
     <dl>
       <dt>General</dt>
       <dd>

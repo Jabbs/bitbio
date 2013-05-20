@@ -1,1 +1,10 @@
+<% if !ENV['STAGING'].present? || Rails.env.development? %>
+  <% content_for :title do %>
+    <%= t('application.root.title_with_tag_line', tag_line: "Editing #{@user.full_name}") %>
+  <% end %>
+  <% content_for :description do %>
+    Editing <%= @user.full_name %>'s bitBIO page.
+  <% end %>
+<% end %>
+
 <%= render 'form' %>

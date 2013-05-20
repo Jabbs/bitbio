@@ -1,3 +1,12 @@
+<% if !ENV['STAGING'].present? || Rails.env.development? %>
+  <% content_for :title do %>
+    <%= t('application.root.title_with_tag_line', tag_line: "Sign In") %>
+  <% end %>
+  <% content_for :description do %>
+    Sign in to your bitBIO account to exchange science services with others.
+  <% end %>
+<% end %>
+
 <%= link_to '← back', root_path %>
 <%= form_tag do %>
 <div class="row">
