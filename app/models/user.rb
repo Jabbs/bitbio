@@ -40,6 +40,14 @@ class User < ActiveRecord::Base
     "#{address}, #{city}, #{state} #{zip}"
   end
   
+  def full_address_present?
+    if address? && city? && state? && zip?
+      true
+    else
+      false
+    end
+  end
+  
   def generate_token(column)
     begin
       self[column] = SecureRandom.urlsafe_base64

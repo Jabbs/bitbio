@@ -5,6 +5,7 @@
 $darkergrey: #B2B2B2;
 $header_background: #686868;
 $blue: #78A8E9;
+$red_light: #FFC6BB;
 $red: #D33C3D;
 $teal: #00D6D4;
 $orange: #E18B15;
@@ -117,13 +118,27 @@ h2 {
 
 /* projects/show */
 
+.comment-well {
+  background: $red_light;
+  padding: 5px;
+  width: 690px;
+  @include rounded_border;
+  margin-bottom: 10px;
+  p {
+    background: white;
+    padding: 5px;
+    margin-bottom: 0;
+    @include rounded_border;
+  }
+}
+
 .project-full-well {
   background: $green_very_light;
   @include rounded_border;
   padding: 10px;
   padding-top: 0px;
-  margin-left: 0;
   margin-right: 10px;
+  width: 440px;
   .time_ago {
     background: $green_very_light;
     padding: 0;
@@ -149,8 +164,8 @@ h2 {
   }
   .date {
     position: relative;
-    left: 420px;
-    top: -64px;
+    left: 400px;
+    top: -68px;
     border: 1px solid $blue;
     @include rounded_border;
     margin-top: 0px;

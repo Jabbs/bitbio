@@ -115,8 +115,8 @@
       <hr>
       <div class="row">
         <div class="span9">
-          <%= link_to 'cancel', @user %>
           <% if action_name == 'edit' || action_name == 'update' %>
+            <%= link_to 'cancel', @user %>
             <%= f.submit "Update Account", class: "btn btn-large", disable_with: 'Submitting...' %>
             <% if current_user?(@user) %>
               <%= link_to "Cancel Account", user_path(@user), method: :delete, confirm: "Are you sure?", class: 'btn btn-large btn-danger pull-right' %>

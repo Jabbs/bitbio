@@ -1,7 +1,7 @@
 <div class="row">
   <div class="span6 project-full-well">
     <h2><%= @project.name %> 
-      <% if current_user?(@user) %>
+      <% if current_user?(@project.user) %>
         <%= link_to "Edit", edit_project_path(@project) %>
       <% end %>
     </h2>

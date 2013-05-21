@@ -8,9 +8,31 @@
 <% end %>
 
 <div class="row" style="margin-bottom: 5px;">
-  <%= link_to '← back', projects_path %>
+  <div class="span9">
+    <%= link_to '← back', projects_path %>
+  </div>
 </div>
 <%= render 'projects/project_full' %>
+<hr>
+
+<% unless @comments.empty? %>
+  <% @comments.each do |comment| %>
+    <div class="row">
+      <div class="span9 comment-well">
+        <p>
+          <%= comment.content %>
+          <% if comment.user.account_type == 'Provider' %>
+          <i class="icon-home"></i>
+          <% elsif comment.user.account_type == 'Researcher' %>
+          <i class="icon-user"></i>
+          <% end %>
+          <%= link_to "#{comment.user.full_name}", comment.user %>
+          <small>posted <%= time_ago_in_words(comment.created_at) %> ago.</small>
+        </p>
+      </div>
+    </div>
+  <% end %>
+<% end %>
 <div class="row">
   <div class="span9 new-comment-well">
   <% if current_user %>
@@ -24,19 +46,7 @@
         <%= f.submit "Submit Comment", class: "btn", disable_with: 'Submitting...' %>
       <% end %>  
   <% else %>
-
     <em><%= link_to 'Sign in', new_user_path %> to leave a comment.</em>
   <% end %>
   </div>
 </div>
-
-<% unless @comments.empty? %>
-  <% @comments.each do |comment| %>
-    <div class="row">
-      <div class="span9 comment-well">
-        <%= comment.content %>
-      </div>
-    </div>
-  <% end %>
-<% end %>
-
