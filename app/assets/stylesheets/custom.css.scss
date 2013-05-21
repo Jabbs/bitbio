@@ -69,6 +69,35 @@ h2 {
   }
 }
 
+#message {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+#message-form {
+  width: 690px;
+  margin-bottom: 10px;
+  background: lighten($silver, 10%);
+  @include rounded_border;
+  .to {
+    margin: 10px 0 0 10px;
+  }
+  .cancel {
+    margin-left: 10px;
+    margin-right: 335px;
+  }
+  #message_content {
+    margin-left: 10px;
+    width: 420px;
+  }
+  #message_title {
+    margin-left: 10px;
+    margin-top: 5px;
+    width: 420px;
+  }
+}
+
 /* shared/sidebar */
 
 #sidebar {
@@ -374,12 +403,9 @@ h2 {
     font-size: 80%;
     color: $darkergrey;
   }
-  label {
-    display: inline;
-    margin-right: 20px;
-  }
   #radio-account-types {
     label {
+      margin-right: 20px;
       display:inline-block;
       background-color: $silver;
       margin-bottom: 10px;

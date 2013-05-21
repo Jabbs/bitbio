@@ -7,21 +7,27 @@
   <% end %>
 <% end %>
 
-<div class="row">
-  <div class="span9">
+
     <% if @projects && !@projects.empty? && params[:keyword] %>
-      <% @projects.each do |project| %>
-        <%= render 'project', project: project %>
-      <% end %>
-    <% elsif @projects.empty? && params[:keyword] %>
-    <hr>
-      <p><em>***No projects matched your search. Please check back another time or <%= link_to 'sign up', new_user_path %> 
-      to receive new project alert emails.***</em></p>
+      <div class="row">
+        <div class="span9">
+        <% @projects.each do |project| %>
+          <%= render 'project', project: project %>
+        <% end %>
+        </div>
+      </div>
+      <%= will_paginate %>
       <hr>
+    <% elsif @projects.empty? && params[:keyword] %>
+    <div class="row">
+      <div class="span9">
+        <hr>
+          <p><em>***No projects matched your search. Please check back another time or 
+          <%= link_to 'sign up', new_user_path %> to receive new project alert emails.***</em></p>
+          <hr>
+        </div>
+      </div>
     <% end %>
-  </div>
-</div>
-<%= will_paginate %>
 
 <div class="row" style="margin-top: 10px;">
   <div class="span9">

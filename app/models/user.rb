@@ -26,6 +26,9 @@ class User < ActiveRecord::Base
   before_save { self.last_name.strip.capitalize! }
   before_create { generate_token(:auth_token) }
   
+  has_many :sent_messages, foreign_key: "sender_id", class_name: "Message"
+  has_many :received_messages, foreign_key: "receiver_id", class_name: "Message"
+  
   has_many :projects, dependent: :destroy
   has_many :comments
   

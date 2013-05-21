@@ -41,7 +41,7 @@
   			<%= f.hidden_field :project_id, value: @project.id %>
   			<%= f.hidden_field :user_id, value: current_user.id %>
 
-		    <%= f.text_area :content, class: 'span4', rows: 2, 
+		    <%= f.text_area :content, style: 'width: 450px;', rows: 2, 
 		        placeholder: "Leave a comment..." %> 
         <%= f.submit "Submit Comment", class: "btn", disable_with: 'Submitting...' %>
       <% end %>  

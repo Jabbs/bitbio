@@ -1,5 +1,8 @@
 Bitbio::Application.routes.draw do
 
+  resources :messages
+
+
   resources :comments
 
 

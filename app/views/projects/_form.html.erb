@@ -9,7 +9,7 @@
         <label>Type:</label>
       </div>
       <div class="span8">
-        <%= f.text_field :science_type, placeholder: "e.g. dna sequencing, proteomics, microscopy, etc.", class: 'span4' %>
+        <%= f.text_field :science_type, placeholder: "e.g. dna sequencing, proteomics, microscopy, etc.", class: 'span5' %>
         <p>What type of project best defines your needs?</p>
       </div>
     </div>
@@ -27,6 +27,9 @@
         <label>Science + Services</label>
         <%= f.radio_button :service_need, "Data Analysis"  %>
         <label>Data Analysis</label>
+        <br>
+        <%= f.radio_button :service_need, "Research Validation"  %>
+        <label>Research Validation</label>
         <p>Are you strictly seeking a service provider or a science provider? Or both?</p>
       </div>
     </div>
@@ -36,7 +39,7 @@
         <label>Name:</label>
       </div>
       <div class="span8">
-        <%= f.text_field :name, placeholder: 'e.g. analyzing histone modification', class: 'span4' %>
+        <%= f.text_field :name, placeholder: 'e.g. analyzing histone modification', class: 'span5' %>
         <p>Choose a name that is unique to your project</p>
       </div>
     </div>

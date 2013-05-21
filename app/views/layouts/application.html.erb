@@ -32,6 +32,42 @@
       	    <%= msg %>
       	  </div>
       	<% end %>
+      	
+        <!-- Sending a message -->
+        <div id="message-form">
+          <div class="row">
+            <div class="span6">
+              <%= form_for(@message) do |f| %>
+              	<%= render 'shared/error_messages', object: f.object %>
+              	<div class="field">
+                  <%= f.hidden_field :sender_id, value: current_user.id %>
+                  <%= f.hidden_field :receiver_id %>
+                  <% if @project %>
+                    <%= f.hidden_field :project_id, value: @project.id %>
+                  <% end %>
+                </div>
+                <% if @project %>
+                  <div class="to">To: <%= link_to "#{@project.user.full_name}", @project.user %></div>
+                  <div class="field">
+                    <%= f.text_field :title, value: "Project: #{@project.name}", placeholder: "Message title" %> 
+                  </div>
+                <% else %>
+                  <div class="field">
+                    <%= f.text_field :title, placeholder: "Message title", style: 'width: 420px' %> 
+                  </div>
+                <% end %>
+              	<div class="field">
+                  <%= f.text_area :content, rows: 3, placeholder: "Message content" %>
+                </div>
+                  <%= link_to 'cancel', '#', class: 'cancel', disabled: true %>
+              		<%= f.submit 'Send', class: "btn", style: "margin-bottom: 0px;", disable_with: 'Submitting...' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        
+        
+      	
     	  <%= yield %>
     	</div>
   	</div>
