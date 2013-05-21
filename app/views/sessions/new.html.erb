@@ -31,7 +31,8 @@
 		</div>
 			<hr>
 			<div>
-				<%= submit_tag 'Login', class: "btn btn-large pull-right" %>
+			  <p class="inline">Don't have an account? <%= link_to 'Sign up', new_user_path %>!</p>
+				<%= submit_tag 'Login', class: "btn btn-large pull-right inline" %>
 	    </div>
 	<% end %>
 	</div>

@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+  before_filter :signed_in_user, only: [:show, :edit, :update]
+  before_filter :admin_user, only: [:researchers_index, :providers_index]
+  before_filter :correct_user, only: [:edit, :update]
+  before_filter :signed_in_user_go_to_dash, only: [:new, :create]
+  
   def new
     @user = User.new
   end
@@ -55,4 +60,21 @@ class UsersController < ApplicationController
     
     redirect_to root_path, alert: "Your account has been cancelled."
   end
+  
+  private
+  
+    def admin_user
+      redirect_to(root_path) unless current_user && current_user.admin?
+    end
+    
+    def correct_user
+      @user = User.find_by_id(params[:id])
+      redirect_to(root_path) unless current_user?(@user) || current_user.admin?
+    end
+    
+    def signed_in_user_go_to_dash
+      if current_user
+        redirect_to root_path
+      end
+    end
 end

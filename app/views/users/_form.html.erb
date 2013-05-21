@@ -17,7 +17,7 @@
           <%= f.radio_button :account_type, "Researcher", checked: true  %>
   		    <label style="display: inline; margin-right: 20px;"><i class="icon-user icon-white"></i> Researcher</label>
   		    <%= f.radio_button :account_type, "Provider" %>
-  		    <label style="display: inline; margin-right: 20px;"><i class="icon-home icon-white"></i> Provider</label>
+  		    <label style="display: inline; margin-right: 20px;"><i class="icon-home icon-white"></i> Service Provider</label>
         </div>
       </div>
       <hr>
@@ -63,7 +63,7 @@
   				<label>Bio:</label>
   			</div>
   			<div class="span6">
-  		    <%= f.text_area :bio, class: "span3", class: 'span4', rows: 7, 
+  		    <%= f.text_area :bio, class: 'span4', rows: 7, 
   		        placeholder: "Please describe your scientific background or provide a brief description of your organization" %> 
   			</div>
       </div>
@@ -92,7 +92,7 @@
   				<label>Country:</label>
   			</div>
   			<div class="span6">
-  		    <%= f.select :country, User::COUNTRIES, { prompt: "--select--" }, class: "span2" %>
+  		    <%= f.select :country, User::COUNTRIES, { prompt: "--select--" }, class: "span3", style: 'width: 268px' %>
   			</div>
       </div>
       <hr>
