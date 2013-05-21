@@ -17,10 +17,13 @@ class Project < ActiveRecord::Base
     errors.add :name, *errors.delete(:friendly_id) if errors[:friendly_id].present?
   end
   
-  def self.search(keyword=nil, from=nil, to=nil, country=nil)
+  def self.search(keyword=nil, from=nil, to=nil, country=nil, science=nil)
     projects = self.scoped
     unless keyword.blank? || keyword == nil
       projects = projects.where("name LIKE ? OR description LIKE ? OR science_type LIKE ?", "%#{keyword}%","%#{keyword}%","%#{keyword}%")
+    end
+    unless science.blank? || science == nil
+      projects = projects.where("science_type LIKE ?", "%#{science}%")
     end
     unless country.blank? || country == nil
       projects = projects.joins(:user).where(users: {country: country})

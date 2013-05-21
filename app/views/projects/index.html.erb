@@ -9,7 +9,7 @@
 
 <% if current_user %>
   <% if @projects && !@projects.empty? && params[:keyword] %>
-    <div class="row">
+    <div class="row" style="margin-top: 10px;">
       <div class="span9">
       <% @projects.each do |project| %>
         <%= render 'project', project: project %>
@@ -87,7 +87,7 @@
   </div>
   <hr>
   <p>
-    Why rely on expensive online services to broker your science project when all you really need is 
+    Why rely on expensive services to broker your science project when all you really need is 
     access, exposure, and some help from the science community. <%= link_to 'Join', new_user_path %> bitBIO
     and exchange science projects!
   </p>

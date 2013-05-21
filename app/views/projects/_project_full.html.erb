@@ -29,6 +29,7 @@
     <p><%= @project.description %></p>
     <p class="time_ago pull-right"><small>Posted <%= time_ago_in_words(@project.created_at) %> ago.</small></p>
   </div>
+  <h3 class="silver" style="margin-bottom: 5px;">Project Owner:</h3>
   <%= render 'users/user', user: @project.user %>
 </div>
 

@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   def index
-    @projects = Project.order("start_date ASC").search(params[:keyword], params[:start_date], params[:end_date], params[:country]).paginate(page: params[:page], per_page: 9)
+    @projects = Project.order("start_date ASC").search(params[:keyword], params[:start_date], params[:end_date], params[:country], params[:science]).paginate(page: params[:page], per_page: 9)
   end
   
   def new
