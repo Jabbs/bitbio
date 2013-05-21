@@ -1,0 +1,35 @@
+<% share_text = "Checkout bitBIO - Science Community, Science Market, and Science Outsourcing." %>
+<% share_url = request.url %>
+<% tw_link = "https://twitter.com/share?url=#{share_url}&text=#{share_text}" %>
+<% fb_link = "http://www.bitbio.co" %>
+<% title_page = t('application.root.title') %>
+<% description_page = t('application.root.description') %>
+<% app_title = "bitBIO Online Science Community" %>
+<div class="row" style="margin-top: 5px;">
+  <div class="span1">
+    <%= link_to tw_link, target: "_blank" do %>
+        <%= image_tag 'twitter.png' %>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="span1">
+    <%= link_to "http://www.facebook.com/share.php?u=#{fb_link}", target: "_blank" do %>
+        <%= image_tag 'facebook.png' %>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="span1">
+    <%= link_to "https://plus.google.com/share?url=#{share_url}", target: "_blank" do %>
+        <%= image_tag 'google_plus.png' %>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="span1">
+    <%= link_to "http://www.linkedin.com/shareArticle?mini=true&url=#{u(share_url)}&title=#{u(title_page)}&summary=#{u(description_page)}&source=#{u(app_title)}", target: "_blank" do %>
+        <%= image_tag 'linked_in.png' %>
+    <% end %>
+  </div>
+</div>

@@ -144,6 +144,20 @@ h2 {
   }
 }
 
+#social_buttons {
+  position: absolute;
+  top: 80px;
+  left: 220px;
+  background: $silver;
+  margin: 0px;
+  height: 120px;
+  width: 30px;
+   -webkit-border-bottom-right-radius: 5px;
+	    -moz-border-bottom-right-radius: 5px;
+	         border-bottom-right-radius: 5px;
+  
+}
+
 
 
 /* users/index */
