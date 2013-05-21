@@ -17,6 +17,7 @@ $green_light: #6DF45F;
 $green: #5DCE4F;
 $green_dark: #469D3D;
 $silver: #C0C0C0;
+$link_color: #0088cc;
 
 /* MIXINS */
 
@@ -86,6 +87,13 @@ h2 {
   .cancel {
     margin-left: 10px;
     margin-right: 335px;
+    display:inline;
+    color: $link_color;
+    &:hover {
+      color: darken($link_color, 20%);
+      cursor: pointer;
+      text-decoration: underline;
+    }
   }
   #message_content {
     margin-left: 10px;
@@ -280,19 +288,18 @@ h2 {
 }
 .sci_ser {
   background: $red;
-  width: 106px;
 }
 .sci {
   background: $teal;
-  width: 44px;
 }
 .ser {
   background: $green;
-  width: 46px;
 }
 .dat {
   background: $orange;
-  width: 76px;
+}
+.def {
+  background: black;
 }
 
 .country {

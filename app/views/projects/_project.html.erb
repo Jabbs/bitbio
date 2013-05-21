@@ -20,6 +20,8 @@
     <% back_color = "ser" %>
   <% elsif project.service_need == "Data Analysis" %>
     <% back_color = "dat" %>
+  <% else %>
+    <% back_color = "def" %>
   <% end %>
   <div class="country">
     <%= truncate(project.user.country, length: 30) %>

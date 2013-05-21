@@ -7,78 +7,90 @@
   <% end %>
 <% end %>
 
-
-    <% if @projects && !@projects.empty? && params[:keyword] %>
-      <div class="row">
-        <div class="span9">
-        <% @projects.each do |project| %>
-          <%= render 'project', project: project %>
-        <% end %>
-        </div>
+<% if current_user %>
+  <% if @projects && !@projects.empty? && params[:keyword] %>
+    <div class="row">
+      <div class="span9">
+      <% @projects.each do |project| %>
+        <%= render 'project', project: project %>
+      <% end %>
       </div>
-      <%= will_paginate %>
-      <hr>
-    <% elsif @projects.empty? && params[:keyword] %>
+    </div>
+    <%= will_paginate %>
+    <hr>
+  <% elsif @projects.empty? && params[:keyword] %>
     <div class="row">
       <div class="span9">
         <hr>
           <p><em>***No projects matched your search. Please check back another time or 
           <%= link_to 'sign up', new_user_path %> to receive new project alert emails.***</em></p>
-          <hr>
-        </div>
+        <hr>
       </div>
-    <% end %>
-
-<div class="row" style="margin-top: 10px;">
-  <div class="span9">
-    <p>
-      Your online <strong class="gold">science community</strong> and resource built by you, for you. Whether 
-      you are outsourcing science, searching for service providers, collaborating on a research project,
-      or looking for assistance, try bitBIO.
-    </p>
-    <p>
-      This is a place to promote your research project, <strong class="gold">access new resources</strong> or providers you 
-      may have otherwise not found, and exchange science with your community.
-    </p>
-    <p>
-      Find out what scientific methods other researchers or service providers are using. 
-      <strong class="gold">Search for projects</strong> to exchange science advice, opinions, and services. 
-    </p>
-    <p>
-      Learn about new research, methods, and technologies to use for your project and what the science 
-      market has to offer. Quickly <span class="gold">promote research</span> questions and answers 
-      in the science community to help each other.
-    </p>
-  </div>
-</div>
-<hr>
-
-<div class="row" style="margin-top: 10px;">
-  <div class="span9 taglines">
-    <h1><%= image_tag 'researcher.png' %> Researchers</h1>
-    <div class="one_two_three">
-      <h4>1. List a project.</h4>
-      <h3>2. Promote and share project(s) with the science community.</h3>
-      <h2>3. Get feedback, collaborate, find science outsourcing.</h2>
+    </div>
+  <% end %>
+<% elsif params[:keyword] %>
+  <div class="row">
+    <div class="span9">
+      <hr>
+        <p><em>***You must be signed in to view project listings. Please 
+        <%= link_to 'sign up', new_user_path %> or <%= link_to 'sign in', login_path %>.***</em></p>
+        <hr>
     </div>
   </div>
-</div>
-<hr>
-<div class="row">
-  <div class="span9 taglines">
-    <h1><%= image_tag 'provider.png' %> Service Providers</h1>
-    <div class="one_two_three">
-      <h4>1. Search projects.</h4>
-      <h3>2. Discuss possibilities and alternative service offerings.</h3>
-      <h2>3. Connect with research projects and researchers.</h2>
+<% end %>
+
+<% unless @projects && !@projects.empty? && params[:keyword] && current_user %>
+  <div class="row" style="margin-top: 10px;">
+    <div class="span9">
+      <p>
+        Your online <strong class="gold">science community</strong> and resource built by you, for you. Whether 
+        you are outsourcing science, searching for service providers, collaborating on a research project,
+        or looking for assistance, try bitBIO.
+      </p>
+      <p>
+        This is a place to promote your research project, <strong class="gold">access new resources</strong> or providers you 
+        may have otherwise not found, and exchange science with your community.
+      </p>
+      <p>
+        Find out what scientific methods other researchers or service providers are using. 
+        <strong class="gold">Search for projects</strong> to exchange science advice, opinions, and services. 
+      </p>
+      <p>
+        Learn about new research, methods, and technologies to use for your project and what the science 
+        market has to offer. Quickly <span class="gold">promote research</span> questions and answers 
+        in the science community to help each other.
+      </p>
     </div>
   </div>
-</div>
-<hr>
-<p>
-  Why rely on expensive online services to broker your science project when all you really need is 
-  access, exposure, and some help from the science community. <%= link_to 'Join', new_user_path %> bitBIO
-  and exchange science projects!
-</p>
-<hr>
+  <hr>
+
+  <div class="row" style="margin-top: 10px;">
+    <div class="span9 taglines">
+      <h1><%= image_tag 'researcher.png' %> Researchers</h1>
+      <div class="one_two_three">
+        <h4>1. List a project.</h4>
+        <h3>2. Promote and share project(s) with the science community.</h3>
+        <h2>3. Get feedback, collaborate, find science outsourcing.</h2>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="span9 taglines">
+      <h1><%= image_tag 'provider.png' %> Service Providers</h1>
+      <div class="one_two_three">
+        <h4>1. Search projects.</h4>
+        <h3>2. Discuss possibilities and alternative service offerings.</h3>
+        <h2>3. Connect with research projects and researchers.</h2>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <p>
+    Why rely on expensive online services to broker your science project when all you really need is 
+    access, exposure, and some help from the science community. <%= link_to 'Join', new_user_path %> bitBIO
+    and exchange science projects!
+  </p>
+  <hr>
+<% end %>
 

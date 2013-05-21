@@ -33,6 +33,7 @@
       	  </div>
       	<% end %>
       	
+      	<% if current_user %>
         <!-- Sending a message -->
         <div id="message-form">
           <div class="row">
@@ -46,7 +47,7 @@
                     <%= f.hidden_field :project_id, value: @project.id %>
                   <% end %>
                 </div>
-                <% if @project %>
+                <% if @project && !@project.new_record? %>
                   <div class="to">To: <%= link_to "#{@project.user.full_name}", @project.user %></div>
                   <div class="field">
                     <%= f.text_field :title, value: "Project: #{@project.name}", placeholder: "Message title" %> 
@@ -59,13 +60,13 @@
               	<div class="field">
                   <%= f.text_area :content, rows: 3, placeholder: "Message content" %>
                 </div>
-                  <%= link_to 'cancel', '#', class: 'cancel', disabled: true %>
+                <div class="cancel">cancel</div>
               		<%= f.submit 'Send', class: "btn", style: "margin-bottom: 0px;", disable_with: 'Submitting...' %>
               <% end %>
             </div>
           </div>
         </div>
-        
+        <% end %>
         
       	
     	  <%= yield %>

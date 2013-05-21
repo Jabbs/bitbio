@@ -22,6 +22,8 @@
       <% back_color = "ser" %>
     <% elsif @project.service_need == "Data Analysis" %>
       <% back_color = "dat" %>
+    <% else %>
+      <% back_color = "def" %>
     <% end %>
     <div class="service <%= back_color %>"><%= @project.service_need %></div>
     <p><%= @project.description %></p>
