@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   geocoded_by :full_address
   attr_accessible :account_type, :bio, :email, :first_name, :last_name, :organization,
                   :password, :password_confirmation, :phone, :address, :city, :state,
-                  :zip, :country
+                  :zip, :country, :membership
   has_secure_password
   
   validates :first_name, presence: true, length: { maximum: 30 }
@@ -28,9 +28,16 @@ class User < ActiveRecord::Base
   
   has_many :sent_messages, foreign_key: "sender_id", class_name: "Message"
   has_many :received_messages, foreign_key: "receiver_id", class_name: "Message"
+
+  has_many :message_receivers, through: :sent_messages, source: :receiver
+  has_many :message_senders, through: :received_messages, source: :sender
   
   has_many :projects, dependent: :destroy
   has_many :comments
+  
+  def contacts
+    (self.message_receivers + self.message_senders).uniq
+  end
   
   def researcher?
     account_type == "Researcher" ? true : false
@@ -60,6 +67,10 @@ class User < ActiveRecord::Base
   
   def full_name
     self.first_name + " " + self.last_name
+  end
+  
+  def full_name_w_account_type
+    self.full_name + " - " + self.account_type
   end
   
   COUNTRIES = [

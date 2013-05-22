@@ -1,0 +1,41 @@
+<div id="message-form">
+  <div class="row">
+    <div class="span6">
+      <%= form_for @message, url: user_messages_path(current_user) do |f| %>
+      	<%= render 'shared/error_messages', object: f.object %>
+      	<div class="field">
+          <%= f.hidden_field :sender_id, value: current_user.id %>
+          <% if @project %>
+            <%= f.hidden_field :project_id, value: @project.id %>
+          <% end %>
+        </div>
+        
+        <% if controller_name == 'messages' && @contacts && !@contacts.empty? %>
+          <div class="field" style="margin-top: 10px;">
+            <label class="inline" style="margin-left: 10px;">To:</label>
+            <%= f.select :receiver_id, options_from_collection_for_select(@contacts, 'id', "full_name_w_account_type"), 
+                {}, {style: 'width: 406px'} %> 
+          </div>
+        <% else %>
+          <%= f.hidden_field :receiver_id %>
+        <% end %>
+        
+        <% if @project && !@project.new_record? %>
+          <div class="to">To: <%= link_to "#{@project.user.full_name}", @project.user %></div>
+          <div class="field">
+            <%= f.text_field :subject, value: "Project: #{@project.name}", placeholder: "Subject" %> 
+          </div>
+        <% else %>
+          <div class="field">
+            <%= f.text_field :subject, placeholder: "Subject", style: 'width: 420px' %> 
+          </div>
+        <% end %>
+      	<div class="field">
+          <%= f.text_area :content, rows: 3, placeholder: "Message content" %>
+        </div>
+        <div class="cancel">cancel</div>
+      		<%= f.submit 'Send', class: "btn pull-right", style: "margin-bottom: 0px; margin-right: 20px;", disable_with: 'Submitting...' %>
+      <% end %>
+    </div>
+  </div>
+</div>

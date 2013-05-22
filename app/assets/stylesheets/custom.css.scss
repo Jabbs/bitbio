@@ -79,6 +79,11 @@ h2 {
   }
 }
 
+.message-header {
+  padding: 5px;
+  background: $blue;
+}
+
 #message-form {
   width: 690px;
   margin-bottom: 10px;
@@ -89,9 +94,9 @@ h2 {
   }
   .cancel {
     margin-left: 10px;
-    margin-right: 335px;
     display:inline;
     color: $link_color;
+    font-size: 80%;
     &:hover {
       color: darken($link_color, 20%);
       cursor: pointer;
@@ -102,7 +107,7 @@ h2 {
     margin-left: 10px;
     width: 420px;
   }
-  #message_title {
+  #message_subject {
     margin-left: 10px;
     margin-top: 5px;
     width: 420px;
@@ -163,7 +168,37 @@ h2 {
   
 }
 
+/* messages/index */
 
+#message_nav {
+  ul.nav {
+    .on {
+      background: $blue;
+      a {
+        color: white;
+      }
+    }
+    li {
+      @include rounded_border;
+      margin-right: 20px;
+      a:hover {
+        background: $blue;
+        @include rounded_border;
+      }
+    }
+  }
+}
+
+.message_bar {
+  a {
+    color: black;
+    &:hover {
+      cursor: pointer;
+      text-decoration: none;
+      color: black;
+    } 
+  }
+}
 
 /* users/index */
 
@@ -196,16 +231,10 @@ h2 {
 /* projects/show */
 
 .comment-well {
-  background: $red_light;
-  padding: 5px;
   width: 690px;
-  @include rounded_border;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   p {
-    background: white;
-    padding: 5px;
     margin-bottom: 0;
-    @include rounded_border;
   }
 }
 

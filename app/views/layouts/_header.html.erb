@@ -63,6 +63,7 @@
   						</a>
               <ul class="dropdown-menu" style='min-width: 100px; width: 140px;'>
                 <li><a href="<%= user_path(current_user) %>"><i class="icon-user"></i> My Account</a></li>
+                <li><a href="<%= user_messages_path(current_user) %>"><i class="icon-envelope"></i> Messages</a></li>
                 <li class="divider"></li>
                 <li><a href="<%= logout_path %>" data-method="delete" rel="nofollow"><i class="icon-ban-circle" method="delete"></i> Logout</a></li>
               </ul>

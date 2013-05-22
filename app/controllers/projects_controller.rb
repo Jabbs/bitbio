@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
   
   def show
     @project = Project.find(params[:id])
-    @comments = @project.comments.order("created_at DESC")
+    @comments = @project.comments.order("created_at ASC")
     @comment = Comment.new
     if request.path != project_path(@project)
       redirect_to @project, status: :moved_permanently
@@ -34,7 +34,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(params[:project])
     @project.user = current_user
     if @project.save
-      redirect_to projects_path, notice: "Your project has been created!"
+      redirect_to @project, notice: "Your project has been created!"
     else
       render 'new'
     end

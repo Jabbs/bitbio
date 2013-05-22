@@ -114,6 +114,16 @@
   		</div>
       <hr>
       <div class="row">
+        <div class="span2">
+          <label class="inline">Membership:</label>
+        </div>
+        <div class="span4">
+          <%= f.radio_button :membership, "Basic", checked: true  %>
+          <label style="display: inline; margin-right: 20px;"> Basic (FREE)</label>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
         <div class="span9">
           <% if action_name == 'edit' || action_name == 'update' %>
             <%= link_to 'cancel', @user %>

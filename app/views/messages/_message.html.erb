@@ -1,0 +1,24 @@
+<div class="row" style="margin-top: 10px;">
+  <div class="span9">
+    <h3><%= @message.subject.present? ? @message.subject : "(no subject)" %></h3>
+  </div>
+</div>
+<div class="row" style="color: grey;">
+  <div class="span3">
+    To: <%= @message.receiver.full_name %>
+  </div>
+  <div class="span3">
+    From: <%= @message.sender.full_name %>
+  </div>
+  <div class="span3">
+    <div class="pull-right">
+      <%= date_or_time(@message) %> (<%= time_ago_in_words(@message.created_at) %> ago)
+    </div>
+  </div>
+</div>
+<div class="row" style="margin-top: 10px;">
+  <div class="span9">
+    <%= @message.content %>
+  </div>
+</div>
+

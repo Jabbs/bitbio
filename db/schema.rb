@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130521153448) do
+ActiveRecord::Schema.define(:version => 20130522221405) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(:version => 20130521153448) do
     t.integer  "receiver_id"
     t.integer  "project_id"
     t.text     "content"
-    t.string   "title"
+    t.string   "subject"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(:version => 20130521153448) do
     t.string   "country"
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "membership"
   end
 
   add_index "users", ["account_type"], :name => "index_users_on_account_type"

@@ -35,8 +35,6 @@
         <% end %>
         <%= @user.account_type %></dd>
       <dd><%= @user.full_name %></dd>
-      <dd><%= mail_to(@user.email) %></dd>
-      <dd><%= @user.phone %></dd>
     </dl>
     <dl>
       <dt>Scientific</dt>
@@ -50,7 +48,6 @@
       <dd><%= @user.city %>, <%= @user.state %>, <%= @user.zip %></dd>
       <dd><%= @user.country %></dd>
       <% else %>
-      <dd><em>incomplete address</em></dd>
       <dd><%= @user.country %></dd>
       <% end %>
     </dl>

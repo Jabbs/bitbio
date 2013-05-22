@@ -12,7 +12,11 @@
         <input class="span5" id="project_science_type" name="project[science_type]" 
         placeholder="e.g. dna sequencing, proteomics, microscopy, etc." size="30" type="text" 
         data-provide="typeahead" data-source="<%= Project::SCIENCE_TYPES.uniq.sort %>"
-        autocomplete="off" />
+        autocomplete="off" 
+        <% unless @project.new_record? %>
+          value="<%= @project.science_type %>"
+        <% end %>
+         />
 
         <p>What type of project best defines your needs?</p>
       </div>
