@@ -9,10 +9,9 @@
         <label>Type:</label>
       </div>
       <div class="span8">
-
         <input class="span5" id="project_science_type" name="project[science_type]" 
         placeholder="e.g. dna sequencing, proteomics, microscopy, etc." size="30" type="text" 
-        data-provide="typeahead" data-source="<%= Project.pluck(:science_type).uniq %>"
+        data-provide="typeahead" data-source="<%= Project::SCIENCE_TYPES.uniq.sort %>"
         autocomplete="off" />
 
         <p>What type of project best defines your needs?</p>
@@ -36,6 +35,11 @@
         <%= f.radio_button :service_need, "Research Validation"  %>
         <label>Research Validation</label>
         <p>What best describes the needs for your scientific project?</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span8 offset1">
+        Equipment or Instruments?
       </div>
     </div>
     <hr>

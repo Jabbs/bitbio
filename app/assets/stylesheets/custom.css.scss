@@ -1,7 +1,6 @@
 @import "bootstrap";
 
 /* COLORS */
-
 $darkergrey: #B2B2B2;
 $header_background: #686868;
 $blue: #78A8E9;
@@ -420,6 +419,10 @@ h2 {
 }
 
 /* projects/new */
+
+.dropdown-menu {
+  min-width: 378px; 
+}
 
 #projects_new, #projects_create, #projects_edit, #projects_update {
   h2 {

@@ -3,7 +3,38 @@ class Project < ActiveRecord::Base
   friendly_id :name, use: [:slugged, :history]
   attr_accessible :description, :name, :science_type, :service_need, :start_date
   
-  TYPES = ['Service', 'Science', 'Service + Science', 'Data Analysis']
+  SCIENCE_TYPES = ["Antibody production", "Antibody purification", "Atomic force microscopy (AFM)", 
+    "Bioinformatics", "Cell based assay", "Chromatin immunoprecipitation (ChIP) sequencing", "Cloning molecular constructs", 
+    "Compound synthesis", "Computational Biology", "Confocal microscopy", "Consulting", 
+    "Copy number variation (CNV) analysis", "Cytometry", "DNA Sequencing", "DNA fragment analysis", "DNA library screen", 
+    "DNA microarray", "Data analysis", "Digital microscopy", "Electron microscopy", 
+    "Enzyme-linked immunosorbent assay (ELISA)", "Experimental design", "Flow cytometry", "Flow cytometry data analysis", 
+    "Fluorescence microscopy", "Fluorescence-activated cell sorting (FACS)", "Gene synthesis", "Genomic DNA amplification", 
+    "Genomic DNA extraction", "Genotyping", "Genotyping by PCR", "Glycoprotein", "High performance computing", 
+    "High throughput screening (HTS)", "High-throughput screening", "Histology", "Image analysis", "Imaging", 
+    "Immunofluorescence", "Immunohistochemistry", "Immunostaining", "In situ hybridization (ISH)", "Instrumentation", 
+    "Inverted microscopy", "Ion beam microscopy", "Laser capture microdissection", 
+    "Library generation for next-generation sequencing", 'Liquid chromatography (LC)', "Liquid chromatography-mass spectrometry (LC-MS)", 
+    "Mass spectrometry", "Mass spectrometry data analysis", "Media preparation", "Metabolomics", 
+    "Metagenomics data analysis", "Method development", "Methylation analysis", "Microarray data analysis", 
+    "Microbial identification", "Microscopy", "Microscopy consulting", "Microscopy data analysis", 
+    "Microscopy image analysis", "Molecular biology", "Monoclonal antibody production", 
+    "Multidimensional protein identification technology (MudPIT)", "Multiphoton microscopy", "Next-Generation Sequencing", 
+    "Next-Generation Sequencing data analysis", "Nuclear magnetic resonance (NMR)", 
+    "Nuclear magnetic resonance (NMR) data analysis", "Oligonucleotide synthesis", "Paraffin embedding of tissue", 
+    "Pathology", "Peptide synthesis", "Plasmid DNA extraction", "Polyclonal antibody production", 
+    "Polymerase chain reaction (PCR)", "Protein digestion", "Protein expression", "Protein identification", 
+    "Protein purification", "Protein sequencing", "Proteomics", "Pyrosequencing", "RNA Sequencing", "RNA extraction", 
+    "RNA microarray", "RNA purification", "Recombinant IgG production", "Sample processing", 
+    "Scanning Tunneling Microscopy", "Scanning electron microscopy (SEM)", "Scanning probe microscopy", 
+    "Sectioning of frozen tissue", "Serum testing", "Shotgun DNA sequencing", "Site directed mutagenesis", 
+    "Software development", "Spinning disk confocal microscopy", "Targeted gene sequencing", "Tissue culture", 
+    "Transgenic mouse development", "Transmission electron microscopy (TEM)", "Transmitted light microscopy", 
+    "Whole exome sequencing", "Whole genome assembly", "Whole genome sequencing", "Widefield fluorescence microscopy", 
+    "cDNA library construction", "single molecule real time (SMRT) sequencing"]
+    
+  # SCIENCE_EQUIPMENT = ['']
+  
   
   belongs_to :user
   has_many :comments
