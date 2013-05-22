@@ -26,6 +26,8 @@ $(function() {
 	$("#end_date").datepicker({
 		dateFormat: "yy-mm-dd"
 	});
+	
+	$('.typeahead').typeahead()
   
 });
 

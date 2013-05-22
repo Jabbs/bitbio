@@ -9,7 +9,12 @@
         <label>Type:</label>
       </div>
       <div class="span8">
-        <%= f.text_field :science_type, placeholder: "e.g. dna sequencing, proteomics, microscopy, etc.", class: 'span5' %>
+
+        <input class="span5" id="project_science_type" name="project[science_type]" 
+        placeholder="e.g. dna sequencing, proteomics, microscopy, etc." size="30" type="text" 
+        data-provide="typeahead" data-source="<%= Project.pluck(:science_type).uniq %>"
+        autocomplete="off" />
+
         <p>What type of project best defines your needs?</p>
       </div>
     </div>
@@ -30,7 +35,7 @@
         <br>
         <%= f.radio_button :service_need, "Research Validation"  %>
         <label>Research Validation</label>
-        <p>Are you strictly seeking a service provider or a science provider? Or both?</p>
+        <p>What best describes the needs for your scientific project?</p>
       </div>
     </div>
     <hr>
@@ -40,7 +45,7 @@
       </div>
       <div class="span8">
         <%= f.text_field :name, placeholder: 'e.g. analyzing histone modification', class: 'span5' %>
-        <p>Choose a name that is unique to your project</p>
+        <p>Please choose a name that is unique to your project.</p>
       </div>
     </div>
     <hr>
@@ -50,7 +55,7 @@
       </div>
       <div class="span8">
         <%= f.text_area :description, class: 'span6', rows: 5, placeholder: 
-        "Description of your project" %>
+        "Please describe your project in full detail." %>
       </div>
     </div>
     <hr>

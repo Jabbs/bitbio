@@ -120,9 +120,10 @@ h2 {
   margin: 0px;
   height: 120%;
   width: 220px;
-  h2 {
+  h2#sidebar_header {
     margin-bottom: 0px;
     margin-left: 8px;
+    margin-top: 5px;
     color: $header_background;
   }
   input[name="start_date"] {

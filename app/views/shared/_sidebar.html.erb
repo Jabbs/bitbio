@@ -1,6 +1,6 @@
 
 <%= form_tag projects_path, :method => 'get' do %>
-<h2 style="margin-left: 8px;">Project Search</h2>
+<h2 id="sidebar_header">Project Search</h2>
 <div class="row">
   <div class="span3">
     <label style="margin-left: 8px;">Country:</label>
@@ -31,7 +31,7 @@
 </div>
 <div class="row">
   <div class="span3">
-    <p class="inline pull-left" style="margin-left: 8px;"><%= link_to 'clear', root_path %></p>
+    <p class="inline pull-left" style="margin-left: 8px;"><small><%= link_to 'clear', root_path %></small></p>
     <div class="pull-right">
       <%= submit_tag "Find projects", :name => nil, class: 'btn btn-info' %>
     </div>
