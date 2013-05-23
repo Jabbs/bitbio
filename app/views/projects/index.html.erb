@@ -32,7 +32,7 @@
   <div class="row">
     <div class="span9">
       <hr>
-        <p><em>***You must be signed in to view project listings. Please 
+        <p style="text-align:center;"><em>***You must be signed in to view project listings. Please 
         <%= link_to 'sign up', new_user_path %> or <%= link_to 'sign in', login_path %>.***</em></p>
         <hr>
     </div>
@@ -43,13 +43,14 @@
   <div class="row" style="margin-top: 10px;">
     <div class="span9">
       <p>
-        Your online <strong class="gold">science community</strong> and resource built by you, for you. Whether 
+        An online <strong class="gold">science community</strong> and resource built by you, for you. If 
         you are outsourcing science, searching for service providers, collaborating on a research project,
-        or looking for assistance, try bitBIO.
+        or looking for assistance, bitBIO is for you.
       </p>
       <p>
-        This is a place to promote your research project, <strong class="gold">access new resources</strong> or providers you 
-        may have otherwise not found, and exchange science with your community.
+        Gain instant <strong class="gold">access</strong> to new resources, providers, and equipment 
+        you may have otherwise not found, and easily exchange science with research institutes, hospitals, universities,
+        and other service providers, globally.
       </p>
       <p>
         Find out what scientific methods other researchers or service providers are using. 
@@ -70,7 +71,7 @@
       <div class="one_two_three">
         <h4>1. List a project.</h4>
         <h3>2. Promote and share project(s) with the science community.</h3>
-        <h2>3. Get feedback, collaborate, find science outsourcing.</h2>
+        <h2>3. Get feedback, collaborate, and find scientific services.</h2>
       </div>
     </div>
   </div>
@@ -91,6 +92,9 @@
     access, exposure, and some help from the science community. <%= link_to 'Join', new_user_path %> bitBIO
     and exchange science projects!
   </p>
+  <hr>
+    <h2>What type of science?</h2>
+    <%= image_tag 'science_types_word_cloud.png' %>
   <hr>
 <% end %>
 

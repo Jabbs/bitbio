@@ -28,8 +28,8 @@ class Project < ActiveRecord::Base
     "RNA microarray", "RNA purification", "Recombinant IgG production", "Sample processing", 
     "Scanning Tunneling Microscopy", "Scanning electron microscopy (SEM)", "Scanning probe microscopy", 
     "Sectioning of frozen tissue", "Serum testing", "Shotgun DNA sequencing", "Site directed mutagenesis", 
-    "Software development", "Spinning disk confocal microscopy", "Targeted gene sequencing", "Tissue culture", 
-    "Transgenic mouse development", "Transmission electron microscopy (TEM)", "Transmitted light microscopy", 
+    "Software development", "Spinning disk confocal microscopy", "Statistical Analysis", "Targeted gene sequencing", "Tissue culture", 
+    "Transgenic mouse development", "Transmission electron microscopy (TEM)", "Transmitted light microscopy", "Virus production",
     "Whole exome sequencing", "Whole genome assembly", "Whole genome sequencing", "Widefield fluorescence microscopy", 
     "cDNA library construction", "single molecule real time (SMRT) sequencing"]
     
