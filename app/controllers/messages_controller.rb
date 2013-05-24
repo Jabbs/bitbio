@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
   before_filter :signed_in_user
   before_filter :correct_user, only: [:index]
+  before_filter :verified_user
   
   def index
     @sent_messages = current_user.sent_messages.order("created_at DESC")
@@ -46,5 +47,9 @@ class MessagesController < ApplicationController
       if current_user
         redirect_to root_path
       end
+    end
+    
+    def verified_user
+      redirect_to root_path, alert: 'Please verify your account first.' unless current_user.verified
     end
 end

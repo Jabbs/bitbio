@@ -1,0 +1,16 @@
+<tr>
+	<td>
+		<%= @user.full_name %>,
+	</td>
+</tr>
+<tr>
+	<td style="padding-top:20px">
+		To verify your bitBIO account please click the following link:
+	</td>
+</tr>
+<tr>
+	<td style="padding-top:20px">
+		<%= link_to "Verify Account", 
+		verification_url(@user.verification_token) %>
+	</td>
+</tr>

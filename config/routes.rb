@@ -1,11 +1,17 @@
 Bitbio::Application.routes.draw do
   
+  resources :instruments
+
+
   resources :messages, only: [:show]
   resources :users do
+    get 'resend'
     resources :messages, only: [:create, :index]
   end
+  resources :password_resets, only: [:new, :create, :edit, :update]
   resources :projects
   resources :comments
+  resources :verifications, only: [:show]
   
   match '/researchers', to: 'users#researchers_index', via: :get
   match '/providers', to: 'users#providers_index', via: :get

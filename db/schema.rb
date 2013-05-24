@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130522221405) do
+ActiveRecord::Schema.define(:version => 20130524225422) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(:version => 20130522221405) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], :name => "index_friendly_id_slugs_on_slug_and_sluggable_type", :unique => true
   add_index "friendly_id_slugs", ["sluggable_id"], :name => "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
+
+  create_table "instruments", :force => true do |t|
+    t.string   "name"
+    t.integer  "project_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "instruments", ["name"], :name => "index_instruments_on_name"
+  add_index "instruments", ["project_id"], :name => "index_instruments_on_project_id"
 
   create_table "messages", :force => true do |t|
     t.integer  "sender_id"
@@ -90,6 +100,12 @@ ActiveRecord::Schema.define(:version => 20130522221405) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "membership"
+    t.boolean  "verified"
+    t.string   "verification_token"
+    t.datetime "verification_sent_at"
+    t.integer  "sign_in_count",          :default => 0
+    t.datetime "last_sign_in_at"
+    t.string   "last_sign_in_ip"
   end
 
   add_index "users", ["account_type"], :name => "index_users_on_account_type"

@@ -1,0 +1,10 @@
+<%= @user.full_name %>,
+
+To verify your bitBIO account please click the following link:
+
+<%= link_to "Verify Account", verification_url(@user.verification_token) %>
+
+
+Sincerely,
+
+The bitBIO Team

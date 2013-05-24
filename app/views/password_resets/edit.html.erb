@@ -1,0 +1,38 @@
+<% if !ENV['STAGING'].present? || Rails.env.development? %>
+  <% content_for :title do %>
+    <%= t('application.root.title_with_tag_line', tag_line: "Update Password") %>
+  <% end %>
+<% end %>
+
+
+<%= form_for(@user, url: password_reset_path(params[:id])) do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
+<div class="row">
+	<div class="span5 offset1">
+	  <h2>Reset Password</h2>  
+    <hr>
+		<div class="row">
+			<div class="span2">
+				<label>Password:</label>
+			</div>
+			<div class="span3 pull-right">
+				<%= f.password_field :password %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="span2">
+				<label>Password Confirmation:</label>
+			</div>
+			<div class="span3 pull-right">
+				<%= f.password_field :password_confirmation %>
+			</div>
+		</div>
+		<hr>
+		<div class="row">
+      <div class="offset3 span2">
+        <%= f.submit 'Update Password', class: "btn btn-large pull-right", disable_with: 'Submitting...' %>
+      </div>
+    </div>
+	<% end %>
+	</div>
+</div>

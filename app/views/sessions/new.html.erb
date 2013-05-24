@@ -30,9 +30,14 @@
 			</div>
 		</div>
 			<hr>
-			<div>
-			  <p class="inline">Don't have an account? <%= link_to 'Sign up', new_user_path %>!</p>
-				<%= submit_tag 'Login', class: "btn btn-large pull-right inline" %>
+			<div class="row">
+        <div class="span3">
+          <p class="inline">Don't have an account? <%= link_to 'Sign up', new_user_path %>!</p>
+  			  <p><small><%= link_to "forgot password?", new_password_reset_path %></small></p>
+        </div>
+        <div class="span2">
+          <%= submit_tag 'Login', class: "btn btn-large pull-right inline" %>
+        </div>
 	    </div>
 	<% end %>
 	</div>

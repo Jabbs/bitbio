@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   before_save { self.first_name.strip.capitalize! }
   before_save { self.last_name.strip.capitalize! }
   before_create { generate_token(:auth_token) }
+  before_create { generate_token(:verification_token) }
   
   has_many :sent_messages, foreign_key: "sender_id", class_name: "Message"
   has_many :received_messages, foreign_key: "receiver_id", class_name: "Message"
@@ -34,6 +35,27 @@ class User < ActiveRecord::Base
   
   has_many :projects, dependent: :destroy
   has_many :comments
+  
+  def send_password_reset
+    generate_token(:password_reset_token)
+    self.password_reset_sent_at = Time.zone.now
+    save!
+    UserMailer.password_reset_email(self).deliver
+  end
+  
+  def add_to_sign_in_attributes(request_ip)
+    self.sign_in_count += 1
+    self.last_sign_in_at = Time.now
+    self.last_sign_in_ip = request_ip
+    self.save
+  end
+  
+  def send_verification_email
+    generate_token(:verification_token)
+    self.verification_sent_at = Time.zone.now
+    save!
+    UserMailer.verification_email(self).deliver
+  end
   
   def contacts
     (self.message_receivers + self.message_senders).uniq

@@ -2,7 +2,11 @@
   <%= render 'shared/error_messages', object: f.object %>
   
   <div class="row" style="margin-top: 10px;">
-    <h2>New Project Listing</h2>
+    <% if @project.new_record? %>
+      <h2>New Project Listing</h2>
+    <% else %>
+      <h2>Editing Project</h2>
+    <% end %>
     <hr>
     <div class="row">
       <div class="span1">
@@ -42,8 +46,16 @@
       </div>
     </div>
     <div class="row">
+      <div class="span8 offset1" style="margin-bottom: 10px;">
+        Equipment / Instruments needs?
+      </div>
+    </div>
+    <div class="row">
       <div class="span8 offset1">
-        Equipment or Instruments?
+        <%= f.fields_for :instruments do |builder| %>
+          <%= render 'instrument_fields', f: builder %>
+        <% end %>
+        <%= link_to_add_fields "Add instrument", f, :instruments %>
       </div>
     </div>
     <hr>
@@ -74,7 +86,7 @@
       <div class="span8">
         <%= f.text_field :start_date, value: Date.today %>
         <p class="inline"><small>(YYYY-MM-DD)</small></p>
-        <p>When does your project start?</p>
+        <p>Roughly, what date does your project start?</p>
       </div>
     </div>
     <hr>

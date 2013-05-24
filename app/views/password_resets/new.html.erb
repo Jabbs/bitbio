@@ -1,0 +1,33 @@
+<% if !ENV['STAGING'].present? || Rails.env.development? %>
+  <% content_for :title do %>
+    <%= t('application.root.title_with_tag_line', tag_line: "Password Reset") %>
+  <% end %>
+  <% content_for :description do %>
+    This is the password resets page. Enter your email address associated with your account to retrieve a new password.
+  <% end %>
+<% end %>
+
+
+<%= link_to '← back', login_path %>
+<%= form_tag password_resets_path, :method => :post do %>
+<div class="row">
+	<div class="span5 offset1">
+	  <h2>Reset Password</h2>  
+    <hr>
+		<div class="row">
+			<div class="span2">
+				<label>Email:</label>
+			</div>
+			<div class="span3 pull-right">
+				<%= text_field_tag :email, params[:email], class: "span3" %>
+			</div>
+		</div>
+		<hr>
+		<div class="row">
+      <div class="offset3 span2">
+        <%= submit_tag 'Reset Password', class: "btn btn-large pull-right", disable_with: 'Submitting...' %>
+      </div>
+    </div>
+	<% end %>
+	</div>
+</div>

@@ -40,6 +40,8 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       sign_in @user
+      @user.add_to_sign_in_attributes(request.remote_ip)
+      @user.send_verification_email
       redirect_to @user, notice: "Welcome #{@user.first_name}!"
     else
       render 'new'
@@ -59,6 +61,13 @@ class UsersController < ApplicationController
     @user.destroy
     
     redirect_to root_path, alert: "Your account has been cancelled."
+  end
+  
+  def resend
+    @user = User.find(params[:user_id])
+    @user.send_verification_email
+    redirect_to @user, notice: "A verification email has been sent. Please click on the link to verify your account.
+                                        Check your spam folder if you are still having issues or contact our support team."
   end
   
   private

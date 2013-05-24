@@ -1,4 +1,8 @@
 class ProjectsController < ApplicationController
+  before_filter :signed_in_user, except: [:index]
+  before_filter :verified_user, except: [:index]
+  before_filter :correct_user, only: [:edit, :update, :destroy]
+  
   def index
     @projects = Project.order("start_date ASC").search(params[:keyword], params[:start_date], params[:end_date], params[:country], params[:science]).paginate(page: params[:page], per_page: 9)
   end
@@ -46,4 +50,21 @@ class ProjectsController < ApplicationController
     
     redirect_to root_path, alert: "Your project has been removed."
   end
+  
+  private
+  
+    def verified_user
+      redirect_to root_path, alert: 'Please verify your account first.' unless current_user.verified
+    end
+    
+    def correct_user
+      @project = Project.find(params[:id])
+      redirect_to root_path unless current_user?(@project.user) || current_user.admin?
+    end
+    
+    def signed_in_user_go_to_dash
+      if current_user
+        redirect_to root_path
+      end
+    end
 end

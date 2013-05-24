@@ -22,6 +22,13 @@
   </div>
 </div>
 <hr>
+<% if current_user && current_user?(@user) && !current_user.verified %>
+	<div class="alert alert-danger">
+		<strong>NOTICE:</strong>
+	  Your account has not been verified. <%= link_to 'Resend verification email', user_resend_url(current_user), disable_with: 'Sending...' %>
+	</div>
+<% end %>
+
 <div class="row">
   <div class="span3">
     <h3>Account Info</h3>

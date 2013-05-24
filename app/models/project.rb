@@ -1,7 +1,7 @@
 class Project < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: [:slugged, :history]
-  attr_accessible :description, :name, :science_type, :service_need, :start_date
+  attr_accessible :description, :name, :science_type, :service_need, :start_date, :instruments_attributes
   
   SCIENCE_TYPES = ["Antibody production", "Antibody purification", "Atomic force microscopy (AFM)", 
     "Bioinformatics", "Cell based assay", "Chromatin immunoprecipitation (ChIP) sequencing", "Cloning molecular constructs", 
@@ -37,7 +37,9 @@ class Project < ActiveRecord::Base
   
   
   belongs_to :user
-  has_many :comments
+  has_many :comments, dependent: :destroy
+  has_many :instruments, dependent: :destroy
+  accepts_nested_attributes_for :instruments, allow_destroy: true
   
   validates :description, presence: true, length: { minimum: 90, maximum: 2000 }
   validates :science_type, presence: true
