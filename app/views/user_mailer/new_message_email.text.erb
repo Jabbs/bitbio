@@ -1,0 +1,9 @@
+Dear <%= @receiver.first_name %>,
+
+<%= @sender.full_name %> has sent you a message:
+
+<%= truncate(@message.subject, length: 60) %>
+
+<%= truncate(@message.content, length: 200) %>
+
+<%= link_to "View Full Message", user_messages_url(@receiver) %>

@@ -1,0 +1,25 @@
+<tr>
+	<td style="padding-top:10px">
+		Dear <%= @receiver.first_name %>,
+	</td>
+</tr>
+<tr>
+	<td style="padding-top:20px">
+  	<%= @sender.full_name %> has sent you a message:
+	</td>
+</tr>
+<tr>
+	<td style="padding-top:20px; padding-left:10px; padding-right:10px; font-style:italic">
+		<%= truncate(@message.subject, length: 60) %>
+	</td>
+</tr>
+<tr>
+	<td style="padding-top:10px; padding-left:10px; padding-right:10px; font-style:italic">
+		<%= truncate(@message.content, length: 200) %>
+	</td>
+</tr>
+<tr>
+	<td style="padding-top:20px; padding-right:10px">
+		<%= link_to "View Full Message", user_messages_url(@receiver) %>
+	</td>
+</tr>

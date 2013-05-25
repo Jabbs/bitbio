@@ -20,6 +20,7 @@ class MessagesController < ApplicationController
     @comments = @project.comments.order("created_at DESC") if @project
     @comment = Comment.new
     if @message.save
+      @message.send_new_message_email
       redirect_to user_messages_path(current_user, sent: true), notice: "Your message has been sent to #{@message.receiver.full_name}"
     else
       if @project

@@ -36,6 +36,10 @@ class User < ActiveRecord::Base
   has_many :projects, dependent: :destroy
   has_many :comments
   
+  def new_message_count
+    self.received_messages.unviewed.size
+  end
+  
   def send_password_reset
     generate_token(:password_reset_token)
     self.password_reset_sent_at = Time.zone.now

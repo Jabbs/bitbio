@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130525043208) do
+ActiveRecord::Schema.define(:version => 20130525160607) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -51,9 +51,10 @@ ActiveRecord::Schema.define(:version => 20130525043208) do
     t.integer  "project_id"
     t.text     "content"
     t.string   "subject"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-    t.boolean  "viewed",      :default => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+    t.boolean  "viewed",                    :default => false
+    t.datetime "new_message_email_sent_at"
   end
 
   add_index "messages", ["project_id"], :name => "index_messages_on_project_id"
