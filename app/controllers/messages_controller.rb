@@ -50,6 +50,6 @@ class MessagesController < ApplicationController
     end
     
     def verified_user
-      redirect_to root_path, alert: 'Please verify your account first.' unless current_user.verified
+      redirect_to current_user, alert: 'Please verify your account first.' unless current_user.verified
     end
 end

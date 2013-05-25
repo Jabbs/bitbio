@@ -144,6 +144,10 @@ h2 {
     width: 202px;
     margin-left: 8px;
   }
+  select[name="instrument"] {
+    width: 202px;
+    margin-left: 8px;
+  }
   input[name="end_date"] {
     width: 90px;
   }
@@ -231,6 +235,12 @@ h2 {
 }
 
 /* projects/show */
+
+.instrument {
+  display: inline;
+  padding-right: 10px;
+  margin-top: 0;
+}
 
 .comment-well {
   width: 690px;

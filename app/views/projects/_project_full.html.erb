@@ -25,7 +25,14 @@
     <% else %>
       <% back_color = "def" %>
     <% end %>
-    <div class="service <%= back_color %>"><%= @project.service_need %></div>
+    <div class="row" style="margin-bottom: 10px;">
+      <div class="span6">
+        <div class="service <%= back_color %>"><%= @project.service_need %></div>
+      </div> 
+    </div>
+    <% @project.instruments.each do |i| %>
+      <div class="instrument">&bull; <%= i.name %></div>
+    <% end %>
     <p><%= @project.description %></p>
     <p class="time_ago pull-right"><small>Posted <%= time_ago_in_words(@project.created_at) %> ago.</small></p>
   </div>

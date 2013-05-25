@@ -33,7 +33,9 @@ class Project < ActiveRecord::Base
     "Whole exome sequencing", "Whole genome assembly", "Whole genome sequencing", "Widefield fluorescence microscopy", 
     "cDNA library construction", "single molecule real time (SMRT) sequencing"]
     
-  # SCIENCE_EQUIPMENT = ['']
+  SCIENCE_EQUIPMENT = ['ABI 3730 DNA Analyzer', 'Biomek FX Liquid Handling Robots', 'Tecan Freedom EVO Liquid Handling Robot',
+    'Qpix2 Colony Picking Robot', 'Singer RoTor HDA robot', 'Hydra II Microdispenser', 'CAS 4200 PCR Setup Robot',
+    'Illumina GAIIx']
   
   
   belongs_to :user
@@ -50,7 +52,7 @@ class Project < ActiveRecord::Base
     errors.add :name, *errors.delete(:friendly_id) if errors[:friendly_id].present?
   end
   
-  def self.search(keyword=nil, from=nil, to=nil, country=nil, science=nil)
+  def self.search(keyword=nil, from=nil, to=nil, country=nil, science=nil, instrument=nil)
     projects = self.scoped
     unless keyword.blank? || keyword == nil
       projects = projects.where("name LIKE ? OR description LIKE ? OR science_type LIKE ?", "%#{keyword}%","%#{keyword}%","%#{keyword}%")
@@ -60,6 +62,9 @@ class Project < ActiveRecord::Base
     end
     unless country.blank? || country == nil
       projects = projects.joins(:user).where(users: {country: country})
+    end
+    unless instrument.blank? || instrument == nil
+      projects = projects.joins(:instruments).where(instruments: {name: instrument})
     end
     unless from == nil || to == nil || from.blank? || to.blank?
       projects = projects.where(start_date: ( from..to) )

@@ -42,6 +42,8 @@
         <br>
         <%= f.radio_button :service_need, "Research Validation"  %>
         <label>Research Validation</label>
+        <%= f.radio_button :service_need, "Clinical Studies"  %>
+        <label>Clinical Studies</label>
         <p>What best describes the needs for your scientific project?</p>
       </div>
     </div>
@@ -91,19 +93,19 @@
     </div>
     <hr>
     <div class="row">
-      <div class="span9">
+      <div class="span1">
         <%= link_to 'cancel', @project %>
+      </div>
+      <div class="span8">
         <% if action_name == 'edit' || action_name == 'update' %>
           <% if current_user?(@project.user) %>
             <%= link_to "Remove", project_path(@project), method: :delete, confirm: "Are you sure?", class: 'btn btn-large btn-danger pull-right' %>
           <% end %>
           <%= f.submit 'Update Project', class: "btn btn-success btn-large", disable_with: 'Submitting...' %>
         <% else %>
-          <%= f.submit 'Submit Project', class: "btn btn-success btn-large", disable_with: 'Submitting...' %>
+          <%= f.submit 'Create Project', class: "btn btn-success btn-large",disable_with: 'Submitting...' %>
         <% end %>
       </div>
     </div>
-    
   </div>
-  
 <% end %>

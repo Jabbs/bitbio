@@ -1,5 +1,15 @@
 <fieldset>
-  <%= f.text_field :name %>
+  <% if @id.present? %>
+    <input class="span5" id="project_instruments_attributes_name" 
+    name="project[instruments_attributes][<%= @id %>][name]" 
+    placeholder="e.g. Bioanalyzer, Illumina HiSeq 2000, etc." size="30" type="text" 
+    data-provide="typeahead" data-source="<%= Project::SCIENCE_EQUIPMENT.uniq.sort %>"
+    autocomplete="off" 
+    <% unless @project.new_record? %>
+      value="<%= f.object.name %>"
+    <% end %>
+     />
+   <% end %>
   <%= f.hidden_field :_destroy %>
   <%= link_to "<i class='icon-remove'></i>".html_safe, '#', class: 'remove_fields' %>
 </fieldset>

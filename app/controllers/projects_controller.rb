@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   before_filter :correct_user, only: [:edit, :update, :destroy]
   
   def index
-    @projects = Project.order("start_date ASC").search(params[:keyword], params[:start_date], params[:end_date], params[:country], params[:science]).paginate(page: params[:page], per_page: 9)
+    @projects = Project.order("start_date ASC").search(params[:keyword], params[:start_date], params[:end_date], params[:country], params[:science], params[:instrument]).paginate(page: params[:page], per_page: 9)
   end
   
   def new
@@ -54,7 +54,7 @@ class ProjectsController < ApplicationController
   private
   
     def verified_user
-      redirect_to root_path, alert: 'Please verify your account first.' unless current_user.verified
+      redirect_to current_user, alert: 'Please verify your account first.' unless current_user.verified
     end
     
     def correct_user
