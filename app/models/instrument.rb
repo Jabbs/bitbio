@@ -1,6 +1,6 @@
 class Instrument < ActiveRecord::Base
-  attr_accessible :name, :project_id
+  attr_accessible :alias, :project_id
   belongs_to :project
-  validates :name, presence: true
-  validates_uniqueness_of :name, scope: :project_id
+  validates :alias, presence: true
+  validates_uniqueness_of :alias, scope: :project_id
 end

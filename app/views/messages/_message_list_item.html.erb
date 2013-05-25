@@ -1,17 +1,20 @@
 <div class="row">
+  <% view_class = message.viewed || params[:sent] == 'true' ? '' : 'bold' %>
   <div class="message_bar">
     <%= link_to message do %>
-      <div class="span2">
-          <span style="padding-left: 5px;"> 
+      <div class="span2" style="width: 180px">
+          <span style="padding-left: 5px;" class=<%= view_class %>> 
             <% if params[:sent] == 'true' %>
-              To: <%= current_user?(message.receiver) ? 'Me' : truncate(message.receiver.full_name, length: 18) %>
+              To: <%= current_user?(message.receiver) ? 'Me' : truncate(message.receiver.full_name, length: 30) %>
             <% else %>
               <%= current_user?(message.sender) ? 'Me' : message.sender.full_name %>
             <% end %>
           </span>
       </div>
-      <div class="span6">
+      <div class="span6" style="width: 420px">
+        <span class=<%= view_class %>>
         <%= message.subject.present? ? message.subject : "(no subject)" %>
+        </span>
         <span class="silver"> - <%= truncate(message.content, length: 40) %>
       </div>
       <div class="span1">

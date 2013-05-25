@@ -18,16 +18,22 @@ namespace :db do
     end
     
     20.times do
-      name = ['Human', 'Rat', 'Fly', 'Mouse', 'Zebra Fish', 'Yeast', 'Lizard'].shuffle.first + " " + ['DNA', 'Genome', 'RNA', 'Ribosome', 'Histone'].shuffle.first + " " + ['Sequencing', 'Analysis', 'Experiment', 'Research', 'Study'].shuffle.first
+      name = ['Human', 'Rat', 'Fly', 'Mouse', 'Zebra Fish', 'Yeast', 'Lizard'].shuffle.first + " " + ['DNA', 'Genome', 'RNA', 'Ribosome', 'Histone'].shuffle.first + " " + ['Sequencing', 'Analysis', 'Experiment', 'Research', 'Study'].shuffle.first + " " + ('a'..'z').to_a.shuffle.first(8).join
       description = Faker::Lorem.paragraph + ' ' + Faker::Lorem.paragraph
       science_type = ['DNA Sequencing', 'RNA Sequencing', 'Chip-SEQ', 'Micro Array', 'Next-gen Sequencing',
                       'Microscopy', 'Cytometry'].shuffle.first
-      service_need = ['Science', 'Services', 'Science + Services', 'Data Analysis'].shuffle.first
+      service_need = ['Science', 'Services', 'Science + Services', 'Data Analysis', 'Clinical Studies', 'Research Validation'].shuffle.first
       start_date = rand(300).days.from_now.to_date
       project = Project.new(name: name, description: description, science_type: science_type, service_need: service_need,
                             start_date: start_date)
-      project.user_id = User.where(account_type: 'Researcher').shuffle.first.id
+      project.user_id = User.all.shuffle.first.id
       project.save!
+    end
+    
+    80.times do
+      Comment.create!(content: Faker::Lorem.paragraph, project_id: Project.all.shuffle.first.id,
+                      user_id: User.all.shuffle.first.id)
+      
     end
   end
 end

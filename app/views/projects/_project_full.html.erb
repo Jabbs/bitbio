@@ -22,6 +22,8 @@
       <% back_color = "ser" %>
     <% elsif @project.service_need == "Data Analysis" %>
       <% back_color = "dat" %>
+    <% elsif @project.service_need == "Clinical Studies" %>
+      <% back_color = "cli" %>
     <% else %>
       <% back_color = "def" %>
     <% end %>
@@ -31,10 +33,14 @@
       </div> 
     </div>
     <% @project.instruments.each do |i| %>
-      <div class="instrument">&bull; <%= i.name %></div>
+      <div class="instrument">&bull; <%= i.alias %></div>
     <% end %>
     <p><%= @project.description %></p>
-    <p class="time_ago pull-right"><small>Posted <%= time_ago_in_words(@project.created_at) %> ago.</small></p>
+    <div class="row" style="margin-top: 3px;">
+      <div class="span2">views: <%= @project.view_count %></div>
+      <div class="span2">messages: <%= @project.messages.size %></div>
+      <p class="time_ago pull-right"><small>Posted <%= time_ago_in_words(@project.created_at) %> ago.</small></p>
+    </div>
   </div>
   <h3 class="silver" style="margin-bottom: 5px;">Project Owner:</h3>
   <%= render 'users/user', user: @project.user %>

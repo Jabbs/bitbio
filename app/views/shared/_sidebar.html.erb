@@ -1,10 +1,10 @@
 
 <%= form_tag projects_path, :method => 'get' do %>
-<h2 id="sidebar_header">Project Search</h2>
+<h2 id="sidebar_header">Search Projects</h2>
 <div class="row">
   <div class="span3">
     <label style="margin-left: 8px;">Country:</label>
-    <%= select_tag :country, options_for_select(User::COUNTRIES, selected: params[:country]), 
+    <%= select_tag :country, options_for_select(User.pluck(:country).uniq.sort, selected: params[:country]), 
     { prompt: "All countries", class: 'span2' } %>
   </div>
 </div>
@@ -12,7 +12,8 @@
 <div class="row">
   <div class="span3">
     <label style="margin-left: 8px;">Science Type:</label>
-    <%= select_tag :science, options_for_select(Project::SCIENCE_TYPES.uniq.sort, selected: params[:science]), 
+
+    <%= select_tag :science, options_for_select(Project.pluck(:science_type).uniq.sort, selected: params[:science]), 
     { prompt: "All science types", class: 'span2' } %>
   </div>
 </div>
@@ -20,7 +21,7 @@
 <div class="row">
   <div class="span3">
     <label style="margin-left: 8px;">Instrument:</label>
-    <%= select_tag :instrument, options_for_select(Project::SCIENCE_EQUIPMENT.uniq.sort, 
+    <%= select_tag :instrument, options_for_select(Instrument.pluck(:alias).uniq.sort, 
     selected: params[:instrument]), 
     { prompt: "Any instrument", class: 'span2' } %>
   </div>

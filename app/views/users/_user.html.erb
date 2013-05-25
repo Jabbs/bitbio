@@ -6,7 +6,7 @@
       <% elsif user.provider? %>
         <i class="icon-home icon-white pull-right"></i> 
       <% end %>
-      <%= link_to truncate(user.full_name, length: 34), user_path(user) %>
+      <%= link_to truncate(user.full_name, length: 30), user_path(user) %>
     </li>
     <li><%= truncate(user.organization, length: 30) %></li>
     <li><%= truncate(user.country, length: 34) %></li>

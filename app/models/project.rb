@@ -41,6 +41,7 @@ class Project < ActiveRecord::Base
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :instruments, dependent: :destroy
+  has_many :messages
   accepts_nested_attributes_for :instruments, allow_destroy: true
   
   validates :description, presence: true, length: { minimum: 90, maximum: 2000 }
@@ -64,12 +65,17 @@ class Project < ActiveRecord::Base
       projects = projects.joins(:user).where(users: {country: country})
     end
     unless instrument.blank? || instrument == nil
-      projects = projects.joins(:instruments).where(instruments: {name: instrument})
+      projects = projects.joins(:instruments).where(instruments: {alias: instrument})
     end
     unless from == nil || to == nil || from.blank? || to.blank?
       projects = projects.where(start_date: ( from..to) )
     end
     projects
+  end
+  
+  def add_view_count
+    self.view_count += 1
+    save
   end
   
   def country

@@ -9,8 +9,8 @@
       </div>
     </div>
   </div>
-  <h4><%= truncate(project.science_type, length: 30) %></h4>
-  <h4>Owner: <%= link_to "#{truncate(project.user.full_name, length: 22)}", user_path(project.user) %></h4>
+  <h4><%= truncate(project.science_type, length: 28) %></h4>
+  <h4>Owner: <%= link_to "#{truncate(project.user.full_name, length: 20)}", user_path(project.user) %></h4>
   
   <% if project.service_need == "Science + Services" %>
     <% back_color = "sci_ser" %>
@@ -20,6 +20,8 @@
     <% back_color = "ser" %>
   <% elsif project.service_need == "Data Analysis" %>
     <% back_color = "dat" %>
+  <% elsif project.service_need == "Clinical Studies" %>
+    <% back_color = "cli" %>
   <% else %>
     <% back_color = "def" %>
   <% end %>

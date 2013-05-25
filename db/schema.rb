@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130524225422) do
+ActiveRecord::Schema.define(:version => 20130525043208) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -36,13 +36,13 @@ ActiveRecord::Schema.define(:version => 20130524225422) do
   add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
 
   create_table "instruments", :force => true do |t|
-    t.string   "name"
+    t.string   "alias"
     t.integer  "project_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  add_index "instruments", ["name"], :name => "index_instruments_on_name"
+  add_index "instruments", ["alias"], :name => "index_instruments_on_name"
   add_index "instruments", ["project_id"], :name => "index_instruments_on_project_id"
 
   create_table "messages", :force => true do |t|
@@ -51,8 +51,9 @@ ActiveRecord::Schema.define(:version => 20130524225422) do
     t.integer  "project_id"
     t.text     "content"
     t.string   "subject"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.boolean  "viewed",      :default => false
   end
 
   add_index "messages", ["project_id"], :name => "index_messages_on_project_id"
@@ -65,10 +66,11 @@ ActiveRecord::Schema.define(:version => 20130524225422) do
     t.string   "science_type"
     t.integer  "user_id"
     t.string   "service_need"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
     t.date     "start_date"
     t.string   "slug"
+    t.integer  "view_count",   :default => 0
   end
 
   add_index "projects", ["science_type"], :name => "index_projects_on_science_type"
