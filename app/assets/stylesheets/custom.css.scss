@@ -60,6 +60,10 @@ h2 {
   font-weight: bold;
 }
 
+.alert {
+  width: 640px;
+}
+
 .taglines {
   h1 {
     color: white;
@@ -78,8 +82,10 @@ h2 {
 }
 
 #message {
+  color: $link_color;
   &:hover {
     cursor: pointer;
+    text-decoration: underline;
   }
 }
 
@@ -89,7 +95,7 @@ h2 {
 }
 
 #message-form {
-  width: 690px;
+  width: 700px;
   margin-bottom: 10px;
   background: lighten($silver, 10%);
   @include rounded_border;
@@ -260,7 +266,7 @@ h2 {
   padding: 10px;
   padding-top: 0px;
   margin-right: 10px;
-  width: 440px;
+  width: 680px;
   .time_ago {
     background: $green_very_light;
     padding: 0;
@@ -286,8 +292,8 @@ h2 {
   }
   .date {
     position: relative;
-    left: 400px;
-    top: -68px;
+    left: 640px;
+    top: 8px;
     border: 1px solid $blue;
     @include rounded_border;
     margin-top: 0px;

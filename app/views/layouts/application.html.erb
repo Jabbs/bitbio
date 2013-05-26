@@ -30,10 +30,10 @@
     	</div>
     	<div class="span9 pull-right" id="main_container">
     	  <% flash.each do |name, msg| %>
-      	  <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
-      	    <a class="close" data-dismiss="alert">×</a>
-      	    <%= msg %>
-      	  </div>
+  	       <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+       	     <a class="close" data-dismiss="alert">×</a>
+       	     <%= msg %>
+  	       </div>
       	<% end %>
       	
       	<% if current_user %>

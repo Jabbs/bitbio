@@ -1,19 +1,5 @@
 <div class="row">
-  <div class="span6 project-full-well">
-    <h2><%= @project.name %> 
-      <% if current_user?(@project.user) %>
-        <%= link_to "Edit", edit_project_path(@project) %>
-      <% end %>
-    </h2>
-    <h4><%= @project.science_type %></h4>
-    <h5>Start Date: <%= @project.start_date.strftime("%b %e, %Y")  %></h5>
-    <div style="height: 0;">
-      <div class="date">
-        <div class="mm">starts in</div>
-        <div class="dd"><p class="day"><%= (@project.start_date - Date.today).to_i %></p></div>
-        <div class="yyyy">days</div>
-      </div>
-    </div>
+  <div class="span9 project-full-well">
     <% if @project.service_need == "Science + Services" %>
       <% back_color = "sci_ser" %>
     <% elsif @project.service_need == "Science" %>
@@ -27,22 +13,58 @@
     <% else %>
       <% back_color = "def" %>
     <% end %>
-    <div class="row" style="margin-bottom: 10px;">
-      <div class="span6">
-        <div class="service <%= back_color %>"><%= @project.service_need %></div>
-      </div> 
+    <div style="height: 0;">
+      <div class="date">
+        <div class="mm">starts in</div>
+        <div class="dd"><p class="day"><%= (@project.start_date - Date.today).to_i %></p></div>
+        <div class="yyyy">days</div>
+      </div>
     </div>
-    <% @project.instruments.each do |i| %>
-      <div class="instrument">&bull; <%= i.alias %></div>
-    <% end %>
+    <div class="row" style="padding-left:20px">
+      <h2><%= @project.name %> 
+        <% if current_user?(@project.user) %>
+          <%= link_to "Edit", edit_project_path(@project) %>
+        <% end %>
+      </h2>
+    </div>
+    <div class="row" style="padding-left:20px">
+      <h4 style='margin-bottom: 5px;'>
+        <div class="service <%= back_color %>"><%= @project.service_need %></div>
+        <%= @project.science_type %> 
+      </h4>
+    </div>
+    <div class="row" style="padding-left:20px">
+      Project Owner:
+      <%= link_to "#{truncate(@project.user.full_name, length: 100)}", user_path(@project.user) %>
+      (<%= @project.user.country %>)
+    </div>
+    <div class="row" style="padding-left:20px">
+      <i class="icon-calendar"></i> Starts in: <%= (@project.start_date - Date.today).to_i %> days - 
+        <%= @project.start_date.strftime("%b %e, %Y") %>
+    </div>
+    <div class="row">
+      <div class="span6">
+        <% if @project.instruments.any? %>
+          Instrument needs:
+          <%= @project.instruments.pluck(:alias).to_sentence %>
+        <% end %>
+      </div>
+      <div class="span2 pull-right">
+        <%= content_tag "div", class: "pull-right", id: 'message', title: "Send a message", 
+            data: {blah: @project.user.id} do %>
+            Send a message
+        <% end %>
+      </div>
+    </div>
     <p><%= @project.description %></p>
     <div class="row" style="margin-top: 3px;">
-      <div class="span2">views: <%= @project.view_count %></div>
-      <div class="span2">messages: <%= @project.messages.size %></div>
+      <div class="span4">
+        <i class="icon-eye-open" style="margin-top: 1px;"></i> views: <%= @project.view_count %>
+        <i class="icon-envelope" style="margin-top: 1px; margin-left: 20px;"></i> messages: <%= @project.messages.size %>
+      </div>
       <p class="time_ago pull-right"><small>Posted <%= time_ago_in_words(@project.created_at) %> ago.</small></p>
     </div>
   </div>
-  <h3 class="silver" style="margin-bottom: 5px;">Project Owner:</h3>
-  <%= render 'users/user', user: @project.user %>
+
 </div>
 

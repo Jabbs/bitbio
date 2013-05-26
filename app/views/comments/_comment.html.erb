@@ -1,11 +1,6 @@
 <div class="row">
   <div class="span9 comment-well">
     <p>
-      <% if comment.user.account_type == 'Provider' %>
-      <i class="icon-home"></i>
-      <% elsif comment.user.account_type == 'Researcher' %>
-      <i class="icon-user"></i>
-      <% end %>
       <%= link_to "#{comment.user.full_name}", comment.user %> -
       <%= comment.content %>
       <br>
