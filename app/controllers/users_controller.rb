@@ -42,7 +42,7 @@ class UsersController < ApplicationController
       sign_in @user
       @user.add_to_sign_in_attributes(request.remote_ip)
       @user.send_verification_email
-      redirect_to @user, notice: "Welcome #{@user.first_name}!"
+      redirect_to @user, notice: "Welcome #{@user.first_name}! A verification email has been sent to your inbox."
     else
       render 'new'
     end
