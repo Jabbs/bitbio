@@ -25,7 +25,7 @@
         <%= link_to "https://plus.google.com/share?url=#{share_url}", target: "_blank" do %>
           <%= image_tag 'google_plus.png' %>
         <% end %>
-        <%= link_to "mailto: #{@project.user.email}" do %>
+        <%= link_to "mailto: #{@project.user.email}?subject=#{u("bitBIO Project: "+ @project.name)}&body=#{u(share_url)}" do %>
           <%= image_tag 'envelope.png' %>
         <% end %>
       </div>

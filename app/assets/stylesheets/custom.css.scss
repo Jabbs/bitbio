@@ -12,6 +12,7 @@ $gold_light: #E6E35E;
 $gold: #C5C91A;
 $gold_dark: #AEB218;
 $green_very_light: #D8FFD5;
+$green_very_light: #C5FFC3;
 $green_light: #6DF45F;
 $green: #5DCE4F;
 $green_dark: #469D3D;
@@ -67,13 +68,14 @@ h2 {
 
 .alert {
   width: 640px;
+  border-radius: 0;
 }
 
 .taglines {
   h1 {
     color: white;
     background: $silver;
-    @include rounded_border;
+//    @include rounded_border;
     width: 300px;
     padding: 5px;
   }
@@ -104,7 +106,7 @@ h2 {
   margin-top: 10px;
   margin-bottom: 10px;
   background: lighten($silver, 10%);
-  @include rounded_border;
+//  @include rounded_border;
   .to {
     margin: 10px 0 0 10px;
   }
@@ -139,9 +141,9 @@ h2 {
   background: $silver;
   margin: 0px;
   width: 220px;
-  -webkit-border-bottom-right-radius: 5px;
-	    -moz-border-bottom-right-radius: 5px;
-	         border-bottom-right-radius: 5px;
+//  -webkit-border-bottom-right-radius: 5px;
+//      -moz-border-bottom-right-radius: 5px;
+//           border-bottom-right-radius: 5px;
   h2#sidebar_header {
     margin-bottom: 0px;
     margin-left: 8px;
@@ -213,13 +215,13 @@ h2 {
       }
     }
     li {
-      @include rounded_border;
+//      @include rounded_border;
       margin-right: 20px;
       padding: 0;
       a:hover {
         background: $blue;
         color: white;
-        @include rounded_border;
+//        @include rounded_border;
       }
     }
   }
@@ -245,7 +247,7 @@ h2 {
   float: left;
   margin: 0;
   height: 160px;
-  @include rounded_border;
+//  @include rounded_border;
   margin-right: 10px;
   margin-bottom: 10px;
   ul {
@@ -259,7 +261,7 @@ h2 {
     margin-top: 5px;
     margin-bottom: 0px;
     padding: 5px;
-    @include rounded_border;
+//    @include rounded_border;
     word-wrap: break-word;
   }
 }
@@ -293,7 +295,7 @@ h2 {
 
 .project-full-well {
   background: $green_very_light;
-  @include rounded_border;
+//  @include rounded_border;
   padding: 10px;
   padding-top: 0px;
   margin-right: 10px;
@@ -312,7 +314,7 @@ h2 {
     margin-top: 5px;
     margin-bottom: 0px;
     padding: 5px;
-    @include rounded_border;
+//    @include rounded_border;
     word-wrap: break-word;
   }
   h2 {
@@ -326,7 +328,7 @@ h2 {
     left: 640px;
     top: 8px;
     border: 1px solid $blue;
-    @include rounded_border;
+//    @include rounded_border;
     margin-top: 0px;
     width: 20px;
     background: white;
@@ -389,7 +391,7 @@ h2 {
   margin-bottom: 0px;
   margin-top: 10px;
   padding: 3px;
-  @include rounded_border;
+//  @include rounded_border;
   color: white;
 }
 .sci_ser {
@@ -417,13 +419,16 @@ h2 {
 
 .project-well {
   background: $green_very_light;
-  width: 210px;
+  width: 212px;
   padding: 5px;
   margin-bottom: 20px;
-  margin-right: 10px;
+  margin-right: 11px;
   margin-left: 0px;
   height: 254px;
-  @include rounded_border;
+  //  @include rounded_border;
+  &:nth-child(3) {
+    margin-right: 0px;
+  }
   .head {
     height: 18px;
     h3 {
@@ -435,7 +440,7 @@ h2 {
       left: 168px;
       top: -16px;
       border: 1px solid $blue;
-      @include rounded_border;
+//      @include rounded_border;
       margin-top: 0px;
       width: 20px;
       background: white;
@@ -498,7 +503,7 @@ h2 {
     margin-top: 5px;
     margin-bottom: 0px;
     padding: 5px;
-    @include rounded_border;
+//    @include rounded_border;
     word-wrap: break-word;
   }
   .time_ago {
@@ -542,13 +547,13 @@ h2 {
       padding: 4px 11px;
       font-family: Arial;
       font-size: 16px;
-      @include rounded_border;
+//      @include rounded_border;
     }
     input[type="radio"]:checked + label {
       color: $gold;
       text-shadow: none;
       background-color: darken($silver, 50%);
-      @include rounded_border;
+//      @include rounded_border;
     }
   }
 }
@@ -564,7 +569,7 @@ h2 {
       padding: 4px 11px;
       font-family: Arial;
       font-size: 16px;
-      @include rounded_border;
+      //@include rounded_border;
       i {
         margin-top: 1px;
       }
@@ -573,7 +578,7 @@ h2 {
       color: $gold;
       text-shadow: none;
       background-color: darken($silver, 50%);
-      @include rounded_border;
+      //@include rounded_border;
     }
   }
 }
@@ -593,6 +598,7 @@ h2 {
 /* layouts/header */
 
 header {
+  min-width: 960px;
   .navbar {
     margin-bottom: 5px;
   }
@@ -642,7 +648,7 @@ header {
 }
 
 .dropdown-menu {
-  background: $silver;
+  background: lighten($blue, 20%);
   li a {
     &:hover {
       background: $blue;
