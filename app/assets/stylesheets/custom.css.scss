@@ -280,6 +280,17 @@ h2 {
   }
 }
 
+.share-well {
+//  background: $silver;
+//  @include rounded_border;
+  border-top: 1px solid $header_background;
+  border-bottom: 1px solid $header_background;
+  padding: 2px 10px 0px 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  width: 680px;
+}
+
 .project-full-well {
   background: $green_very_light;
   @include rounded_border;

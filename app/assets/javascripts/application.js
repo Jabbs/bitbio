@@ -28,6 +28,10 @@ $(function() {
 	});
 	
 	$('.typeahead').typeahead()
+	
+	$('#url-text').click(function() {
+    $('#url-text').select();
+  });
   
 });
 
