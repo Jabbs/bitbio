@@ -7,7 +7,6 @@
   <% end %>
 <% end %>
 
-<%= link_to '← back', root_path %>
 <%= form_tag do %>
 <div class="row">
 	<div class="span5 offset1">
@@ -36,7 +35,7 @@
   			  <p><small><%= link_to "forgot password?", new_password_reset_path %></small></p>
         </div>
         <div class="span2">
-          <%= submit_tag 'Login', class: "btn btn-large pull-right inline" %>
+          <%= submit_tag 'Login', class: "my-button large-button pull-right" %>
         </div>
 	    </div>
 	<% end %>

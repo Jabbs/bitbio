@@ -7,11 +7,12 @@
   <% end %>
 <% end %>
 
-<div class="row" style="margin-bottom: 5px;">
-  <div class="span9">
-    <%= link_to '← back', projects_path %>
+<div class="row" style="margin-top: 10px;">
+  <div class="span4">
+    <%= link_to "&larr; back".html_safe, :back %>
   </div>
 </div>
+
 <%= render 'projects/project_full' %>
 <hr>
 

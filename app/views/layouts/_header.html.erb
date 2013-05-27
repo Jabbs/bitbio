@@ -9,6 +9,8 @@
             
             <% if controller_name == 'projects' && action_name == 'index' %>
               <li class="active">Projects</li>
+            <% elsif controller_name == 'messages' %>
+              <li class="active">Messages</li>
             <% elsif controller_name == 'projects' && action_name == 'show' %>
               <li><a href="/projects">Projects<span class="divider">/</span></a></li>
               <li class="active"><%= @project.name %></li>
@@ -54,39 +56,50 @@
             <!-- the x,y,z are for the li header links... when you add back -->
   			  </ul>
         </div>
-        
-				<% if current_user %>
-  				<ul class="nav pull-right">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-  							Welcome, <%= current_user.first_name %>! 
-  							<% if current_user.new_message_count != 0 %>
-  							  <span class="gold">(<%= current_user.new_message_count %>)</span> 
-  							<% end %>
-  							<b class="caret"></b>
-  						</a>
-              <ul class="dropdown-menu" style='min-width: 100px; width: 160px;'>
-                <li><a href="<%= user_path(current_user) %>"><i class="icon-user"></i> My Account</a></li>
-                <li><a href="<%= user_messages_path(current_user) %>"><i class="icon-envelope"></i> Messages
-                  <% if current_user.new_message_count != 0 %>
-    							  (<%= current_user.new_message_count %>)
+        <div class="row" style="margin-top: 5px;">
+          <div class="span9 pull-right">
+            <div id="mynav-list">
+              <%= link_to 'institutes / labs', '#', class: 'pull-left' %>
+              <%= link_to 'blogs', '#', class: 'pull-left' %>
+              <%= link_to 'conferences', '#', class: 'pull-left' %>
+              <%= link_to 'jobs', '#', class: 'pull-left' %>
+              <%= link_to 'forem', '#', class: 'pull-left' %>
+            </div>
+          <% if current_user %>
+    				<ul class="nav pull-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" id="name" data-toggle="dropdown">
+    							Welcome, <%= current_user.first_name %>! 
+    							<% if current_user.new_message_count != 0 %>
+    							  <span class="gold">(<%= current_user.new_message_count %>)</span> 
     							<% end %>
-                  </a></li>
-                <li class="divider"></li>
-                <li><a href="<%= logout_path %>" data-method="delete" rel="nofollow"><i class="icon-ban-circle" method="delete"></i> Logout</a></li>
-              </ul>
-            </li>
-          </ul>
-          <%= link_to '<i class="icon-plus icon-white"></i> List a Project'.html_safe, new_project_path, class: 'btn btn-success pull-right' %>
-				<% else %>
-					<ul class="nav pull-right" style="margin-left: 0px;">
-						<li>
-							<%= link_to "Log In", login_path %>
-						</li>
-					</ul>
-					<%= link_to "Sign Up", new_user_path, class: "btn btn-success pull-right", 
-					style: 'padding: 5px 5px 6px 5px;' %>
-				<% end %>
+    							<b class="caret"></b>
+    						</a>
+                <ul class="dropdown-menu" style='min-width: 100px; width: 160px;'>
+                  <li><a href="<%= user_path(current_user) %>"><i class="icon-user"></i> My Account</a></li>
+                  <li><a href="<%= user_messages_path(current_user) %>"><i class="icon-envelope"></i> Messages
+                    <% if current_user.new_message_count != 0 %>
+      							  (<%= current_user.new_message_count %>)
+      							<% end %>
+                    </a></li>
+                  <li class="divider"></li>
+                  <li><a href="<%= logout_path %>" data-method="delete" rel="nofollow"><i class="icon-ban-circle" method="delete"></i> Logout</a></li>
+                </ul>
+              </li>
+            </ul>
+            <%= link_to '<i class="icon-plus icon-white"></i> List a Project'.html_safe, new_project_path, 
+                class: 'pull-right my-button' %>
+  				<% else %>
+  					<ul class="nav pull-right" style="margin-left: 0px;">
+  						<li>
+  							<%= link_to "Log In", login_path %>
+  						</li>
+  					</ul>
+  					<%= link_to "Sign Up", new_user_path, class: "my-button pull-right", 
+  					style: 'padding: 5px 5px 6px 5px;' %>
+  				<% end %>
+          </div>
+				</div>
 	    </div>
 	  </div>
 	</div>

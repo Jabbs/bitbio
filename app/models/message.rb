@@ -7,6 +7,7 @@ class Message < ActiveRecord::Base
   validates :content, presence: true
   validates :receiver_id, presence: true
   validates :sender_id, presence: true
+  validates :subject, presence: true
   
   # scopes
   scope :unviewed, ->() { where(viewed: false) }

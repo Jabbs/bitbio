@@ -13,7 +13,7 @@
         <% if controller_name == 'messages' && @contacts && !@contacts.empty? %>
           <div class="field" style="margin-top: 10px;">
             <label class="inline" style="margin-left: 10px;">To:</label>
-            <%= f.select :receiver_id, options_from_collection_for_select(@contacts, 'id', "full_name_w_account_type"), 
+            <%= f.select :receiver_id, options_from_collection_for_select(@contacts, 'id', "full_name"), 
                 {}, {style: 'width: 406px'} %> 
           </div>
         <% else %>
@@ -21,9 +21,8 @@
         <% end %>
         
         <% if @project && !@project.new_record? %>
-          <div class="to">To: <%= link_to "#{@project.user.full_name}", @project.user %></div>
-          <div class="field">
-            <%= f.text_field :subject, value: "Project: #{@project.name}", placeholder: "Subject" %> 
+          <div class="field" style="margin-top: 10px;">
+            <%= f.text_field :subject, value: "Project - #{@project.name}", placeholder: "Subject"%> 
           </div>
         <% else %>
           <div class="field">

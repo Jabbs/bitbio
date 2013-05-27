@@ -4,11 +4,11 @@
   <div class="row">
     <div class="span9">
       <% if action_name == "edit" %>
-      <h2>Editing Account</h2>
+      <h2 style="margin-top: 5px;">Editing Account</h2>
       <% else %>
-      <h2>Join bitBIO!</h2>
+      <h2 style="margin-top: 5px;">Join bitBIO!</h2>
       <% end %>
-      <hr>
+      <hr style="margin-top: 5px;">
       <div class="row">
        <div class="span2">
           <label>Account Type:</label>
@@ -54,7 +54,16 @@
   				<label>Organization:</label>
   			</div>
   			<div class="span6">
-  		    <%= f.text_field :organization, class: "span3", placeholder: "Organization name" %> 
+  		    
+  		    <input class="span3" id="user_organization" name="user[organization]" 
+          placeholder="Organization name" size="30" type="text" 
+          data-provide="typeahead" data-source="<%= User.pluck(:organization).uniq.sort %>"
+          autocomplete="off" 
+          <% unless @user.new_record? %>
+            value="<%= @user.organization %>"
+          <% end %>
+           />
+  		    
   			</div>
       </div>
       
@@ -92,7 +101,7 @@
   				<label>Country:</label>
   			</div>
   			<div class="span6">
-  		    <%= f.select :country, User::COUNTRIES, { prompt: "--select--" }, class: "span3", style: 'width: 268px' %>
+  		    <%= f.select :country, Ravibhim::Continents::COUNTRIES, { prompt: "--select--" }, class: "span3", style: 'width: 268px' %>
   			</div>
       </div>
       <hr>
@@ -126,13 +135,13 @@
       <div class="row">
         <div class="span9">
           <% if action_name == 'edit' || action_name == 'update' %>
-            <%= link_to 'cancel', @user %>
-            <%= f.submit "Update Account", class: "btn btn-large", disable_with: 'Submitting...' %>
+            <%= f.submit "Update Account", class: "my-button large-button", disable_with: 'Submitting...' %>
             <% if current_user?(@user) %>
-              <%= link_to "Cancel Account", user_path(@user), method: :delete, confirm: "Are you sure?", class: 'btn btn-large btn-danger pull-right' %>
+              <%= link_to "Cancel My Account", user_path(@user), method: :delete, confirm: "Are you sure?", 
+                  class: 'my-button-red large-button pull-right' %>
             <% end %>
           <% else %>
-            <%= f.submit "Create Account", class: "btn btn-large btn-success", disable_with: 'Submitting...' %>
+            <%= f.submit "Create Account", class: "my-button large-button", disable_with: 'Submitting...' %>
           <% end %>
         </div>
       </div>

@@ -7,8 +7,6 @@
   <% end %>
 <% end %>
 
-
-<%= link_to '← back', login_path %>
 <%= form_tag password_resets_path, :method => :post do %>
 <div class="row">
 	<div class="span5 offset1">
@@ -25,7 +23,7 @@
 		<hr>
 		<div class="row">
       <div class="offset3 span2">
-        <%= submit_tag 'Reset Password', class: "btn btn-large pull-right", disable_with: 'Submitting...' %>
+        <%= submit_tag 'Reset Password', class: "my-button large-button pull-right", disable_with: 'Submitting...' %>
       </div>
     </div>
 	<% end %>

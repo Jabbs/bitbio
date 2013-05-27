@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130525160607) do
+ActiveRecord::Schema.define(:version => 20130527175956) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -109,9 +109,11 @@ ActiveRecord::Schema.define(:version => 20130525160607) do
     t.integer  "sign_in_count",          :default => 0
     t.datetime "last_sign_in_at"
     t.string   "last_sign_in_ip"
+    t.string   "continent"
   end
 
   add_index "users", ["account_type"], :name => "index_users_on_account_type"
+  add_index "users", ["continent"], :name => "index_users_on_continent"
   add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["id"], :name => "index_users_on_id"
   add_index "users", ["last_name"], :name => "index_users_on_last_name"

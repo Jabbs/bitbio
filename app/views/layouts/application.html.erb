@@ -30,7 +30,7 @@
     	</div>
     	<div class="span9 pull-right" id="main_container">
     	  <% flash.each do |name, msg| %>
-  	       <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+  	       <div class="alert alert-<%= name == :notice ? "success" : "error" %>" style="margin-top: 10px;">
        	     <a class="close" data-dismiss="alert">×</a>
        	     <%= msg %>
   	       </div>

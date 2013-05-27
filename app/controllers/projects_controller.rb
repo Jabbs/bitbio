@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   before_filter :correct_user, only: [:edit, :update, :destroy]
   
   def index
-    @projects = Project.order("start_date ASC").search(params[:keyword], params[:start_date], params[:end_date], params[:country], params[:science], params[:instrument]).paginate(page: params[:page], per_page: 9)
+    @projects = Project.order("created_at DESC").search(params[:keyword], params[:start_date], params[:end_date], params[:location], params[:science], params[:instrument]).paginate(page: params[:page], per_page: 9)
   end
   
   def new

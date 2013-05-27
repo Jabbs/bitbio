@@ -7,12 +7,13 @@
   <% end %>
 <% end %>
 
-<% if @user.researcher? %>
-  <%= link_to '← back', researchers_path %>
-<% elsif @user.provider? %>
-  <%= link_to '← back', providers_path %>
-<% end %>
-<div class="row">
+<div class="row" style="margin-top: 10px;">
+  <div class="span4">
+    <%= link_to "&larr; back".html_safe, :back %>
+  </div>
+</div>
+
+<div class="row" style="margin-top: 10px;">
   <div class="span9">
     <h2>bitBIO Account: <%= @user.full_name %> 
     <% if current_user?(@user) %>
@@ -23,7 +24,7 @@
 </div>
 <hr>
 <% if current_user && current_user?(@user) && !current_user.verified %>
-	<div class="alert alert-danger">
+	<div class="alert">
 		<strong>NOTICE:</strong>
 	  Your account has not been verified. <%= link_to 'Resend verification email', user_resend_url(current_user), disable_with: 'Sending...' %>
 	</div>

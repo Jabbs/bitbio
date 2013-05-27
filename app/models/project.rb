@@ -7,7 +7,7 @@ class Project < ActiveRecord::Base
     "Bioinformatics", "Cell based assay", "Chromatin immunoprecipitation (ChIP) sequencing", "Cloning molecular constructs", 
     "Compound synthesis", "Computational Biology", "Confocal microscopy", "Consulting", 
     "Copy number variation (CNV) analysis", "Cytometry", "DNA Sequencing", "DNA fragment analysis", "DNA library screen", 
-    "DNA microarray", "Data analysis", "Digital microscopy", "Electron microscopy", 
+    "DNA microarray", "Digital microscopy", "Electron microscopy", 
     "Enzyme-linked immunosorbent assay (ELISA)", "Experimental design", "Flow cytometry", "Flow cytometry data analysis", 
     "Fluorescence microscopy", "Fluorescence-activated cell sorting (FACS)", "Gene synthesis", "Genomic DNA amplification", 
     "Genomic DNA extraction", "Genotyping", "Genotyping by PCR", "Glycoprotein", "High performance computing", 
@@ -33,36 +33,45 @@ class Project < ActiveRecord::Base
     "Whole exome sequencing", "Whole genome assembly", "Whole genome sequencing", "Widefield fluorescence microscopy", 
     "cDNA library construction", "single molecule real time (SMRT) sequencing"]
     
-  SCIENCE_EQUIPMENT = ['ABI 3730 DNA Analyzer', 'Biomek FX Liquid Handling Robots', 'Tecan Freedom EVO Liquid Handling Robot',
+  SCIENCE_EQUIPMENT = ['ABI 3730 DNA Analyzer', 'Biomek FX Liquid Handling Robot', 'Tecan Freedom EVO Liquid Handling Robot',
     'Qpix2 Colony Picking Robot', 'Singer RoTor HDA robot', 'Hydra II Microdispenser', 'CAS 4200 PCR Setup Robot',
     'Illumina GAIIx']
+    
+  SERVICE_NEEDS = ["Science", "Services", "Science + Services", "Data Analysis", "Research Validation", "Clinical Studies"]
   
+  # callbacks
+  after_validation :move_friendly_id_error_to_name
   
+  # validations
+  validates :description, presence: true, length: { minimum: 90, maximum: 2000 }
+  validates :science_type, presence: true
+  validates :name, presence: true, uniqueness: true
+  
+  # associations
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :instruments, dependent: :destroy
   has_many :messages
   accepts_nested_attributes_for :instruments, allow_destroy: true
   
-  validates :description, presence: true, length: { minimum: 90, maximum: 2000 }
-  validates :science_type, presence: true
-  validates :name, presence: true, uniqueness: true
-  after_validation :move_friendly_id_error_to_name
-
+  def days_til_start
+    (self.start_date - Date.today).to_i
+  end
+  
   def move_friendly_id_error_to_name
     errors.add :name, *errors.delete(:friendly_id) if errors[:friendly_id].present?
   end
   
-  def self.search(keyword=nil, from=nil, to=nil, country=nil, science=nil, instrument=nil)
+  def self.search(keyword=nil, from=nil, to=nil, location=nil, science=nil, instrument=nil)
     projects = self.scoped
     unless keyword.blank? || keyword == nil
       projects = projects.where("name LIKE ? OR description LIKE ? OR science_type LIKE ?", "%#{keyword}%","%#{keyword}%","%#{keyword}%")
     end
     unless science.blank? || science == nil
-      projects = projects.where("science_type LIKE ?", "%#{science}%")
+      projects = projects.where(service_need: science)
     end
-    unless country.blank? || country == nil
-      projects = projects.joins(:user).where(users: {country: country})
+    unless location.blank? || location == nil
+      projects = projects.joins(:user).where(users: {continent: location})
     end
     unless instrument.blank? || instrument == nil
       projects = projects.joins(:instruments).where(instruments: {alias: instrument})

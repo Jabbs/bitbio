@@ -3,14 +3,23 @@
     <h3><%= link_to truncate(project.name, length: 23), project_path(project) %></h3>
     <div style="height: 0;">
       <div class="date">
-        <div class="mm">starts in</div>
-        <div class="dd"><p class="day"><%= (project.start_date - Date.today).to_i %></p></div>
-        <div class="yyyy">days</div>
+        <% if project.days_til_start > 0 %>
+          <div class="mm">starts in</div>
+          <div class="dd"><p class="day"><%= project.days_til_start %></p></div>
+          <div class="yyyy">days</div>
+        <% elsif project.days_til_start == 0 %>
+          <div class="mm">starts</div>
+          <div class="dd"><p class="day"><span style="font-size: 60%;">today</span></p></div>
+          <div class="yyyy"></div>
+        <% elsif project.days_til_start < 0 %>
+          <div class="mm">started</div>
+          <div class="dd"><p class="day"><%= project.days_til_start.abs %></p></div>
+          <div class="yyyy">days ago</div>
+        <% end %>
       </div>
     </div>
   </div>
   <h4><%= truncate(project.science_type, length: 28) %></h4>
-  <h4>Owner: <%= link_to "#{truncate(project.user.full_name, length: 20)}", user_path(project.user) %></h4>
   
   <% if project.service_need == "Science + Services" %>
     <% back_color = "sci_ser" %>
@@ -31,10 +40,19 @@
   <div class="service <%= back_color %>"><%= project.service_need %></div>
 
   
-  <p><%= truncate(project.description, length: 195) %> <%= link_to "more", project_path(project), class: 'more' %></p>
+  <p><%= truncate(project.description, length: 230) %> <%= link_to "more", project_path(project), class: 'more' %></p>
 
   <!-- <label class="checkbox" style="display: inline; padding-left: 0px; margin-left: 0px; margin-top: 5px; font-size: 70%;">
     <input type="checkbox" style="display: inline; padding-left: 0px; margin-left: 0px; margin-right: 3px;"> Favorite
   </label> -->
-  <p class="time_ago pull-right"><small>Posted <%= time_ago_in_words(project.created_at) %> ago.</small></p>
+  <div class="row">
+    <div class="span1" style="width: 130px;">
+      <i class="icon-eye-open" style="margin-top: 1px;"></i>: <%= project.view_count %>
+      <i class="icon-envelope" style="margin-top: 1px; margin-left: 5px;"></i>: <%= project.messages.size %>
+      <i class="icon-comment" style="margin-top: 1px; margin-left: 5px;"></i>: <%= project.comments.size %>
+    </div>
+
+    <p class="time_ago pull-right"><small><%= time_ago_in_words(project.created_at) %> ago</small></p>
+  </div>
+  
 </div>
