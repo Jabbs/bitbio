@@ -7,20 +7,23 @@
   <% end %>
 <% end %>
 
+<% if current_user %>
 <div class="row" style="margin-top: 10px;">
   <div class="span4">
     <%= link_to "&larr; back".html_safe, :back %>
   </div>
 </div>
+<% end %>
 
 <%= render 'projects/sharing_buttons' %>
 
 <%= render 'projects/project_full' %>
 <hr>
-
-<% unless @comments.empty? %>
-  <% @comments.each do |comment| %>
-    <%= render 'comments/comment', comment: comment %>
+<% if current_user %>
+  <% unless @comments.empty? %>
+    <% @comments.each do |comment| %>
+      <%= render 'comments/comment', comment: comment %>
+    <% end %>
   <% end %>
 <% end %>
 <div class="row">
@@ -28,7 +31,8 @@
   <% if current_user %>
       <%= render 'comments/form' %>
   <% else %>
-    <em><%= link_to 'Sign up', new_user_path %> to leave a comment.</em>
+    <em><%= link_to 'Sign up', new_user_path %> or <%= link_to 'sign in', login_path %> to view comments, 
+      leave a comment, or send a direct message to the project owner.</em>
   <% end %>
   </div>
 </div>

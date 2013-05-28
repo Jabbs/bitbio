@@ -22,9 +22,7 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true, length: { maximum: 30 }
   validates :last_name, presence: true, length: { maximum: 30 }
   validates :organization, presence: true
-  validates :bio, presence: true, length: { minimum: 30 }
   validates :country, presence: true
-  validates :continent, presence: true
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true, length: { minimum: 6 }, on: :create
   validates :password_confirmation, presence: true, on: :create

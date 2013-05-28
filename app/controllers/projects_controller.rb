@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
-  before_filter :signed_in_user, except: [:index]
-  before_filter :verified_user, except: [:index]
+  before_filter :signed_in_user, except: [:index, :show]
+  before_filter :verified_user, except: [:index, :show]
   before_filter :correct_user, only: [:edit, :update, :destroy]
   
   def index
@@ -19,6 +19,8 @@ class ProjectsController < ApplicationController
     if request.path != project_path(@project)
       redirect_to @project, status: :moved_permanently
     end
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_path, alert: "The project you attempted to view is no longer available."
   end
   
   def edit

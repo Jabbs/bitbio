@@ -1,7 +1,7 @@
 class Project < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: [:slugged, :history]
-  attr_accessible :description, :name, :science_type, :service_need, :start_date, :instruments_attributes
+  attr_accessible :description, :name, :science_type, :service_need, :start_date, :instruments_attributes, :tag
   
   SCIENCE_TYPES = ["Antibody production", "Antibody purification", "Atomic force microscopy (AFM)", 
     "Bioinformatics", "Cell based assay", "Chromatin immunoprecipitation (ChIP) sequencing", "Cloning molecular constructs", 
@@ -39,6 +39,25 @@ class Project < ActiveRecord::Base
     
   SERVICE_NEEDS = ["Science", "Services", "Science + Services", "Data Analysis", "Research Validation", "Clinical Studies"]
   
+  TAGS = ["abiogenesis", "anatomy", "antibiotics", 
+    "astrobiology", "bacteriology", "biochemistry", "biophysics", "biotechnology", "botany", 
+    "cardiology", "cell-biology", "cell-culture", "cloning", "cytogenetics", "cytology", 
+    "developmental-biology", "dna-sequencing", "ecoli", "ecology", "electrophysiology", 
+    "embryology", "endocrinology", "entomology", "epidemiology", "epigenetics", 
+    "ethology", "gel-electrophoresis", "gene-annotation", "gene-expression", 
+    "gene-regulation", "genetics", "genomics", "gwas", "hematology", "histology", "hiv", 
+    "human-genetics", "human-genome", "ichthyology", "imaging", "immunology", 
+    "marine-biology", "medicinal-chemistry", "metabolism", "microbiology", "microscopy", 
+    "molecular-biology", "mycology", "neuroanatomy", "neurology", "neuroscience", 
+    "neurotransmission", "next-generation-sequencing", "nutrition", "ornithology", 
+    "palaeontology", "parasitology", "pathology", "pharmacology", "phylogenetics", 
+    "physiology", "plant-anatomy", "plant-physiology", "population-biology", 
+    "protein-binding", "protein-folding", "protocol", "psychology", 
+    "rna-sequencing", "sequence-analysis", "software-development", "species-identification", "staining", 
+    "statistics", "stem-cells", "structural-biology", "stynthetic-biology", "stystems-biology", 
+    "taxonomy", "telomere", "theoretical-biology", "toxicology", 
+    "vaccination", "virology", "vitamins", "zoology"]
+  
   # callbacks
   after_validation :move_friendly_id_error_to_name
   
@@ -46,6 +65,8 @@ class Project < ActiveRecord::Base
   validates :description, presence: true, length: { minimum: 90, maximum: 2000 }
   validates :science_type, presence: true
   validates :name, presence: true, uniqueness: true
+  validates :start_date, presence: true
+  validates :tag, presence: true
   
   # associations
   belongs_to :user

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :signed_in_user, only: [:show, :edit, :update]
+  before_filter :signed_in_user, only: [:edit, :update]
   before_filter :admin_user, only: [:researchers_index, :providers_index]
   before_filter :correct_user, only: [:edit, :update]
   before_filter :signed_in_user_go_to_dash, only: [:new, :create]

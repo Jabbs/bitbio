@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130527175956) do
+ActiveRecord::Schema.define(:version => 20130528145659) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -72,11 +72,13 @@ ActiveRecord::Schema.define(:version => 20130527175956) do
     t.date     "start_date"
     t.string   "slug"
     t.integer  "view_count",   :default => 0
+    t.string   "tag"
   end
 
   add_index "projects", ["science_type"], :name => "index_projects_on_science_type"
   add_index "projects", ["service_need"], :name => "index_projects_on_service_need"
   add_index "projects", ["slug"], :name => "index_projects_on_slug"
+  add_index "projects", ["tag"], :name => "index_projects_on_tag"
   add_index "projects", ["user_id"], :name => "index_projects_on_user_id"
 
   create_table "users", :force => true do |t|

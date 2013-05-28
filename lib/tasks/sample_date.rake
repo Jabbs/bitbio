@@ -21,7 +21,7 @@ namespace :db do
     
     20.times do
       name = ['Human', 'Rat', 'Fly', 'Mouse', 'Zebra Fish', 'Yeast', 'Lizard'].shuffle.first + " " + ['DNA', 'Genome', 'RNA', 'Ribosome', 'Histone'].shuffle.first + " " + ['Sequencing', 'Analysis', 'Experiment', 'Research', 'Study'].shuffle.first + " " + ('a'..'z').to_a.shuffle.first(8).join
-      description = Faker::Lorem.paragraph + ' ' + Faker::Lorem.paragraph
+      description = Faker::Lorem.paragraph + ' ' + Faker::Lorem.paragraph + ' ' + Faker::Lorem.paragraph + ' ' + Faker::Lorem.paragraph
       science_type = ['DNA Sequencing', 'RNA Sequencing', 'Chip-SEQ', 'Micro Array', 'Next-gen Sequencing',
                       'Microscopy', 'Cytometry'].shuffle.first
       service_need = ['Science', 'Services', 'Science + Services', 'Data Analysis', 'Clinical Studies', 'Research Validation'].shuffle.first
@@ -29,10 +29,13 @@ namespace :db do
       project = Project.new(name: name, description: description, science_type: science_type, service_need: service_need,
                             start_date: start_date)
       project.user_id = User.all.shuffle.first.id
-      [0,1].shuffle.first.times do
-        instrument = project.instruments.build(alias: Project::SCIENCE_EQUIPMENT.uniq.shuffle.first)
+      
+      x = rand(1..3)
+      Project::SCIENCE_EQUIPMENT.uniq.shuffle[0..x].each do |i|
+        instrument = project.instruments.build(alias: i)
         instrument.save
       end
+      project.view_count = rand(0..200)
       project.save!
     end
     

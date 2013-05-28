@@ -309,7 +309,7 @@ h2 {
       font-size: 70%;
     }
   }
-  p {
+  .description {
     background: white;
     margin-top: 5px;
     margin-bottom: 0px;
@@ -354,7 +354,7 @@ h2 {
       max-width: 40px;
       text-align:center;
       left: 0px;
-      top: -16px;
+      top: -6px;
       padding: 0;
       margin: 0;
       z-index: 1;
@@ -373,7 +373,7 @@ h2 {
       max-width: 40px;
       text-align:center;
       left: 0px;
-      top: -26px;
+      top: -20px;
       padding: 0;
       margin: 0;
       z-index: 2;
@@ -503,15 +503,17 @@ h2 {
     margin-top: 5px;
     margin-bottom: 0px;
     padding: 5px;
+    max-height: 140px;
 //    @include rounded_border;
     word-wrap: break-word;
+    overflow: hidden;
   }
   .time_ago {
     background: $green_very_light;
     padding: 0;
     margin: 0;
     display: inline;
-    width: 80px;
+    width: 90px;
     text-align: right;
     small {
       font-size: 70%;
@@ -536,7 +538,7 @@ h2 {
   }
   p {
     font-size: 80%;
-    color: $darkergrey;
+    color: black;
   }
   #radio-account-types {
     label {
@@ -550,9 +552,9 @@ h2 {
 //      @include rounded_border;
     }
     input[type="radio"]:checked + label {
-      color: $gold;
+      color: white;
       text-shadow: none;
-      background-color: darken($silver, 50%);
+      background-color: darken($blue, 35%);
 //      @include rounded_border;
     }
   }
@@ -561,7 +563,7 @@ h2 {
 /* users/new */
 
 #users_new, #users_create, #users_edit, #users_create {
-  #radio-account-types {
+  .radio-account-types {
     label {
       display:inline-block;
       background-color: $silver;
@@ -575,9 +577,9 @@ h2 {
       }
     }
     input[type="radio"]:checked + label {
-      color: $gold;
+      color: white;
       text-shadow: none;
-      background-color: darken($silver, 50%);
+      background-color: darken($blue, 35%);
       //@include rounded_border;
     }
   }

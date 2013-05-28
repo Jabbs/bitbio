@@ -15,7 +15,11 @@
     <% end %>
     <div style="height: 0;">
       <div class="date">
-        <% if @project.days_til_start > 0 %>
+        <% if @project.days_til_start == 1 %>
+          <div class="mm">starts in</div>
+          <div class="dd"><p class="day"><%= @project.days_til_start %></p></div>
+          <div class="yyyy">day</div>
+        <% elsif @project.days_til_start > 0 %>
           <div class="mm">starts in</div>
           <div class="dd"><p class="day"><%= @project.days_til_start %></p></div>
           <div class="yyyy">days</div>
@@ -23,6 +27,10 @@
           <div class="mm">starts</div>
           <div class="dd"><p class="day"><span style="font-size: 60%;">today</span></p></div>
           <div class="yyyy"></div>
+        <% elsif @project.days_til_start == -1 %>
+          <div class="mm">started</div>
+          <div class="dd"><p class="day"><%= @project.days_til_start.abs %></p></div>
+          <div class="yyyy">day ago</div>
         <% elsif @project.days_til_start < 0 %>
           <div class="mm">started</div>
           <div class="dd"><p class="day"><%= @project.days_til_start.abs %></p></div>
@@ -43,12 +51,14 @@
         <%= @project.science_type %> 
       </h4>
     </div>
-    <div class="row" style="padding-left:20px">
-      <%= content_tag "div", id: 'message', title: "Send a message to the project owner", style: 'width: 240px;', 
-          data: {blah: @project.user.id} do %>
-          <i class="icon-envelope"></i> send direct message to project owner
-      <% end %>
-    </div>
+    <% if current_user %>
+      <div class="row" style="padding-left:20px">
+        <%= content_tag "div", id: 'message', title: "Send a message to the project owner", style: 'width: 240px;', 
+            data: {blah: @project.user.id} do %>
+            <i class="icon-envelope"></i> send direct message to project owner
+        <% end %>
+      </div>
+    <% end %>
     <div class="row" style="padding-left:20px">
       <i class="icon-calendar"></i> Start date: <%= @project.start_date.strftime("%b %e, %Y") %> 
       <span style="font-size: 80%;">(<%= to_days_ago_or_from_now(@project.days_til_start) %>)</span>
@@ -63,7 +73,8 @@
         <% end %>
       </div>
     </div>
-    <p><%= @project.description %></p>
+
+    <div class="description"><%= simple_format(Rinku.auto_link(@project.description).html_safe) %></div>
     <div class="row" style="margin-top: 3px;">
       <div class="span5">
         <i class="icon-eye-open" style="margin-top: 1px;"></i> views: <%= @project.view_count %>
