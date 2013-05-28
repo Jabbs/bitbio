@@ -1,31 +1,6 @@
 <div class="span3 project-well">
   <div class="head">
-    <h3><%= link_to truncate(project.name, length: 23), project_path(project) %></h3>
-    <div style="height: 0;">
-      <div class="date">
-        <% if project.days_til_start == 1 %>
-          <div class="mm">starts in</div>
-          <div class="dd"><p class="day"><%= project.days_til_start %></p></div>
-          <div class="yyyy">day</div>
-        <% elsif project.days_til_start > 0 %>
-          <div class="mm">starts in</div>
-          <div class="dd"><p class="day"><%= project.days_til_start %></p></div>
-          <div class="yyyy">days</div>
-        <% elsif project.days_til_start == 0 %>
-          <div class="mm">starts</div>
-          <div class="dd"><p class="day"><span style="font-size: 60%;">today</span></p></div>
-          <div class="yyyy"></div>
-        <% elsif project.days_til_start == -1 %>
-          <div class="mm">started</div>
-          <div class="dd"><p class="day"><%= project.days_til_start.abs %></p></div>
-          <div class="yyyy">day ago</div>
-        <% elsif project.days_til_start < 0 %>
-          <div class="mm">started</div>
-          <div class="dd"><p class="day"><%= project.days_til_start.abs %></p></div>
-          <div class="yyyy">days ago</div>
-        <% end %>
-      </div>
-    </div>
+    <h3><%= link_to truncate(project.name, length: 30), project_path(project) %></h3>
   </div>
   <h4><%= truncate(project.science_type, length: 28) %></h4>
   
@@ -55,7 +30,7 @@
     <input type="checkbox" style="display: inline; padding-left: 0px; margin-left: 0px; margin-right: 3px;"> Favorite
   </label> -->
   <div class="row">
-    <div class="span1" style="width: 120px;">
+    <div class="span1" style="width: 120px; padding-top: 2px;">
       <i class="icon-eye-open" style="margin-top: 1px;"></i>:<%= project.view_count %>
       <i class="icon-envelope" style="margin-top: 1px; margin-left: 5px;"></i>:<%= project.messages.size %>
       <i class="icon-comment" style="margin-top: 1px; margin-left: 5px;"></i>:<%= project.comments.size %>

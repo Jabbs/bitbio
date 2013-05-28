@@ -5,7 +5,7 @@
   <div class="span3">
     <label style="margin-left: 8px;">location:</label>
     <%= select_tag :location, options_for_select(['Asia', 'Australia', 'Europe', 'Africa', 'North America', 'South America'], selected: params[:location]), 
-    { prompt: "Any location", class: 'span2' } %>
+    { prompt: "any", class: 'span2' } %>
   </div>
 </div>
 
@@ -14,22 +14,22 @@
     <label style="margin-left: 8px;">needs:</label>
     
     <%= select_tag :science, options_for_select(Project::SERVICE_NEEDS, selected: params[:science]), 
-    { prompt: "Any", class: 'span2' } %>
+    { prompt: "any", class: 'span2' } %>
   </div>
 </div>
 
 <div class="row">
   <div class="span3">
-    <label style="margin-left: 8px;">instrument or software:</label>
-    <%= select_tag :instrument, options_for_select(Instrument.pluck(:alias).uniq.sort, 
-    selected: params[:instrument]), 
-    { prompt: "Any instrument or software", class: 'span2' } %>
+    <label style="margin-left: 8px;">tag:</label>
+    <%= select_tag :tag, options_for_select(Project::TAGS, 
+    selected: params[:tag]), 
+    { prompt: "any", class: 'span2' } %>
   </div>
 </div>
 
 <div class="row">
   <div class="span3">
-    <label style="margin-left: 8px;">starting date:</label>
+    <label style="margin-left: 8px;">listing date:</label>
     <%= text_field_tag :start_date, params[:start_date], placeholder: "from" %>
     <%= text_field_tag :end_date, params[:end_date], placeholder: "to" %>
   </div>

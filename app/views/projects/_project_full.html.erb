@@ -40,10 +40,12 @@
     </div>
     <div class="row" style="padding-left:20px">
       <h2><%= @project.name %> <span class="dark" style="font-size: 70%;">(<%= @project.user.country %>)</span> 
-        <% if current_user?(@project.user) %>
-          <%= link_to "Edit", edit_project_path(@project), class: 'btn' %>
-        <% end %>
       </h2>
+      <% if current_user?(@project.user) %>
+        <%= link_to "Edit", edit_project_path(@project) %>
+        <br>
+        <br>
+      <% end %>
     </div>
     <div class="row" style="padding-left:20px">
       <h4 style='margin-bottom: 5px;'>

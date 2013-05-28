@@ -18,7 +18,7 @@
 </div>
 <div class="row" style="margin-top: 10px;">
   <div class="span9">
-    <%= @message.content %>
+    <%= simple_format(Rinku.auto_link(@message.content).html_safe) %>
   </div>
 </div>
 

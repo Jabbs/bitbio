@@ -162,7 +162,7 @@ h2 {
     width: 202px;
     margin-left: 8px;
   }
-  select[name="instrument"] {
+  select[name="tag"] {
     width: 202px;
     margin-left: 8px;
   }
@@ -391,7 +391,7 @@ h2 {
   margin-bottom: 0px;
   margin-top: 10px;
   padding: 3px;
-//  @include rounded_border;
+  @include rounded_border;
   color: white;
 }
 .sci_ser {
@@ -434,62 +434,6 @@ h2 {
     h3 {
       font-size: 1.0em;
       line-height: 130%;
-    }
-    .date {
-      position: relative;
-      left: 168px;
-      top: -16px;
-      border: 1px solid $blue;
-//      @include rounded_border;
-      margin-top: 0px;
-      width: 20px;
-      background: white;
-      padding: 0;
-      width: 40px;
-      height: 40px;
-      .mm {
-        position: relative;
-        top: -2px;
-        width: 40px;
-        max-width: 40px;
-        padding: 0;
-        margin: 0;
-        font-size: 0.8em;
-        color: black;
-        z-index: 2;
-        text-align: center;
-      }
-      .dd {
-        position: relative;
-        width: 40px;
-        max-width: 40px;
-        left: 0px;
-        top: -17px;
-        padding: 0;
-        margin: 0;
-        z-index: 1;
-        text-align: center;
-        .day {
-          font-size: 1.3em;
-          background: white;
-          font-weight: bold;
-          text-align: center;
-          color: darken($blue, 15%);
-        }
-      }
-      .yyyy {
-        position: relative;
-        font-size: 0.7em;
-        width: 40px;
-        max-width: 40px;
-        left: 0px;
-        top: -26px;
-        padding: 0;
-        margin: 0;
-        z-index: 2;
-        color: black;
-        text-align: center;
-      }
     }
   }
   .more {
