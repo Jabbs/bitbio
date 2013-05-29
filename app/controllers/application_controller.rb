@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   include ApplicationHelper
   
-  APP_DOMAIN = 'www.bitbio.co'
+  APP_DOMAIN = 'www.bitbio.org'
 
   def ensure_domain
     if (Rails.env.production? && request.env['HTTP_HOST'] != APP_DOMAIN) && ENV['STAGING'].nil?

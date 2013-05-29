@@ -4,7 +4,7 @@
 <div class="row">
   <div class="span3">
     <label style="margin-left: 8px;">location:</label>
-    <%= select_tag :location, options_for_select(['Asia', 'Australia', 'Europe', 'Africa', 'North America', 'South America'], selected: params[:location]), 
+    <%= select_tag :location, options_for_select(Ravibhim::Continents::CONTINENTS, selected: params[:location]), 
     { prompt: "any", class: 'span2' } %>
   </div>
 </div>

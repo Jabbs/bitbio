@@ -15,63 +15,40 @@
 </div>
 <% end %>
 
-<div class="row" style="margin-top: 10px;">
-  <div class="span9">
-    <h2>bitBIO Account: <%= @user.full_name %> 
-    <% if current_user?(@user) %>
-      <%= link_to 'edit', edit_user_path(@user) %>
-    <% end %>  
-    </h2>
-  </div>
-</div>
-<hr>
 <% if current_user && current_user?(@user) && !current_user.verified %>
-	<div class="alert">
+	<div class="alert" style="margin-top: 10px;">
 		<strong>NOTICE:</strong>
 	  Your account has not been verified. <%= link_to 'Resend verification email', user_resend_url(current_user), disable_with: 'Sending...' %>
 	</div>
 <% end %>
 
-<div class="row">
-  <div class="span3">
-    <h3>Account Info</h3>
-    <dl>
-      <dt>General</dt>
-      <dd>
-        <% if @user.researcher? %>
-          <i class="icon-user"></i> 
-        <% elsif @user.provider? %>
-          <i class="icon-home"></i> 
-        <% end %>
-        <%= @user.account_type %></dd>
-      <dd><%= @user.full_name %></dd>
-    </dl>
-    <dl>
-      <dt>Scientific</dt>
-      <dd><%= @user.organization %></dd>
-      <dd><%= @user.bio %></dd>
-    </dl>
-    <dl>
-      <dt>Location</dt>
-      <% if @user.full_address_present? %>
-      <dd><%= @user.address %></dd>
-      <dd><%= @user.city %>, <%= @user.state %>, <%= @user.zip %></dd>
-      <dd><%= @user.country %></dd>
-      <% else %>
-      <dd><%= @user.country %></dd>
-      <% end %>
-    </dl>
+<div class="row" style="margin-top: 10px;">
+  <div class="span2" style="width: 80px;">
+    <%= image_tag 'blank_avatar.jpg', title: @user.full_name, id: 'user-avatar' %>
   </div>
-  <div class="span6">
-    <h3>Projects</h3>
-    <% unless @projects.empty? %>
-      <% @projects.each do |project| %>
-        <%= render 'projects/project', project: project %>
-      <% end %>
-    <% else %>
-      <div class="span3">
-        <p><em>None...</em></p>
-      </div>
+  <div class="span5" style="margin-top: -8px;">
+    <h2><%= @user.full_name %></h2>
+    <div class="user-title"><%= @user.organization %></div>
+    <div class="user-title"><%= country_with_us_shortened(@user.country) %></div>
+  </div>
+  <div class="span2 pull-right" style="margin-top: -8px;">
+    <% if current_user?(@user) %>
+      <%= link_to 'edit profile', edit_user_path(@user), class: 'pull-right my-button' %>
     <% end %>
   </div>
 </div>
+<hr style="margin-top:0;">
+
+<div class="row">
+  <div class="span9">
+    <h3>BIO</h3>
+    <p>
+      <% if @user.bio %>
+        <%= @user.bio %>
+      <% else %>
+        <em>empty</em>
+      <% end %>
+    </p>
+  </div>
+</div>
+

@@ -62,12 +62,16 @@ h2 {
   color: $header_background;
 }
 
+.red {
+  color: $red;
+}
+
 .bold {
   font-weight: bold;
 }
 
 .alert {
-  width: 640px;
+  width: 650px;
   border-radius: 0;
 }
 
@@ -401,7 +405,7 @@ h2 {
   background: $teal;
 }
 .ser {
-  background: $green;
+  background: darken($blue, 20%);
 }
 .dat {
   background: $orange;
@@ -410,7 +414,7 @@ h2 {
   background: purple;
 }
 .def {
-  background: darken($blue, 20%);
+  background: $green;
 }
 
 .country {
@@ -538,6 +542,15 @@ h2 {
   h3 {
     color: $silver;
     margin-bottom: 10px;
+  }
+  #user-avatar {
+    padding: 2px;
+    background: white;
+    border: 1px solid $silver;
+  }
+  .user-title {
+    font-size: 120%;
+    margin-bottom: 3px;
   }
 }
 

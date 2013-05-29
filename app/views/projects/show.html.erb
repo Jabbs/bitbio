@@ -19,7 +19,7 @@
 
 <%= render 'projects/project_full' %>
 <hr>
-<% if current_user %>
+<% if current_user && current_user.verified?  %>
   <% unless @comments.empty? %>
     <% @comments.each do |comment| %>
       <%= render 'comments/comment', comment: comment %>
@@ -28,8 +28,11 @@
 <% end %>
 <div class="row">
   <div class="span9 new-comment-well">
-  <% if current_user %>
+  <% if current_user && current_user.verified?  %>
       <%= render 'comments/form' %>
+  <% elsif current_user && !current_user.verified?  %>
+    <em>You must have a verified <%= link_to 'account', current_user %> to view comments, 
+        leave a comment, or send a direct message to the project owner.</em>
   <% else %>
     <em><%= link_to 'Sign up', new_user_path %> or <%= link_to 'sign in', login_path %> to view comments, 
       leave a comment, or send a direct message to the project owner.</em>

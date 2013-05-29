@@ -76,7 +76,7 @@
     							<b class="caret"></b>
     						</a>
                 <ul class="dropdown-menu" style='min-width: 100px; width: 160px;'>
-                  <li><a href="<%= user_path(current_user) %>"><i class="icon-user"></i> My Account</a></li>
+                  <li><a href="<%= user_path(current_user) %>"><i class="icon-user"></i> My Profile</a></li>
                   <li><a href="<%= user_messages_path(current_user) %>"><i class="icon-envelope"></i> Messages
                     <% if current_user.new_message_count != 0 %>
       							  (<%= current_user.new_message_count %>)

@@ -12,6 +12,7 @@
   <% else %>
     <%= f.text_field :alias, class: 'span5' %>
   <% end %>
+  <%= f.select :must_have, [['must have', true], ['nice to have', false]], {}, class: 'span2' %>
   <%= f.hidden_field :_destroy %>
   <%= link_to "<i class='icon-remove'></i>".html_safe, '#', class: 'remove_fields' %>
 </fieldset>

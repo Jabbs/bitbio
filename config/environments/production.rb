@@ -12,14 +12,14 @@ Bitbio::Application.configure do
   config.action_mailer.smtp_settings = {
     :address              => "smtp.gmail.com",
     :port                 => 587,
-    :domain               => ENV['STAGING'].present? ? 'www.bitbio-staging.herokuapp.com' : 'www.bitbio.co',
+    :domain               => ENV['STAGING'].present? ? 'www.bitbio-staging.herokuapp.com' : 'www.bitbio.org',
     :user_name            => ENV['GMAIL_USERNAME'],
     :password             => ENV['GMAIL_PASSWORD'],
     :authentication       => 'plain',
     :enable_starttls_auto => true  }
     
   # Set the default host option for mailer
-  config.action_mailer.default_url_options = { :host => ENV['STAGING'].present? ? 'bitbio-staging.herokuapp.com' : 'www.bitbio.co' }
+  config.action_mailer.default_url_options = { :host => ENV['STAGING'].present? ? 'bitbio-staging.herokuapp.com' : 'www.bitbio.org' }
 
   # Code is not reloaded between requests
   config.cache_classes = true

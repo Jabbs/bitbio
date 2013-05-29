@@ -18,7 +18,7 @@
     <% back_color = "def" %>
   <% end %>
   <div class="country">
-    <%= truncate(project.user.country, length: 30) %>
+    <%= truncate(country_with_us_shortened(project.user.country), length: 30) %>
   </div>
   <div class="service <%= back_color %>"><%= project.service_need %></div>
 

@@ -36,6 +36,7 @@ namespace :db do
       x = rand(1..3)
       Project::SCIENCE_EQUIPMENT.uniq.shuffle[0..x].each do |i|
         instrument = project.instruments.build(alias: i)
+        instrument.must_have = [true, false].shuffle.first
         instrument.save
       end
       project.view_count = rand(0..200)

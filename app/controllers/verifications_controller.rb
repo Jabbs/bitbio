@@ -7,7 +7,7 @@ class VerificationsController < ApplicationController
       sign_in @user unless current_user
       redirect_to root_path, notice: "Your account has been verified."
     else
-      redirect_to root_path, notice: "There was a problem verifying your account. Please contact support@bitbio.co 
+      redirect_to root_path, notice: "There was a problem verifying your account. Please contact support@bitbio.org 
                                      for more details."
     end
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130528145659) do
+ActiveRecord::Schema.define(:version => 20130529163931) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -38,8 +38,9 @@ ActiveRecord::Schema.define(:version => 20130528145659) do
   create_table "instruments", :force => true do |t|
     t.string   "alias"
     t.integer  "project_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.boolean  "must_have",  :default => true
   end
 
   add_index "instruments", ["alias"], :name => "index_instruments_on_name"
@@ -85,7 +86,6 @@ ActiveRecord::Schema.define(:version => 20130528145659) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
-    t.string   "account_type"
     t.string   "organization"
     t.string   "phone"
     t.text     "bio"
@@ -94,8 +94,8 @@ ActiveRecord::Schema.define(:version => 20130528145659) do
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
     t.boolean  "admin",                  :default => false
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
     t.string   "slug"
     t.string   "address"
     t.string   "city"
@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(:version => 20130528145659) do
     t.datetime "last_sign_in_at"
     t.string   "last_sign_in_ip"
     t.string   "continent"
+    t.string   "account_type",           :default => "Researcher"
   end
 
   add_index "users", ["account_type"], :name => "index_users_on_account_type"
