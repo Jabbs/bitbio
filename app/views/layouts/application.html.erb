@@ -25,10 +25,7 @@
   	  <div class="span3" id="sidebar">
     	  <%= render 'shared/sidebar' %>
     	</div>
-      <!-- <div id="social_buttons">
-        <%= render 'shared/social' %>
-      </div> -->
-    	<div class="span9 pull-right" id="main_container">
+    	<div class="span9 offset3">
     	  <% flash.each do |name, msg| %>
   	       <div class="alert alert-<%= name == :notice ? "success" : "error" %>" style="margin-top: 10px;">
        	     <a class="close" data-dismiss="alert">×</a>

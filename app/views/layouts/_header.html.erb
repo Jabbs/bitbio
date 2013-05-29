@@ -2,62 +2,52 @@
 	<div class="navbar">
 	  <div class="navbar-inner">
 	    <div class="container">
-        <%= link_to((image_tag 'bitbio_logo.png', alt: "bitBIO Logo"), root_path, class: 'pull-left', id: 'logo') %>
-        <div class="span4">
-          <ul class="breadcrumb">
-            <li><%= link_to 'Home', root_path %><span class="divider">/</span></li>
-            
-            <% if controller_name == 'projects' && action_name == 'index' %>
-              <li class="active">Projects</li>
-            <% elsif controller_name == 'messages' %>
-              <li class="active">Messages</li>
-            <% elsif controller_name == 'projects' && action_name == 'show' %>
-              <li><a href="/projects">Projects<span class="divider">/</span></a></li>
-              <li class="active"><%= @project.name %></li>
-            <% elsif controller_name == 'users' && action_name == 'researchers_index' %>
-              <li class="active">Researchers</li>
-            <% elsif controller_name == 'users' && action_name == 'providers_index' %>
-              <li class="active">Providers</li>
-            <% elsif controller_name == 'users' && action_name == 'show' %>
-              <% if @user.researcher? %>
-                <li><a href="/researchers">Researchers<span class="divider">/</span></a></li>
-              <% elsif @user.provider? %>
-                <li><a href="/providers">Providers<span class="divider">/</span></a></li>
+	      <div class="row">
+	        <div class="span2">
+  	        <%= link_to((image_tag 'bitbio_logo.png', alt: "bitBIO Logo"), root_path, class: 'pull-left', id: 'logo') %>
+  	      </div>
+  	      <div class="span4">
+            <ul class="breadcrumb">
+              <li><%= link_to 'Home', root_path %><span class="divider">/</span></li>
+
+              <% if controller_name == 'projects' && action_name == 'index' %>
+                <li class="active">Projects</li>
+              <% elsif controller_name == 'messages' %>
+                <li class="active">Messages</li>
+              <% elsif controller_name == 'projects' && action_name == 'show' %>
+                <li><a href="/projects">Projects<span class="divider">/</span></a></li>
+                <li class="active"><%= @project.name %></li>
+              <% elsif controller_name == 'users' && action_name == 'researchers_index' %>
+                <li class="active">Researchers</li>
+              <% elsif controller_name == 'users' && action_name == 'providers_index' %>
+                <li class="active">Providers</li>
+              <% elsif controller_name == 'users' && action_name == 'show' %>
+                <% if @user.researcher? %>
+                  <li><a href="/researchers">Researchers<span class="divider">/</span></a></li>
+                <% elsif @user.provider? %>
+                  <li><a href="/providers">Providers<span class="divider">/</span></a></li>
+                <% end %>
+                <li class="active"><%= @user.full_name %></li>
+              <% elsif controller_name == 'sessions' && (action_name == 'new' || action_name == 'create') %>
+                <li class="active">Sign In</li>
+              <% elsif controller_name == 'users' && (action_name == 'new' || action_name == 'create') %>
+                <li class="active">New Account</li>
+              <% elsif controller_name == 'users' && (action_name == 'edit' || action_name == 'update') %>
+                <li class="active">Editing Account</li>
+              <% elsif controller_name == 'projects' && (action_name == 'edit' || action_name == 'update') %>
+                <li class="active">Editing Project</li>
+              <% elsif controller_name == 'projects' && (action_name == 'new' || action_name == 'create') %>
+                <li class="active">New Project</li>
               <% end %>
-              <li class="active"><%= @user.full_name %></li>
-            <% elsif controller_name == 'sessions' && (action_name == 'new' || action_name == 'create') %>
-              <li class="active">Sign In</li>
-            <% elsif controller_name == 'users' && (action_name == 'new' || action_name == 'create') %>
-              <li class="active">New Account</li>
-            <% elsif controller_name == 'users' && (action_name == 'edit' || action_name == 'update') %>
-              <li class="active">Editing Account</li>
-            <% elsif controller_name == 'projects' && (action_name == 'edit' || action_name == 'update') %>
-              <li class="active">Editing Project</li>
-            <% elsif controller_name == 'projects' && (action_name == 'new' || action_name == 'create') %>
-              <li class="active">New Project</li>
-            <% end %>
-          </ul>
-        </div>
-        <div class="top">
-          <h1>Your Science Community, Science Market, and place to find Scientific Services</h1>
-        </div>
-        <div class="span5">
-          <ul class="nav">
-            <% x = "on" if request.path == '/' || request.path == '/projects' %>
-            <% y = "on" if request.path == '/providers' %>
-            <% z = "on" if request.path == '/researchers' %>
-            <% if @user %>
-              <% if @user.researcher? %>
-                <% z = 'on' %>
-              <% elsif @user.provider? %>
-                <% y = 'on' %>
-              <% end %>
-            <% end %>
-            <!-- the x,y,z are for the li header links... when you add back -->
-  			  </ul>
-        </div>
-        <div class="row" style="margin-top: 5px;">
-          <div class="span9 pull-right">
+            </ul>
+          </div>
+          <div class="span6">
+            <h1>Your Science Community, Science Market, and place to find Scientific Services</h1>
+          </div>
+	      </div>
+
+        <div class="row">
+          <div class="span9 offset3">
             <div id="mynav-list">
               <%= link_to 'forem', '#', class: 'pull-left' %>
               <%= link_to 'institutes / labs', '#', class: 'pull-left' %>
@@ -100,6 +90,7 @@
   				<% end %>
           </div>
 				</div>
+				
 	    </div>
 	  </div>
 	</div>

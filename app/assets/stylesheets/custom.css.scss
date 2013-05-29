@@ -38,12 +38,8 @@ h2 {
   margin-top: 5px;
 }
 
-#main_container {
-  margin-left: 280px;
-}
-
 #logo {
-  height: 80px;
+  height: 40px;
 }
 
 .inline {
@@ -558,13 +554,14 @@ h2 {
 
 header {
   min-width: 960px;
+  margin-bottom: 30px;
   .navbar {
     margin-bottom: 5px;
   }
 	.navbar-inner {
 		background: $header_background;
-		height: 40px;
-		max-height: 80px;
+    height: 40px;
+    max-height: 80px;
 		box-shadow: none;
 		border-radius:0px;
 		.breadcrumb {
@@ -586,16 +583,14 @@ header {
 		    }
 		  }
 		}
-		.top {
-		  height: 40px;
-		  h1 {
-		    color: white;
-		    font-size: 1.0em;
-		    display: inline;
-		    float: right;
-		    padding-top: 2px;
-		  }
-		}
+	  h1 {
+	    color: white;
+	    font-size: 0.8em;
+	    display: inline;
+	    float: right;
+	    padding-right: 10px;
+	    padding-top: 2px;
+	  }
 		ul {
 			li.on {
 				a {
