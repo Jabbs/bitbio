@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130529163931) do
+ActiveRecord::Schema.define(:version => 20130531190623) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -68,19 +68,26 @@ ActiveRecord::Schema.define(:version => 20130529163931) do
     t.string   "science_type"
     t.integer  "user_id"
     t.string   "service_need"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.date     "start_date"
     t.string   "slug"
-    t.integer  "view_count",   :default => 0
+    t.integer  "view_count",      :default => 0
     t.string   "tag"
+    t.string   "visability",      :default => "public"
+    t.boolean  "searchable",      :default => true
+    t.boolean  "active",          :default => true
+    t.date     "expiration_date"
   end
 
+  add_index "projects", ["active"], :name => "index_projects_on_active"
   add_index "projects", ["science_type"], :name => "index_projects_on_science_type"
+  add_index "projects", ["searchable"], :name => "index_projects_on_searchable"
   add_index "projects", ["service_need"], :name => "index_projects_on_service_need"
   add_index "projects", ["slug"], :name => "index_projects_on_slug"
   add_index "projects", ["tag"], :name => "index_projects_on_tag"
   add_index "projects", ["user_id"], :name => "index_projects_on_user_id"
+  add_index "projects", ["visability"], :name => "index_projects_on_visability"
 
   create_table "users", :force => true do |t|
     t.string   "first_name"

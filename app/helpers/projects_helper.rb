@@ -11,4 +11,14 @@ module ProjectsHelper
       "#{days_til_start.abs} days ago"
     end
   end
+  
+  def visability_text(option)
+    if option == 'public'
+      "Viewable to anyone with your unique project url."
+    elsif option == 'private'
+      "Viewable and searchable only by bitBIO members."
+    elsif option == 'locked'
+      "Unviewable and unsearchable by anyone except you."
+    end
+  end
 end

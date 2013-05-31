@@ -66,14 +66,30 @@
     							<b class="caret"></b>
     						</a>
                 <ul class="dropdown-menu" style='min-width: 100px; width: 160px;'>
-                  <li><a href="<%= user_path(current_user) %>"><i class="icon-user"></i> My Profile</a></li>
-                  <li><a href="<%= user_messages_path(current_user) %>"><i class="icon-envelope"></i> Messages
+                  <li>
+                    <a href="<%= user_path(current_user) %>">
+                    <i class="icon-user" style="margin-left: 1px; margin-right: 9px;"></i> My Profile</a>
+                  </li>
+                  <li>
+                    <a href="<%= user_messages_path(current_user) %>">
+                    <i class="icon-envelope" style="margin-right: 7px;"></i> Messages
                     <% if current_user.new_message_count != 0 %>
       							  (<%= current_user.new_message_count %>)
       							<% end %>
-                    </a></li>
+                    </a>
+                  </li>
+                  <% if current_user.projects.any? %>
+                    <li>
+                      <a href="<%= user_project_listings_path(current_user) %>">
+                      <i class="icon-beaker" style="margin-left: 1px; margin-right: 8px;"></i> My project listings</a>
+                    </li>
+                  <% end %>
                   <li class="divider"></li>
-                  <li><a href="<%= logout_path %>" data-method="delete" rel="nofollow"><i class="icon-ban-circle" method="delete"></i> Logout</a></li>
+                  <li>
+                    <a href="<%= logout_path %>" data-method="delete" rel="nofollow">
+                    <i class="icon-ban-circle" style="margin-left: 1px; margin-right: 10px;" 
+                    method="delete"></i> Logout</a>
+                  </li>
                 </ul>
               </li>
             </ul>

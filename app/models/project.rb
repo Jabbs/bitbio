@@ -1,7 +1,10 @@
 class Project < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: [:slugged, :history]
-  attr_accessible :description, :name, :science_type, :service_need, :start_date, :instruments_attributes, :tag
+  attr_accessible :description, :name, :science_type, :service_need, :start_date, :instruments_attributes,
+                  :tag, :visability, :expiration_date
+  
+  VISABILITY_OPTIONS = ["public", "private", "locked"]
   
   SCIENCE_TYPES = ["Antibody production", "Antibody purification", "Atomic force microscopy (AFM)", 
     "Bioinformatics", "Cell based assay", "Chromatin immunoprecipitation (ChIP) sequencing", "Cloning molecular constructs", 
@@ -44,7 +47,7 @@ class Project < ActiveRecord::Base
     "cardiology", "cell-biology", "cell-culturing", "cloning", "cytogenetics", "cytology", 
     "developmental-biology", "dna-sequencing", "ecology", "electrophysiology", 
     "embryology", "endocrinology", "entomology", "epidemiology", "epigenetics", 
-    "ethology", "gel-electrophoresis", "gene-annotation", "gene-expression", 
+    "ethology", "gene-annotation", "gene-expression", 
     "gene-regulation", "genetics", "genomics", "hematology", "histology", 
     "human-genetics", "human-genome", "ichthyology", "imaging", "immunology", 
     "marine-biology", "medicinal-chemistry", "metabolism", "microbiology", "microscopy", 
@@ -65,6 +68,7 @@ class Project < ActiveRecord::Base
   # validations
   validates :description, presence: true, length: { minimum: 90, maximum: 2000 }
   validates :science_type, presence: true
+  validates :visability, presence: true, inclusion: { in: VISABILITY_OPTIONS, message: "%{value} isn't an allowed option" }
   validates :name, presence: true, uniqueness: true
   validates :start_date, presence: true
   validates :tag, presence: true

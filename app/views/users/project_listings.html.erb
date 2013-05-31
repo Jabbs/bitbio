@@ -1,0 +1,49 @@
+<div class="row" style="margin-top: 10px;"><h2 style="text-align: center;">My Project Listings</h2></div>
+<div class="row" style="margin-top: 5px;">
+  <div class="navbar" id="message_nav">
+    <div class="navbar-inner">
+      <ul class="nav">
+        
+        <% a = "on" unless params[:private] == 'true' || params[:locked] == 'true' || params[:inactive] == 'true' %>
+        <% b = "on" if params[:private] == 'true' %>
+        <% c = "on" if params[:locked] == 'true' %>
+        <% d = "on" if params[:inactive] == 'true' %>
+        
+        <li style="margin-top: 5px;" class=<%= a %>><%= link_to "<i class='icon-globe'></i> Public".html_safe,
+         user_project_listings_path(current_user), style: 'padding: 5px 10px;' %></li>
+        <li style="margin-top: 5px;" class=<%= b %>><%= link_to "<i class='icon-group'></i> Private".html_safe, user_project_listings_path(current_user,
+          private: true), style: 'padding: 5px 10px;' %></li>
+        <li style="margin-top: 5px;" class=<%= c %>><%= link_to "<i class='icon-lock'></i> Locked".html_safe, user_project_listings_path(current_user,
+          locked: true), style: 'padding: 5px 10px;' %></li>
+        <li style="margin-top: 5px;" class=<%= d %>><%= link_to "<i class='icon-ban-circle'></i> Inactive".html_safe, user_project_listings_path(current_user,
+          inactive: true), style: 'padding: 5px 10px;' %></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<br>
+
+<% if params[:inactive] == 'true' %>
+  <% @projects = @inactive_projects %>
+<% elsif params[:locked] == 'true' %>
+  <% @projects = @locked_projects %>
+<% elsif params[:private] == 'true' %>
+  <% @projects = @private_projects %>
+<% else %>
+  <% @projects = @public_projects %>
+<% end %>
+  
+<% if @projects.any? %>
+  <% @projects.each do |project| %>
+    <%= render 'projects/project', project: project %>
+  <% end %>
+<% else %>
+<div class="row">
+  <div class="span9">
+    <div class="alert">
+  		<strong>NOTICE:</strong>
+  	  Empty.
+  	</div>
+  </div>
+</div>
+<% end %>

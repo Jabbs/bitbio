@@ -29,8 +29,9 @@ namespace :db do
       service_need = Project::SERVICE_NEEDS.shuffle.first
       tag = Project::TAGS.shuffle.first
       start_date = rand(300).days.from_now.to_date
+      exp_date = Date.today + [30, 90, 180].shuffle.first.days
       project = Project.new(name: name, description: description, science_type: science_type, service_need: service_need,
-                            start_date: start_date, tag: tag)
+                            start_date: start_date, tag: tag, expiration_date: exp_date)
       project.user_id = User.all.shuffle.first.id
       
       x = rand(1..3)

@@ -3,7 +3,7 @@
   <div class="message_bar">
     <%= link_to message do %>
       <div class="span2" style="width: 140px">
-          <span style="padding-left: 5px;" class=<%= view_class %>> 
+          <span class=<%= view_class %>> 
             <% if params[:sent] == 'true' %>
               To: <%= current_user?(message.receiver) ? 'Me' : truncate(message.receiver.full_name, length: 18) %>
             <% else %>

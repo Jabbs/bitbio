@@ -38,11 +38,20 @@
         <% end %>
       </div>
     </div>
+    <% if current_user?(@project.user) %>
+      <div style="height: 0px;">
+        <div class="expiration-date">
+          expires on <%= @project.expiration_date.strftime("%b %e, %Y")  %><br>
+          <%= link_to 'extend +', '#' %>
+        </div>
+      </div>
+    <% end %>
     <div class="row" style="padding-left:20px">
       <h2><%= @project.name %> <span class="dark" style="font-size: 70%;">
         (<%= country_with_us_shortened(@project.user.country) %>)</span> 
       </h2>
       <% if current_user?(@project.user) %>
+        <i class="icon-edit"></i>
         <%= link_to "Edit", edit_project_path(@project) %>
         <br>
         <br>
@@ -56,9 +65,10 @@
     </div>
     <% if current_user && current_user != @project.user && current_user.verified? %>
       <div class="row" style="padding-left:20px">
-        <%= content_tag "div", id: 'message', title: "Send a message to the project owner", style: 'width: 244px;', 
+        <i class="icon-envelope"></i> 
+        <%= content_tag "div", id: 'message', title: "Send a message to the project owner", style: 'width: 250px; display: inline', 
             data: {blah: @project.user.id} do %>
-            <i class="icon-envelope"></i> send a direct message to project owner
+            send a direct message to project owner
         <% end %>
       </div>
     <% end %>

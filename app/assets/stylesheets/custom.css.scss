@@ -135,15 +135,9 @@ h2 {
 /* shared/sidebar */
 
 #sidebar {
-  position: absolute;
-  top: 40px;
-  left: 0px;
+  position: relative;
+  top: -25px;
   background: $silver;
-  margin: 0px;
-  width: 220px;
-//  -webkit-border-bottom-right-radius: 5px;
-//      -moz-border-bottom-right-radius: 5px;
-//           border-bottom-right-radius: 5px;
   h2#sidebar_header {
     margin-bottom: 0px;
     margin-left: 8px;
@@ -300,6 +294,15 @@ h2 {
   padding-top: 0px;
   margin-right: 10px;
   width: 680px;
+  .expiration-date {
+    position: relative;
+    height: 35px;
+    width: 160px;
+    top: 121px;
+    left: 520px;
+    text-align: center;
+    background: white;
+  }
   .time_ago {
     background: $green_very_light;
     padding: 0;
@@ -429,6 +432,15 @@ h2 {
   &:nth-child(3) {
     margin-right: 0px;
   }
+  .expiration-date {
+    position: relative;
+    height: 35px;
+    width: 90px;
+    top: 41px;
+    left: 122px;
+    text-align: center;
+    background: white;
+  }
   .head {
     height: 18px;
     h3 {
@@ -457,7 +469,7 @@ h2 {
     padding: 0;
     margin: 0;
     display: inline;
-    width: 90px;
+    width: 95px;
     text-align: right;
     small {
       font-size: 70%;
@@ -466,10 +478,6 @@ h2 {
 }
 
 /* projects/new */
-
-#list-project {
-  
-}
 
 .dropdown-menu {
   min-width: 378px; 
@@ -484,7 +492,7 @@ h2 {
     font-size: 80%;
     color: black;
   }
-  #radio-account-types {
+  .radio-account-types {
     label {
       margin-right: 20px;
       display:inline-block;

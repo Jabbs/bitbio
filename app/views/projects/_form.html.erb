@@ -38,7 +38,7 @@
       <div class="span1">
         <label>Needs:</label>
       </div>
-      <div class="span8" id="radio-account-types">
+      <div class="span8 radio-account-types">
         <div style="margin-right: 41px; display: inline;">
           <%= f.radio_button :service_need, Project::SERVICE_NEEDS[0], checked: true  %>
           <label><%= Project::SERVICE_NEEDS[0] %></label>
@@ -105,6 +105,51 @@
       </div>
     </div>
     <hr>
+    
+    <div class="row">
+      <div class="span1">
+        <label>Visability:</label>
+      </div>
+      <div class="span8 radio-account-types">
+        <% Project::VISABILITY_OPTIONS.each do |option| %>
+          <%= f.radio_button :visability, option %>
+          <label style="width: 90px; margin-right: 5px;">
+            <% if option == 'public' %>
+            <i class="icon-globe" style="margin-right: 9px; margin-left: 2px;"></i>
+            <% elsif option == 'private' %>
+            <i class="icon-group" style="margin-right: 7px;"></i>
+            <% elsif option == 'locked' %>
+            <i class="icon-lock" style="margin-right: 9px; margin-left: 4px;"></i>
+            <% end %>
+            <%= option.capitalize %>
+          </label>
+          <%= visability_text(option) %>
+          <br>
+        <% end %>
+        <p>Who can view your project?</p>
+      </div>
+    </div>
+    <hr>
+    <% if action_name == 'new' || action_name == 'create' %>
+      <div class="row">
+        <div class="span1">
+          <label>Plan:</label>
+        </div>
+        <div class="span8 radio-account-types">
+          <%= f.radio_button :expiration_date, Date.today + 30.days, checked: true  %>
+          <label>30 day listing - FREE</label>
+          <br>
+          <%= f.radio_button :expiration_date, Date.today + 90.days  %>
+          <label>90 day listing - $60</label>
+          <br>
+          <%= f.radio_button :expiration_date, Date.today + 180.days  %>
+          <label>180 day listing - $100</label>
+          <p>How long would you like to list your project?</p>
+        </div>
+      </div>
+      <hr>
+    <% end %>
+    
     <div class="row">
       <div class="span9">
         <% if action_name == 'edit' || action_name == 'update' %>
@@ -113,7 +158,7 @@
             class: 'my-button-red large-button pull-right' %>
           <% end %>
           <%= f.submit 'Update Project', class: "my-button large-button", disable_with: 'Submitting...' %> | 
-          <%= link_to 'cancel', current_user %>
+          <%= link_to 'cancel', user_project_listings_path(current_user) %>
         <% else %>
           <%= f.submit 'List My Project', class: "my-button large-button",disable_with: 'Submitting...' %> |
           <%= link_to 'cancel', current_user %>

@@ -1,4 +1,12 @@
 <div class="span3 project-well">
+  <% if current_user?(project.user) %>
+    <div style="height: 0px;">
+      <div class="expiration-date">
+        expires on<br>
+        <%= project.expiration_date.strftime("%b %e, %Y")  %>
+      </div>
+    </div>
+  <% end %>
   <div class="head">
     <h3><%= link_to truncate(project.name, length: 30), project_path(project) %></h3>
   </div>
@@ -30,7 +38,7 @@
     <input type="checkbox" style="display: inline; padding-left: 0px; margin-left: 0px; margin-right: 3px;"> Favorite
   </label> -->
   <div class="row">
-    <div class="span1" style="width: 120px; padding-top: 2px;">
+    <div class="span1" style="width: 115px; padding-top: 2px;">
       <i class="icon-eye-open" style="margin-top: 1px;"></i>:<%= project.view_count %>
       <i class="icon-envelope" style="margin-top: 1px; margin-left: 5px;"></i>:<%= project.messages.size %>
       <i class="icon-comment" style="margin-top: 1px; margin-left: 5px;"></i>:<%= project.comments.size %>

@@ -1,11 +1,20 @@
 class UsersController < ApplicationController
-  before_filter :signed_in_user, only: [:edit, :update]
-  before_filter :admin_user, only: [:researchers_index, :providers_index]
+  before_filter :signed_in_user, only: [:edit, :update, :project_listings]
+  before_filter :admin_user, only: [:researchers_index]
   before_filter :correct_user, only: [:edit, :update]
+  before_filter :correct_user_different_params, only: [:project_listings]
   before_filter :signed_in_user_go_to_dash, only: [:new, :create]
   
   def new
     @user = User.new
+  end
+  
+  def project_listings
+    @user = User.find(params[:user_id])
+    @public_projects = @user.projects.where(active: true).where(visability: 'public')
+    @private_projects = @user.projects.where(active: true).where(visability: 'private')
+    @locked_projects = @user.projects.where(active: true).where(visability: 'locked')
+    @inactive_projects = @user.projects.where(active: false)
   end
   
   def edit
@@ -78,6 +87,11 @@ class UsersController < ApplicationController
     
     def correct_user
       @user = User.find(params[:id])
+      redirect_to(root_path) unless current_user?(@user) || current_user.admin?
+    end
+    
+    def correct_user_different_params
+      @user = User.find(params[:user_id])
       redirect_to(root_path) unless current_user?(@user) || current_user.admin?
     end
     

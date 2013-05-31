@@ -2,6 +2,7 @@ class MessagesController < ApplicationController
   before_filter :signed_in_user
   before_filter :correct_user, only: [:index]
   before_filter :verified_user
+  before_filter :sender_or_receiver, only: [:show]
   
   def index
     @sent_messages = current_user.sent_messages.order("created_at DESC")
@@ -43,6 +44,11 @@ class MessagesController < ApplicationController
     def correct_user
       @user = User.find(params[:user_id])
       redirect_to(root_path) unless current_user?(@user) || current_user.admin?
+    end
+    
+    def sender_or_receiver
+      @message = Message.find(params[:id])
+      redirect_to(root_path) unless current_user?(@message.sender) || current_user?(@message.receiver) || current_user.admin?
     end
     
     def signed_in_user_go_to_dash

@@ -17,6 +17,8 @@
   <%= render 'layouts/shim' %>
   <%= render 'layouts/google_analytics' %>
   <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+  
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
 </head>
 <body>
   <%= render 'layouts/header' %>
@@ -25,7 +27,7 @@
   	  <div class="span3" id="sidebar">
     	  <%= render 'shared/sidebar' %>
     	</div>
-    	<div class="span9 offset3">
+    	<div class="span9">
     	  <% flash.each do |name, msg| %>
   	       <div class="alert alert-<%= name == :notice ? "success" : "error" %>" style="margin-top: 10px;">
        	     <a class="close" data-dismiss="alert">×</a>

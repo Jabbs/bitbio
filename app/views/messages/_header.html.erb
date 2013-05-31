@@ -1,4 +1,4 @@
-<div class="row"><h2 style="text-align: center;">Messages</h2></div>
+<div class="row" style="margin-top: 10px;"><h2 style="text-align: center;">My Messages</h2></div>
 <div class="row" style="margin-top: 5px;">
   <div class="navbar" id="message_nav">
     <div class="navbar-inner">
@@ -6,14 +6,13 @@
         
         <% a = "on" if params[:sent] != 'true' %>
         <% b = "on" if params[:sent] == 'true' %>
-        <% c = "on" if request.path == '/researchers' %>
         
-        <li style="margin-top: 5px; margin-left: 5px;" class=<%= a %>><%= link_to 'Inbox',
+        <li style="margin-top: 5px;" class=<%= a %>><%= link_to 'Inbox',
          user_messages_path(current_user), style: 'padding: 5px 10px;' %></li>
         <li style="margin-top: 5px;" class=<%= b %>><%= link_to 'Sent', user_messages_path(current_user, sent: true),
                   style: 'padding: 5px 10px;' %></li>
         <% if @contacts && @contacts.any? %>
-          <li class=<%= c %>>
+          <li>
             <%= content_tag "div", class: "btn", id: 'message', title: "Create a new message" do %>
               <i class="icon-envelope"></i> New Message
             <% end %>
