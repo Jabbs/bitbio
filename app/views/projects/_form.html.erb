@@ -21,16 +21,6 @@
         <p>What specific type of project best defines your needs?</p>
       </div>
     </div>
-    <div class="row" style="margin-top: 5px;">
-      <div class="span1">
-        <label>Tag (#):</label>
-      </div>
-      <div class="span8">
-
-        <%= f.select :tag, Project::TAGS, { prompt: "-- select --" }, { :style => 'margin-bottom: 0;' } %>
-        <p>Tag your project with a science type for optimal search queries.</p>
-      </div>
-    </div>
     <hr>
     <div class="row">
       <div class="span1">
@@ -80,6 +70,15 @@
         <%= f.text_field :name, placeholder: 'e.g. analyzing histone modification', class: 'span5', 
         style: 'margin-bottom: 0;' %>
         <p>Please choose a unique name for your project.</p>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 5px;">
+      <div class="span1">
+        <label>Tags:</label>
+      </div>
+      <div class="span8">
+        <!-- <input style="width: 80px;" type="text" name="project[tag_list]" placeholder="tags" class="tm-input" autocomplete="off"/> -->
+        <p>Tag your project for optimal search queries (separate by commas).</p>
       </div>
     </div>
     <hr>

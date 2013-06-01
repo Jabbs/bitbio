@@ -2,7 +2,8 @@ class Project < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: [:slugged, :history]
   attr_accessible :description, :name, :science_type, :service_need, :start_date, :instruments_attributes,
-                  :tag, :visability, :expiration_date
+                  :visability, :expiration_date, :tag_list
+  acts_as_taggable
   
   VISABILITY_OPTIONS = ["public", "private", "locked"]
   
@@ -37,7 +38,7 @@ class Project < ActiveRecord::Base
     "Microscopy data analysis", "Microscopy image analysis", "Molecular biology", 
     "Monoclonal antibody production", "Motif analysis", "Motif discovery", 
     "Multidimensional protein identification technology (MudPIT)", "Multiphoton microscopy", "Mutations", 
-    "Mutations and regulatory sites", "NcRNAs", "New gene discovery", "Next Generation Sequencing", 
+    "Mutations and regulatory sites", "NcRNAs", "New gene discovery", 
     "Next-Generation Sequencing", "Next-Generation Sequencing data analysis", 
     "Nuclear magnetic resonance (NMR)", "Nuclear magnetic resonance (NMR) data analysis", 
     "Nucleosome Positioning", "Oligonucleotide synthesis", "Paraffin embedding of tissue", "Pathology", 
@@ -72,16 +73,16 @@ class Project < ActiveRecord::Base
   SERVICE_NEEDS = ["Science", "Services", "Science + Services", "Data Analysis", "Research Validation", "Clinical Studies"]
   
   TAGS = ["abiogenesis", "anatomy", "antibiotics", 
-    "astrobiology", "bacteriology", "biochemistry", "biophysics", "biotechnology", "botany", 
+    "astrobiology", "bacteriology", "biochemistry", "bioinformatics", "biophysics", "biotechnology", "botany", 
     "cardiology", "cell-biology", "cell-culturing", "cloning", "cytogenetics", "cytology", 
-    "developmental-biology", "dna-sequencing", "ecology", "electrophysiology", 
+    "developmental-biology", "dna", "dna-sequencing", "ecology", "electrophysiology", 
     "embryology", "endocrinology", "entomology", "epidemiology", "epigenetics", 
     "ethology", "gene-annotation", "gene-expression", 
     "gene-regulation", "genetics", "genomics", "hematology", "histology", 
     "human-genetics", "human-genome", "ichthyology", "imaging", "immunology", 
     "marine-biology", "medicinal-chemistry", "metabolism", "microbiology", "microscopy", 
     "molecular-biology", "mycology", "neuroanatomy", "neurology", "neuroscience", 
-    "neurotransmission", "next-generation-sequencing", "nutrition", "ornithology", 
+    "neurotransmission", "ngs", "nutrition", "ornithology", 
     "palaeontology", "parasitology", "pathology", "pharmacology", "phylogenetics", 
     "physiology", "plant-anatomy", "plant-physiology", "population-biology", 
     "protein-binding", "protein-folding", "psychology", 

@@ -12,6 +12,13 @@ class ProjectsController < ApplicationController
     @project = Project.new
   end
   
+  def tags
+    respond_to do |f|
+      f.html { redirect_to '/' }
+      f.json { render json: Project::TAGS }
+    end
+  end
+  
   def show
     @project = Project.find(params[:id])
     @project.add_view_count unless current_user?(@project.user)

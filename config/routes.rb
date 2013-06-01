@@ -10,7 +10,11 @@ Bitbio::Application.routes.draw do
     resources :messages, only: [:create, :index]
   end
   resources :password_resets, only: [:new, :create, :edit, :update]
-  resources :projects
+  resources :projects do
+    collection do
+      get 'tags'
+    end
+  end
   resources :comments
   resources :verifications, only: [:show]
   

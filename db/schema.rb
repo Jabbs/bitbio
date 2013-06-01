@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130601020836) do
+ActiveRecord::Schema.define(:version => 20130601201922) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -74,7 +74,6 @@ ActiveRecord::Schema.define(:version => 20130601020836) do
     t.date     "start_date"
     t.string   "slug"
     t.integer  "view_count",      :default => 0
-    t.string   "tag"
     t.string   "visability",      :default => "public"
     t.boolean  "searchable",      :default => true
     t.boolean  "active",          :default => true
@@ -86,9 +85,25 @@ ActiveRecord::Schema.define(:version => 20130601020836) do
   add_index "projects", ["searchable"], :name => "index_projects_on_searchable"
   add_index "projects", ["service_need"], :name => "index_projects_on_service_need"
   add_index "projects", ["slug"], :name => "index_projects_on_slug"
-  add_index "projects", ["tag"], :name => "index_projects_on_tag"
   add_index "projects", ["user_id"], :name => "index_projects_on_user_id"
   add_index "projects", ["visability"], :name => "index_projects_on_visability"
+
+  create_table "taggings", :force => true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context",       :limit => 128
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
+
+  create_table "tags", :force => true do |t|
+    t.string "name"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "first_name"

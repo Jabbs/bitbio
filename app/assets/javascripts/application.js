@@ -27,10 +27,15 @@ $(function() {
 		dateFormat: "yy-mm-dd"
 	});
 	
-	$('.typeahead').typeahead()
+  $('.typeahead').typeahead()
 	
 	$('#url-text').click(function() {
     $('#url-text').select();
+  });
+  
+  jQuery(".tm-input").tagsManager({
+    typeahead: true,
+    typeaheadSource: ["Pisa", "Rome", "Milan", "Florence", "New York", "Paris", "Berlin", "London", "Madrid"],
   });
   
 });
