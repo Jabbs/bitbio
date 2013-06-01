@@ -43,9 +43,9 @@
   <div class="span3">
     <p class="inline pull-left" style="margin-left: 8px;"><small><%= link_to 'clear', root_path %></small></p>
     <div class="pull-right">
-      <%= button_tag :name => nil, id: 'find-project' do %>
+      <button id="find-project" data-disable-with="Please wait...">
         <i class="icon-beaker"></i> Find projects
-      <% end %>
+      </button>
     </div>
   </div>
 </div>

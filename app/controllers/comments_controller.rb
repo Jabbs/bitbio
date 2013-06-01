@@ -4,6 +4,7 @@ class CommentsController < ApplicationController
     @project = Project.find(params[:comment][:project_id])
     @comments = @project.comments
     if @comment.save
+      @comment.send_new_comment_email
       redirect_to project_path(@project), notice: 'Your comment has been posted'
     else
       render template: 'projects/show'

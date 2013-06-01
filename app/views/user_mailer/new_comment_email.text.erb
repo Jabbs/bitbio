@@ -1,0 +1,7 @@
+Dear <%= @user.first_name %>,
+
+<%= @comment.user.full_name %> commented on <%= @comment.project.name %>:
+
+<%= truncate(@comment.content, length: 200) %>
+
+<%= link_to "View Comment", project_url(@comment.project) %>

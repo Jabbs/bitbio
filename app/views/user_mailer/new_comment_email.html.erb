@@ -1,0 +1,20 @@
+<tr>
+	<td style="padding-top:10px">
+		Dear <%= @user.first_name %>,
+	</td>
+</tr>
+<tr>
+	<td style="padding-top:20px">
+  	<%= @comment.user.full_name %> commented on <%= @comment.project.name %>:
+	</td>
+</tr>
+<tr>
+	<td style="padding-top:10px; padding-left:10px; padding-right:10px; font-style:italic">
+		<%= truncate(@comment.content, length: 200) %>
+	</td>
+</tr>
+<tr>
+	<td style="padding-top:20px; padding-right:10px">
+		<%= link_to "View Comment", project_url(@comment.project) %>
+	</td>
+</tr>
