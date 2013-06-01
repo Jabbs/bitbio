@@ -80,6 +80,10 @@ class Project < ActiveRecord::Base
   has_many :messages
   accepts_nested_attributes_for :instruments, allow_destroy: true
   
+  def inactive?
+    !self.active?
+  end
+  
   def strip_inputs
     self.name = self.name.strip
     self.science_type = self.science_type.strip

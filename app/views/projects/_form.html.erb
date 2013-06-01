@@ -16,9 +16,7 @@
         placeholder="e.g. antibody production, scanning electron microscopy, etc." size="30" type="text" 
         data-provide="typeahead" data-source="<%= Project::SCIENCE_TYPES.uniq.sort %>"
         autocomplete="off" style="margin-bottom: 0;"
-        <% unless @project.new_record? %>
           value="<%= @project.science_type %>"
-        <% end %>
          />
         <p>What specific type of project best defines your needs?</p>
       </div>
@@ -157,10 +155,12 @@
             <%= link_to "Remove", project_path(@project), method: :delete, confirm: "Are you sure?", 
             class: 'my-button-red large-button pull-right' %>
           <% end %>
-          <%= f.submit 'Update Project', class: "my-button large-button", disable_with: 'Submitting...' %> | 
+          <%= f.submit 'Update Project', class: "my-button large-button", disable_with: 'Submitting...',
+          style: 'margin-bottom: 8px;' %> | 
           <%= link_to 'cancel', user_project_listings_path(current_user) %>
         <% else %>
-          <%= f.submit 'List My Project', class: "my-button large-button",disable_with: 'Submitting...' %> |
+          <%= f.submit 'List My Project', class: "my-button large-button", disable_with: 'Submitting...',
+              style: 'margin-bottom: 5px;' %> |
           <%= link_to 'cancel', current_user %>
         <% end %>
       </div>

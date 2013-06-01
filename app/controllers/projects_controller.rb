@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   before_filter :signed_in_user, except: [:index, :show]
   before_filter :verified_user, except: [:index, :show]
-  before_filter :check_if_private_or_locked, only: [:show]
+  before_filter :check_if_private_or_locked_or_inactive, only: [:show]
   before_filter :correct_user, only: [:edit, :update, :destroy]
   
   def index
@@ -43,7 +43,8 @@ class ProjectsController < ApplicationController
     @project.user = current_user
     if @project.save
       check_if_searchable
-      redirect_to @project, notice: "Your project has been created!"
+      redirect_to @project, notice: "Your project listing has now been activated! You will receive email notifications
+      when your project receives comments or messages from another bitBIO member."
     else
       render 'new'
     end
@@ -63,9 +64,13 @@ class ProjectsController < ApplicationController
       @project.save
     end
     
-    def check_if_private_or_locked
+    def check_if_private_or_locked_or_inactive
       @project = Project.find(params[:id])
-      if @project.visability == 'private'
+      if @project.inactive?
+        unless current_user && current_user?(@project.user)
+          redirect_to root_path, alert: "The project you tried to view is no longer active." unless current_user && current_user.admin?
+        end
+      elsif @project.visability == 'private'
         unless current_user && current_user.verified
           redirect_to root_path, alert: "This project is only viewable to verified bitBIO members. Please sign up or log in to view this project."
         end

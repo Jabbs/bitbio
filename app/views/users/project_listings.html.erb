@@ -9,14 +9,18 @@
         <% c = "on" if params[:locked] == 'true' %>
         <% d = "on" if params[:inactive] == 'true' %>
         
-        <li style="margin-top: 5px;" class=<%= a %>><%= link_to "<i class='icon-globe'></i> Public".html_safe,
+        <li style="margin-top: 5px;" class=<%= a %>>
+        <%= link_to "<i class='icon-globe'></i> Public (#{@public_projects.size})".html_safe,
          user_project_listings_path(current_user), style: 'padding: 5px 10px;' %></li>
-        <li style="margin-top: 5px;" class=<%= b %>><%= link_to "<i class='icon-group'></i> Private".html_safe, user_project_listings_path(current_user,
-          private: true), style: 'padding: 5px 10px;' %></li>
-        <li style="margin-top: 5px;" class=<%= c %>><%= link_to "<i class='icon-lock'></i> Locked".html_safe, user_project_listings_path(current_user,
-          locked: true), style: 'padding: 5px 10px;' %></li>
-        <li style="margin-top: 5px;" class=<%= d %>><%= link_to "<i class='icon-ban-circle'></i> Inactive".html_safe, user_project_listings_path(current_user,
-          inactive: true), style: 'padding: 5px 10px;' %></li>
+        <li style="margin-top: 5px;" class=<%= b %>>
+        <%= link_to "<i class='icon-group'></i> Private (#{@private_projects.size})".html_safe,
+         user_project_listings_path(current_user, private: true), style: 'padding: 5px 10px;' %></li>
+        <li style="margin-top: 5px;" class=<%= c %>>
+        <%= link_to "<i class='icon-lock'></i> Locked (#{@locked_projects.size})".html_safe,
+         user_project_listings_path(current_user, locked: true), style: 'padding: 5px 10px;' %></li>
+        <li style="margin-top: 5px;" class=<%= d %>>
+        <%= link_to "<i class='icon-ban-circle'></i> Inactive (#{@inactive_projects.size})".html_safe,
+         user_project_listings_path(current_user, inactive: true), style: 'padding: 5px 10px;' %></li>
       </ul>
     </div>
   </div>

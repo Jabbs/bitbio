@@ -136,8 +136,20 @@ h2 {
 
 #sidebar {
   position: relative;
-  top: -25px;
+  top: 10px;
   background: $silver;
+  #twitter-follow {
+    position: relative;
+    height: 20px;
+    top: -30px;
+  }
+  #twitter-text {
+    position: relative;
+    height: 20px;
+    width: 150px;
+    top: -48px;
+    left: 62px;
+  }
   h2#sidebar_header {
     margin-bottom: 0px;
     margin-left: 8px;
@@ -173,11 +185,13 @@ h2 {
 }
 
 #find-project {
-  margin-top: 5px;
+  margin-top: 2px;
   background: darken($blue, 15%);
   padding: 5px 10px 5px 10px;
   color: white;
-  margin-right: 5px;
+  margin-right: 10px;
+  box-shadow: none;
+  border: none;
   &:hover {
     text-decoration: none;
     background: darken($blue, 35%);
@@ -298,8 +312,8 @@ h2 {
     position: relative;
     height: 35px;
     width: 160px;
-    top: 121px;
-    left: 520px;
+    top: -48px;
+    left: 515px;
     text-align: center;
     background: white;
   }
@@ -672,6 +686,8 @@ header {
   background: darken($gold, 5%);
   padding: 5px 10px 5px 10px;
   color: white;
+  border: none;
+  border-radius: 0;
   &:hover {
     text-decoration: none;
     color: white;
@@ -684,6 +700,8 @@ header {
   background: darken(red, 15%);;
   padding: 5px 10px 5px 10px;
   color: white;
+  border: none;
+  border-radius: 0;
   &:hover {
     text-decoration: none;
     color: white;

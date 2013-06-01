@@ -43,7 +43,9 @@
   <div class="span3">
     <p class="inline pull-left" style="margin-left: 8px;"><small><%= link_to 'clear', root_path %></small></p>
     <div class="pull-right">
-      <%= submit_tag 'Find projects', :name => nil, id: 'find-project' %>
+      <%= button_tag :name => nil, id: 'find-project' do %>
+        <i class="icon-beaker"></i> Find projects
+      <% end %>
     </div>
   </div>
 </div>

@@ -25,11 +25,18 @@
   <div class="container" id="<%= controller_name %>_<%= action_name %>">
   	<div class="row">
   	  <div class="span3" id="sidebar">
+  	    <div style="height: 0px;">
+  	     <div id="twitter-follow">
+     	    <a href="https://twitter.com/bit_bio" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @bit_bio</a>
+  	     </div>
+  	     <div id="twitter-text">for daily project alerts.</div>
+  	    </div>
+  	    <%= request.location.country %>
     	  <%= render 'shared/sidebar' %>
     	</div>
     	<div class="span9">
     	  <% flash.each do |name, msg| %>
-  	       <div class="alert alert-<%= name == :notice ? "success" : "error" %>" style="margin-top: 10px;">
+  	       <div class="alert alert-<%= name == :notice ? "success" : "error" %>" style="margin-top: 20px;">
        	     <a class="close" data-dismiss="alert">×</a>
        	     <%= msg %>
   	       </div>
@@ -46,5 +53,6 @@
   	</div>
   </div>
   <%= render 'layouts/footer' %>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 </body>
 </html>

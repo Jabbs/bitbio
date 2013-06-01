@@ -1,12 +1,11 @@
 <%= form_for @user do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  
   <div class="row" style="margin-top: 10px;">
     <div class="span9">
+      <%= render 'shared/error_messages', object: f.object %>
       <% if action_name == "edit" %>
       <h2 style="margin-top: 5px;">Editing Account</h2>
       <% else %>
-      <h2 style="margin-top: 5px;">Join bitBIO!</h2>
+      <h2 style="margin-top: 5px;">Join the bitBIO science community!</h2>
       <% end %>
       <hr style="margin-top: 5px;">
       
@@ -125,18 +124,6 @@
   				 <%= f.password_field :password_confirmation, class: 'span2' %>
   			</div>
   		</div>
-      <hr>
-      <div class="row">
-        <div class="span2">
-          <label class="inline">Membership:</label>
-        </div>
-        
-        <div class="span4 radio-account-types">
-          <%= f.radio_button :membership, "Researcher", checked: true  %>
-  		    <label style="display: inline; margin-right: 20px;">Basic (FREE)</label>
-        </div>
-        
-      </div>
       <hr>
       <div class="row">
         <div class="span9">
