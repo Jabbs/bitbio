@@ -1,5 +1,5 @@
 <div class="span3 project-well">
-  <% if current_user?(project.user) %>
+  <% if current_user?(project.user) && controller_name != 'projects' %>
     <div style="height: 0px;">
       <div class="expiration-date">
         expires on<br>

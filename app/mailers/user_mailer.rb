@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "bitBIO Science Community <#{ENV['GMAIL_USERNAME']}>"
+  default from: "bitBIO <#{ENV['GMAIL_USERNAME']}>"
   default content_type: "text/html"
   
   def new_message_email(message)

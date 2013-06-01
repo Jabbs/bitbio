@@ -9,7 +9,7 @@
       <% end %>
       <hr style="margin-top: 5px;">
       
-      <% if action_name == "edit" %>
+      <% if action_name == "edit" || action_name == "update" %>
       <div class="row">
        <div class="span2">
           <label>Account Type:</label>
@@ -41,7 +41,7 @@
   		    <%= f.text_field :email, class: "span3", placeholder: "Email", style: 'width: 273px' %> 
   			</div>
       </div>
-      <% if action_name == "edit" %>
+      <% if action_name == "edit" || action_name == "update" %>
       <div class="row">
         <div class="span2">
   				<label>Phone:</label>
@@ -69,7 +69,7 @@
   		    
   			</div>
       </div>
-      <% if action_name == "edit" %>
+      <% if action_name == "edit" || action_name == "update"  %>
       <div class="row">
         <div class="span2">
   				<label>Bio:</label>
@@ -105,8 +105,13 @@
   			</div>
   			<div class="span6">
   			  <% request.location.country == "United States" ? country = "United States of America" : country = "" %>
-  		    <%= f.select :country, Ravibhim::Continents::COUNTRIES, 
-  		      { prompt: "--select--", selected: country }, style: 'width: 283px' %>
+  			  <% if action_name == "edit" || action_name == "update"  %>
+    			  <%= f.select :country, Ravibhim::Continents::COUNTRIES, 
+    		      { prompt: "--select--" }, style: 'width: 283px' %>
+  		    <% else %>
+    		    <%= f.select :country, Ravibhim::Continents::COUNTRIES, 
+    		      { prompt: "--select--", selected: country }, style: 'width: 283px' %>
+  		    <% end %>
   			</div>
       </div>
       <hr>

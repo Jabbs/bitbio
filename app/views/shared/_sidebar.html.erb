@@ -1,6 +1,6 @@
 
 <%= form_tag projects_path, :method => 'get' do %>
-<h2 id="sidebar_header">Search Projects</h2>
+<h2 class="sidebar_header">Find Projects</h2>
 <div class="row">
   <div class="span3">
     <label style="margin-left: 15px;">location:</label>
@@ -44,7 +44,7 @@
     <p class="inline pull-left" style="margin-left: 8px;"><small><%= link_to 'clear', root_path %></small></p>
     <div class="pull-right">
       <button id="find-project" data-disable-with="Please wait...">
-        <i class="icon-beaker"></i> Find projects
+        <i class="icon-beaker"></i> Search
       </button>
     </div>
   </div>

@@ -43,10 +43,10 @@
         (<%= country_with_us_shortened(@project.user.country) %>)</span> 
       </h2>
       <% if current_user?(@project.user) %>
-        <i class="icon-edit"></i>
-        <%= link_to "Edit", edit_project_path(@project) %>
-        <br>
-        <br>
+        <div style="margin-bottom: 8px">
+          <i class="icon-edit"></i>
+          <%= link_to "Edit", edit_project_path(@project) %>
+        </div>
       <% end %>
     </div>
     <div class="row" style="padding-left:20px">
