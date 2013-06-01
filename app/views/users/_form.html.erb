@@ -104,7 +104,9 @@
   				<label>Country:</label>
   			</div>
   			<div class="span6">
-  		    <%= f.select :country, Ravibhim::Continents::COUNTRIES, { prompt: "--select--" }, style: 'width: 283px' %>
+  			  <% request.location.country == "United States" ? country = "United States of America" : country = "" %>
+  		    <%= f.select :country, Ravibhim::Continents::COUNTRIES, 
+  		      { prompt: "--select--", selected: country }, style: 'width: 283px' %>
   			</div>
       </div>
       <hr>
