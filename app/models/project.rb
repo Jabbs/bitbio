@@ -3,7 +3,6 @@ class Project < ActiveRecord::Base
   friendly_id :name, use: [:slugged, :history]
   attr_accessible :description, :name, :science_type, :service_need, :start_date, :instruments_attributes,
                   :visability, :expiration_date, :tag_list
-  acts_as_taggable
   
   VISABILITY_OPTIONS = ["public", "private", "locked"]
   
@@ -101,14 +100,36 @@ class Project < ActiveRecord::Base
   validates :visability, presence: true, inclusion: { in: VISABILITY_OPTIONS, message: "%{value} isn't an allowed option" }
   validates :name, presence: true, uniqueness: true
   validates :start_date, presence: true
-  validates :tag, presence: true
+  validates :tags, presence: true
   
   # associations
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :instruments, dependent: :destroy
   has_many :messages
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings
   accepts_nested_attributes_for :instruments, allow_destroy: true
+  accepts_nested_attributes_for :taggings, allow_destroy: true
+
+  def self.tagged_with(name)
+    Tag.find_by_name!(name).projects
+  end
+
+  def self.tag_counts
+    Tag.select("tags.*, count(taggings.tag_id) as count").
+      joins(:taggings).group("taggings.tag_id")
+  end
+
+  def tag_list
+    tags.map(&:name).join(", ")
+  end
+
+  def tag_list=(names)
+    self.tags = names.split(",").map do |n|
+      Tag.where(name: n.strip).first_or_create!
+    end
+  end
   
   def inactive?
     !self.active?
@@ -138,10 +159,10 @@ class Project < ActiveRecord::Base
     unless location.blank? || location == nil
       projects = projects.joins(:user).where(users: {continent: location})
     end
-    unless tag.blank? || tag == nil
-      # projects = projects.joins(:instruments).where(instruments: {alias: instrument})
-      projects = projects.where(tag: tag)
-    end
+    # unless tag.blank? || tag == nil
+    #   # projects = projects.joins(:instruments).where(instruments: {alias: instrument})
+    #   projects = projects.where(tag: tag)
+    # end
     unless from == nil || to == nil || from.blank? || to.blank?
       projects = projects.where(created_at: ( from..to) )
     end

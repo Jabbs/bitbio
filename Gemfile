@@ -13,7 +13,6 @@ gem 'friendly_id'
 gem 'geocoder'
 gem "continents", "~> 0.0.4"
 gem "rinku", "~> 1.7.3"
-gem 'acts-as-taggable-on'
 
 gem "therubyracer"
 gem "less-rails"

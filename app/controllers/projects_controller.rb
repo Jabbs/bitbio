@@ -48,6 +48,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(params[:project])
     @project.user = current_user
+    create_tags
     if @project.save
       check_if_searchable
       redirect_to @project, notice: "Your project listing has now been activated! You will receive email notifications
@@ -65,7 +66,19 @@ class ProjectsController < ApplicationController
   end
   
   private
-  
+    
+    def create_tags
+      tag_list = params["hidden-project"]["tag_list"].split(',')
+      tag_list.each do |tag|
+        if Tag.find_by_name(tag)
+          t = Tag.find_by_name(tag)
+        else
+          t = Tag.create!(name: tag)
+        end
+        @project.taggings.build(project_id: @project.id, tag_id: t.id)
+      end
+    end
+    
     def check_if_searchable
       @project.visability == 'locked' ? @project.searchable = false : @project.searchable = true
       @project.save
