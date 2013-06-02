@@ -37,6 +37,7 @@ class ProjectsController < ApplicationController
   
   def update
     @project = Project.find(params[:id])
+    create_tags
     if @project.update_attributes(params[:project])
       check_if_searchable
       redirect_to @project, notice: 'Project was successfully updated.'
@@ -70,12 +71,14 @@ class ProjectsController < ApplicationController
     def create_tags
       tag_list = params["hidden-project"]["tag_list"].split(',')
       tag_list.each do |tag|
-        if Tag.find_by_name(tag)
-          t = Tag.find_by_name(tag)
-        else
-          t = Tag.create!(name: tag)
+        unless tag == 'bitbio'
+          if Tag.find_by_name(tag)
+            t = Tag.find_by_name(tag)
+          else
+            t = Tag.create!(name: tag)
+          end
+          @project.taggings.build(project_id: @project.id, tag_id: t.id)
         end
-        @project.taggings.build(project_id: @project.id, tag_id: t.id)
       end
     end
     

@@ -65,26 +65,24 @@
       </div>
     <% end %>
     
-    <div class="row">
-      Tags: <%= @project.tags.map(&:name) %>
-    </div>
-    
     <div class="row" style="padding-left:20px">
-      <i class="icon-calendar"></i> Start date: <%= @project.start_date.strftime("%b %e, %Y") %> 
+      <i class="icon-calendar" style="margin-right: 2px;"></i> start date: <%= @project.start_date.strftime("%b %e, %Y") %> 
       <span style="font-size: 70%;">(<%= to_days_ago_or_from_now(@project.days_til_start) %>)</span>
     </div>
+    <div class="row" style="padding-left:20px">
+      <i class="icon-tags"></i> tags: <%= raw @project.tags.map { |t| link_to t.name, tag_path(t.name) }.join(', ') %>
+    </div>
+    <% if @project.instruments.any? %>
     <div class="row">
       <div class="span6" style="margin-top: 10px;">
-        <% if @project.instruments.any? %>
           Needs:
           <% @project.instruments.each do |instrument| %>
             <div>&bull; <%= instrument.alias %> 
               <span style="font-size: 70%;">(<%= instrument.must_have ? 'must have' : 'nice to have' %>)</span></div>
           <% end %>
-        <% end %>
       </div>
     </div>
-
+    <% end %>
     <div class="description">
       <% if current_user?(@project.user) %>
         <div style="height: 0px;">

@@ -27,11 +27,10 @@ namespace :db do
       science_type = ['DNA Sequencing', 'RNA Sequencing', 'Chip-SEQ', 'Micro Array', 'Next-gen Sequencing',
                       'Microscopy', 'Cytometry'].shuffle.first
       service_need = Project::SERVICE_NEEDS.shuffle.first
-      tag = Project::TAGS.shuffle.first
       start_date = rand(300).days.from_now.to_date
       exp_date = Date.today + [30, 90, 180].shuffle.first.days
       project = Project.new(name: name, description: description, science_type: science_type, service_need: service_need,
-                            start_date: start_date, tag: tag, expiration_date: exp_date)
+                            start_date: start_date, expiration_date: exp_date)
       project.user_id = User.all.shuffle.first.id
       
       x = rand(1..3)
@@ -39,6 +38,15 @@ namespace :db do
         instrument = project.instruments.build(alias: i)
         instrument.must_have = [true, false].shuffle.first
         instrument.save
+      end
+      Project::TAGS.uniq.shuffle[0..x].each do |tag|
+        if Tag.find_by_name(tag)
+          t = Tag.find_by_name(tag)
+        else
+          t = Tag.create!(name: tag)
+        end
+        project.taggings.build(project_id: project.id, tag_id: t.id)
+        project.save!
       end
       project.view_count = rand(0..200)
       project.save!

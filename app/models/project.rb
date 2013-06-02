@@ -100,7 +100,6 @@ class Project < ActiveRecord::Base
   validates :visability, presence: true, inclusion: { in: VISABILITY_OPTIONS, message: "%{value} isn't an allowed option" }
   validates :name, presence: true, uniqueness: true
   validates :start_date, presence: true
-  validates :tags, presence: true
   
   # associations
   belongs_to :user
@@ -113,7 +112,7 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :taggings, allow_destroy: true
 
   def self.tagged_with(name)
-    Tag.find_by_name!(name).projects
+    Tag.find_by_name(name).projects if Tag.find_by_name(name)
   end
 
   def self.tag_counts
@@ -159,10 +158,10 @@ class Project < ActiveRecord::Base
     unless location.blank? || location == nil
       projects = projects.joins(:user).where(users: {continent: location})
     end
-    # unless tag.blank? || tag == nil
-    #   # projects = projects.joins(:instruments).where(instruments: {alias: instrument})
-    #   projects = projects.where(tag: tag)
-    # end
+    unless tag.blank? || tag == nil
+      # projects = projects.joins(:instruments).where(instruments: {alias: instrument})
+      projects = projects.joins(:tags).where(tags: {name: tag})
+    end
     unless from == nil || to == nil || from.blank? || to.blank?
       projects = projects.where(created_at: ( from..to) )
     end

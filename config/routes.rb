@@ -1,5 +1,7 @@
 Bitbio::Application.routes.draw do
   
+  get "tags/index"
+
   resources :instruments
 
 
@@ -15,6 +17,8 @@ Bitbio::Application.routes.draw do
       get 'tags'
     end
   end
+  resources :tags, only: [:index]
+  get 'tags/:tag', to: 'tags#show', as: :tag
   resources :comments
   resources :verifications, only: [:show]
   

@@ -1,0 +1,6 @@
+<div class="row" style="margin-top: 10px">
+  <div class="span9">
+    top <i class="icon-tags"></i> tags:
+    <%= raw Tag.top_tags.take(8).map { |t| link_to t.name, tag_path(t.name) }.join(', ') %>
+  </div>
+</div>

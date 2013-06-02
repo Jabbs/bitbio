@@ -34,8 +34,13 @@ $(function() {
   });
   
   jQuery(".tm-input").tagsManager({
+    prefilled: ["bitbio"],
     typeahead: true,
-    typeaheadSource: ["Pisa", "Rome", "Milan", "Florence", "New York", "Paris", "Berlin", "London", "Madrid"],
+    typeaheadSource: $('#project-tags').data('tags'),
+    blinkBGColor_1: '#FFFF9C',
+    blinkBGColor_2: '#CDE69C',
+    maxTags: 6,
+    tagClass: "tm-tag-success"
   });
   
 });

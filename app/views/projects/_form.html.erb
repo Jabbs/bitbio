@@ -27,23 +27,35 @@
         <label>Needs:</label>
       </div>
       <div class="span8 radio-account-types">
-        <div style="margin-right: 41px; display: inline;">
-          <%= f.radio_button :service_need, Project::SERVICE_NEEDS[0], checked: true  %>
-          <label><%= Project::SERVICE_NEEDS[0] %></label>
+        <div class="row">
+          <div class="span2" style="width: 160px;">
+            <%= f.radio_button :service_need, Project::SERVICE_NEEDS[0], checked: true  %>
+            <label><%= Project::SERVICE_NEEDS[0] %></label>
+          </div>
+          <div class="span2" style="width: 205px;">
+            <%= f.radio_button :service_need, Project::SERVICE_NEEDS[1]  %>
+            <label><%= Project::SERVICE_NEEDS[1] %></label>
+          </div>
+          <div class="span3" style="width: 200px;">
+            <%= f.radio_button :service_need, Project::SERVICE_NEEDS[2]  %>
+            <label><%= Project::SERVICE_NEEDS[2] %></label>
+          </div>
         </div>
-        <div style="margin-right: 81px; display: inline;">
-          <%= f.radio_button :service_need, Project::SERVICE_NEEDS[1]  %>
-          <label><%= Project::SERVICE_NEEDS[1] %></label>
+        <div class="row">
+          <div class="span2" style="width: 160px;">
+            <%= f.radio_button :service_need, Project::SERVICE_NEEDS[3] %>
+            <label><%= Project::SERVICE_NEEDS[3] %></label>
+          </div>
+          <div class="span2" style="width: 205px;">
+            <%= f.radio_button :service_need, Project::SERVICE_NEEDS[4]  %>
+            <label><%= Project::SERVICE_NEEDS[4] %></label>
+          </div>
+          <div class="span2" style="width: 200px;">
+            <%= f.radio_button :service_need, Project::SERVICE_NEEDS[5]  %>
+            <label><%= Project::SERVICE_NEEDS[5] %></label>
+          </div>
         </div>
-        <%= f.radio_button :service_need, Project::SERVICE_NEEDS[2]  %>
-        <label><%= Project::SERVICE_NEEDS[2] %></label>
-        <br>
-        <%= f.radio_button :service_need, Project::SERVICE_NEEDS[3] %>
-        <label><%= Project::SERVICE_NEEDS[3] %></label>
-        <%= f.radio_button :service_need, Project::SERVICE_NEEDS[4]  %>
-        <label><%= Project::SERVICE_NEEDS[4] %></label>
-        <%= f.radio_button :service_need, Project::SERVICE_NEEDS[5]  %>
-        <label><%= Project::SERVICE_NEEDS[5] %></label>
+
         <p>What best describes the needs for your scientific project?</p>
       </div>
     </div>
@@ -72,15 +84,6 @@
         <p>Please choose a unique name for your project.</p>
       </div>
     </div>
-    <div class="row" style="margin-top: 5px;">
-      <div class="span1">
-        <label>Tags:</label>
-      </div>
-      <div class="span8">
-        <input style="width: 100px;" type="text" name="project[tag_list]" placeholder="tag" class="tm-input" autocomplete="off"/>
-        <p>Tag your project for optimal search queries (separate by commas).</p>
-      </div>
-    </div>
     <hr>
     <div class="row">
       <div class="span1">
@@ -89,6 +92,16 @@
       <div class="span8">
         <%= f.text_area :description, class: 'span6', rows: 5, placeholder: 
         "Please describe your project in detail." %>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 5px;">
+      <div class="span1">
+        <label>Tags:</label>
+      </div>
+      <div class="span8">
+        <div id="project-tags" data-tags="<%= Project::TAGS %>"></div>
+        <input style="width: 100px;" type="text" name="project[tag_list]" placeholder="tag" class="tm-input" autocomplete="off"/>
+        <p>Tag your project for optimal search queries (delimiters: tab, enter, comma). Maximum: 6.</p>
       </div>
     </div>
     <hr>

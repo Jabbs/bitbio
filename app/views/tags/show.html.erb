@@ -1,26 +1,17 @@
-<% if !ENV['STAGING'].present? || Rails.env.development? %>
-  <% content_for :title do %>
-    <%= t('application.root.title_with_tag_line', tag_line: "Science Community, Science Market, and Science Outsourcing") %>
-  <% end %>
-  <% content_for :description do %>
-    <%= t("application.root.description") %>
-  <% end %>
-<% end %>
-
-<%= render 'tags/tag_list' %>
+<%= render 'tag_list' %>
 
 <% if current_user %>
-  <% if @projects && !@projects.empty? && params[:keyword] %>
+  <% if @projects && !@projects.empty? %>
     <div class="row" style="margin-top: 10px;">
       <div class="span9">
       <% @projects.each do |project| %>
-        <%= render 'project', project: project %>
+        <%= render 'projects/project', project: project %>
       <% end %>
       </div>
     </div>
-    <%= will_paginate %>
+    <%= will_paginate @projects %>
     <hr>
-  <% elsif @projects.empty? && params[:keyword] %>
+  <% elsif @projects.empty? %>
     <div class="row">
       <div class="span9">
         <hr>
@@ -30,7 +21,7 @@
       </div>
     </div>
   <% end %>
-<% elsif params[:keyword] %>
+<% else %>
   <div class="row">
     <div class="span9">
       <hr>
@@ -41,7 +32,6 @@
   </div>
 <% end %>
 
-<% unless @projects && !@projects.empty? && params[:keyword] && current_user %>
-  <%= render 'info' %>
+<% unless @projects && !@projects.empty? && current_user %>
+  <%= render 'projects/info' %>
 <% end %>
-
