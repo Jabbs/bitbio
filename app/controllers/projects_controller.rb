@@ -37,8 +37,9 @@ class ProjectsController < ApplicationController
   
   def update
     @project = Project.find(params[:id])
-    create_tags
     if @project.update_attributes(params[:project])
+      create_tags
+      @project.save!
       check_if_searchable
       redirect_to @project, notice: 'Project was successfully updated.'
     else

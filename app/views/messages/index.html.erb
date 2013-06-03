@@ -5,6 +5,7 @@
   <% @messages.each do |message| %>
     <%= render 'message_list_item', message: message %>
   <% end %>
+  <%= will_paginate %>
 <% else %>
 <div class="row">
   <div class="span9">

@@ -5,8 +5,8 @@ class MessagesController < ApplicationController
   before_filter :sender_or_receiver, only: [:show]
   
   def index
-    @sent_messages = current_user.sent_messages.order("created_at DESC")
-    @received_messages = current_user.received_messages.order("created_at DESC")
+    @sent_messages = current_user.sent_messages.order("created_at DESC").paginate(page: params[:page], per_page: 20)
+    @received_messages = current_user.received_messages.order("created_at DESC").paginate(page: params[:page], per_page: 20)
     @contacts = current_user.contacts.sort_by{|e| e[:last_name]}
   end
   
