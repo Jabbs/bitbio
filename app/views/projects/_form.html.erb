@@ -13,7 +13,7 @@
       </div>
       <div class="span8" style="width: 590px;">
         <input class="span5" id="project_science_type" name="project[science_type]" 
-        placeholder="e.g. antibody production, scanning electron microscopy, etc." size="30" type="text" 
+        placeholder="e.g. antibody production, RNA purification, etc." size="30" type="text" 
         data-provide="typeahead" data-source="<%= Project::SCIENCE_TYPES.uniq.sort %>"
         autocomplete="off" style="margin-bottom: 0;"
           value="<%= @project.science_type %>"

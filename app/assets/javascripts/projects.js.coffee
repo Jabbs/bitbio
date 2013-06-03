@@ -10,6 +10,12 @@ jQuery ->
     $(this).before($(this).data('fields').replace(regexp, time))
     event.preventDefault()
     
-  # $('#project_tag_list').autocomplete
-  #   source: ['foo', 'bar']
-    
+  $('.main-nav-set li').hide()
+  $('.main-nav-set li:first-child').show()
+  $('.main-nav-set').mouseenter ->
+    $(this).children().show()
+  $('.main-nav-set').mouseleave ->
+    $(this).children().hide()
+    $('.main-nav-set li:first-child').show()
+
+  

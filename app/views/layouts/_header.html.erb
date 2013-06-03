@@ -1,6 +1,6 @@
 <header>
 	<div class="navbar">
-	  <div class="navbar-inner">
+	  <div class="navbar-inner" id="main-navbar">
 	    <div class="container">
 	      <div class="row" style="padding-left: 0px;">
 	        <div class="span2" style="width: 110px;">
@@ -50,31 +50,67 @@
           <div class="span9 offset3">  
             <div id="mynav-list">
               <ul class="unstyled">
-                <li id="members"><%= link_to 'members', '#' %></li>
-                <li id="labs"><%= link_to 'institutes / labs', '#' %></li>
-                <li id="blogs"><%= link_to 'blogs', '#' %></li>
-                <li id="conferences"><%= link_to 'conferences', '#' %></li>
-                <li id="jobs"><%= link_to 'jobs', '#' %></li>
+                <li id="community">
+                  <ul class="main-nav-set unstyled">
+                    <li><%= link_to 'community', '#' %></li>
+                    <li><%= link_to 'ask a question', '#' %></li>
+                    <li><%= link_to 'invite colleagues', '#' %></li>
+                  </ul>
+                </li>
+                <li id="labs">
+                  <ul class="main-nav-set unstyled">
+                    <li><%= link_to 'institutes / labs', '#' %></li>
+                    <li><%= link_to 'all labs', '#' %></li>
+                    <li><%= link_to 'map of labs', '#' %></li>
+                  </ul>
+                </li>
+                <li id="blogs">
+                  <ul class="main-nav-set unstyled">
+                    <li><%= link_to 'blogs', '#' %></li>
+                    <li><%= link_to 'all blogs', '#' %></li>
+                    <li><%= link_to 'weekly newsletter', '#' %></li>
+                  </ul>
+                </li>
+                <li id="conferences">
+                  <ul class="main-nav-set unstyled">
+                    <li><%= link_to 'conferences', '#' %></li>
+                    <li><%= link_to 'all conferences', '#' %></li>
+                  </ul>
+                </li>
+                <li id="jobs">
+                  <ul class="main-nav-set unstyled">
+                    <li><%= link_to 'jobs', '#' %></li>
+                    <li><%= link_to 'find jobs', '#' %></li>
+                    <li><%= link_to 'hire now', '#' %></li>
+                    <li><%= link_to 'jobs newsletter', '#' %></li>
+                  </ul>
+                </li>
               </ul>
             </div>
           <% if current_user %>
     				<ul class="nav pull-right">
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" id="name" data-toggle="dropdown">
-    							Welcome, <%= current_user.first_name %>! 
+                <a href="#" class="dropdown-toggle" id="name" data-toggle="dropdown" 
+                style="max-width: 160px;">
+    							Welcome, <%= current_user.first_name %>!
     							<% if current_user.new_message_count != 0 %>
     							  <span class="gold">(<%= current_user.new_message_count %>)</span> 
     							<% end %>
     							<b class="caret"></b>
     						</a>
-                <ul class="dropdown-menu" style='min-width: 100px; width: 160px;'>
+                <ul class="dropdown-menu" style='min-width: 100px; width: 160px; padding-left: 0px;'>
                   <li>
                     <a href="<%= user_path(current_user) %>">
-                    <i class="icon-user" style="margin-left: 1px; margin-right: 9px;"></i> My Profile</a>
+                    <i class="icon-user" style="margin-right: 6px;"></i> My Profile</a>
+                  </li>
+                  <li>
+                    <a href="#">
+                    <i class="icon-wrench" style="margin-right: 6px;"></i> Settings
+                    </a>
                   </li>
                   <li>
                     <a href="<%= user_messages_path(current_user) %>">
-                    <i class="icon-envelope" style="margin-right: 7px;"></i> Messages
+                    <i class="icon-envelope" style="margin-right: 6px;"></i> Messages
                     <% if current_user.new_message_count != 0 %>
       							  (<%= current_user.new_message_count %>)
       							<% end %>
@@ -83,20 +119,20 @@
                   <% if current_user.projects.any? %>
                     <li>
                       <a href="<%= user_project_listings_path(current_user) %>">
-                      <i class="icon-beaker" style="margin-left: 1px; margin-right: 8px;"></i> My project listings</a>
+                      <i class="icon-beaker" style="margin-right: 6px;"></i> My project listings</a>
                     </li>
                   <% end %>
                   <li class="divider"></li>
                   <li>
                     <a href="<%= logout_path %>" data-method="delete" rel="nofollow">
-                    <i class="icon-ban-circle" style="margin-left: 1px; margin-right: 10px;" 
+                    <i class="icon-ban-circle" style="margin-right: 6px;" 
                     method="delete"></i> Logout</a>
                   </li>
                 </ul>
               </li>
             </ul>
             <%= link_to '<i class="icon-plus icon-white"></i> List a Project'.html_safe, new_project_path, 
-                class: 'pull-right my-button' %>
+                class: 'pull-right my-button', style: 'position: relative; z-index: 6; left: 10px;' %>
 
   				<% else %>
   					<ul class="nav pull-right" style="margin-left: 0px;">
@@ -104,7 +140,7 @@
   							<%= link_to "Log In", login_path %>
   						</li>
   					</ul>
-  					<%= link_to "Sign Up", new_user_path, class: "my-button pull-right" %>
+  					<%= link_to "Sign Up", new_user_path, class: "my-button pull-right", style: 'position: relative; z-index: 6;' %>
   				<% end %>
           </div>
 		    </div>
