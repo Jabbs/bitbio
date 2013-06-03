@@ -17,11 +17,6 @@ end
 
 module Bitbio
   class Application < Rails::Application
-    
-    # assets precompiling error fix - reference here
-    # http://www.simonecarletti.com/blog/2012/02/heroku-and-rails-3-2-assetprecompile-error/
-    config.assets.initialize_on_precompile = false
-    
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
