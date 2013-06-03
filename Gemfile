@@ -6,17 +6,12 @@ gem 'bcrypt-ruby', '3.0.1'
 gem 'faker', '1.0.1'
 gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.6'
-gem 'bootstrap-sass', '2.0.0'
 gem 'roadie'
 gem 'stripe'
 gem 'friendly_id'
 gem 'geocoder'
 gem "continents", "~> 0.0.4"
 gem "rinku", "~> 1.7.3"
-
-gem "therubyracer"
-gem "less-rails"
-gem "twitter-bootstrap-rails"
 
 group :development, :test do
   gem 'rspec-rails', '2.11.0'
@@ -35,6 +30,10 @@ group :assets do
   gem 'sass-rails',   '3.2.4'
   gem 'coffee-rails', '3.2.2'
   gem 'uglifier', '1.2.3'
+  gem 'bootstrap-sass', '2.0.0'
+  gem "therubyracer"
+  gem "less-rails"
+  gem "twitter-bootstrap-rails"
 end
 
 gem 'jquery-rails', '2.0.2'
