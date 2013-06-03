@@ -27,6 +27,19 @@ $link_color: #0088cc;
 	         border-radius: 5px;
 }
 
+/* Overrides */
+
+.navbar .container {
+  width: 940px;
+}
+
+.navbar .navbar-inner {
+  background: $header_background;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
 /* Universal */
 
 body {
@@ -164,7 +177,7 @@ h2 {
     background: $silver;
   }
   input[name="start_date"] {
-    width: 90px;
+    width: 86px;
     margin-left: 8px;
   }
   select[name="location"] {
@@ -180,10 +193,10 @@ h2 {
     margin-left: 8px;
   }
   input[name="end_date"] {
-    width: 90px;
+    width: 86px;
   }
   input[name="keyword"] {
-    width: 193px;
+    width: 190px;
     margin-left: 8px;
   }
   input[type="submit"] {
