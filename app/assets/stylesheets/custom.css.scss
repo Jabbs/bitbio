@@ -350,7 +350,7 @@ h2 {
   .date {
     position: relative;
     left: 640px;
-    top: 8px;
+    top: 34px;
     border: 1px solid $blue;
 //    @include rounded_border;
     margin-top: 0px;
@@ -409,11 +409,15 @@ h2 {
 
 /* projects/index */
 
+.expand-tags:hover {
+  cursor: pointer;
+}
+
 .service {
   display: inline;
   font-size: 0.9em;
   margin-bottom: 0px;
-  margin-top: 10px;
+  margin-top: 0px;
   padding: 3px;
   @include rounded_border;
   color: white;
@@ -438,7 +442,23 @@ h2 {
 }
 
 .country {
-  margin-bottom: 5px;
+  margin-bottom: 3px;
+  float: right;
+  text-overflow: ellipsis;
+  width: 100px;
+  max-width: 100px;
+  height: 1.2em;
+  max-height: 1.2em;
+  text-align: right;
+  overflow: hidden;
+}
+
+.small-links {
+  line-height: 110%;
+  font-size: 80%;
+  height: 23px;
+  max-height: 23px;
+  overflow: hidden;
 }
 
 .project-well {
@@ -464,6 +484,8 @@ h2 {
   }
   .head {
     height: 18px;
+    margin-bottom: 2px;
+    margin-top: 2px;
     h3 {
       font-size: 1.0em;
       line-height: 130%;
@@ -474,6 +496,8 @@ h2 {
   }
   h4 {
     font-size: 0.9em;
+    line-height: 90%;
+    margin-bottom: 5px;
   }
   p {
     background: white;

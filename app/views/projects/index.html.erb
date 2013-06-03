@@ -7,10 +7,9 @@
   <% end %>
 <% end %>
 
-<%= render 'tags/tag_list' %>
-
 <% if current_user %>
   <% if @projects && !@projects.empty? && params[:keyword] %>
+    <%= render 'tags/tag_list' %>
     <div class="row" style="margin-top: 10px;">
       <div class="span9">
       <% @projects.each do |project| %>

@@ -1,16 +1,4 @@
 <div class="span3 project-well">
-  <% if current_user?(project.user) && controller_name != 'projects' %>
-    <div style="height: 0px;">
-      <div class="expiration-date">
-        expires on<br>
-        <%= project.expiration_date.strftime("%b %e, %Y")  %>
-      </div>
-    </div>
-  <% end %>
-  <div class="head">
-    <h3><%= link_to truncate(project.name, length: 28), project_path(project) %></h3>
-  </div>
-  <h4><%= truncate(project.science_type, length: 28) %></h4>
   
   <% if project.service_need == "Science + Services" %>
     <% back_color = "sci_ser" %>
@@ -25,12 +13,27 @@
   <% else %>
     <% back_color = "def" %>
   <% end %>
-  <div class="country">
-    <%= truncate(country_with_us_shortened(project.user.country), length: 30) %>
+  <div class="row" style="padding-left: 20px; margin-top: 2px;">
+    <div class="country">
+      <i class="icon-globe"></i>
+      <%= truncate(country_with_us_shortened(project.user.country), length: 18) %>
+    </div>
+    <div class="service <%= back_color %>"><%= project.service_need %></div>
   </div>
-  <div class="service <%= back_color %>"><%= project.service_need %></div>
-
-
+  <div class="head">
+    <h3><%= link_to truncate(project.name, length: 28), project_path(project) %></h3>
+  </div>
+  <h4><%= truncate(project.science_type, length: 28) %></h4>
+  
+  <% if current_user?(project.user) && controller_name != 'projects' %>
+  expires on
+  <%= project.expiration_date.strftime("%b %e, %Y")  %>
+  <% else %>
+  <div class="small-links">
+    <%= raw project.tags.map { |t| link_to t.name, tag_path(t.name)  }.join(', ')%>
+  </div>
+  <% end %>
+  
   <p><%= truncate(project.description, length: 230) %> <%= link_to "more", project_path(project), class: 'more' %></p>
 
 
@@ -41,7 +44,7 @@
     <div class="span1" style="width: 115px; padding-top: 2px;">
       <i class="icon-eye-open" style="margin-top: 1px;"></i>:<%= project.view_count %>
       <i class="icon-envelope" style="margin-top: 1px; margin-left: 5px;"></i>:<%= project.messages.size %>
-      <i class="icon-comment" style="margin-top: 1px; margin-left: 5px;"></i>:<%= project.comments.size %>
+      <i class="icon-comment-alt" style="margin-top: 1px; margin-left: 5px;"></i>:<%= project.comments.size %>
     </div>
 
     <p class="time_ago pull-right"><small><%= time_ago_in_words(project.created_at) %> ago</small></p>

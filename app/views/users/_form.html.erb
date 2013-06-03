@@ -25,7 +25,7 @@
       <% end %>
       <div class="row">
         <div class="span2">
-  				<label>Name:</label>
+  				<label><i class="icon-asterisk red"></i> Name:</label>
   			</div>
   			<div class="span6">
   		    <%= f.text_field :first_name, class: "span2", placeholder: "First" %> 
@@ -35,7 +35,7 @@
 
       <div class="row">
         <div class="span2">
-  				<label>Email:</label>
+  				<label><i class="icon-asterisk red"></i> Email:</label>
   			</div>
   			<div class="span6">
   		    <%= f.text_field :email, class: "span3", placeholder: "Email", style: 'width: 273px' %> 
@@ -54,7 +54,7 @@
       <% end %>
       <div class="row">
         <div class="span2">
-  				<label>Organization:</label>
+  				<label><i class="icon-asterisk red"></i> Organization:</label>
   			</div>
   			<div class="span6">
   		  
@@ -101,7 +101,7 @@
       <% end %>
       <div class="row">
         <div class="span2">
-  				<label>Country:</label>
+  				<label><i class="icon-asterisk red"></i> Country:</label>
   			</div>
   			<div class="span6">
   			  <% request.location.country == "United States" ? country = "United States of America" : country = "" %>
@@ -117,7 +117,7 @@
       <hr>
       <div class="row">
   			<div class="span2">
-  				<label class="inline">Password:</label>
+  				<label class="inline"><i class="icon-asterisk red"></i> Password:</label>
   			</div>
   			<div class="span2">
   				 <%= f.password_field :password, class: 'span2' %>
@@ -125,7 +125,7 @@
   		</div>
   		<div class="row">
   			<div class="span2">
-  				<label class="inline">Confirm Password:</label>
+  				<label class="inline"><i class="icon-asterisk red"></i> Confirm Password:</label>
   			</div>
   			<div class="span2">
   				 <%= f.password_field :password_confirmation, class: 'span2' %>

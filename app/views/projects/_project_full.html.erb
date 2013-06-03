@@ -39,8 +39,9 @@
       </div>
     </div>
     <div class="row" style="padding-left:20px">
-      <h2><%= @project.name %> <span class="dark" style="font-size: 70%;">
-        (<%= country_with_us_shortened(@project.user.country) %>)</span> 
+      <h2><%= @project.name %> <span class="dark" style="font-size: 70%; float:right;">
+        <i class="icon-globe"></i>
+        <%= country_with_us_shortened(@project.user.country) %></span> 
       </h2>
       <% if current_user?(@project.user) %>
         <div style="margin-bottom: 8px">
@@ -69,20 +70,20 @@
       <i class="icon-calendar" style="margin-right: 2px;"></i> start date: <%= @project.start_date.strftime("%b %e, %Y") %> 
       <span style="font-size: 70%;">(<%= to_days_ago_or_from_now(@project.days_til_start) %>)</span>
     </div>
-    <div class="row" style="padding-left:20px">
-      <i class="icon-tags"></i> tags: <%= raw @project.tags.map { |t| link_to t.name, tag_path(t.name) }.join(', ') %>
-    </div>
     <% if @project.instruments.any? %>
     <div class="row">
-      <div class="span6" style="margin-top: 10px;">
-          Needs:
+      <div class="span6">
+          <strong>Needs:</strong>
           <% @project.instruments.each do |instrument| %>
             <div>&bull; <%= instrument.alias %> 
-              <span style="font-size: 70%;">(<%= instrument.must_have ? 'must have' : 'nice to have' %>)</span></div>
+              <span style="font-size: 70%;">(<%= instrument.must_have ? '<i class="icon-ok red"></i> must have'.html_safe : 'nice to have' %>)</span></div>
           <% end %>
       </div>
     </div>
     <% end %>
+    <div class="row" style="padding-left:20px; width: 520px; margin-top: 10px;">
+      <i class="icon-tags"></i> tags: <%= raw @project.tags.map { |t| link_to t.name, tag_path(t.name) }.join(', ') %>
+    </div>
     <div class="description">
       <% if current_user?(@project.user) %>
         <div style="height: 0px;">
@@ -96,8 +97,10 @@
     <div class="row" style="margin-top: 3px;">
       <div class="span5">
         <i class="icon-eye-open" style="margin-top: 1px;"></i> views: <%= @project.view_count %>
-        <i class="icon-envelope" style="margin-top: 1px; margin-left: 20px;"></i> messages: <%= @project.messages.size %>
-        <i class="icon-comment" style="margin-top: 1px; margin-left: 20px;"></i> comments: <%= @project.comments.size %>
+        <i class="icon-envelope" style="margin-top: 1px; margin-left: 20px;"></i> 
+        messages: <%= @project.messages.size %>
+        <i class="icon-comment-alt" style="margin-top: 1px; margin-left: 20px;"></i> 
+        comments: <%= @project.comments.size %>
       </div>
       <p class="time_ago pull-right"><small>Listed <%= time_ago_in_words(@project.created_at) %> ago.</small></p>
     </div>

@@ -34,7 +34,7 @@ $(function() {
   });
   
   jQuery(".tm-input").tagsManager({
-    prefilled: ["bitbio"],
+    prefilled: $('#project-prefilled-tags').data('tags'),
     typeahead: true,
     typeaheadSource: $('#project-tags').data('tags'),
     blinkBGColor_1: '#FFFF9C',

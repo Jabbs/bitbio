@@ -2,16 +2,16 @@
   <div class="row" style="margin-top: 20px;">
     <%= render 'shared/error_messages', object: f.object %>
     <% if @project.new_record? %>
-      <h2>New Project Listing</h2>
+      <h2><i class="icon-beaker"></i> New Project Listing</h2>
     <% else %>
       <h2>Editing Project</h2>
     <% end %>
     <hr>
     <div class="row">
-      <div class="span1">
-        <label>Type:</label>
+      <div class="span1" style="width: 90px;">
+        <label><i class="icon-asterisk red"></i> Type:</label>
       </div>
-      <div class="span8">
+      <div class="span8" style="width: 590px;">
         <input class="span5" id="project_science_type" name="project[science_type]" 
         placeholder="e.g. antibody production, scanning electron microscopy, etc." size="30" type="text" 
         data-provide="typeahead" data-source="<%= Project::SCIENCE_TYPES.uniq.sort %>"
@@ -23,11 +23,11 @@
     </div>
     <hr>
     <div class="row">
-      <div class="span1">
-        <label>Needs:</label>
+      <div class="span1" style="width: 90px;">
+        <label><i class="icon-asterisk red"></i> Needs:</label>
       </div>
-      <div class="span8 radio-account-types">
-        <div class="row">
+      <div class="span8 radio-account-types" style="width: 590px;">
+        <div class="row" style="width: 630px;">
           <div class="span2" style="width: 160px;">
             <%= f.radio_button :service_need, Project::SERVICE_NEEDS[0], checked: true  %>
             <label><%= Project::SERVICE_NEEDS[0] %></label>
@@ -41,7 +41,7 @@
             <label><%= Project::SERVICE_NEEDS[2] %></label>
           </div>
         </div>
-        <div class="row">
+        <div class="row" style="width: 630px;">
           <div class="span2" style="width: 160px;">
             <%= f.radio_button :service_need, Project::SERVICE_NEEDS[3] %>
             <label><%= Project::SERVICE_NEEDS[3] %></label>
@@ -61,12 +61,12 @@
     </div>
     <br>
     <div class="row">
-      <div class="span8 offset1" style="margin-bottom: 10px;">
+      <div class="span8" style="margin-bottom: 10px; width: 590px; padding-left: 110px;">
         Equipment / Instrument / Software / Method
       </div>
     </div>
     <div class="row">
-      <div class="span8 offset1">
+      <div class="span8" style="width: 590px; padding-left: 110px;">
         <%= f.fields_for :instruments do |builder| %>
           <%= render 'instrument_fields', f: builder %>
         <% end %>
@@ -75,10 +75,10 @@
     </div>
     <hr>
     <div class="row">
-      <div class="span1">
-        <label>Name:</label>
+      <div class="span1" style="width: 90px;">
+        <label><i class="icon-asterisk red"></i> Name:</label>
       </div>
-      <div class="span8">
+      <div class="span8" style="width: 590px;">
         <%= f.text_field :name, placeholder: 'e.g. analyzing histone modification', class: 'span5', 
         style: 'margin-bottom: 0;' %>
         <p>Please choose a unique name for your project.</p>
@@ -86,30 +86,32 @@
     </div>
     <hr>
     <div class="row">
-      <div class="span1">
-        <label>Description:</label>
+      <div class="span1" style="width: 90px;">
+        <label><i class="icon-asterisk red"></i> Description:</label>
       </div>
-      <div class="span8">
+      <div class="span7" style="width: 590px;">
         <%= f.text_area :description, class: 'span6', rows: 5, placeholder: 
         "Please describe your project in detail." %>
       </div>
     </div>
     <div class="row" style="margin-top: 5px;">
-      <div class="span1">
+      <div class="span1" style="width: 90px;">
         <label>Tags:</label>
       </div>
-      <div class="span8">
+      <div class="span8" style="width: 590px;">
+        <% @project.tag_list.blank? ? project_tags = ["bitbio"] : project_tags = @project.tag_list %>
         <div id="project-tags" data-tags="<%= Project::TAGS %>"></div>
+        <div id="project-prefilled-tags" data-tags="<%= project_tags %>"></div>
         <input style="width: 100px;" type="text" name="project[tag_list]" placeholder="tag" class="tm-input" autocomplete="off"/>
         <p>Tag your project for optimal search queries (delimiters: tab, enter, comma). Maximum: 6.</p>
       </div>
     </div>
     <hr>
     <div class="row">
-      <div class="span1">
+      <div class="span1" style="width: 90px;">
         <label>Start:</label>
       </div>
-      <div class="span8">
+      <div class="span8" style="width: 590px;">
         <%= f.text_field :start_date, placeholder: 'YYYY-MM-DD', style: 'margin-bottom: 0;' %>
         <p>What date does your project start?</p>
       </div>
@@ -117,10 +119,10 @@
     <hr>
     
     <div class="row">
-      <div class="span1">
+      <div class="span1" style="width: 90px;">
         <label>Visability:</label>
       </div>
-      <div class="span8 radio-account-types">
+      <div class="span8 radio-account-types" style="width: 590px;">
         <% Project::VISABILITY_OPTIONS.each do |option| %>
           <%= f.radio_button :visability, option %>
           <label style="width: 90px; margin-right: 5px;">
@@ -142,10 +144,10 @@
     <hr>
     <% if action_name == 'new' || action_name == 'create' %>
       <div class="row">
-        <div class="span1">
+        <div class="span1" style="width: 90px;">
           <label>Plan:</label>
         </div>
-        <div class="span8 radio-account-types">
+        <div class="span8 radio-account-types" style="width: 590px;">
           <%= f.radio_button :expiration_date, Date.today + 30.days, checked: true  %>
           <label>30 day listing - FREE</label>
           <br>

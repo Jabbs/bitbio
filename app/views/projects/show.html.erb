@@ -27,7 +27,7 @@
   <% end %>
 <% end %>
 <div class="row">
-  <div class="span9 new-comment-well">
+  <div class="span9 new-comment-well" style="width: 460px;">
   <% if current_user && current_user.verified?  %>
       <%= render 'comments/form' %>
   <% elsif current_user && !current_user.verified?  %>

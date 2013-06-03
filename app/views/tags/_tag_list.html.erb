@@ -1,6 +1,14 @@
 <div class="row" style="margin-top: 10px">
-  <div class="span9">
-    top <i class="icon-tags"></i> tags:
+  <div class="span9" id="short-tag-list">
+    <i class="icon-tags"></i>:
     <%= raw Tag.top_tags.take(8).map { |t| link_to t.name, tag_path(t.name) }.join(', ') %>
+    <% if Tag.count > 8 %>
+    <i class="icon-expand-alt expand-tags" title="expand tag list"></i>
+    <% end %>
+  </div>
+  <div class="span9" id="long-tag-list">
+    <i class="icon-tags"></i>:
+    <%= raw Tag.top_tags.map { |t| link_to t.name, tag_path(t.name) }.join(', ') %>
+    <i class="icon-collapse-alt expand-tags" title="expand tag list"></i>
   </div>
 </div>

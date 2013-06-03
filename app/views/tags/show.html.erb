@@ -1,7 +1,6 @@
-<%= render 'tag_list' %>
-
 <% if current_user %>
   <% if @projects && !@projects.empty? %>
+    <%= render 'tag_list' %>
     <div class="row" style="margin-top: 10px;">
       <div class="span9">
       <% @projects.each do |project| %>
