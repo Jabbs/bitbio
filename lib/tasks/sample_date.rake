@@ -33,7 +33,7 @@ namespace :db do
                             start_date: start_date, expiration_date: exp_date)
       project.user_id = User.all.shuffle.first.id
       
-      x = rand(1..3)
+      x = rand(1..3).to_i
       Project::SCIENCE_EQUIPMENT.uniq.shuffle[0..x].each do |i|
         instrument = project.instruments.build(alias: i)
         instrument.must_have = [true, false].shuffle.first
