@@ -14,8 +14,8 @@ gem 'geocoder'
 gem "continents", "~> 0.0.4"
 gem "rinku", "~> 1.7.3"
 
-# gem "therubyracer"
-# gem "less-rails"
+gem "therubyracer"
+gem "less-rails"
 # gem "twitter-bootstrap-rails"
 
 group :development, :test do
