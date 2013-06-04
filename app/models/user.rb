@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   has_many :message_senders, through: :received_messages, source: :sender
   has_many :projects, dependent: :destroy
   has_many :comments
-  has_many :blogs
+  has_many :blogs, dependent: :destroy
   
   def update_continent
     self.continent = Ravibhim::Continents.get_continent(self.country)

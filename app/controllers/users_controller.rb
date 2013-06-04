@@ -63,6 +63,8 @@ class UsersController < ApplicationController
     if request.path != user_path(@user)
       redirect_to @user, status: :moved_permanently
     end
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_path, alert: "The member you attempted to view is no longer available."
   end
   
   def destroy
