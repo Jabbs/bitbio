@@ -734,7 +734,7 @@ header {
 
 #mynav-list {
   position: absolute;
-  top: 40px;
+  top: 38px;
   width: 710px;
   ul {
     padding-top: 5px;
@@ -755,7 +755,8 @@ header {
           margin-bottom: 0px;
           border-left: 4px solid white;
           border-right: 4px solid white;
-          border-bottom: 4px solid white;
+          border-bottom: 2px solid white;
+          border-top: 2px solid white;
           &:hover {
             text-decoration: none;
             background: $blue;
