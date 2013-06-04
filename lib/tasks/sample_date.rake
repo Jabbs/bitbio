@@ -67,5 +67,12 @@ namespace :db do
                       subject: subject)
       
     end
+    
+    30.times do
+      user = User.all.shuffle.first
+      body = Faker::Lorem.paragraph + Faker::Lorem.paragraph + Faker::Lorem.paragraph + Faker::Lorem.paragraph + Faker::Lorem.paragraph
+      blog = user.blogs.build(title: Faker::Lorem.sentence, body: body)
+      blog.save!
+    end
   end
 end

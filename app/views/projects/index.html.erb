@@ -41,6 +41,7 @@
 <% end %>
 
 <% unless @projects && !@projects.empty? && params[:keyword] && current_user %>
+  <%= render 'blogs/blogs', blogs: @blogs %>
   <%= render 'info' %>
 <% end %>
 

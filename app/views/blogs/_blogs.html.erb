@@ -1,0 +1,8 @@
+<div class="row">
+  <div class="span9 blogs-shell">
+    <h2 class="info_header">Featured Blog Posts</h2>
+    <% blogs.each do |blog| %>
+      <%= render 'blogs/blog', blog: blog %>
+    <% end %>
+  </div>
+</div>

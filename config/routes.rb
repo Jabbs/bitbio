@@ -1,10 +1,8 @@
 Bitbio::Application.routes.draw do
   
+  resources :blogs
   get "tags/index"
-
   resources :instruments
-
-
   resources :messages, only: [:show]
   resources :users do
     get 'resend'

@@ -6,6 +6,7 @@ class ProjectsController < ApplicationController
   
   def index
     @projects = Project.where(searchable: true).order("created_at DESC").search(params[:keyword], params[:start_date], params[:end_date], params[:location], params[:science], params[:tag]).paginate(page: params[:page], per_page: 9)
+    @blogs = Blog.last(5)
   end
   
   def new
