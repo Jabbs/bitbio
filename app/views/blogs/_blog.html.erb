@@ -1,27 +1,30 @@
 <div class="span9 blog-well">
   <div class="row">
-    <hr style="margin: 5px 30px 8px 10px;">
-    <div class="user">
-      <%= image_tag 'blank_avatar.jpg', size: '60x60', title: blog.user.full_name, style: 'float:left;' %>
-    </div>
-    <div class="head" style="float:left;">
-      <h3><%= link_to truncate(blog.title, length: 128), blog_path(blog) %></h3>
-      <%= truncate(blog.user.full_name, length: 18) %>
-    </div>
-    <br>
-    <div class="small-links">
-      <%= link_to 'next-gen' %>, <%= link_to 'sequencing' %>
-    </div>
-    <p><%= truncate(blog.body, length: 230) %> <%= link_to "more", blog_path(blog), class: 'more' %></p>
-    <div class="row">
-      <div class="span1" style="width: 115px; padding-top: 2px;">
-        <i class="icon-eye-open" style="margin-top: 1px;"></i>:<%= blog.view_count %>
-        <i class="icon-thumbs-up" style="margin-top: 1px; margin-left: 5px;"></i>:21
-        <i class="icon-comment-alt" style="margin-top: 1px; margin-left: 5px;"></i>:12
+    <div class="span8">
+      <hr style="margin: 5px 0px 0px 0px; width: 660px;">
+      <div class="user">
+        <%= image_tag 'blank_avatar.jpg', size: '40x40', title: blog.user.full_name %>
       </div>
-
-      <p class="time_ago pull-right"><small><%= time_ago_in_words(blog.created_at) %> ago</small></p>
+      <div class="top">
+        <h3><%= link_to truncate(blog.title, length: 58), blog_path(blog) %></h3>
+        <%= blog.created_at.strftime("%D") %> by <%= link_to "#{blog.user.full_name}", user_path(blog.user) %>
+      </div>
+      <div class="row">
+        <div class="span8">
+          <div class="smaller"><%= link_to '#next-gen' %>, <%= link_to '#sequencing' %></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span8">
+          <p><%= truncate(blog.body, length: 200) %></p>
+        </div>
+      </div>
+      
+    </div>
+    <div class="span1" style="margin-top: 18px; margin-left:5px; border-left: 1px solid silver; height: 100px; padding-left: 5px;">
+      <i class="icon-thumbs-up silver" style="margin-right: 2px;"></i><span class="silver">: 421</span><br>
+      <i class="icon-eye-open silver"></i><span class="silver">: <%= blog.view_count %></span><br>
+      <i class="icon-comment silver"></i><span class="silver">: 2</span>
     </div>
   </div>
-  
 </div>

@@ -11,7 +11,6 @@ $orange: #E18B15;
 $gold_light: #E6E35E;
 $gold: #C5C91A;
 $gold_dark: #AEB218;
-$green_very_light: #D8FFD5;
 $green_very_light: #C5FFC3;
 $green_light: #6DF45F;
 $green: #5DCE4F;
@@ -82,6 +81,17 @@ h2 {
 .alert {
   width: 650px;
   border-radius: 0;
+}
+.my-alert {
+  background: lighten($blue, 25%);
+  color: $header_background;
+  h4 {
+    color: inherit;
+  }
+}
+
+label {
+  cursor: auto;
 }
 
 .taglines {
@@ -241,10 +251,34 @@ h2.info_header {
 }
 
 .blog-well {
-  .user {
-    img {
-      margin-left: 10px;
+  .user { 
+    float: left; 
+    width: 50px;
+    margin-right: 5px;
+    padding-top: 8px;
+  }
+  .top { 
+    float: left; 
+    width: 555px;
+    height: 50px;
+    max-height: 50px;
+    overflow: hidden;
+    padding-top: 5px;
+    h3 {
+      line-height: 120%;
+      height: 25px;
+      max-height: 25px;
+      overflow: hidden;
+      margin-bottom: 3px;
     }
+  }
+  p {
+    height: 35px;
+    max-height: 35px;
+    overflow: hidden;
+  }
+  .smaller {
+    font-size: 80%;
   }
 }
 
@@ -584,13 +618,11 @@ h2.info_header {
     padding: 4px 11px;
     font-family: Arial;
     font-size: 16px;
-//      @include rounded_border;
   }
   input[type="radio"]:checked + label {
     color: white;
     text-shadow: none;
     background-color: darken($blue, 35%);
-//      @include rounded_border;
   }
 }
 
@@ -605,7 +637,6 @@ h2.info_header {
       padding: 4px 11px;
       font-family: Arial;
       font-size: 16px;
-      //@include rounded_border;
       i {
         margin-top: 1px;
       }
@@ -614,7 +645,6 @@ h2.info_header {
       color: white;
       text-shadow: none;
       background-color: darken($blue, 35%);
-      //@include rounded_border;
     }
   }
 }
