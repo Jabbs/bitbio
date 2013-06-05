@@ -1,5 +1,5 @@
-<% share_url = request.url %>
-<% share_text = "Check out my #{@project.science_type} project: #{share_url} @bitBIOco" %>
+<% @project.bitly_url? ? share_url = @project.bitly_url : share_url = request.url %>
+<% share_text = "#{@project.name} #{share_url} via @bit_bio" %>
 <% tw_link = "https://twitter.com/share?url=#{share_url}&text=#{share_text}" %>
 <% title_page = @project.name %>
 <% description_page = @project.description %>

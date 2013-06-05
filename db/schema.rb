@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130604034718) do
+ActiveRecord::Schema.define(:version => 20130605024746) do
 
   create_table "blogs", :force => true do |t|
     t.string   "title"
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(:version => 20130604034718) do
     t.boolean  "searchable",      :default => true
     t.boolean  "active",          :default => true
     t.date     "expiration_date"
+    t.string   "bitly_url"
   end
 
   add_index "projects", ["active"], :name => "index_projects_on_active"

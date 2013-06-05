@@ -12,6 +12,7 @@ gem 'friendly_id'
 gem 'geocoder'
 gem "continents", "~> 0.0.4"
 gem "rinku", "~> 1.7.3"
+gem "bitly", "~> 0.9.0"
 
 group :development, :test do
   gem 'rspec-rails', '2.11.0'

@@ -53,6 +53,7 @@ class ProjectsController < ApplicationController
     @project.user = current_user
     create_tags
     if @project.save
+      create_bitly_url(project_url(@project)) if Rails.env.production? && ENV['STAGING'].nil?
       check_if_searchable
       redirect_to @project, notice: "Your project listing has now been activated! You will receive email notifications
       when your project receives comments or messages from another bitBIO member."
@@ -69,6 +70,13 @@ class ProjectsController < ApplicationController
   end
   
   private
+    
+    def create_bitly_url(long_url)
+      bitly = Bitly.client
+      u = bitly.shorten(long_url)
+      @project.bitly_url = u
+      @project.save!
+    end
     
     def create_tags
       tag_list = params["hidden-project"]["tag_list"].split(',')
