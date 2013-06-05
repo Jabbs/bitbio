@@ -33,9 +33,9 @@
         <% if current_user && current_user != @project.user && current_user.verified? %>
           <div class="pull-right">
             <i class="icon-envelope-alt blue"></i> 
-            <%= content_tag "div", id: 'message', title: "Send a message to the project owner", style: 'width: 250px; display: inline', 
+            <%= content_tag "div", id: 'message', title: "Send a direct message to the project owner", style: 'width: 250px; display: inline', 
                 data: {blah: @project.user.id} do %>
-                send a direct message
+                send message to the project owner
             <% end %>
           </div>
         <% end %>
@@ -50,7 +50,7 @@
     <div class="row">
       <div class="span6">
           <strong>Needs:</strong>
-          <% @project.instruments.each do |instrument| %>
+          <% @project.instruments.order("must_have DESC").each do |instrument| %>
             <div>&bull; <%= instrument.alias %> 
               <span style="font-size: 75%;">(<%= instrument.must_have ? '<i class="icon-ok red"></i> must have'.html_safe : 'nice to have' %>)</span></div>
           <% end %>

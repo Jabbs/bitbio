@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130605024746) do
+ActiveRecord::Schema.define(:version => 20130605031211) do
 
   create_table "blogs", :force => true do |t|
     t.string   "title"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20130605024746) do
     t.datetime "updated_at",                :null => false
     t.string   "slug"
     t.integer  "view_count", :default => 0
+    t.string   "bitly_url"
   end
 
   add_index "blogs", ["slug"], :name => "index_blogs_on_slug"

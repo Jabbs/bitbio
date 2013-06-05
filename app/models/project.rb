@@ -69,7 +69,7 @@ class Project < ActiveRecord::Base
     'Qpix2 Colony Picking Robot', 'Singer RoTor HDA robot', 'Hydra II Microdispenser', 'CAS 4200 PCR Setup Robot',
     'Illumina GAIIx']
     
-  SERVICE_NEEDS = ["Science", "Services", "Science + Services", "Data Analysis", "Research Validation", "Clinical Studies"]
+  SERVICE_NEEDS = ["Services", "Collaboration", "Science + Services", "Data Analysis", "Research Validation", "Clinical Studies"]
   
   TAGS = ["abiogenesis", "anatomy", "antibiotics", 
     "astrobiology", "bacteriology", "biochemistry", "bioinformatics", "biophysics", "biotechnology", "botany", 

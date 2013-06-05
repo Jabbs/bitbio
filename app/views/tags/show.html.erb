@@ -1,3 +1,12 @@
+<% if !ENV['STAGING'].present? || Rails.env.development? %>
+  <% content_for :title do %>
+    <%= t('application.root.title_with_tag_line', tag_line: "#{params[:tag]} tags") %>
+  <% end %>
+  <% content_for :description do %>
+    Search for bitBIO scientific services or projects tagged with <%= params[:tag] %>.
+  <% end %>
+<% end %>
+
 <% if current_user %>
   <% if @projects && !@projects.empty? %>
     <%= render 'tag_list' %>

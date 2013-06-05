@@ -4,6 +4,6 @@
 en:
   application:
     root:
-      description: "Science community and resource used to exchange science services and projects, outsourcing science, and to market science to interested providers."
+      description: "A science community and resource built by you for you. Use bitBIO to exchange scientific services, connect with researchers, or browse science resources."
       title: "Science Community, Science Market, and Science Outsourcing | bitBIO"
       title_with_tag_line: "%{tag_line} | bitBIO"
