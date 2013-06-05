@@ -21,7 +21,7 @@
     <div class="service <%= back_color %>"><%= project.service_need %></div>
   </div>
   <div class="head">
-    <h3><%= link_to truncate(project.name, length: 28), project_path(project) %></h3>
+    <h3><%= link_to truncate(project.name, length: 32), project_path(project) %></h3>
   </div>
   <h4><%= truncate(project.science_type, length: 28) %></h4>
   
@@ -43,8 +43,8 @@
   <div class="row">
     <div class="span1" style="width: 115px; padding-top: 2px;">
       <i class="icon-eye-open" style="margin-top: 1px;"></i>:<%= project.view_count %>
-      <i class="icon-envelope" style="margin-top: 1px; margin-left: 5px;"></i>:<%= project.messages.size %>
-      <i class="icon-comment-alt" style="margin-top: 1px; margin-left: 5px;"></i>:<%= project.comments.size %>
+      <i class="icon-envelope-alt" style="margin-top: 1px; margin-left: 5px;"></i>:<%= project.messages.size %>
+      <i class="icon-comment" style="margin-top: 1px; margin-left: 5px;"></i>:<%= project.comments.size %>
     </div>
 
     <p class="time_ago pull-right"><small><%= time_ago_in_words(project.created_at) %> ago</small></p>

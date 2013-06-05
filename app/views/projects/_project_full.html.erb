@@ -13,31 +13,6 @@
     <% else %>
       <% back_color = "def" %>
     <% end %>
-    <div style="height: 0;">
-      <div class="date">
-        <% if @project.days_til_start == 1 %>
-          <div class="mm">starts in</div>
-          <div class="dd"><p class="day"><%= @project.days_til_start %></p></div>
-          <div class="yyyy">day</div>
-        <% elsif @project.days_til_start > 0 %>
-          <div class="mm">starts in</div>
-          <div class="dd"><p class="day"><%= @project.days_til_start %></p></div>
-          <div class="yyyy">days</div>
-        <% elsif @project.days_til_start == 0 %>
-          <div class="mm">starts</div>
-          <div class="dd"><p class="day"><span style="font-size: 60%;">today</span></p></div>
-          <div class="yyyy"></div>
-        <% elsif @project.days_til_start == -1 %>
-          <div class="mm">started</div>
-          <div class="dd"><p class="day"><%= @project.days_til_start.abs %></p></div>
-          <div class="yyyy">day ago</div>
-        <% elsif @project.days_til_start < 0 %>
-          <div class="mm">started</div>
-          <div class="dd"><p class="day"><%= @project.days_til_start.abs %></p></div>
-          <div class="yyyy">days ago</div>
-        <% end %>
-      </div>
-    </div>
     <div class="row" style="padding-left:20px">
       <h2><%= @project.name %> <span class="dark" style="font-size: 70%; float:right;">
         <i class="icon-globe"></i>
@@ -54,21 +29,22 @@
       <h4 style='margin-bottom: 5px;'>
         <div class="service <%= back_color %>"><%= @project.service_need %></div>
         <%= @project.science_type %> 
+        
+        <% if current_user && current_user != @project.user && current_user.verified? %>
+          <div class="pull-right">
+            <i class="icon-envelope-alt blue"></i> 
+            <%= content_tag "div", id: 'message', title: "Send a message to the project owner", style: 'width: 250px; display: inline', 
+                data: {blah: @project.user.id} do %>
+                send a direct message
+            <% end %>
+          </div>
+        <% end %>
       </h4>
     </div>
-    <% if current_user && current_user != @project.user && current_user.verified? %>
-      <div class="row" style="padding-left:20px">
-        <i class="icon-envelope"></i> 
-        <%= content_tag "div", id: 'message', title: "Send a message to the project owner", style: 'width: 250px; display: inline', 
-            data: {blah: @project.user.id} do %>
-            send a direct message to project owner
-        <% end %>
-      </div>
-    <% end %>
     
-    <div class="row" style="padding-left:20px">
+    <div class="row" style="padding-left:20px; margin-bottom: 5px;">
       <i class="icon-calendar" style="margin-right: 2px;"></i> start date: <%= @project.start_date.strftime("%b %e, %Y") %> 
-      <span style="font-size: 70%;">(<%= to_days_ago_or_from_now(@project.days_til_start) %>)</span>
+      <span style="font-size: 75%;">(<%= to_days_ago_or_from_now(@project.days_til_start) %>)</span>
     </div>
     <% if @project.instruments.any? %>
     <div class="row">
@@ -76,7 +52,7 @@
           <strong>Needs:</strong>
           <% @project.instruments.each do |instrument| %>
             <div>&bull; <%= instrument.alias %> 
-              <span style="font-size: 70%;">(<%= instrument.must_have ? '<i class="icon-ok red"></i> must have'.html_safe : 'nice to have' %>)</span></div>
+              <span style="font-size: 75%;">(<%= instrument.must_have ? '<i class="icon-ok red"></i> must have'.html_safe : 'nice to have' %>)</span></div>
           <% end %>
       </div>
     </div>
@@ -97,9 +73,9 @@
     <div class="row" style="margin-top: 3px;">
       <div class="span5">
         <i class="icon-eye-open" style="margin-top: 1px;"></i> views: <%= @project.view_count %>
-        <i class="icon-envelope" style="margin-top: 1px; margin-left: 20px;"></i> 
+        <i class="icon-envelope-alt" style="margin-top: 1px; margin-left: 20px;"></i> 
         messages: <%= @project.messages.size %>
-        <i class="icon-comment-alt" style="margin-top: 1px; margin-left: 20px;"></i> 
+        <i class="icon-comment" style="margin-top: 1px; margin-left: 20px;"></i> 
         comments: <%= @project.comments.size %>
       </div>
       <p class="time_ago pull-right"><small>Listed <%= time_ago_in_words(@project.created_at) %> ago.</small></p>

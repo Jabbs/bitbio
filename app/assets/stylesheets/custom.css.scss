@@ -54,29 +54,16 @@ h2 {
   height: 40px;
 }
 
-.inline {
-  display: inline;
-}
+.inline { display: inline; }
+.bold { font-weight: bold; }
 
-.gold {
-  color: $gold_dark;
-}
+.gold { color: $gold_dark; }
+.silver { color: $silver; }
+.dark { color: $header_background;}
+.blue { color: $blue; }
+.red { color: $red; }
 
-.silver {
-  color: $silver;
-}
 
-.dark {
-  color: $header_background;
-}
-
-.red {
-  color: $red;
-}
-
-.bold {
-  font-weight: bold;
-}
 
 .alert {
   width: 650px;
@@ -140,7 +127,7 @@ label {
     margin-left: 10px;
     display:inline;
     color: $link_color;
-    font-size: 80%;
+    font-size: 85%;
     &:hover {
       color: darken($link_color, 20%);
       cursor: pointer;
@@ -163,7 +150,8 @@ label {
 h2.info_header {
   margin-bottom: 5px;
   margin-top: 0px;
-  text-align: center;
+  padding-left: 10px;
+  text-align: left;
   font-size: 130%;
   color: $header_background;
   background: $silver;
@@ -215,20 +203,6 @@ h2.info_header {
   }
 }
 
-#find-project {
-  margin-top: 2px;
-  background: darken($blue, 15%);
-  padding: 5px 10px 5px 10px;
-  color: white;
-  margin-right: 10px;
-  box-shadow: none;
-  border: none;
-  &:hover {
-    text-decoration: none;
-    background: darken($blue, 35%);
-  }
-}
-
 #social_buttons {
   position: absolute;
   top: 40px;
@@ -248,6 +222,12 @@ h2.info_header {
 .blogs-shell {
   margin-top: 10px;
   border: 1px solid $header_background;
+  .add-blog-button {
+    font-size: 80%;
+    position: relative;
+    left: 610px;
+    top: -32px;
+  }
 }
 
 .blog-well {
@@ -516,8 +496,8 @@ h2.info_header {
   margin-bottom: 3px;
   float: right;
   text-overflow: ellipsis;
-  width: 100px;
-  max-width: 100px;
+  width: 95px;
+  max-width: 95px;
   height: 1.2em;
   max-height: 1.2em;
   text-align: right;
@@ -533,13 +513,14 @@ h2.info_header {
 }
 
 .project-well {
-  background: lighten($silver, 15%);
+  background: lighten($silver, 10%);
   width: 212px;
   padding: 5px;
   margin-bottom: 20px;
   margin-right: 11px;
   margin-left: 0px;
   height: 254px;
+  max-height: 254px;
   //  @include rounded_border;
   &:nth-child(3) {
     margin-right: 0px;
@@ -557,6 +538,8 @@ h2.info_header {
     height: 18px;
     margin-bottom: 2px;
     margin-top: 2px;
+    max-height: 35px;
+    overflow: hidden;
     h3 {
       font-size: 1.0em;
       line-height: 130%;
@@ -575,6 +558,7 @@ h2.info_header {
     margin-top: 5px;
     margin-bottom: 0px;
     padding: 5px;
+    height: 140px;
     max-height: 140px;
 //    @include rounded_border;
     word-wrap: break-word;
@@ -787,6 +771,9 @@ header {
           border-right: 4px solid white;
           border-bottom: 2px solid white;
           border-top: 2px solid white;
+          &:last-child {
+            border-bottom: 4px solid white;
+          }
           &:hover {
             text-decoration: none;
             background: $blue;
@@ -833,6 +820,21 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
     text-decoration: none;
     color: white;
     background: darken(red, 35%);
+  }
+}
+
+.my-button-blue{
+  margin-top: 2px;
+  background: darken($blue, 15%);
+  padding: 5px 10px 5px 10px;
+  color: white;
+  margin-right: 10px;
+  box-shadow: none;
+  border: none;
+  &:hover {
+    text-decoration: none;
+    background: darken($blue, 35%);
+    color: white;
   }
 }
 

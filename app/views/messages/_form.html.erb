@@ -1,6 +1,6 @@
 <div id="message-form">
   <div class="row">
-    <div class="span6">
+    <div class="span6" style="margin-left: 140px;">
       <%= form_for @message, url: user_messages_path(current_user) do |f| %>
       	<%= render 'shared/error_messages', object: f.object %>
       	<div class="field">

@@ -12,8 +12,8 @@ jQuery ->
     
   $('.main-nav-set li').hide()
   $('.main-nav-set li:first-child').show()
-  $('.main-nav-set').mouseenter ->
-    $(this).children().show()
+  $('.main-nav-set li:first-child').mouseenter ->
+    $(this).parent().children().show()
   $('.main-nav-set').mouseleave ->
     $(this).children().hide()
     $('.main-nav-set li:first-child').show()
