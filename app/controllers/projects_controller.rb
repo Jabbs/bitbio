@@ -8,7 +8,6 @@ class ProjectsController < ApplicationController
     @projects = Project.where(searchable: true).order("created_at DESC").search(params[:any], params[:na], params[:eur], params[:asia], params[:aus], params[:science], params[:tag]).paginate(page: params[:page], per_page: 9)
     @blogs = Blog.last(4)
     @featured_users = User.last(3)
-    @user = User.new
   end
   
   def new

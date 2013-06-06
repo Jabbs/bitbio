@@ -62,7 +62,7 @@
                 </li>
                 <li id="labs">
                   <ul class="main-nav-set unstyled">
-                    <li><%= link_to 'institutes / labs', '#' %></li>
+                    <li><%= link_to 'labs', '#' %></li>
                     <li style="width: 110px;"><%= link_to 'all labs', '#' %></li>
                     <li style="width: 110px;"><%= link_to 'map of labs', '#' %></li>
                   </ul>
@@ -86,6 +86,13 @@
                     <li style="width: 110px;"><%= link_to 'find jobs', '#' %></li>
                     <li style="width: 110px;"><%= link_to 'hire now', '#' %></li>
                     <li style="width: 110px;"><%= link_to 'jobs newsletter', '#' %></li>
+                  </ul>
+                </li>
+                <li id="science">
+                  <ul class="main-nav-set unstyled">
+                    <li><%= link_to 'find science', '#' %></li>
+                    <li style="width: 110px;"><%= link_to 'service listings', '#' %></li>
+                    <li style="width: 110px;"><%= link_to 'project listings', '#' %></li>
                   </ul>
                 </li>
               </ul>
@@ -134,7 +141,7 @@
                 </ul>
               </li>
             </ul>
-            <%= link_to '<i class="icon-plus icon-white"></i> List a Project'.html_safe, new_project_path, 
+            <%= link_to '<i class="icon-plus icon-white"></i> List Project'.html_safe, new_project_path, 
                 class: 'pull-right my-button', style: 'position: relative; z-index: 6; left: 10px; top: -1px;' %>
 
   				<% else %>

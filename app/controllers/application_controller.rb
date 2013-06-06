@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
     http_basic_authenticate_with :name => "pj", :password => "pj"
   end
   before_filter :ensure_domain
-  before_filter :instantiate_message
+  before_filter :instantiate_message_and_user
   protect_from_forgery
   include SessionsHelper
   include ApplicationHelper
@@ -17,7 +17,8 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def instantiate_message
+  def instantiate_message_and_user
     @message = Message.new
+    @user = User.new
   end
 end

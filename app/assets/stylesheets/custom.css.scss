@@ -789,7 +789,7 @@ header {
 #mynav-list {
   position: absolute;
   top: 38px;
-  width: 710px;
+  width: 850px;
   ul {
     padding-top: 5px;
     li {
@@ -827,9 +827,10 @@ header {
 
 #community ul { position: relative; width: 133px; left: -5px; }
 #labs ul { position: relative; width: 130px; left: -53px; }
-#blogs ul { position: relative; width: 138px; left: -75px; }
-#conferences ul { position: relative; width: 130px; left: -161px;  }
-#jobs ul { position: relative; width: 130px; left: -200px; }
+#blogs ul { position: relative; width: 138px; left: -138px; }
+#conferences ul { position: relative; width: 130px; left: -223px;  }
+#jobs ul { position: relative; width: 130px; left: -260px; }
+#science ul { position: relative; width: 130px; left: -346px; }
 
 ul.nav li.dropdown:hover > ul.dropdown-menu{
   display: block;    
