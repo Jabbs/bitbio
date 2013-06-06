@@ -43,6 +43,15 @@ $link_color: #0088cc;
   background: white;
 }
 
+.modal {
+  border-radius: 0;
+  padding-left: 100px;
+  .close {
+    margin-top: 10px;
+    margin-right: 15px;
+  }
+}
+
 /* Universal */
 
 body {

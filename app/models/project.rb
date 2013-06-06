@@ -147,7 +147,7 @@ class Project < ActiveRecord::Base
     errors.add :name, *errors.delete(:friendly_id) if errors[:friendly_id].present?
   end
 
-  def self.search(any=nil, na=nil, eur=nil, asia=nil, aus=nil, location=nil, science=nil, tag=nil)
+  def self.search(any=nil, na=nil, eur=nil, asia=nil, aus=nil, science=nil, tag=nil)
     projects = self.scoped
     # unless keyword.blank? || keyword == nil
     #   projects = projects.where("name LIKE ? OR description LIKE ? OR science_type LIKE ?", "%#{keyword}%","%#{keyword}%","%#{keyword}%")

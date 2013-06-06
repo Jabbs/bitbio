@@ -91,12 +91,14 @@
   <hr style="margin: 10px;">
   <div class="row">
     <div class="span3">
-      <p class="inline pull-left" style="margin-left: 8px;"><small><%= link_to 'clear', root_path %></small></p>
       <div class="pull-right">
         <button class="my-button-blue" data-disable-with="Please wait...">
           <i class="icon-search"></i> Search
         </button>
       </div>
+      <p style="margin-left: 10px; width: 100px; line-height: 130%; font-size: 90%; margin-top: 2px;">
+        Provider? <%= link_to 'search by your services', '#' %>.
+      </p>
     </div>
   </div>
   <% end %>

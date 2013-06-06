@@ -53,7 +53,9 @@ class UsersController < ApplicationController
       @user.send_verification_email
       redirect_to @user, notice: "Welcome #{@user.first_name}! A verification email has been sent to your inbox."
     else
-      render 'new'
+      @blogs = Blog.last(4)
+      @featured_users = User.last(3)
+      render template: "projects/index"
     end
   end
   

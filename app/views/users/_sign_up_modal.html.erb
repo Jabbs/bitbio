@@ -1,0 +1,88 @@
+<% if @user.errors.any? %>
+  <div id="showSignupModal"></div>
+<% end %>
+<div id="signupModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
+  <%= form_for @user do |f| %>
+    <div class="row" style="margin-top: 10px;">
+      <div class="span6">
+        <%= render 'shared/error_messages', object: f.object %>
+        <h2 style="margin-top: 5px;">Join the bitBIO science community!</h2>
+        <hr style="margin-top: 5px;">
+        <div class="row">
+          <div class="span2">
+    				<label><i class="icon-asterisk red"></i> Name:</label>
+    			</div>
+    			<div class="span2" style="width: 130px;">
+    		    <%= f.text_field :first_name, placeholder: "First", style: 'width: 130px; margin-right: 5px;' %> 
+    			</div>
+    			<div class="span2">
+    			 <%= f.text_field :last_name, placeholder: "Last", style: 'width: 130px;' %>
+    			</div>
+        </div>
+        <div class="row">
+          <div class="span2">
+    				<label><i class="icon-asterisk red"></i> Email:</label>
+    			</div>
+    			<div class="span4">
+    		    <%= f.text_field :email, placeholder: "Email", style: 'width: 280px' %> 
+    			</div>
+        </div>
+        <div class="row">
+          <div class="span2">
+    				<label><i class="icon-asterisk red"></i> Organization:</label>
+    			</div>
+    			<div class="span4">
+    		    <input style="width: 280px;" id="user_organization" name="user[organization]" 
+            placeholder="Organization name" size="30" type="text" 
+            data-provide="typeahead" data-source="<%= User.pluck(:organization).uniq.sort %>"
+            autocomplete="off" 
+            <% unless @user.new_record? %>
+              value="<%= @user.organization %>"
+            <% end %>
+             />
+    			</div>
+        </div>
+        <div class="row">
+          <div class="span2">
+    				<label><i class="icon-asterisk red"></i> Country:</label>
+    			</div>
+    			<div class="span4">
+    			  <% request.location.country == "United States" ? country = "United States of America" : country = "" %>
+      		    <%= f.select :country, Ravibhim::Continents::COUNTRIES, 
+      		      { prompt: "--select--", selected: country }, style: 'width: 295px' %>
+    			</div>
+        </div>
+        <hr>
+        <div class="row">
+    			<div class="span2">
+    				<label class="inline"><i class="icon-asterisk red"></i> Password:</label>
+    			</div>
+    			<div class="span2">
+    				 <%= f.password_field :password, class: 'span2' %>
+    			</div>
+    		</div>
+    		<div class="row">
+    			<div class="span2">
+    				<label class="inline"><i class="icon-asterisk red"></i> Confirm Password:</label>
+    			</div>
+    			<div class="span2">
+    				 <%= f.password_field :password_confirmation, class: 'span2' %>
+    			</div>
+    		</div>
+        <hr>
+        <div class="row">
+          <div class="span6">
+            <button class="my-button-red large-button pull-left" data-dismiss="modal" aria-hidden="true">Cancel</button>
+            <%= f.submit "Create Account", class: "my-button large-button pull-right", disable_with: 'Submitting...' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+</div>
+
+

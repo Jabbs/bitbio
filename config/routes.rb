@@ -4,7 +4,7 @@ Bitbio::Application.routes.draw do
   get "tags/index"
   resources :instruments
   resources :messages, only: [:show]
-  resources :users do
+  resources :users, except: [:index] do
     get 'resend'
     get 'project_listings'
     resources :messages, only: [:create, :index]
