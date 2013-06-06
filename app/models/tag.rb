@@ -15,6 +15,6 @@ class Tag < ActiveRecord::Base
   end
   
   def self.top_tags
-    includes(:projects).sort_by { |tag| tag.projects.size }.reverse
+    includes(:projects).sort_by { |tag| tag.projects.size }.reverse.select { |t| t.projects.size != 0 }
   end
 end

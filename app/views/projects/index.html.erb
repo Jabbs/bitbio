@@ -8,7 +8,7 @@
 <% end %>
 
 <% if current_user %>
-  <% if @projects && !@projects.empty? && params[:keyword] %>
+  <% if @projects && !@projects.empty? && params[:search] %>
     <%= render 'tags/tag_list' %>
     <div class="row" style="margin-top: 10px;">
       <div class="span9">
@@ -19,7 +19,7 @@
     </div>
     <%= will_paginate %>
     <hr style="margin-top: 0px;">
-  <% elsif @projects.empty? && params[:keyword] %>
+  <% elsif @projects.empty? && params[:search] %>
   
     <div class="row">
       <div class="span9">
@@ -31,7 +31,7 @@
       </div>
     </div>
   <% end %>
-<% elsif params[:keyword] %>
+<% elsif params[:search] %>
   <div class="row">
     <div class="span9">
       <div class="alert alert-block my-alert" style="margin-bottom: 10px; margin-top: 10px;">
@@ -44,7 +44,7 @@
   </div>
 <% end %>
 
-<% unless @projects && !@projects.empty? && params[:keyword] && current_user %>
+<% unless @projects && !@projects.empty? && params[:search] && current_user %>
   <%= render 'blogs/blogs', blogs: @blogs %>
   <%= render 'info' %>
 <% end %>

@@ -17,5 +17,22 @@ jQuery ->
   $('.main-nav-set').mouseleave ->
     $(this).children().hide()
     $('.main-nav-set li:first-child').show()
+    
+  $('#any').mousedown ->
+    if $(this).prop('checked') == false
+      $('.ctry').prop('checked', false)
+  $('#eur').mousedown ->
+    $('#any').prop('checked', false)
+  $('#na').mousedown ->
+    $('#any').prop('checked', false)
+  $('#asia').mousedown ->
+    $('#any').prop('checked', false)
+  $('#aus').mousedown ->
+    $('#any').prop('checked', false)
+
+    # if (!$(this).is(':checked')) {
+    #       this.checked = confirm("Are you sure?");
+    #       $(this).trigger("change");
+    #   }
 
   

@@ -146,25 +146,44 @@ class Project < ActiveRecord::Base
   def move_friendly_id_error_to_name
     errors.add :name, *errors.delete(:friendly_id) if errors[:friendly_id].present?
   end
-  
-  def self.search(keyword=nil, from=nil, to=nil, location=nil, science=nil, tag=nil)
+
+  def self.search(any=nil, na=nil, eur=nil, asia=nil, aus=nil, location=nil, science=nil, tag=nil)
     projects = self.scoped
-    unless keyword.blank? || keyword == nil
-      projects = projects.where("name LIKE ? OR description LIKE ? OR science_type LIKE ?", "%#{keyword}%","%#{keyword}%","%#{keyword}%")
-    end
+    # unless keyword.blank? || keyword == nil
+    #   projects = projects.where("name LIKE ? OR description LIKE ? OR science_type LIKE ?", "%#{keyword}%","%#{keyword}%","%#{keyword}%")
+    # end
+    # unless location.blank? || location == nil
+    #   projects = projects.joins(:user).where(users: {continent: location})
+    # end
+    # unless from == nil || to == nil || from.blank? || to.blank?
+    #   projects = projects.where(created_at: ( from..to) )
+    # end
     unless science.blank? || science == nil
       projects = projects.where(service_need: science)
-    end
-    unless location.blank? || location == nil
-      projects = projects.joins(:user).where(users: {continent: location})
     end
     unless tag.blank? || tag == nil
       # projects = projects.joins(:instruments).where(instruments: {alias: instrument})
       projects = projects.joins(:tags).where(tags: {name: tag})
     end
-    unless from == nil || to == nil || from.blank? || to.blank?
-      projects = projects.where(created_at: ( from..to) )
+
+    unless any == 'yes'
+      continents = []
+      unless na.blank? || na == nil
+        continents << "North America" if na == 'yes'
+      end
+      unless eur.blank? || eur == nil
+        continents << "Europe" if eur == 'yes'
+      end
+      unless asia.blank? || asia == nil
+        continents << "Asia" if asia == 'yes'
+      end
+      unless aus.blank? || aus == nil
+        continents << "Australia" if aus == 'yes'
+      end
+    
+      projects = projects.joins(:user).where(users: {continent: continents})
     end
+
     projects
   end
   

@@ -6,54 +6,100 @@
     <div id="twitter-text">for daily project alerts.</div>
   </div>
   <%= form_tag projects_path, :method => 'get' do %>
+    <%= hidden_field_tag :search, "true" %>
   <h2 class="info_header">Science Listings</h2>
   <div class="row">
     <div class="span3">
-      <label style="margin-left: 15px;">location:</label>
-      <%= select_tag :location, options_for_select(Ravibhim::Continents::CONTINENTS, selected: params[:location]), 
-      { prompt: "any", class: 'span2' } %>
+      <label style="padding-left: 10px;"><i class="icon-globe"></i> location:</label>
+      <div style="padding-left: 10px; margin-bottom: 5px;">
+        <span style="margin-right: 8px;">
+          <% if params[:na] == 'yes' || params[:eur] == 'yes' || params[:asia] == 'yes' || params[:aus] == 'yes' %>
+            <% any_check = false %>
+          <% else %>
+            <% any_check = true %>
+          <% end %>
+          <%= check_box_tag :any, 'yes', any_check %>
+          Any
+        </span>
+        <span style="margin-right: 5px;">
+          <% params[:na] == 'yes' ? na_check = true : na_check = false %>
+          <%= check_box_tag :na, 'yes', na_check, class: 'ctry' %>
+          N. America
+        </span>
+        <% params[:eur] == 'yes' ? eur_check = true : eur_check = false %>
+        <%= check_box_tag :eur, 'yes', eur_check, class: 'ctry' %>
+        Europe
+      </div>
+      <div style="padding-left: 10px; margin-bottom: 5px;">
+        <span style="margin-right: 5px;">
+          <% params[:asia] == 'yes' ? asia_check = true : asia_check = false %>
+          <%= check_box_tag :asia, 'yes', asia_check, class: 'ctry' %>
+          Asia
+        </span>
+        <% params[:aus] == 'yes' ? aus_check = true : aus_check = false %>
+        <%= check_box_tag :aus, 'yes', aus_check, class: 'ctry' %>
+        Australia
+      </div>
+      <!-- <%= select_tag :location, options_for_select(Ravibhim::Continents::CONTINENTS, selected: params[:location]), 
+      { prompt: "any", class: 'span2' } %> -->
     </div>
   </div>
-
-  <div class="row">
+  <div class="row" style="margin-top: 5px;">
     <div class="span3">
-      <label style="margin-left: 15px;">needs:</label>
-    
+      <label style="margin-left: 10px;"><i class="icon-beaker"></i> project needs:</label>
       <%= select_tag :science, options_for_select(Project::SERVICE_NEEDS, selected: params[:science]), 
       { prompt: "any", class: 'span2' } %>
+      <!-- <div style="padding-left: 10px; margin-bottom: 5px;">
+        <span style="margin-right: 5px;">
+          <%= check_box_tag :services, 'yes', true %>
+          Services
+        </span>
+        <br>
+        <span style="margin-right: 5px;">
+          <%= check_box_tag :collab, 'yes', true %>
+          Collaboration
+        </span>
+        <br>
+        <span style="margin-right: 5px;">
+          <%= check_box_tag :sci_and_serv, 'yes', true %>
+          Science + Services
+        </span>
+        <br>
+        <span style="margin-right: 5px;">
+          <%= check_box_tag :data, 'yes', true %>
+          Data Analysis
+        </span>
+        <br>
+        <span style="margin-right: 5px;">
+          <%= check_box_tag :research, 'yes', true %>
+          Research Validation
+        </span>
+        <br>
+          <%= check_box_tag :clinical, 'yes', true %>
+          Clinical Studies
+      </div> -->
     </div>
   </div>
-
   <div class="row">
     <div class="span3">
-      <label style="margin-left: 15px;">tag:</label>
-      <%= select_tag :tag, options_for_select(Project::TAGS, 
-      selected: params[:tag]), 
-      { prompt: "any", class: 'span2' } %>
+      <label style="margin-left: 10px;"><i class="icon-tags"></i> top tags:</label>
+      <div style="padding-right: 10px; padding-left: 10px;">
+        <%= raw Tag.top_tags.first(10).map { |t| link_to "#{t.name} (#{t.projects.size})", tag_path(t.name) }.join(', ') %>... <%= link_to '<i class="icon-expand-alt"></i>'.html_safe, tags_path, style: 'text-decoration: none;' %>
+      </div>
     </div>
   </div>
-
-  <div class="row">
-    <div class="span3">
-      <label style="margin-left: 13px;">listing date:</label>
-      <%= text_field_tag :start_date, params[:start_date], placeholder: "from" %>
-      <%= text_field_tag :end_date, params[:end_date], placeholder: "to" %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="span3">
-      <%= text_field_tag :keyword, params[:keyword], placeholder: "keyword(s)" %>
-    </div>
-  </div>
+  <hr style="margin: 10px;">
   <div class="row">
     <div class="span3">
       <p class="inline pull-left" style="margin-left: 8px;"><small><%= link_to 'clear', root_path %></small></p>
       <div class="pull-right">
         <button class="my-button-blue" data-disable-with="Please wait...">
-          <i class="icon-beaker"></i> Search
+          <i class="icon-search"></i> Search
         </button>
       </div>
     </div>
   </div>
   <% end %>
+  
+
 </div>
