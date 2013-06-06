@@ -39,9 +39,7 @@ $link_color: #0088cc;
   box-shadow: none;
 }
 
-.container {
-  background: white;
-}
+.container { }
 
 .modal {
   border-radius: 0;
@@ -258,7 +256,7 @@ h2.info_header {
 
 /* blogs/blogs */
 
-.blogs-shell {
+.bigger-shell {
   margin-top: 10px;
   border: 1px solid $header_background;
   .add-blog-button {
@@ -266,6 +264,18 @@ h2.info_header {
     position: relative;
     left: 610px;
     top: -32px;
+  }
+  .add-services-button {
+    font-size: 80%;
+    position: relative;
+    left: 10px;
+    top: 10px;
+  }
+  .add-projects-button {
+    font-size: 80%;
+    position: relative;
+    left: 10px;
+    top: 40px;
   }
 }
 
@@ -883,6 +893,21 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
   font-size: 140%;
   padding: 10px 20px 10px 20px;
 }
+
+/* layouts/footer */
+
+footer {
+  background: lighten($silver, 20%);
+  margin-top: 40px;
+  padding-top: 5px;
+  .title {color: $header_background;}
+  ul {
+    float: right;
+    list-style: none;
+    margin-left: 100px;
+  }
+}
+
 
 /* shared/error_messages */
 

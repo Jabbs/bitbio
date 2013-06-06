@@ -46,6 +46,6 @@
 
 <% unless @projects && !@projects.empty? && params[:search] && current_user %>
   <%= render 'blogs/blogs', blogs: @blogs %>
-  <%= render 'shared/info' %>
+  <%= render 'shared/word_cloud' %>
 <% end %>
 
