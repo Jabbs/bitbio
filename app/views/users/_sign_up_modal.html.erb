@@ -3,7 +3,7 @@
 <% end %>
 <div id="signupModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   
-  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <a type="button" class="close" data-dismiss="modal" aria-hidden="true">×</a>
 
   <%= form_for @user do |f| %>
     <div class="row" style="margin-top: 10px;">
@@ -75,7 +75,7 @@
         <hr>
         <div class="row">
           <div class="span6">
-            <button class="my-button-red large-button pull-left" data-dismiss="modal" aria-hidden="true">Cancel</button>
+            <a class="my-button-red large-button pull-left pointer-enabled" data-dismiss="modal" aria-hidden="true">Cancel</a>
             <%= f.submit "Create Account", class: "my-button large-button pull-right", disable_with: 'Submitting...' %>
           </div>
         </div>

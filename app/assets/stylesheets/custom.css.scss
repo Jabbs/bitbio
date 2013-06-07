@@ -82,7 +82,9 @@ h2 {
 .blue { color: $blue; }
 .red { color: $red; }
 
-
+.pointer-enabled {
+  cursor: pointer;
+}
 
 .alert {
   width: 650px;
@@ -258,6 +260,7 @@ h2.info_header {
 
 .bigger-shell {
   margin-top: 10px;
+  margin-bottom: 10px;
   border: 1px solid $header_background;
   .add-blog-button {
     font-size: 80%;
