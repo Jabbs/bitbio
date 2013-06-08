@@ -21,17 +21,15 @@
   <%= render 'layouts/header' %>
   <div class="container" id="<%= controller_name %>_<%= action_name %>" style="min-height: 400px;">
   	<div class="row">
-    	<div class="span12" style="margin-left: 17px; margin-top: 5px;">
+    	<div class="span12">
     	  <% flash.each do |name, msg| %>
   	       <div class="alert alert-<%= name == :notice ? "success" : "error" %>" style="margin-top: 10px;">
        	     <a class="close" data-dismiss="alert">×</a>
        	     <%= msg %>
   	       </div>
       	<% end %>
-      	
       	<% if current_user %>
-        <!-- Sending a message -->
-          <%= render 'messages/form' %>
+        	<%= render 'messages/form' %>
         <% end %>
         
     	  <%= yield %>

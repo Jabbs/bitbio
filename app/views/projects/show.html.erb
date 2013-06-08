@@ -7,37 +7,39 @@
   <% end %>
 <% end %>
 
-<% if current_user %>
-<div class="row" style="margin-top: 10px;">
-  <div class="span4">
+
+<div class="row">
+  <% if current_user %>
+  <div class="span3">
     <%= link_to "&larr; back".html_safe, :back %>
   </div>
-</div>
-<% end %>
-
-<%= render 'projects/sharing_buttons' %>
-
-<%= render 'projects/project_full' %>
-<hr>
-<% if current_user && current_user.verified?  %>
-  <% unless @comments.empty? %>
-    <% @comments.each do |comment| %>
-      <%= render 'comments/comment', comment: comment %>
+  <% end %>
+  <div class="span9 pull-right">
+    <%= render 'projects/sharing_buttons' %>
+    <%= render 'projects/project_full' %>
+    <hr>
+    
+    <% if current_user && current_user.verified?  %>
+      <% unless @comments.empty? %>
+        <% @comments.each do |comment| %>
+          <%= render 'comments/comment', comment: comment %>
+        <% end %>
+      <% end %>
     <% end %>
-  <% end %>
-<% end %>
-<div class="row">
-  <div class="span9 new-comment-well" style="width: 460px;">
-  <% if current_user && current_user.verified?  %>
-      <%= render 'comments/form' %>
-  <% elsif current_user && !current_user.verified?  %>
-    <em>You must have a verified <%= link_to 'account', current_user %> to view comments, 
-        leave a comment, or send a direct message to the project owner.</em>
-  <% else %>
-    <em><a href="#signupModal" data-toggle="modal">sign up</a> or 
-      <a href="#loginModal" data-toggle="modal">sign in</a> to view comments, 
-      leave a comment, or send a direct message to the project owner.</em>
-  <% end %>
+    <div class="row">
+      <div class="span9 new-comment-well" style="width: 460px;">
+      <% if current_user && current_user.verified?  %>
+          <%= render 'comments/form' %>
+      <% elsif current_user && !current_user.verified?  %>
+        <em>You must have a verified <%= link_to 'account', current_user %> to view comments, 
+            leave a comment, or send a direct message to the project owner.</em>
+      <% else %>
+        <em><a href="#signupModal" data-toggle="modal">sign up</a> or 
+          <a href="#loginModal" data-toggle="modal">sign in</a> to view comments, 
+          leave a comment, or send a direct message to the project owner.</em>
+      <% end %>
+      </div>
+    </div>
+    <br>
   </div>
 </div>
-<br>

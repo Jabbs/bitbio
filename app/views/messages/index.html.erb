@@ -1,18 +1,21 @@
-<%= render 'header' %>
 
-<% params[:sent] == "true" ? @messages = @sent_messages : @messages = @received_messages %>
-<% if @messages.any? %>
-  <% @messages.each do |message| %>
-    <%= render 'message_list_item', message: message %>
-  <% end %>
-  <%= will_paginate %>
-<% else %>
-<div class="row">
-  <div class="span9">
-    <div class="alert">
-  		<strong>NOTICE:</strong>
-  	  Empty.
-  	</div>
+<div class="span9 pull-right">
+  <%= render 'header' %>
+
+  <% params[:sent] == "true" ? @messages = @sent_messages : @messages = @received_messages %>
+  <% if @messages.any? %>
+    <% @messages.each do |message| %>
+      <%= render 'message_list_item', message: message %>
+    <% end %>
+    <%= will_paginate %>
+  <% else %>
+  <div class="row">
+    <div class="span9">
+      <div class="alert">
+    		<strong>NOTICE:</strong>
+    	  Empty.
+    	</div>
+    </div>
   </div>
+  <% end %>
 </div>
-<% end %>

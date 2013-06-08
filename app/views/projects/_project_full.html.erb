@@ -1,5 +1,5 @@
-<div class="row" style="margin-top: 10px;">
-  <div class="span9 project-full-well">
+
+  <div class="project-full-well">
     <% if @project.service_need == "Science + Services" %>
       <% back_color = "sci_ser" %>
     <% elsif @project.service_need == "Science" %>
@@ -81,6 +81,4 @@
       <p class="time_ago pull-right"><small>Listed <%= time_ago_in_words(@project.created_at) %> ago.</small></p>
     </div>
   </div>
-
-</div>
 

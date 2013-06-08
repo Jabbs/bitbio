@@ -1,4 +1,5 @@
-<div class="span3 project-well">
+<% action_name == "project_listings" ? add_class = "change_n" : add_class = '' %>
+<div class="span3 project-well <%= add_class %>">
   
   <% if project.service_need == "Science + Services" %>
     <% back_color = "sci_ser" %>

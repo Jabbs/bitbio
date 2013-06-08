@@ -173,7 +173,7 @@
           style: 'margin-bottom: 8px;' %> | 
           <%= link_to 'cancel', user_project_listings_path(current_user) %>
         <% else %>
-          <%= f.submit 'List My Project', class: "my-button large-button", disable_with: 'Submitting...',
+          <%= f.submit 'List Project', class: "my-button large-button", disable_with: 'Submitting...',
               style: 'margin-bottom: 5px;' %> |
           <%= link_to 'cancel', current_user %>
         <% end %>
