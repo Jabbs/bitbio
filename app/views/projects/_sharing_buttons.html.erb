@@ -1,6 +1,6 @@
 <% @project.bitly_url? ? share_url = @project.bitly_url : share_url = request.url %>
-<% share_text = "#{@project.name} #{share_url} via @bit_bio" %>
-<% tw_link = "https://twitter.com/share?url=#{share_url}&text=#{share_text}" %>
+<% share_text = "#{@project.name}" %>
+<% tw_link = "https://twitter.com/share?url=#{u(share_url)}&text=#{u(share_text)}&via=bit_bio" %>
 <% title_page = @project.name %>
 <% description_page = @project.description %>
 <% app_title = "bitBIO Online Science Community" %>
@@ -14,7 +14,9 @@
         style: 'width: 400px; margin-top: 6px;') %>
       </form>
     </div>
+   
     <div class="span2" style="width: 120px; margin-left: 0; margin-top: 8px;">
+      
       <%= link_to tw_link, target: "_blank" do %>
         <%= image_tag 'twitter.png' %>
       <% end %>

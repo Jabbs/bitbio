@@ -1,5 +1,4 @@
 $ ->
-  $('#message-form').hide()
   $('#message').click -> 
     $('#message-form').slideDown(200)
     data_rec = $('#message').data('blah')

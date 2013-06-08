@@ -319,10 +319,29 @@ h2.info_header {
       padding: 2px;
       border: 1px solid $silver;
     }
+    h2 {
+      line-height: 120%;
+      margin-bottom: 5px;
+    }
+    .social-button {
+      width: 100px;
+      float: left;
+    }
   }
 }
 
 /* messages/index */
+
+
+#long-tag-list {
+  display:none;
+}
+
+/* messages/index */
+
+#message-form {
+  display:none;
+}
 
 #message_nav {
   .navbar-inner {

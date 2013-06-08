@@ -1,16 +1,11 @@
 <% @blog.bitly_url? ? share_url = @blog.bitly_url : share_url = request.url %>
-<% share_text = "#{@blog.title} #{share_url}" %>
-<% tw_link = "https://twitter.com/share?url=#{share_url}&text=#{share_text}" %>
-<% title_page = @blog.title %>
-<% description_page = @blog.body %>
-<% app_title = "bitBIO Online Science Community" %>
 
 <div class="span9 pull-right" id='blog-header'>
   <div class="row">
     <div class="span2" style="width: 80px;">
       <%= image_tag 'blank_avatar.jpg', title: @blog.user.full_name, id: 'user-avatar' %>
     </div>
-    <div class="span5" style="margin-top: -8px;">
+    <div class="span7" style="margin-top: -8px;">
       <h2><%= @blog.title %></h2>
       <p>
         <small>
@@ -20,9 +15,29 @@
           <span style="margin-left: 5px;"><%= @blog.comments.size %> COMMENTS</span>
         </small>
       </p>
-      <a href="https://twitter.com/share" class="twitter-share-button" data-url="<%= share_url %>" data-text="<%= title_page %>" data-via="bit_bio" data-counturl="<%= request.url %>">Tweet</a>
-      <div class="fb-like" data-href="<%= request.url %>" data-send="false" data-layout="button_count" data-width="80" data-show-faces="false" data-font="arial"></div>
-
+      <div class="social-button">
+        <a href="https://twitter.com/share" class="twitter-share-button" data-url="<%= share_url %>" data-text="<%= @blog.title %>" data-via="bit_bio" data-counturl="<%= request.url %>">Tweet</a>
+      </div>
+      <div class="social-button" style="padding-top: 1px;">
+        <div class="fb-like" data-href="<%= request.url %>" data-send="false" data-layout="button_count" data-width="80" data-show-faces="false" data-font="arial"></div>
+      </div>
+      <div class="social-button">
+        <script src="//platform.linkedin.com/in.js" type="text/javascript">
+         lang: en_US
+        </script>
+        <script type="IN/Share" data-url="<%= request.url %>" data-counter="right"></script>
+      </div>
+      <div class="social-button">
+        <div class="g-plusone" data-size="medium"></div>
+        <script type="text/javascript">
+          (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+          })();
+        </script>
+      </div>
+      
     </div>
     <div class="span2 pull-right" style="margin-top: -8px;">
       <% if current_user?(@blog.user) %>
@@ -30,6 +45,6 @@
       <% end %>
     </div>
   </div>
-  <hr style="margin-top:0;">
+  <hr style="margin-top:5px;">
 </div>
 <hr>

@@ -18,8 +18,9 @@
 <div class="row">
   <div class="span9 pull-right">
     <%= render 'blogs/header' %>
-    <%= render 'blogs/blog' %>
     
+    <p><%= simple_format(Rinku.auto_link(@blog.body).html_safe) %></p>
+    <hr>
     <% if current_user && current_user.verified?  %>
       <% unless @comments.empty? %>
         <% @comments.each do |comment| %>
