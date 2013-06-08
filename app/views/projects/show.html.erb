@@ -34,7 +34,8 @@
     <em>You must have a verified <%= link_to 'account', current_user %> to view comments, 
         leave a comment, or send a direct message to the project owner.</em>
   <% else %>
-    <em><%= link_to 'Sign up', new_user_path %> or <%= link_to 'sign in', login_path %> to view comments, 
+    <em><a href="#signupModal" data-toggle="modal">sign up</a> or 
+      <a href="#loginModal" data-toggle="modal">sign in</a> to view comments, 
       leave a comment, or send a direct message to the project owner.</em>
   <% end %>
   </div>

@@ -3,13 +3,17 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by_email(params[:email].to_s.downcase)
-    if user && user.authenticate(params[:password].to_s)
-      sign_in user
-      user.add_to_sign_in_attributes(request.remote_ip)
+    @session_user = User.find_by_email(params[:email].to_s.downcase)
+    if @session_user && @session_user.authenticate(params[:password].to_s)
+      sign_in @session_user
+      @session_user.add_to_sign_in_attributes(request.remote_ip)
       redirect_back_or root_path
     else
-      redirect_to login_path, alert: "Invalid email/password combination"
+      @blogs = Blog.last(4)
+      @featured_users = User.last(3)
+      @session_user = User.new
+      @session_user.errors.add(:email, "Invalid email/password combination")
+      render template: "projects/index"
     end
   end
 

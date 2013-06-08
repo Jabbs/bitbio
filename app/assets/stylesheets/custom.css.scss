@@ -178,24 +178,14 @@ h2.info_header {
   background: $silver;
 }
 
-#science-search {
-  position: relative;
-  top: 15px;
+.smaller-shell {
+  width: 218px;
+  margin-bottom: 20px;
   background: white;
   border: 1px solid $header_background;
-  #twitter-follow {
-    position: relative;
-    height: 20px;
-    left: 10px;
-    top: -42px;
-  }
-  #twitter-text {
-    position: relative;
-    height: 20px;
-    width: 150px;
-    top: -60px;
-    left: 74px;
-  }
+}
+
+#science-search {
   input[name="start_date"] {
     width: 86px;
     margin-left: 8px;
@@ -225,8 +215,6 @@ h2.info_header {
 }
 
 #featured-users {
-  margin-top: 30px;
-  border: 1px solid $header_background;
   .user {
     float: left;
     padding: 2px;
@@ -259,8 +247,9 @@ h2.info_header {
 /* blogs/blogs */
 
 .bigger-shell {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  width: 698px;
+//  margin-top: 10px;
+  margin-bottom: 20px;
   border: 1px solid $header_background;
   .add-blog-button {
     font-size: 80%;
@@ -567,15 +556,14 @@ h2.info_header {
 
 .project-well {
   background: lighten($silver, 10%);
-  width: 212px;
+  width: 216px;
   padding: 5px;
   margin-bottom: 20px;
-  margin-right: 11px;
+  margin-right: 10px;
   margin-left: 0px;
   height: 254px;
   max-height: 254px;
-  //  @include rounded_border;
-  &:nth-child(3) {
+  &:nth-child(3n+1) {
     margin-right: 0px;
   }
   .expiration-date {
@@ -708,7 +696,7 @@ h2.info_header {
 
 header {
   min-width: 960px;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   .navbar {
     margin-bottom: 5px;
   }
@@ -801,13 +789,12 @@ header {
 
 #mynav-list {
   position: absolute;
-  top: 38px;
-  width: 850px;
+  top: 40px;
+  width: 500px;
   ul {
     padding-top: 5px;
     li {
       float: left;
-      margin-right: 5px;
       a {
         color: white;
         &:hover {
@@ -838,12 +825,12 @@ header {
   }
 }
 
-#community ul { position: relative; width: 133px; left: -5px; }
-#labs ul { position: relative; width: 130px; left: -53px; }
-#blogs ul { position: relative; width: 138px; left: -138px; }
-#conferences ul { position: relative; width: 130px; left: -223px;  }
-#jobs ul { position: relative; width: 130px; left: -260px; }
-#science ul { position: relative; width: 130px; left: -346px; }
+#community ul { position: relative; width: 30px; left: -6px; }
+#labs ul { position: relative; width: 30px; left: 54px; }
+#blogs ul { position: relative; width: 30px; left: 73px; }
+#conferences ul { position: relative; width: 30px; left: 99px;  }
+#jobs ul { position: relative; width: 30px; left: 166px; }
+#science ul { position: relative; width: 30px; left: 186px; }
 
 ul.nav li.dropdown:hover > ul.dropdown-menu{
   display: block;    

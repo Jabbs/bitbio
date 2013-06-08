@@ -5,3 +5,12 @@ jQuery ->
   if $('#showSignupModal').length
     $('#signupModal').removeClass('fade');
     $('#signupModal').modal('show');
+  if $('#showLoginModal').length
+    $('#loginModal').modal('show');
+  if $('#loginModal').length
+    $('#forgot_pass').hide();
+  
+  $('#show_forgot_pass').mousedown ->
+    $('#login').hide();
+    $('#forgot_pass').show();
+  

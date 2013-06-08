@@ -19,6 +19,8 @@ class ApplicationController < ActionController::Base
   
   def instantiate_message_and_user
     @message = Message.new
-    @user = User.new
+    @signup_user = User.new
+    @session_user = User.new
+    @forgot_pass_user = User.new
   end
 end

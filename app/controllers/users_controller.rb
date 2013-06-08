@@ -46,12 +46,12 @@ class UsersController < ApplicationController
   end
   
   def create
-    @user = User.new(params[:user])
-    if @user.save
-      sign_in @user
-      @user.add_to_sign_in_attributes(request.remote_ip)
-      @user.send_verification_email
-      redirect_to @user, notice: "Welcome #{@user.first_name}! A verification email has been sent to your inbox."
+    @signup_user = User.new(params[:user])
+    if @signup_user.save
+      sign_in @signup_user
+      @signup_user.add_to_sign_in_attributes(request.remote_ip)
+      @signup_user.send_verification_email
+      redirect_to @signup_user, notice: "Welcome #{@signup_user.first_name}! A verification email has been sent to your inbox."
     else
       @blogs = Blog.last(4)
       @featured_users = User.last(3)

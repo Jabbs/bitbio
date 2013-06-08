@@ -4,12 +4,12 @@ class PasswordResetsController < ApplicationController
   end
   
   def create
-    user = User.find_by_email(params[:email].to_s)
-    if user
-      user.send_password_reset
-      redirect_to login_path, notice: "Email sent with password reset instructions."
+    @forgot_pass_user = User.find_by_email(params[:email].to_s)
+    if @forgot_pass_user
+      @forgot_pass_user.send_password_reset
+      redirect_to root_path, notice: "Email sent with password reset instructions."
     else
-      redirect_to new_password_reset_path, alert: "Email not found"
+      redirect_to root_path, alert: "Email not found."
     end
   end
   
@@ -17,7 +17,7 @@ class PasswordResetsController < ApplicationController
     if User.find_by_password_reset_token(params[:id].to_s)
       @user = User.find_by_password_reset_token!(params[:id].to_s)
     else
-      redirect_to root_url, alert: "User was not found. Please contact our support team for more details."
+      redirect_to root_path, alert: "User was not found. Please contact our support team for more details."
     end
   end
   

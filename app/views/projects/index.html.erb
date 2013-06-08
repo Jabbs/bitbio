@@ -9,9 +9,12 @@
 
 <% if current_user %>
   <% if @projects && !@projects.empty? && params[:search] %>
-    <%= render 'tags/tag_list' %>
     <div class="row" style="margin-top: 10px;">
+      <div class="span3">
+        <%= render 'shared/sidebar/science_search' %>
+      </div>
       <div class="span9">
+        <%= render 'tags/tag_list' %>
       <% @projects.each do |project| %>
         <%= render 'project', project: project %>
       <% end %>
@@ -20,8 +23,10 @@
     <%= will_paginate %>
     <hr style="margin-top: 0px;">
   <% elsif @projects.empty? && params[:search] %>
-  
     <div class="row">
+      <div class="span3">
+        <%= render 'shared/sidebar/science_search' %>
+      </div>
       <div class="span9">
         <div class="alert alert-block my-alert" style="margin-bottom: 10px; margin-top: 10px;">
           <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -33,19 +38,29 @@
   <% end %>
 <% elsif params[:search] %>
   <div class="row">
+    <div class="span3">
+      <%= render 'shared/sidebar/science_search' %>
+    </div>
     <div class="span9">
       <div class="alert alert-block my-alert" style="margin-bottom: 10px; margin-top: 10px;">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <h4>Notice!</h4>
         You must be signed in to search or create project listings. Please 
-        <%= link_to 'sign up', new_user_path %> or <%= link_to 'sign in', login_path %>.
+        <a href="#signupModal" data-toggle="modal">sign up</a>
+        or
+        <a href="#loginModal" data-toggle="modal">sign in</a>.
       </div>
     </div>
   </div>
 <% end %>
-
 <% unless @projects && !@projects.empty? && params[:search] && current_user %>
-  <%= render 'blogs/blogs', blogs: @blogs %>
-  <%= render 'shared/word_cloud' %>
+  <div class="row">
+    <div class="span3">
+      <%= render 'shared/sidebar/science_search' %>
+      <%= render 'shared/sidebar/featured_users' %>
+    </div>
+    <%= render 'blogs/blogs', blogs: @blogs %>
+    <%= render 'shared/word_cloud' %>
+  </div>
 <% end %>
 

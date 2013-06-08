@@ -50,7 +50,15 @@
 	      </div>
 
         <div class="row" style="margin-top: 5px;">
-          <div class="span9 offset3">  
+          <div class="span1" style="margin-top: 8px; width: 45px;">
+            <div id="twitter-follow" style="display:inline; margin-top: 7px;">
+              <a href="https://twitter.com/bit_bio" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @bit_bio</a>
+            </div>
+          </div>
+          <div class="span2" style="margin-top: 12px; width: 155px;">
+            for daily project alerts.
+          </div>
+          <div class="span9">  
             <div id="mynav-list">
               <ul class="unstyled">
                 <li id="community">
@@ -90,7 +98,7 @@
                 </li>
                 <li id="science">
                   <ul class="main-nav-set unstyled">
-                    <li><%= link_to 'find science', '#' %></li>
+                    <li><%= link_to 'search', '#' %></li>
                     <li style="width: 110px;"><%= link_to 'service listings', '#' %></li>
                     <li style="width: 110px;"><%= link_to 'project listings', '#' %></li>
                   </ul>
@@ -145,13 +153,12 @@
                 class: 'pull-right my-button', style: 'position: relative; z-index: 6; left: 10px; top: -2px;' %>
 
   				<% else %>
-  					<ul class="nav pull-right" style="margin-left: 0px;">
+  				  <ul class="nav pull-right" style="margin-left: 0px;">
   						<li>
-  							<%= link_to "Log In", login_path %>
+  							<a href="#loginModal" data-toggle="modal">Log in</a>
   						</li>
   					</ul>
-  					<a href="#signupModal" class="my-button pull-right" data-toggle="modal" 
-  					  style="position: relative; z-index: 6; top: -1px;">Sign Up</a>
+  					<a href="#signupModal" class="my-button pull-right" data-toggle="modal">Sign Up</a>
   				<% end %>
           </div>
 		    </div>

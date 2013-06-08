@@ -1,11 +1,11 @@
-<% if @user.errors.any? %>
+<% if @signup_user.errors.any? %>
   <div id="showSignupModal"></div>
 <% end %>
 <div id="signupModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   
   <a type="button" class="close" data-dismiss="modal" aria-hidden="true">×</a>
 
-  <%= form_for @user do |f| %>
+  <%= form_for @signup_user do |f| %>
     <div class="row" style="margin-top: 10px;">
       <div class="span6">
         <%= render 'shared/error_messages', object: f.object %>
@@ -38,11 +38,7 @@
     		    <input style="width: 280px;" id="user_organization" name="user[organization]" 
             placeholder="Organization name" size="30" type="text" 
             data-provide="typeahead" data-source="<%= User.pluck(:organization).uniq.sort %>"
-            autocomplete="off" 
-            <% unless @user.new_record? %>
-              value="<%= @user.organization %>"
-            <% end %>
-             />
+            autocomplete="off" value="<%= @signup_user.organization %>"/>
     			</div>
         </div>
         <div class="row">

@@ -6,9 +6,9 @@
 
 
 <%= form_for(@user, url: password_reset_path(params[:id])) do |f| %>
-<%= render 'shared/error_messages', object: f.object %>
 <div class="row">
 	<div class="span5 offset1">
+	  <%= render 'shared/error_messages', object: f.object %>
 	  <h2>Reset Password</h2>  
     <hr>
 		<div class="row">
@@ -30,7 +30,7 @@
 		<hr>
 		<div class="row">
       <div class="offset3 span2">
-        <%= f.submit 'Update Password', class: "btn btn-large pull-right", disable_with: 'Submitting...' %>
+        <%= f.submit 'Update Password', class: "my-button large-button pull-right", disable_with: 'Submitting...' %>
       </div>
     </div>
 	<% end %>

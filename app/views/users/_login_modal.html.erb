@@ -1,0 +1,74 @@
+<% if @session_user.errors.any? %>
+  <div id="showLoginModal"></div>
+<% end %>
+<div id="loginModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <a type="button" class="close" data-dismiss="modal" aria-hidden="true">×</a>
+  
+  <div id="login">
+    <%= form_tag login_path do %>
+      <div class="row" style="margin-top: 10px;">
+        <div class="span6">
+          <%= render 'shared/error_messages', object: @session_user %>
+          <h2 style="margin-top: 5px;">Please sign in</h2>
+          <hr style="margin-top: 5px;">
+          <div class="row">
+            <div class="span2">
+      				<label><i class="icon-asterisk red"></i> Email:</label>
+      			</div>
+      			<div class="span2">
+      			  <%= text_field_tag :email, params[:email] %>
+      			</div>
+          </div>
+          <div class="row">
+      			<div class="span2">
+      				<label class="inline"><i class="icon-asterisk red"></i> Password:</label>
+      			</div>
+      			<div class="span2">
+      				 <%= password_field_tag :password, params[:password] %>
+      			</div>
+      		</div>
+          <hr>
+          <div class="row">
+            <div class="span3">
+      			  <p><%= link_to "forgot password?", '#', id: 'show_forgot_pass' %></p>
+            </div>
+    	    </div>
+          <div class="row">
+            <div class="span6">
+              <a class="my-button-red large-button pull-left pointer-enabled" data-dismiss="modal" aria-hidden="true">Cancel</a>
+              <%= submit_tag 'Login', class: "my-button large-button pull-right", disable_with: 'Please wait...' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  
+  <div id="forgot_pass">
+    <%= form_tag password_resets_path, :method => :post do %>
+    
+    <div class="row" style="margin-top: 10px;">
+      <div class="span6">
+        <%= render 'shared/error_messages', object: @forgot_pass_user %>
+        <h2 style="margin-top: 5px;">Reset password</h2>
+        <hr style="margin-top: 5px;">
+        <div class="row">
+          <div class="span2">
+    				<label><i class="icon-asterisk red"></i> Email:</label>
+    			</div>
+    			<div class="span2">
+    			  <%= text_field_tag :email, params[:email] %>
+    			</div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="span6">
+            <a class="my-button-red large-button pull-left pointer-enabled" data-dismiss="modal" aria-hidden="true">Cancel</a>
+            <%= submit_tag 'Reset Password', class: "my-button large-button pull-right", disable_with: 'Submitting...' %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

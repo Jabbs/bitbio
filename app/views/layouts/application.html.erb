@@ -19,15 +19,9 @@
 </head>
 <body>
   <%= render 'layouts/header' %>
-  <div class="container" id="<%= controller_name %>_<%= action_name %>">
+  <div class="container" id="<%= controller_name %>_<%= action_name %>" style="min-height: 400px;">
   	<div class="row">
-  	  <div class="span3">
-  	    <%= render 'shared/sidebar/science_search' %>
-  	    <% if action_name == "index" && controller_name == 'projects' %>
-    	    <%= render 'shared/sidebar/featured_users' %>
-    	  <% end %>
-  	  </div>
-    	<div class="span9" style="margin-left: 17px; margin-top: 5px;">
+    	<div class="span12" style="margin-left: 17px; margin-top: 5px;">
     	  <% flash.each do |name, msg| %>
   	       <div class="alert alert-<%= name == :notice ? "success" : "error" %>" style="margin-top: 10px;">
        	     <a class="close" data-dismiss="alert">×</a>
@@ -40,7 +34,6 @@
           <%= render 'messages/form' %>
         <% end %>
         
-      	
     	  <%= yield %>
     	</div>
   	</div>
@@ -48,6 +41,7 @@
 <% unless current_user %>
   <!-- Modal -->
   <%= render 'users/sign_up_modal' %>
+  <%= render 'users/login_modal' %>
 <% end %>
 <%= render 'layouts/footer' %>
           <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
