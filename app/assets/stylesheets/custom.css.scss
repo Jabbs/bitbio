@@ -310,6 +310,18 @@ h2.info_header {
   }
 }
 
+/* blogs/show */
+
+#blogs_show {
+  #blog-header {
+    img {
+      background: white;
+      padding: 2px;
+      border: 1px solid $silver;
+    }
+  }
+}
+
 /* messages/index */
 
 #message_nav {

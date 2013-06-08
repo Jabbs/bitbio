@@ -1,0 +1,33 @@
+<% @blog.bitly_url? ? share_url = @blog.bitly_url : share_url = request.url %>
+<% share_text = "#{@blog.title} #{share_url}" %>
+<% tw_link = "https://twitter.com/share?url=#{share_url}&text=#{share_text}" %>
+<% title_page = @blog.title %>
+<% description_page = @blog.body %>
+<% app_title = "bitBIO Online Science Community" %>
+
+<div class="span9 pull-right" id='blog-header'>
+  <div class="row">
+    <div class="span2" style="width: 80px;">
+      <%= image_tag 'blank_avatar.jpg', title: @blog.user.full_name, id: 'user-avatar' %>
+    </div>
+    <div class="span5" style="margin-top: -8px;">
+      <h2><%= @blog.title %></h2>
+      <p>
+        <small>
+          posted by <%= link_to "#{@blog.user.full_name}", user_path(@blog.user) %> on 
+          <%= @blog.created_at.strftime('%D %l:%M%P') %>.
+          <span style="margin-left: 5px;"><%= @blog.view_count %> VIEWS</span>
+          <span style="margin-left: 5px;"><%= @blog.comments.size %> COMMENTS</span>
+        </small>
+      </p>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-url="<%= share_url %>" data-text="<%= title_page %>" data-via="bit_bio" data-counturl="<%= request.url %>">Tweet</a>
+    </div>
+    <div class="span2 pull-right" style="margin-top: -8px;">
+      <% if current_user?(@blog.user) %>
+        <%= link_to 'edit profile', edit_blog_path(@blog), class: 'pull-right my-button' %>
+      <% end %>
+    </div>
+  </div>
+  <hr style="margin-top:0;">
+</div>
+<hr>

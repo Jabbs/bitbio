@@ -11,4 +11,17 @@ class BlogsController < ApplicationController
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path, alert: "The blog you attempted to view is no longer available."
   end
+  
+  def edit
+    
+  end
+  
+  private
+    
+    def create_bitly_url(long_url)
+      bitly = Bitly.client
+      u = bitly.shorten(long_url)
+      @blog.bitly_url = u
+      @blog.save!
+    end
 end
