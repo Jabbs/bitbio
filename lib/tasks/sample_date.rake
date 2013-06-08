@@ -52,12 +52,6 @@ namespace :db do
       project.save!
     end
     
-    200.times do
-      Comment.create!(content: Faker::Lorem.paragraph, project_id: Project.all.shuffle.first.id,
-                      user_id: User.all.shuffle.first.id)
-      
-    end
-    
     80.times do
       project = Project.all.shuffle.first
       subject = "Project - #{project.name}"
@@ -73,6 +67,13 @@ namespace :db do
       body = Faker::Lorem.paragraph + Faker::Lorem.paragraph + Faker::Lorem.paragraph + Faker::Lorem.paragraph + Faker::Lorem.paragraph
       blog = user.blogs.build(title: Faker::Lorem.sentence, body: body)
       blog.save!
+    end
+    
+    100.times do
+      Blog.all.shuffle.first.comments.create!(content: Faker::Lorem.paragraph, user_id: User.all.shuffle.first.id)
+    end
+    200.times do
+      Project.all.shuffle.first.comments.create!(content: Faker::Lorem.paragraph, user_id: User.all.shuffle.first.id)
     end
   end
 end

@@ -1,6 +1,5 @@
-<%= form_for @comment do |f| %>
+<%= form_for [@commentable, @comment] do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-	<%= f.hidden_field :project_id, value: @project.id %>
 	<%= f.hidden_field :user_id, value: current_user.id %>
 
   <%= f.text_area :content, style: 'width: 450px;', rows: 2, 

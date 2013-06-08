@@ -10,7 +10,7 @@ class UserMailer < ActionMailer::Base
   end
   
   def new_comment_email(comment)
-    @user = comment.project.user
+    @user = comment.commentable.user
     @comment = comment
     mail(to: "#{@user.full_name} <#{@user.email}>", subject: "bitBIO - New Comment Alert")
   end

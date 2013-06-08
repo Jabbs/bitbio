@@ -25,7 +25,8 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @project.add_view_count unless current_user?(@project.user)
     @comments = @project.comments.order("created_at ASC")
-    @comment = Comment.new
+    @comment = @project.comments.new
+    @commentable = @project
     if request.path != project_path(@project)
       redirect_to @project, status: :moved_permanently
     end

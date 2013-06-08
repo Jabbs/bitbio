@@ -1,13 +1,27 @@
 class CommentsController < ApplicationController
+  before_filter :load_commentable
   def create
-    @comment = Comment.new(params[:comment])
-    @project = Project.find(params[:comment][:project_id])
-    @comments = @project.comments
+    @comment = @commentable.comments.new(params[:comment])
+    @comments = @commentable.comments.order("created_at ASC")
+    
     if @comment.save
       @comment.send_new_comment_email
-      redirect_to project_path(@project), notice: 'Your comment has been posted'
+      redirect_to @commentable, notice: 'Your comment has been posted'
     else
-      render template: 'projects/show'
+      if @comment.commentable_type == "Project"
+        @project = Project.find(params[:project_id])
+        render template: 'projects/show'
+      elsif @comment.commentable_type == "Blog"
+        @blog = Blog.find(params[:blog_id])
+        render template: 'blogs/show'
+      end
     end
   end
+  
+  private
+  
+    def load_commentable
+      resource, id = request.path.split('/')[1, 2]
+      @commentable = resource.singularize.classify.constantize.find(id)
+    end
 end

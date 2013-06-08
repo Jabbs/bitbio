@@ -103,7 +103,7 @@ class Project < ActiveRecord::Base
   
   # associations
   belongs_to :user
-  has_many :comments, dependent: :destroy
+  has_many :comments, as: :commentable, dependent: :destroy
   has_many :instruments, dependent: :destroy
   has_many :messages
   has_many :taggings, dependent: :destroy

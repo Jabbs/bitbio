@@ -1,7 +1,7 @@
 class Comment < ActiveRecord::Base
-  attr_accessible :content, :project_id, :user_id
+  attr_accessible :content, :user_id
   belongs_to :user
-  belongs_to :project
+  belongs_to :commentable, polymorphic: true
   validates :content, presence: true
   
   def send_new_comment_email

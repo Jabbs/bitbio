@@ -1,7 +1,11 @@
 Dear <%= @user.first_name %>,
 
-<%= @comment.user.full_name %> commented on <%= @comment.project.name %>:
+<% if @comment.commentable_type == "Project" %>
+  <%= @comment.user.full_name %> commented on <%= @comment.commentable.name %>:
+<% elsif @comment.commentable_type == "Blog" %>
+  <%= @comment.user.full_name %> commented on <%= @comment.commentable.title %>:
+<% end %>
 
 <%= truncate(@comment.content, length: 200) %>
 
-<%= link_to "View Comment", project_url(@comment.project) %>
+<%= link_to "View Comment", polymorphic_url(@comment.commentable) %>

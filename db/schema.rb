@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130605031211) do
+ActiveRecord::Schema.define(:version => 20130608181003) do
 
   create_table "blogs", :force => true do |t|
     t.string   "title"
@@ -30,14 +30,16 @@ ActiveRecord::Schema.define(:version => 20130605031211) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
-    t.integer  "project_id"
     t.integer  "user_id"
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
     t.datetime "new_comment_email_sent_at"
+    t.string   "commentable_type"
+    t.integer  "commentable_id"
   end
 
-  add_index "comments", ["project_id"], :name => "index_comments_on_project_id"
+  add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
+  add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "friendly_id_slugs", :force => true do |t|

@@ -5,7 +5,11 @@
 </tr>
 <tr>
 	<td style="padding-top:20px">
-  	<%= @comment.user.full_name %> commented on <%= @comment.project.name %>:
+	  <% if @comment.commentable_type == "Project" %>
+	    <%= @comment.user.full_name %> commented on <%= @comment.commentable.name %>:
+	  <% elsif @comment.commentable_type == "Blog" %>
+	    <%= @comment.user.full_name %> commented on <%= @comment.commentable.title %>:
+	  <% end %>
 	</td>
 </tr>
 <tr>
@@ -15,6 +19,6 @@
 </tr>
 <tr>
 	<td style="padding-top:20px; padding-right:10px">
-		<%= link_to "View Comment", project_url(@comment.project) %>
+		<%= link_to "View Comment", polymorphic_url(@comment.commentable) %>
 	</td>
 </tr>

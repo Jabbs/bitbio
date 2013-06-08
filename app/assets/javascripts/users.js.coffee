@@ -7,9 +7,12 @@ jQuery ->
     $('#signupModal').modal('show');
   if $('#showLoginModal').length
     $('#loginModal').modal('show');
-  if $('#loginModal').length
-    $('#forgot_pass').hide();
+  # if $('#loginModal').length
+  #   $('#forgot_pass').hide();
   
+  $('.loginlink').mousedown ->
+    $('#forgot_pass').hide();
+    $('#login').show();
   $('#show_forgot_pass').mousedown ->
     $('#login').hide();
     $('#forgot_pass').show();

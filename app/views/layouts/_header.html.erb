@@ -109,7 +109,7 @@
     				<ul class="nav pull-right">
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" id="name" data-toggle="dropdown" 
-                style="max-width: 160px;">
+                style="max-width: 160px; padding-right:0px; padding-left:0px;">
     							Welcome, <%= current_user.first_name %>!
     							<% if current_user.new_message_count != 0 %>
     							  <span class="gold">(<%= current_user.new_message_count %>)</span> 
@@ -155,7 +155,7 @@
   				<% else %>
   				  <ul class="nav pull-right" style="margin-left: 0px;">
   						<li>
-  							<a href="#loginModal" data-toggle="modal">Log in</a>
+  							<a href="#loginModal" data-toggle="modal" class="loginlink" style="padding-right:0px;">Log in</a>
   						</li>
   					</ul>
   					<a href="#signupModal" class="my-button pull-right" data-toggle="modal">Sign Up</a>

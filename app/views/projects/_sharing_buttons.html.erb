@@ -5,29 +5,28 @@
 <% description_page = @project.description %>
 <% app_title = "bitBIO Online Science Community" %>
 
-
-  <div class="share-well">
-    <div class="row" style="margin: 5px 0px;">
-      <div class="span7" style="margin-left: 40px; width: 490px;">
-        <form style="display:inline;">
-          <label style="display:inline;">Share URL</label>
-          <%= text_field_tag("url", "#{share_url}", id: "url-text", rows: 1, 
-          style: 'width: 400px; margin-top: 6px;') %>
-        </form>
-      </div>
-      <div class="span2" style="width: 120px; margin-left: 0; margin-top: 8px;">
-        <%= link_to tw_link, target: "_blank" do %>
-          <%= image_tag 'twitter.png' %>
-        <% end %>
-        <%= link_to "http://www.linkedin.com/shareArticle?mini=true&url=#{u(share_url)}&title=#{u(title_page)}&summary=#{u(description_page)}&source=#{u(app_title)}", target: "_blank" do %>
-          <%= image_tag 'linked_in.png' %>
-        <% end %>
-        <%= link_to "https://plus.google.com/share?url=#{share_url}", target: "_blank" do %>
-          <%= image_tag 'google_plus.png' %>
-        <% end %>
-        <%= link_to "mailto: #{@project.user.email}?subject=#{u("bitBIO Project: "+ @project.name)}&body=#{u(share_url)}" do %>
-          <%= image_tag 'envelope.png' %>
-        <% end %>
-      </div>
+<div class="share-well">
+  <div class="row" style="margin: 5px 0px;">
+    <div class="span7" style="margin-left: 40px; width: 490px;">
+      <form style="display:inline;">
+        <label style="display:inline;">Share URL</label>
+        <%= text_field_tag("url", "#{share_url}", id: "url-text", rows: 1, 
+        style: 'width: 400px; margin-top: 6px;') %>
+      </form>
+    </div>
+    <div class="span2" style="width: 120px; margin-left: 0; margin-top: 8px;">
+      <%= link_to tw_link, target: "_blank" do %>
+        <%= image_tag 'twitter.png' %>
+      <% end %>
+      <%= link_to "http://www.linkedin.com/shareArticle?mini=true&url=#{u(share_url)}&title=#{u(title_page)}&summary=#{u(description_page)}&source=#{u(app_title)}", target: "_blank" do %>
+        <%= image_tag 'linked_in.png' %>
+      <% end %>
+      <%= link_to "https://plus.google.com/share?url=#{share_url}", target: "_blank" do %>
+        <%= image_tag 'google_plus.png' %>
+      <% end %>
+      <%= link_to "mailto: #{@project.user.email}?subject=#{u("bitBIO Project: "+ @project.name)}&body=#{u(share_url)}" do %>
+        <%= image_tag 'envelope.png' %>
+      <% end %>
     </div>
   </div>
+</div>

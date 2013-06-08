@@ -1,6 +1,8 @@
 Bitbio::Application.routes.draw do
   
-  resources :blogs
+  resources :blogs do
+    resources :comments, only: [:create]
+  end
   get "tags/index"
   resources :instruments
   resources :messages, only: [:show]
@@ -11,13 +13,13 @@ Bitbio::Application.routes.draw do
   end
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :projects do
+    resources :comments, only: [:create]
     collection do
       get 'tags'
     end
   end
   resources :tags, only: [:index]
   get 'tags/:tag', to: 'tags#show', as: :tag
-  resources :comments
   resources :verifications, only: [:show]
   
   match '/researchers', to: 'users#researchers_index', via: :get
