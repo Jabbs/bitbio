@@ -27,7 +27,7 @@ namespace :db do
       science_type = ['DNA Sequencing', 'RNA Sequencing', 'Chip-SEQ', 'Micro Array', 'Next-gen Sequencing',
                       'Microscopy', 'Cytometry'].shuffle.first
       service_need = Project::SERVICE_NEEDS.shuffle.first
-      start_date = rand(300).days.from_now.to_date
+      start_date = [7,20,25,30,34,40,80,90,100,123,44,2,234,300,23,10,50].shuffle.first.days.from_now.to_date
       exp_date = Date.today + [30, 90, 180].shuffle.first.days
       project = Project.new(name: name, description: description, science_type: science_type, service_need: service_need,
                             start_date: start_date, expiration_date: exp_date)
@@ -48,7 +48,7 @@ namespace :db do
         project.taggings.build(project_id: project.id, tag_id: t.id)
         project.save!
       end
-      project.view_count = rand(0..200)
+      project.view_count = [7,20,25,30,34,40,80,90,100,123,44,2,234,300,23,10,50].shuffle.first
       project.save!
     end
     
@@ -66,6 +66,7 @@ namespace :db do
       user = User.all.shuffle.first
       body = Faker::Lorem.paragraph + Faker::Lorem.paragraph + Faker::Lorem.paragraph + Faker::Lorem.paragraph + Faker::Lorem.paragraph
       blog = user.blogs.build(title: Faker::Lorem.sentence, body: body)
+      blog.view_count = [7,20,25,30,34,40,80,90,100,123,44,2,234,300,23,10,50].shuffle.first
       blog.save!
     end
     
