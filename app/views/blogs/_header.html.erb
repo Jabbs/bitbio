@@ -21,6 +21,8 @@
         </small>
       </p>
       <a href="https://twitter.com/share" class="twitter-share-button" data-url="<%= share_url %>" data-text="<%= title_page %>" data-via="bit_bio" data-counturl="<%= request.url %>">Tweet</a>
+      <div class="fb-like" data-href="<%= request.url %>" data-send="false" data-layout="button_count" data-width="80" data-show-faces="false" data-font="arial"></div>
+
     </div>
     <div class="span2 pull-right" style="margin-top: -8px;">
       <% if current_user?(@blog.user) %>

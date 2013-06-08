@@ -513,6 +513,13 @@ h2.info_header {
 
 /* projects/index */
 
+.main-nav-set li {
+  display:none;
+  &:first-child {
+    display: block;
+  }
+}
+
 .expand-tags:hover {
   cursor: pointer;
 }
