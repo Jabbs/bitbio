@@ -18,6 +18,9 @@
 //= require_tree .
 
 $(function() {
+  $('.main-nav-set li').hide()
+  $('.main-nav-set li:first-child').show()
+  
   $("#project_start_date").datepicker({
 		dateFormat: "yy-mm-dd"
 	});
