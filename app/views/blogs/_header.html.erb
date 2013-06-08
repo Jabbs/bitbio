@@ -5,14 +5,14 @@
     <div class="span2" style="width: 80px;">
       <%= image_tag 'blank_avatar.jpg', title: @blog.user.full_name, id: 'user-avatar' %>
     </div>
-    <div class="span7" style="margin-top: -8px;">
+    <div class="span7" style="width: 600px;">
       <h2><%= @blog.title %></h2>
       <p>
         <small>
           posted by <%= link_to "#{@blog.user.full_name}", user_path(@blog.user) %> on 
           <%= @blog.created_at.strftime('%D %l:%M%P') %>.
-          <span style="margin-left: 5px;"><%= @blog.view_count %> VIEWS</span>
-          <span style="margin-left: 5px;"><%= @blog.comments.size %> COMMENTS</span>
+          <span style="margin-left: 5px;"><%= pluralize(@blog.view_count, 'VIEW', 'VIEWS') %></span>
+          <span style="margin-left: 5px;"><%= pluralize(@blog.comments.count, 'COMMENT', 'COMMENTS') %></span>
         </small>
       </p>
       <div class="social-button">
@@ -37,12 +37,11 @@
           })();
         </script>
       </div>
-      
-    </div>
-    <div class="span2 pull-right" style="margin-top: -8px;">
-      <% if current_user?(@blog.user) %>
-        <%= link_to 'edit profile', edit_blog_path(@blog), class: 'pull-right my-button' %>
-      <% end %>
+      <div class="pull-right">
+        <% if current_user?(@blog.user) %>
+          <%= link_to 'edit blog', edit_blog_path(@blog), class: 'my-button-red' %>
+        <% end %>
+      </div>
     </div>
   </div>
   <hr style="margin-top:5px;">

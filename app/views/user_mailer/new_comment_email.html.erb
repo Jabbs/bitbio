@@ -6,9 +6,9 @@
 <tr>
 	<td style="padding-top:20px">
 	  <% if @comment.commentable_type == "Project" %>
-	    <%= @comment.user.full_name %> commented on <%= @comment.commentable.name %>:
+	    A new comment has been posted on your Project: <%= @comment.commentable.name %>:
 	  <% elsif @comment.commentable_type == "Blog" %>
-	    <%= @comment.user.full_name %> commented on <%= @comment.commentable.title %>:
+	    A new comment has been posted on your Blog: <%= @comment.commentable.title %>:
 	  <% end %>
 	</td>
 </tr>

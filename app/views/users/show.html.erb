@@ -7,14 +7,6 @@
   <% end %>
 <% end %>
 
-<% if current_user %>
-<div class="row" style="margin-bottom: 10px;">
-  <div class="span4">
-    <%= link_to "&larr; back".html_safe, :back %>
-  </div>
-</div>
-<% end %>
-
 <% if current_user && current_user?(@user) && !current_user.verified %>
 	<div class="alert" style="margin-top: 10px;">
 		<strong>NOTICE:</strong>
@@ -38,7 +30,7 @@
       </div>
       <div class="span2 pull-right" style="margin-top: -8px;">
         <% if current_user?(@user) %>
-          <%= link_to 'edit profile', edit_user_path(@user), class: 'pull-right my-button' %>
+          <%= link_to 'edit profile', edit_user_path(@user), class: 'pull-right my-button-red' %>
         <% end %>
       </div>
     </div>

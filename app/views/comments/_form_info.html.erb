@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="span9 new-comment-well" style="width: 460px;">
+  <% if current_user && current_user.verified?  %>
+      <%= render 'comments/form' %>
+  <% elsif current_user && !current_user.verified?  %>
+    <em>You must have a verified <%= link_to 'account', current_user %> to view comments, 
+        leave a comment, or send a direct message to the project owner.</em>
+  <% else %>
+    <em><a href="#signupModal" data-toggle="modal">sign up</a> or 
+      <a href="#loginModal" data-toggle="modal" class="loginlink">sign in</a> to view comments, 
+      leave a comment, or send a direct message to the project owner.</em>
+  <% end %>
+  </div>
+</div>
