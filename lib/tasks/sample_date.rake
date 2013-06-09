@@ -45,7 +45,7 @@ namespace :db do
         else
           t = Tag.create!(name: tag)
         end
-        project.taggings.build(project_id: project.id, tag_id: t.id)
+        project.taggings.build(tag_id: t.id)
         project.save!
       end
       project.view_count = [7,20,25,30,34,40,80,90,100,123,44,2,234,300,23,10,50].shuffle.first
@@ -67,6 +67,16 @@ namespace :db do
       body = Faker::Lorem.paragraph + Faker::Lorem.paragraph + Faker::Lorem.paragraph + Faker::Lorem.paragraph + Faker::Lorem.paragraph
       blog = user.blogs.build(title: Faker::Lorem.sentence, body: body)
       blog.view_count = [7,20,25,30,34,40,80,90,100,123,44,2,234,300,23,10,50].shuffle.first
+      x = [1,2,3].shuffle.first
+      Project::TAGS.uniq.shuffle[0..x].each do |tag|
+        if Tag.find_by_name(tag)
+          t = Tag.find_by_name(tag)
+        else
+          t = Tag.create!(name: tag)
+        end
+        blog.taggings.build(tag_id: t.id)
+        blog.save!
+      end
       blog.save!
     end
     

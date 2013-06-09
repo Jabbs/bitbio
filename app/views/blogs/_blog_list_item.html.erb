@@ -15,7 +15,7 @@
       </div>
       <div class="row">
         <div class="span8">
-          <div class="smaller"><%= link_to '#next-gen' %>, <%= link_to '#sequencing' %></div>
+          <div class="smaller"><i class="icon-tags dark"></i>: <%= raw blog.tags.map { |t| link_to t.name, tag_path(t.name)  }.join(', ')%></div>
         </div>
       </div>  
     </div>

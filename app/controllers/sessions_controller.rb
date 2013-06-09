@@ -9,8 +9,8 @@ class SessionsController < ApplicationController
       @session_user.add_to_sign_in_attributes(request.remote_ip)
       redirect_back_or root_path
     else
-      @blogs = Blog.last(4)
-      @featured_users = User.last(3)
+      @blogs = Blog.featured
+      @featured_users = User.featured
       @session_user = User.new
       @session_user.errors.add(:email, "Invalid email/password combination")
       render template: "projects/index"

@@ -1,7 +1,3 @@
-<div class="row" style="margin-top: 10px;">
-  <div class="span4">
-    <%= link_to "&larr; back".html_safe, :back %>
-  </div>
+<div class="span9 pull-right">
+  <%= render 'message', message: @message %>
 </div>
-
-<%= render 'message', message: @message %>

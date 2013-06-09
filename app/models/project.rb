@@ -106,10 +106,10 @@ class Project < ActiveRecord::Base
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :instruments, dependent: :destroy
   has_many :messages
-  has_many :taggings, dependent: :destroy
+  has_many :taggings, as: :taggable, dependent: :destroy
   has_many :tags, through: :taggings
-  accepts_nested_attributes_for :instruments, allow_destroy: true
   accepts_nested_attributes_for :taggings, allow_destroy: true
+  accepts_nested_attributes_for :instruments, allow_destroy: true
 
   def self.tagged_with(name)
     Tag.find_by_name(name).projects if Tag.find_by_name(name)

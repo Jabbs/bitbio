@@ -6,8 +6,8 @@ class ProjectsController < ApplicationController
   
   def index
     @projects = Project.where(searchable: true).order("created_at DESC").search(params[:any], params[:na], params[:eur], params[:asia], params[:aus], params[:science], params[:tag]).paginate(page: params[:page], per_page: 9)
-    @blogs = Blog.last(4)
-    @featured_users = User.last(3)
+    @blogs = Blog.featured
+    @featured_users = User.featured
   end
   
   def new
@@ -89,7 +89,7 @@ class ProjectsController < ApplicationController
           else
             t = Tag.create!(name: tag)
           end
-          @project.taggings.build(project_id: @project.id, tag_id: t.id)
+          @project.taggings.build(tag_id: t.id)
         end
       end
     end

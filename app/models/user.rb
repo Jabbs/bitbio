@@ -39,6 +39,10 @@ class User < ActiveRecord::Base
   has_many :attachments, as: :attachable, dependent: :destroy
   accepts_nested_attributes_for :attachments, allow_destroy: true
   
+  def self.featured
+    User.last(3)
+  end
+  
   def update_continent
     self.continent = Ravibhim::Continents.get_continent(self.country)
   end

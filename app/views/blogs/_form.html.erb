@@ -20,6 +20,21 @@
         <br>
       <p>You may preview your blog entry by selecting the preview icon at the top of the blog editor.</p>
       <p>All blog entries may be edited after submission.</p>
+
+       <div class="row" style="margin-top: 20px;">
+          <div class="span1" style="width: 90px;">
+            <label>Tags:</label>
+          </div>
+          <div class="span8" style="width: 590px;">
+            <% @blog.tag_list.blank? ? blog_tags = ["bitbio"] : blog_tags = @blog.tag_list %>
+            <div id="project-tags" data-tags="<%= Project::TAGS %>"></div>
+            <div id="project-prefilled-tags" data-tags="<%= blog_tags %>"></div>
+            <input style="width: 100px;" type="text" name="project[tag_list]" placeholder="tag" class="tm-input" autocomplete="off"/>
+            <p>Tag your blog for optimal search queries (delimiters: tab, enter, comma). Maximum: 6.</p>
+          </div>
+        </div>
+        <hr>
+      
       <div class="row" style="margin-top: 20px;">
         <div class="span9">
           <% if @blog.new_record? %>
