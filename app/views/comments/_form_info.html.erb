@@ -3,12 +3,23 @@
   <% if current_user && current_user.verified?  %>
       <%= render 'comments/form' %>
   <% elsif current_user && !current_user.verified?  %>
-    <em>You must have a verified <%= link_to 'account', current_user %> to view comments, 
-        leave a comment, or send a direct message to the project owner.</em>
+    <% if controller_name == 'projects' %>
+      <em>You must have a verified <%= link_to 'account', current_user %> to view comments, 
+          leave a comment, or send a direct message to the project owner.</em>
+    <% elsif controller_name == 'blogs' %>
+      <em>You must have a verified <%= link_to 'account', current_user %> to view comments or
+          leave a comment.</em>
+    <% end %>
   <% else %>
-    <em><a href="#signupModal" data-toggle="modal">sign up</a> or 
-      <a href="#loginModal" data-toggle="modal" class="loginlink">sign in</a> to view comments, 
-      leave a comment, or send a direct message to the project owner.</em>
+    <% if controller_name == 'projects' %>
+      <em><a href="#signupModal" data-toggle="modal">sign up</a> or 
+        <a href="#loginModal" data-toggle="modal" class="loginlink">sign in</a> to view comments, 
+        leave a comment, or send a direct message to the project owner.</em>
+    <% elsif controller_name == 'blogs' %>
+      <em><a href="#signupModal" data-toggle="modal">sign up</a> or 
+        <a href="#loginModal" data-toggle="modal" class="loginlink">sign in</a> to view comments or
+        leave a comment.</em>
+    <% end %>
   <% end %>
   </div>
 </div>

@@ -11,16 +11,15 @@
       <div class="row">
         <div class="span9">
           <i class="icon-asterisk red"></i> 
-          <%= f.text_field :title, class: 'span9', placeholder: 'Title' %>
+          <%= f.text_field :title, class: 'span9', placeholder: 'Title', style: 'width: 670px;margin-top:10px;' %>
         </div>
       </div>
       <hr>
-      <% if @blog.new_record? %>
-        <%= f.cktext_area :body, value: "Content..." %>
-      <% else %>
+
         <%= f.cktext_area :body %>
-      <% end %>
-      
+        <br>
+      <p>You may preview your blog entry by selecting the preview icon at the top of the blog editor.</p>
+      <p>All blog entries may be edited after submission.</p>
       <div class="row" style="margin-top: 20px;">
         <div class="span9">
           <% if @blog.new_record? %>

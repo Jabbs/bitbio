@@ -1,5 +1,10 @@
 <% @blog.bitly_url? ? share_url = @blog.bitly_url : share_url = request.url %>
 
+<% if current_user %>
+<div style="height: 0px;"><%= link_to "<i class='icon-plus'></i> ADD BLOG".html_safe, new_blog_path, class: 'my-button-blue',
+style: 'position:relative; left: 600px; top: -38px' %></div>
+<% end %>
+
 <div class="span9 pull-right" id='blog-header'>
   <div class="row">
     <div class="span2" style="width: 80px;">

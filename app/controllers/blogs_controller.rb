@@ -1,4 +1,11 @@
 class BlogsController < ApplicationController
+  before_filter :signed_in_user, except: [:index, :show]
+  before_filter :verified_user, except: [:index, :show]
+  before_filter :correct_user, only: [:edit, :update, :destroy]
+  
+  def index
+  end
+  
   def show
     @blog = Blog.find(params[:id])
     @blog.add_view_count unless current_user?(@blog.user)
@@ -49,5 +56,34 @@ class BlogsController < ApplicationController
       u = bitly.shorten(long_url)
       @blog.bitly_url = u
       @blog.save!
+    end
+
+    # def create_tags
+    #   tag_list = params["hidden-project"]["tag_list"].split(',')
+    #   tag_list.each do |tag|
+    #     unless tag == 'bitbio'
+    #       if Tag.find_by_name(tag)
+    #         t = Tag.find_by_name(tag)
+    #       else
+    #         t = Tag.create!(name: tag)
+    #       end
+    #       @project.taggings.build(project_id: @project.id, tag_id: t.id)
+    #     end
+    #   end
+    # end
+
+    def verified_user
+      redirect_to current_user, alert: 'Please verify your account first.' unless current_user.verified
+    end
+
+    def correct_user
+      @blog = Blog.find(params[:id])
+      redirect_to root_path unless current_user?(@blog.user) || current_user.admin?
+    end
+
+    def signed_in_user_go_to_dash
+      if current_user
+        redirect_to root_path
+      end
     end
 end
