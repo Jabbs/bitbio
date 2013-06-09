@@ -2,7 +2,11 @@
   <div class="row">
     <div class="span9">
       <%= render 'shared/error_messages', object: f.object %>
-      <h2><i class="icon-list-alt"></i> New Blog Entry</h2>
+      <% if @blog.new_record? %>
+        <h2><i class="icon-list-alt"></i> New Blog Entry</h2>
+      <% else %>
+        <h2><i class="icon-list-alt"></i> Editing Blog</h2>
+      <% end %>
       <hr>
       <div class="row">
         <div class="span9">
@@ -11,7 +15,12 @@
         </div>
       </div>
       <hr>
-      <%= f.cktext_area :body, value: "Content...", id: "sometext" %>
+      <% if @blog.new_record? %>
+        <%= f.cktext_area :body, value: "Content..." %>
+      <% else %>
+        <%= f.cktext_area :body %>
+      <% end %>
+      
       <div class="row" style="margin-top: 20px;">
         <div class="span9">
           <%= f.submit 'Preview Blog Entry', class: "my-button large-button", disable_with: 'Submitting...',
