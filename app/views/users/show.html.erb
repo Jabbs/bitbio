@@ -21,7 +21,11 @@
   <div class="span9 pull-right">
     <div class="row">
       <div class="span2" style="width: 80px;">
-        <%= image_tag 'blank_avatar.jpg', title: @user.full_name, id: 'user-avatar' %>
+        <% if @user.attachments.any? %>
+          <%= image_tag(@user.attachments.first.image.url(:thumb), title: @user.full_name).to_s %>
+        <% else %>
+          <%= image_tag 'blank_avatar.jpg', title: @user.full_name, id: 'user-avatar' %>
+        <% end %>
       </div>
       <div class="span5" style="margin-top: -8px;">
         <h2><%= @user.full_name %></h2>

@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   geocoded_by :full_address
   attr_accessible :account_type, :bio, :email, :first_name, :last_name, :organization,
                   :password, :password_confirmation, :phone, :address, :city, :state,
-                  :zip, :country, :membership, :continent, :attachments_attributes
+                  :zip, :country, :membership, :continent, :attachments_attributes, :_destroy
+  attr_accessor   :_destroy
   has_secure_password
   
   # callbacks

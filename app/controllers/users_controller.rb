@@ -27,6 +27,7 @@ class UsersController < ApplicationController
     
     if @user.authenticate(params[:user][:password])
       if @user.update_attributes(params[:user])
+        @user.attachments.order('created_at DESC').last.destroy if params[:user][:_destroy] == '1'
         redirect_to @user, notice: 'User was successfully updated.'
       else
         render action: "edit"
@@ -62,7 +63,6 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @attachment = @user.attachments.build
     @projects = @user.projects
     if request.path != user_path(@user)
       redirect_to @user, status: :moved_permanently

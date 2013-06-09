@@ -11,19 +11,24 @@
       
       <% if action_name == "edit" || action_name == "update" %>
         
-        <div class="row">
+        <div class="row" style="margin-bottom: 20px;">
           <div class="span2">
              <label>Profile Pic:</label>
            </div>
            <div class="span6">
-             <%= f.fields_for :attachments do |attch| %>
+            <%= f.fields_for :attachments do |attch| %>
+            <% attch.object.new_record? ? new_attch = "new_attch" : new_attch = '' %>
+            <fieldset class="<%= new_attch %>">
                <% if attch.object.new_record? %>
                  <%= attch.file_field :image %>
                <% else %>
-                 <%= image_tag(attch.object.image.url(:thumb)) %>
-                 <%= attch.check_box :_destroy %>
+                 <%= image_tag(attch.object.image.url(:thumb)).to_s %>
+                 <%= f.hidden_field :_destroy %>
+                 <%= link_to "<i class='icon-trash'></i> remove".html_safe, '#', class: 'remove_fields', style: 'margin-left: 5px;' %>
                <% end %>
-             <% end %>
+            </fieldset>
+            <% end %>
+             
            </div>
         </div>
       
