@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
   has_many :message_senders, through: :received_messages, source: :sender
   has_many :projects, dependent: :destroy
   has_many :comments
+  has_many :likes
   has_many :blogs, dependent: :destroy
   has_many :attachments, as: :attachable, dependent: :destroy
   accepts_nested_attributes_for :attachments, allow_destroy: true

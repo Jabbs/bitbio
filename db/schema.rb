@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130609194844) do
+ActiveRecord::Schema.define(:version => 20130609210432) do
 
   create_table "attachments", :force => true do |t|
     t.string   "attachable_type"
@@ -89,6 +89,17 @@ ActiveRecord::Schema.define(:version => 20130609194844) do
 
   add_index "instruments", ["alias"], :name => "index_instruments_on_name"
   add_index "instruments", ["project_id"], :name => "index_instruments_on_project_id"
+
+  create_table "likes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "likeable_id"
+    t.string   "likeable_type"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "likes", ["likeable_id", "likeable_type"], :name => "index_likes_on_likeable_id_and_likeable_type"
+  add_index "likes", ["user_id"], :name => "index_likes_on_user_id"
 
   create_table "messages", :force => true do |t|
     t.integer  "sender_id"

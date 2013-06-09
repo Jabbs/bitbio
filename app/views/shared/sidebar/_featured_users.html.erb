@@ -12,7 +12,11 @@
       </div>
     </div>
   </div>
-  <hr style="margin-top:5px; margin-bottom:5px;">
+    <% if user == @featured_users.last %>
+      <div style="margin-bottom:10px;"></div>
+    <% else %>
+      <hr style="margin-top:5px; margin-bottom:5px;">
+    <% end %>
   <% end %>
 </div>
 

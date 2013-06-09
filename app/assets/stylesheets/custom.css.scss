@@ -80,7 +80,9 @@ h2 {
 .silver { color: $silver; }
 .dark { color: $header_background;}
 .blue { color: $blue; }
+.bluee { color: $blue; }
 .red { color: $red; }
+.black { color: black; }
 
 .pointer-enabled {
   cursor: pointer;
@@ -313,6 +315,17 @@ h2.info_header {
   .smaller {
     font-size: 80%;
     margin-bottom:0px;
+  }
+  .blog-list-item {
+    text-decoration: none;
+  }
+  .promoted {
+    i, span {
+      color: $blue;
+      &:hover {
+        cursor: text;
+      }
+    }
   }
 }
 

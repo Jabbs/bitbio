@@ -5,6 +5,7 @@ Bitbio::Application.routes.draw do
   resources :attachments
   resources :blogs do
     resources :comments, only: [:create]
+    resources :likes, only: [:create]
   end
   get "tags/index"
   resources :instruments

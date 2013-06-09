@@ -1,0 +1,3 @@
+<% x = "#thumb_" + "#{@blog.id}" %>
+$("<%= x %> i").addClass('blue');
+$("<%= x %> span").addClass('blue').text(': <%= @blog.likes.count %>');

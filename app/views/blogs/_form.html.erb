@@ -18,8 +18,6 @@
 
         <%= f.cktext_area :body %>
         <br>
-      <p>You may preview your blog entry by selecting the preview icon at the top of the blog editor.</p>
-      <p>All blog entries may be edited after submission.</p>
 
        <div class="row" style="margin-top: 20px;">
           <div class="span1" style="width: 90px;">
@@ -34,7 +32,8 @@
           </div>
         </div>
         <hr>
-      
+        <p>You may preview your blog entry by selecting the preview icon at the top of the blog editor.</p>
+        <p>All blog entries may be edited after submission.</p>
       <div class="row" style="margin-top: 20px;">
         <div class="span9">
           <% if @blog.new_record? %>

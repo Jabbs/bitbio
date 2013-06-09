@@ -13,6 +13,14 @@ module ApplicationHelper
     elements.first if elements && elements.size == 2 && elements[1] != 'new'
   end
   
+  def is_liked?(item)
+    if current_user && item.likes.where(user_id: current_user.id).any?
+      true
+    else
+      false
+    end
+  end
+  
   def bread_crumb_list_items(url)
     elements = url.split('/')[1..-1]
     c = content_tag(:span, " / ")
