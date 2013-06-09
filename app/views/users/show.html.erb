@@ -22,7 +22,7 @@
     <div class="row">
       <div class="span2" style="width: 80px;">
         <% if @user.attachments.any? %>
-          <%= image_tag(@user.attachments.first.image.url(:thumb), title: @user.full_name).to_s %>
+          <%= image_tag(@user.attachments.first.image.url, title: @user.full_name).to_s %>
         <% else %>
           <%= image_tag 'blank_avatar.jpg', title: @user.full_name, id: 'user-avatar' %>
         <% end %>

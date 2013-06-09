@@ -15,6 +15,7 @@
 //= require twitter/bootstrap
 //= require jquery-ui
 //= require bootstrap
+//= require ckeditor/init
 //= require_tree .
 
 $(function() {

@@ -16,6 +16,9 @@ gem "bitly", "~> 0.9.0"
 gem "carrierwave"
 gem "mini_magick"
 gem 'rmagick'
+gem "figaro"
+gem "fog", "~> 1.3.1"
+gem "ckeditor"
 
 group :development, :test do
   gem 'rspec-rails', '2.11.0'

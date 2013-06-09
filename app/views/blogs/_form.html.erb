@@ -1,5 +1,24 @@
 <%= form_for @blog do |f| %>
-  
-  
-  
+  <div class="row">
+    <div class="span9">
+      <%= render 'shared/error_messages', object: f.object %>
+      <h2><i class="icon-list-alt"></i> New Blog Entry</h2>
+      <hr>
+      <div class="row">
+        <div class="span9">
+          <i class="icon-asterisk red"></i> 
+          <%= f.text_field :title, class: 'span9', placeholder: 'Title' %>
+        </div>
+      </div>
+      <hr>
+      <%= f.cktext_area :body, value: "Content...", id: "sometext" %>
+      <div class="row" style="margin-top: 20px;">
+        <div class="span9">
+          <%= f.submit 'Preview Blog Entry', class: "my-button large-button", disable_with: 'Submitting...',
+              style: 'margin-bottom: 5px;' %> |
+          <%= link_to 'cancel', root_path %>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>

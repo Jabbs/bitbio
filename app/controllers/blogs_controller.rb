@@ -13,15 +13,33 @@ class BlogsController < ApplicationController
   end
   
   def new
-    @blog = Blog.new
+    @blog = current_user.blogs.build
   end
   
   def create
-    
+     @blog = current_user.blogs.build(params[:blog])
+    # create_tags
+    if @blog.save
+      # create_bitly_url(blog_url(@blog)) if Rails.env.production? && ENV['STAGING'].nil?
+      redirect_to @blog, notice: "Preview you blog prior to submitting."
+    else
+      render 'new'
+    end
   end
   
   def edit
-    
+    @blog = Blog.find(params[:id])
+  end
+  
+  def update
+    @blog = Blog.find(params[:id])
+    if @blog.update_attributes(params[:blog])
+      # create_tags
+      @blog.save!
+      redirect_to @blog, notice: 'Blog was successfully updated.'
+    else
+      render action: "edit"
+    end
   end
   
   private

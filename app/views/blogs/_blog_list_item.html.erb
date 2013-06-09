@@ -3,7 +3,11 @@
     <div class="span8" style="margin-left: 10px;">
       <hr style="margin: 5px 0px 5px 0px; width: 680px;">
       <div class="user">
-        <%= image_tag 'blank_avatar.jpg', size: '40x40', title: blog.user.full_name %>
+        <% if blog.user.attachments.any? %>
+          <%= image_tag(blog.user.attachments.first.image.url(:thumb), title: blog.user.full_name).to_s %>
+        <% else %>
+          <%= image_tag 'blank_avatar_thumb.jpg', title: blog.user.full_name %>
+        <% end %>
       </div>
       <div class="top">
         <h3><%= link_to truncate(blog.title, length: 60), blog_path(blog) %></h3>
@@ -16,7 +20,7 @@
       </div>
       <div class="row">
         <div class="span8">
-          <p><%= truncate(blog.body, length: 200) %></p>
+          <p><%= strip_tags(truncate(blog.body, length: 200)) %></p>
         </div>
       </div>
       

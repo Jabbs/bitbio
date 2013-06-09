@@ -3,7 +3,11 @@
 <div class="span9 pull-right" id='blog-header'>
   <div class="row">
     <div class="span2" style="width: 80px;">
-      <%= image_tag 'blank_avatar.jpg', title: @blog.user.full_name, id: 'user-avatar' %>
+      <% if @blog.user.attachments.any? %>
+        <%= image_tag(@blog.user.attachments.first.image.url, title: @blog.user.full_name).to_s %>
+      <% else %>
+        <%= image_tag 'blank_avatar.jpg', title: @blog.user.full_name, id: 'user-avatar' %>
+      <% end %>
     </div>
     <div class="span7" style="width: 600px;">
       <h2><%= @blog.title %></h2>
