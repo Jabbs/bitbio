@@ -1,5 +1,5 @@
 <%= form_for @project do |f| %>
-  <div class="row" style="margin-top: 20px;">
+  <div class="row">
     <%= render 'shared/error_messages', object: f.object %>
     <% if @project.new_record? %>
       <h2><i class="icon-beaker"></i> New Project Listing</h2>
@@ -171,7 +171,7 @@
           <% end %>
           <%= f.submit 'Update Project', class: "my-button large-button", disable_with: 'Submitting...',
           style: 'margin-bottom: 8px;' %> | 
-          <%= link_to 'cancel', user_project_listings_path(current_user) %>
+          <%= link_to 'cancel', @project %>
         <% else %>
           <%= f.submit 'List Project', class: "my-button large-button", disable_with: 'Submitting...',
               style: 'margin-bottom: 5px;' %> |

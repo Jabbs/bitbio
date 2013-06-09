@@ -8,9 +8,9 @@ module ApplicationHelper
     link_to(name, '#', class: "add_fields", data: {id: @id, fields: fields.gsub("\n", "")})
   end
   
-  def get_resource_header
-    resource = request.path.split('/')[1]
-    resource
+  def get_resource_header(url)
+    elements = url.split('/')[1..-1]
+    elements.first if elements && elements.size == 2 && elements[1] != 'new'
   end
   
   def bread_crumb_list_items(url)
@@ -29,7 +29,11 @@ module ApplicationHelper
       elsif elements[1]
         crumbs << home; crumbs << c;
         crumbs << content_tag(:li, link_to("#{elements[0].downcase}", "/#{elements[0].downcase}")); crumbs << c;
-        crumbs << content_tag(:li, "#{elements[1].titleize}", class: 'active')
+        if elements[1] == 'new'
+          crumbs << content_tag(:li, "#{elements[1].titleize} #{elements[0].singularize.titleize}", class: 'active')
+        else
+          crumbs << content_tag(:li, "#{elements[1].titleize}", class: 'active')
+        end
       else
         crumbs << home; crumbs << c;
         crumbs << content_tag(:li, "#{elements[0].titleize}", class: 'active')

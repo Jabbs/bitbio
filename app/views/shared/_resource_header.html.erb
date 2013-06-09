@@ -1,4 +1,4 @@
-<% resource_header = get_resource_header %>
+<% resource_header = get_resource_header(request.path) %>
 <% if !resource_header.blank? %>
   <div class="row" style="margin-bottom: 10px;">
     <% if current_user %>
