@@ -53,6 +53,9 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
+    carrierwave (0.8.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.0.9)
@@ -133,6 +136,8 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.1)
     mime-types (1.23)
+    mini_magick (3.6.0)
+      subexec (~> 0.2.1)
     multi_json (1.7.5)
     multi_xml (0.5.4)
     multipart-post (1.2.0)
@@ -179,6 +184,7 @@ GEM
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rinku (1.7.3)
+    rmagick (2.13.2)
     roadie (2.3.4)
       actionmailer (> 3.0.0, < 3.3.0)
       css_parser
@@ -218,6 +224,7 @@ GEM
     stripe (1.8.3)
       multi_json (>= 1.0.4, < 2)
       rest-client (~> 1.4)
+    subexec (0.2.3)
     therubyracer (0.11.4)
       libv8 (~> 3.11.8.12)
       ref
@@ -251,6 +258,7 @@ DEPENDENCIES
   bootstrap-sass
   bootstrap-will_paginate (= 0.0.6)
   capybara (= 1.1.2)
+  carrierwave
   coffee-rails (= 3.2.2)
   continents (~> 0.0.4)
   factory_girl_rails (= 1.4.0)
@@ -265,10 +273,12 @@ DEPENDENCIES
   launchy
   less-rails-bootstrap
   letter_opener
+  mini_magick
   pg (= 0.12.2)
   rails (= 3.2.11)
   rb-fsevent (= 0.9.1)
   rinku (~> 1.7.3)
+  rmagick
   roadie
   rspec-rails (= 2.11.0)
   sass-rails (= 3.2.4)

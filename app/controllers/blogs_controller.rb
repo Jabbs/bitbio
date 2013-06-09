@@ -12,6 +12,14 @@ class BlogsController < ApplicationController
     redirect_to root_path, alert: "The blog you attempted to view is no longer available."
   end
   
+  def new
+    @blog = Blog.new
+  end
+  
+  def create
+    
+  end
+  
   def edit
     
   end

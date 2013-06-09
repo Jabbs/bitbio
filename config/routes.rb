@@ -1,5 +1,6 @@
 Bitbio::Application.routes.draw do
   
+  resources :attachments
   resources :blogs do
     resources :comments, only: [:create]
   end

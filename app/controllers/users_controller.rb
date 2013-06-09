@@ -19,6 +19,7 @@ class UsersController < ApplicationController
   
   def edit
     @user = User.find(params[:id])
+    @user.attachments.build
   end
   
   def update
@@ -61,6 +62,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @attachment = @user.attachments.build
     @projects = @user.projects
     if request.path != user_path(@user)
       redirect_to @user, status: :moved_permanently

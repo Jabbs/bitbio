@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   geocoded_by :full_address
   attr_accessible :account_type, :bio, :email, :first_name, :last_name, :organization,
                   :password, :password_confirmation, :phone, :address, :city, :state,
-                  :zip, :country, :membership, :continent
+                  :zip, :country, :membership, :continent, :attachments_attributes
   has_secure_password
   
   # callbacks
@@ -35,6 +35,8 @@ class User < ActiveRecord::Base
   has_many :projects, dependent: :destroy
   has_many :comments
   has_many :blogs, dependent: :destroy
+  has_many :attachments, as: :attachable, dependent: :destroy
+  accepts_nested_attributes_for :attachments, allow_destroy: true
   
   def update_continent
     self.continent = Ravibhim::Continents.get_continent(self.country)
