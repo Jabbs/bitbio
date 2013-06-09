@@ -23,9 +23,16 @@
       
       <div class="row" style="margin-top: 20px;">
         <div class="span9">
-          <%= f.submit 'Preview Blog Entry', class: "my-button large-button", disable_with: 'Submitting...',
-              style: 'margin-bottom: 5px;' %> |
-          <%= link_to 'cancel', root_path %>
+          <% if @blog.new_record? %>
+            <%= f.submit 'Submit Blog Entry', class: "my-button large-button", disable_with: 'Submitting...',
+                style: 'margin-bottom: 5px;' %> |
+            <%= link_to 'cancel', root_path %>
+          <% else %>
+            <%= f.submit 'Update Blog Entry', class: "my-button large-button", disable_with: 'Submitting...',
+                style: 'margin-bottom: 5px;' %> |
+            <%= link_to 'cancel', @blog %>
+          <% end %>
+
         </div>
       </div>
     </div>

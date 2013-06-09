@@ -17,15 +17,9 @@
         <div class="span8">
           <div class="smaller"><%= link_to '#next-gen' %>, <%= link_to '#sequencing' %></div>
         </div>
-      </div>
-      <div class="row">
-        <div class="span8">
-          <p><%= strip_tags(truncate(blog.body, length: 200)).html_safe %></p>
-        </div>
-      </div>
-      
+      </div>  
     </div>
-    <div class="span1" style="margin-top: 18px; margin-left:5px; border-left: 1px solid silver; height: 100px; padding-left: 5px;">
+    <div class="span1" style="margin-top: 18px; margin-left:5px; border-left: 1px solid silver; height: 55px; padding-left: 5px;">
       <i class="icon-thumbs-up dark" style="margin-right: 2px;"></i><span class="dark">: 421</span><br>
       <i class="icon-eye-open dark"></i><span class="dark">: <%= blog.view_count %></span><br>
       <i class="icon-comment dark"></i><span class="dark">: <%= blog.comments.count %></span>

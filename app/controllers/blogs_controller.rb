@@ -21,7 +21,7 @@ class BlogsController < ApplicationController
     # create_tags
     if @blog.save
       # create_bitly_url(blog_url(@blog)) if Rails.env.production? && ENV['STAGING'].nil?
-      redirect_to @blog, notice: "Preview you blog prior to submitting."
+      redirect_to @blog, notice: "Your blog entry has been created!"
     else
       render 'new'
     end
