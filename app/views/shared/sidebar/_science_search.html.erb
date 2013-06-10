@@ -34,8 +34,6 @@
         <%= check_box_tag :aus, 'yes', aus_check, class: 'ctry' %>
         Australia
       </div>
-      <!-- <%= select_tag :location, options_for_select(Ravibhim::Continents::CONTINENTS, selected: params[:location]), 
-      { prompt: "any", class: 'span2' } %> -->
     </div>
   </div>
   <div class="row" style="margin-top: 5px;">
@@ -43,42 +41,14 @@
       <label style="margin-left: 10px;"><i class="icon-beaker"></i> project needs:</label>
       <%= select_tag :science, options_for_select(Project::SERVICE_NEEDS, selected: params[:science]), 
       { prompt: "any", class: 'span2' } %>
-      <!-- <div style="padding-left: 10px; margin-bottom: 5px;">
-        <span style="margin-right: 5px;">
-          <%= check_box_tag :services, 'yes', true %>
-          Services
-        </span>
-        <br>
-        <span style="margin-right: 5px;">
-          <%= check_box_tag :collab, 'yes', true %>
-          Collaboration
-        </span>
-        <br>
-        <span style="margin-right: 5px;">
-          <%= check_box_tag :sci_and_serv, 'yes', true %>
-          Science + Services
-        </span>
-        <br>
-        <span style="margin-right: 5px;">
-          <%= check_box_tag :data, 'yes', true %>
-          Data Analysis
-        </span>
-        <br>
-        <span style="margin-right: 5px;">
-          <%= check_box_tag :research, 'yes', true %>
-          Research Validation
-        </span>
-        <br>
-          <%= check_box_tag :clinical, 'yes', true %>
-          Clinical Studies
-      </div> -->
     </div>
   </div>
   <div class="row">
     <div class="span3">
       <label style="margin-left: 10px;"><i class="icon-tags"></i> top tags:</label>
       <div style="padding-right: 10px; padding-left: 10px; font-size: 85%;">
-        <%= raw Tag.top_project_tags.first(10).map { |t| link_to "#{t.name} (#{t.projects.size})", tag_path(t.name) }.join(', ') %>... <%= link_to '<i class="icon-expand-alt"></i>'.html_safe, tags_path, style: 'text-decoration: none;' %>
+        <%= raw Tag.top_project_tags.first(10).map { |t| link_to "#{t.name} (#{t.projects.size})", tag_path(t.name) }.join(', ') %>...
+        <%= link_to '<i class="icon-expand-alt"></i>'.html_safe, tags_path, style: 'text-decoration: none;' %>
       </div>
     </div>
   </div>

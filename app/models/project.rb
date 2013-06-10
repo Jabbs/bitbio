@@ -81,7 +81,7 @@ class Project < ActiveRecord::Base
     "human-genetics", "human-genome", "ichthyology", "imaging", "immunology", 
     "marine-biology", "medicinal-chemistry", "metabolism", "microbiology", "microscopy", 
     "molecular-biology", "mycology", "neuroanatomy", "neurology", "neuroscience", 
-    "neurotransmission", "ngs", "nutrition", "ornithology", 
+    "neurotransmission", "next-gen-sequencing", "nutrition", "ornithology", 
     "palaeontology", "parasitology", "pathology", "pharmacology", "phylogenetics", 
     "physiology", "plant-anatomy", "plant-physiology", "population-biology", 
     "protein-binding", "protein-folding", "psychology", 
@@ -89,6 +89,9 @@ class Project < ActiveRecord::Base
     "statistics", "stem-cells", "structural-biology", "stynthetic-biology", "stystems-biology", 
     "taxonomy", "theoretical-biology", "toxicology", 
     "vaccination", "virology", "vitamins", "zoology"]
+  
+  TAGS_FOR_LANDING_PAGE = ["next-gen-sequencing", "bioinformatics", "virology", "epigenetics", "protein-folding",
+                            "dna", "cell-biology", "toxicology", "stynthetic-biology", "imaging"]
   
   # callbacks
   after_validation :move_friendly_id_error_to_name

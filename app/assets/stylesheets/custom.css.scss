@@ -888,12 +888,12 @@ header {
   }
 }
 
-#community ul { position: relative; width: 30px; left: -3px; }
-#labs ul { position: relative; width: 30px; left: 54px; }
-#blogs ul { position: relative; width: 30px; left: 71px; }
-#conferences ul { position: relative; width: 30px; left: 96px;  }
-#jobs ul { position: relative; width: 30px; left: 162px; }
-#science ul { position: relative; width: 30px; left: 179px; }
+#community ul { position: relative; width: 30px; left: -3px; z-index:10; }
+#labs ul { position: relative; width: 30px; left: 54px; z-index:10; }
+#blogs ul { position: relative; width: 30px; left: 71px; z-index:10; }
+#conferences ul { position: relative; width: 30px; left: 96px; z-index:10;  }
+#jobs ul { position: relative; width: 30px; left: 162px; z-index:10; }
+#science ul { position: relative; width: 30px; left: 179px; z-index:10; }
 
 ul.nav li.dropdown:hover > ul.dropdown-menu{
   display: block;    
