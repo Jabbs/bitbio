@@ -17,7 +17,7 @@
         <div class="span8">
           <div class="smaller">
             <% if blog.tags.any? %>
-            <i class="icon-tags dark"></i>: <%= raw blog.tags.map { |t| link_to t.name, tag_path(t.name)  }.join(', ')%>
+            <i class="icon-tags dark"></i>: <%= raw blog.tags.map { |t| link_to t.name, tag_path(t.name)  }.join(', ') %>
             <% else %>
             <i class="icon-tags dark"></i>: n/a
             <% end %>

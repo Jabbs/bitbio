@@ -14,7 +14,7 @@
     <p><%= simple_format(Rinku.auto_link(@blog.body).html_safe) %></p>
     <hr>
     <% if is_liked?(@blog) %>
-      <i class="icon-thumbs-up"></i> PROMOTED 
+      <i class="icon-thumbs-up"></i> PROMOTED BY YOU
     <% elsif current_user %>
       <%= link_to '<i class="icon-thumbs-up"></i> PROMOTE'.html_safe, blog_likes_path(@blog), class: 'my-button-silver', method: :post %>
     <% end %>

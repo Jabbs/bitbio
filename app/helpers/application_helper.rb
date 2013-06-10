@@ -8,9 +8,13 @@ module ApplicationHelper
     link_to(name, '#', class: "add_fields", data: {id: @id, fields: fields.gsub("\n", "")})
   end
   
-  def get_resource_header(url)
+  def resource_header(url)
     elements = url.split('/')[1..-1]
-    elements.first if elements && elements.size == 2 && elements[1] != 'new'
+    if elements && elements.size == 2 && elements[1] != 'new'
+      elements[1]
+    elsif elements && elements[2] == 'comments'
+      elements[1]
+    end
   end
   
   def is_liked?(item)

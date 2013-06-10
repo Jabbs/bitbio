@@ -58,7 +58,9 @@
     </div>
     <% end %>
     <div class="row" style="padding-left:20px; width: 520px; margin-top: 10px;">
+      <% if @project.tags.any? %>
       <i class="icon-tags"></i> tags: <%= raw @project.tags.map { |t| link_to t.name, tag_path(t.name) }.join(', ') %>
+      <% end %>
     </div>
     <div class="description">
       <% if current_user?(@project.user) %>
