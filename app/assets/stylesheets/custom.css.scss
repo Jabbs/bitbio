@@ -943,6 +943,21 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
   }
 }
 
+.my-button-silver{
+  margin-top: 2px;
+  background: darken($silver, 15%);
+  padding: 5px 10px 5px 10px;
+  color: white;
+  margin-right: 10px;
+  box-shadow: none;
+  border: none;
+  &:hover {
+    text-decoration: none;
+    background: darken($silver, 35%);
+    color: white;
+  }
+}
+
 .large-button {
   font-size: 140%;
   padding: 10px 20px 10px 20px;

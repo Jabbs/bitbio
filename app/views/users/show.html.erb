@@ -7,12 +7,14 @@
   <% end %>
 <% end %>
 
-<% if current_user && current_user?(@user) && !current_user.verified %>
-	<div class="alert" style="margin-top: 10px;">
-		<strong>NOTICE:</strong>
-	  Your account has not been verified. <%= link_to 'Resend verification email', user_resend_url(current_user), disable_with: 'Sending...' %>
-	</div>
-<% end %>
+<div class="span9 pull-right">
+  <% if current_user && current_user?(@user) && !current_user.verified %>
+  	<div class="alert" style="margin-top: 10px;">
+  		<strong>NOTICE:</strong>
+  	  Your account has not been verified. <%= link_to 'Resend verification email', user_resend_url(current_user), disable_with: 'Sending...' %>
+  	</div>
+  <% end %>
+</div>
 
 <div class="row">
   <div class="span3">

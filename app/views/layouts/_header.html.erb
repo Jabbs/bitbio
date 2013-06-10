@@ -20,6 +20,7 @@
 	      </div>
 
         <div class="row" style="margin-top: 5px;">
+          <% if request.path == '/' %>
           <div class="span1" style="margin-top: 10px; width: 45px;">
             <div id="twitter-follow" style="display:inline; margin-top: 7px;">
               <a href="https://twitter.com/bit_bio" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @bit_bio</a>
@@ -28,6 +29,9 @@
           <div class="span2" style="margin-top: 12px; width: 155px;">
             for daily project alerts.
           </div>
+          <% else %>
+            <div class="span3"></div>
+          <% end %>
           <div class="span9">  
             <div id="mynav-list">
               <ul class="unstyled">

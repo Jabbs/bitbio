@@ -25,9 +25,9 @@ class BlogsController < ApplicationController
   
   def create
      @blog = current_user.blogs.build(params[:blog])
-    # create_tags
+    create_tags
     if @blog.save
-      # create_bitly_url(blog_url(@blog)) if Rails.env.production? && ENV['STAGING'].nil?
+      create_bitly_url(blog_url(@blog)) if Rails.env.production? && ENV['STAGING'].nil?
       redirect_to @blog, notice: "Your blog entry has been created!"
     else
       render 'new'
@@ -41,7 +41,7 @@ class BlogsController < ApplicationController
   def update
     @blog = Blog.find(params[:id])
     if @blog.update_attributes(params[:blog])
-      # create_tags
+      create_tags
       @blog.save!
       redirect_to @blog, notice: 'Blog was successfully updated.'
     else
@@ -58,19 +58,19 @@ class BlogsController < ApplicationController
       @blog.save!
     end
 
-    # def create_tags
-    #   tag_list = params["hidden-project"]["tag_list"].split(',')
-    #   tag_list.each do |tag|
-    #     unless tag == 'bitbio'
-    #       if Tag.find_by_name(tag)
-    #         t = Tag.find_by_name(tag)
-    #       else
-    #         t = Tag.create!(name: tag)
-    #       end
-    #       @project.taggings.build(project_id: @project.id, tag_id: t.id)
-    #     end
-    #   end
-    # end
+    def create_tags
+      tag_list = params["hidden-blog"]["tag_list"].split(',')
+      tag_list.each do |tag|
+        unless tag == 'bitbio'
+          if Tag.find_by_name(tag)
+            t = Tag.find_by_name(tag)
+          else
+            t = Tag.create!(name: tag)
+          end
+          @blog.taggings.build(tag_id: t.id)
+        end
+      end
+    end
 
     def verified_user
       redirect_to current_user, alert: 'Please verify your account first.' unless current_user.verified

@@ -25,9 +25,9 @@
           </div>
           <div class="span8" style="width: 590px;">
             <% @blog.tag_list.blank? ? blog_tags = ["bitbio"] : blog_tags = @blog.tag_list %>
-            <div id="project-tags" data-tags="<%= Project::TAGS %>"></div>
-            <div id="project-prefilled-tags" data-tags="<%= blog_tags %>"></div>
-            <input style="width: 100px;" type="text" name="project[tag_list]" placeholder="tag" class="tm-input" autocomplete="off"/>
+            <div id="blog-tags" data-tags="<%= Project::TAGS %>"></div>
+            <div id="blog-prefilled-tags" data-tags="<%= blog_tags %>"></div>
+            <input style="width: 100px;" type="text" name="blog[tag_list]" placeholder="tag" class="blog-tm-input" autocomplete="off"/>
             <p>Tag your blog for optimal search queries (delimiters: tab, enter, comma). Maximum: 6.</p>
           </div>
         </div>

@@ -15,16 +15,27 @@
       </div>
       <div class="row">
         <div class="span8">
-          <div class="smaller"><i class="icon-tags dark"></i>: <%= raw blog.tags.map { |t| link_to t.name, tag_path(t.name)  }.join(', ')%></div>
+          <div class="smaller">
+            <% if blog.tags.any? %>
+            <i class="icon-tags dark"></i>: <%= raw blog.tags.map { |t| link_to t.name, tag_path(t.name)  }.join(', ')%>
+            <% else %>
+            <i class="icon-tags dark"></i>: n/a
+            <% end %>
+          </div>
         </div>
       </div>  
     </div>
     <div class="span1" style="margin-top: 18px; margin-left:5px; border-left: 1px solid silver; height: 55px; padding-left: 5px;">
-      <% is_liked?(blog) ? promoted = 'promoted' : promoted = '' %>
-      <%= link_to "<i class='icon-thumbs-up dark' style='padding-right: 2px;'></i><span class='dark'>: 
-        #{blog.likes.count}</span>".html_safe, blog_likes_path(blog), remote: true, method: :post, 
-        id: "thumb_#{blog.id}", class: "blog-list-item #{promoted}" %><br>
-
+      <% if current_user && current_user.verified? %>
+        <% is_liked?(blog) ? promoted = 'promoted' : promoted = '' %>
+        <%= link_to "<i class='icon-thumbs-up dark' style='padding-right: 2px;'></i><span class='dark'>: 
+          #{blog.likes.count}</span>".html_safe, blog_likes_path(blog), remote: true, method: :post, 
+          id: "thumb_#{blog.id}", class: "blog-list-item #{promoted}", title: 'promote blog +' %>
+      <% else %>
+        <i class="icon-thumbs-up dark"></i><span class="dark">: <%= blog.likes.count %></span>
+      <% end %>
+        
+        <br>
       <i class="icon-eye-open dark"></i><span class="dark">: <%= blog.view_count %></span><br>
       <i class="icon-comment dark"></i><span class="dark">: <%= blog.comments.count %></span>
     </div>
