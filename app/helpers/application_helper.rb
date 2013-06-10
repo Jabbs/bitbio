@@ -11,7 +11,7 @@ module ApplicationHelper
   def resource_header(url)
     elements = url.split('/')[1..-1]
     if elements && elements.size == 2 && elements[1] != 'new'
-      elements[1]
+      elements[0]
     elsif elements && elements[2] == 'comments'
       elements[1]
     end

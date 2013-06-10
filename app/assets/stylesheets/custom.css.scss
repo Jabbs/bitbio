@@ -84,6 +84,9 @@ h2 {
 .red { color: $red; }
 .black { color: black; }
 
+.no-left-margin {margin-left: 0;}
+.no-right-margin {margin-right: 0;}
+
 .pointer-enabled {
   cursor: pointer;
 }
@@ -952,6 +955,13 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
     background: darken($silver, 35%);
     color: white;
   }
+}
+
+.my-button-empty {
+  padding: 5px 10px 5px 10px;
+  margin-right: 10px;
+  border: 1px solid $silver;
+  float: left;
 }
 
 .large-button {

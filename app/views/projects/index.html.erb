@@ -6,60 +6,38 @@
     <%= t("application.root.description") %>
   <% end %>
 <% end %>
-
-<% if current_user %>
-  <% if @projects && !@projects.empty? && params[:search] %>
-    <div class="row">
-      <div class="span3">
-        <%= render 'shared/sidebar/science_search' %>
-      </div>
-      <div class="span9">
-        <%= render 'tags/tag_list' %>
-      <% @projects.each do |project| %>
-        <%= render 'project', project: project %>
-      <% end %>
-      
-      </div>
-    </div>
-    <div class="row">
-      <div class="span9 offset3"><%= will_paginate %></div>
-    </div>
-    <hr>
     
-  <% elsif @projects.empty? && params[:search] %>
-    <div class="row">
-      <div class="span3">
-        <%= render 'shared/sidebar/science_search' %>
-      </div>
-      <div class="span9">
-        <div class="alert alert-block my-alert" style="margin-bottom: 10px; margin-top: 10px;">
-          <button type="button" class="close" data-dismiss="alert">&times;</button>
-          <h4>No projects matched your search.</h4>
-           Please check back another time or sign up for <%= link_to 'project alert emails', '#' %>.
-        </div>
-      </div>
-    </div>
-  <% end %>
-<% elsif params[:search] %>
-  <div class="row">
-    <div class="span3">
-      <%= render 'shared/sidebar/science_search' %>
-    </div>
-    <div class="span9 pull-right">
-      <%= render 'shared/alerts/sign_in_notice' %>
-    </div>
-  </div>
-<% end %>
-<% unless @projects && !@projects.empty? && params[:search] && current_user %>
-  <div class="row">
-    <div class="span3">
+    <div class="span3 pull-left no-left-margin">
       <%= render 'shared/sidebar/science_search' %>
       <%= render 'shared/sidebar/featured_users' %>
     </div>
-    <div class="span9">
-      <%= render 'blogs/blogs', blogs: @blogs %>
-      <%= render 'shared/word_cloud' %>
-    </div>
-  </div>
-<% end %>
+
+    <% if params[:search] %>
+      <% if current_user && @projects.any? %>
+        <div class="span9 pull-right">
+          <%= render 'tags/tag_list' %>
+          <% @projects.each do |project| %>
+            <%= render 'project', project: project %>
+          <% end %>
+        </div>
+        <div class="span9 pull-right"><%= will_paginate @projects %></div>
+      <% elsif current_user && @projects.empty? %>
+        <div class="span9 pull-right">
+          <%= render 'shared/alerts/no_projects' %>
+        </div>
+      <% elsif !current_user.present? %>
+        <div class="span9 pull-right">
+          <%= render 'shared/alerts/sign_in_notice' %>
+        </div>
+      <% end %>
+    <% end %>
+    
+    <% unless current_user && @projects.any? %>
+      <div class="span9 pull-right">
+        <%= render 'blogs/blogs', blogs: @blogs %>
+        <%= render 'shared/word_cloud' %>
+      </div>
+    <% end %>
+
+
 
