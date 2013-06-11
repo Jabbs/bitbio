@@ -169,7 +169,7 @@ class Project < ActiveRecord::Base
       projects = projects.joins(:tags).where(tags: {name: tag})
     end
 
-    unless any == 'yes'
+    unless any.present? && any == 'yes'
       continents = []
       unless na.blank? || na == nil
         continents << "North America" if na == 'yes'

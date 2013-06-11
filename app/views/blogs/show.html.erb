@@ -16,17 +16,19 @@
     <div class="row">
       <div class="span9">
     <% if is_liked?(@blog) %>
-        <div class="my-button-empty">
-          <i class="icon-thumbs-up"></i> PROMOTED BY YOU
-        </div>
+    <p class="inline">
+      <div class="my-button-empty">
+        <i class="icon-thumbs-up"></i> PROMOTED BY YOU
+      </div>
+    </p>
 
     <% elsif current_user %>
       <%= link_to '<i class="icon-thumbs-up"></i> PROMOTE'.html_safe, blog_likes_path(@blog), class: 'my-button-silver', method: :post %>
     <% end %>
     <% if @blog.likes.any? %>
-      <p><strong class="dark" style="padding-left: 5px;"><%= pluralize(@blog.likes.count, 'member') %> promoted this.</strong></p>
+      <p class="inline"><strong class="dark" style="padding-left: 5px;"><%= pluralize(@blog.likes.count, 'member') %> promoted this.</strong></p>
     <% else %>
-      <p><strong class="dark" style="padding-left: 5px;">be the first to promote this!</strong></p>
+      <p class="inline"><strong class="dark" style="padding-left: 5px;">be the first to promote this!</strong></p>
     <% end %>
       </div>
     </div>

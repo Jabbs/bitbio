@@ -1,13 +1,11 @@
 <% resource_header = resource_header(request.path) %>
 <% unless resource_header.blank? %>
-
-    <% if 1 == 2 %>
-      <div class="span3">
-        <%= link_to "&larr; back".html_safe, :back %>
-      </div>
-    <% end %>
-    <div class="span9 pull-right" style="margin-bottom: 10px;">
-      <h1 class="underline-header"><%= resource_header %></h1>
-    </div>
- 
+<div class="row">
+  <div class="span3">
+    <%= link_to "&larr; back".html_safe, :back %>
+  </div>
+  <div class="span9 pull-right" style="margin-bottom: 10px;">
+    <h1 class="underline-header"><%= resource_header %></h1>
+  </div>
+</div>
 <% end %>

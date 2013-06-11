@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       @featured_users = User.featured
       @session_user = User.new
       @session_user.errors.add(:email, "Invalid email/password combination")
-      render template: "projects/index"
+      render template: "projects/home"
     end
   end
 

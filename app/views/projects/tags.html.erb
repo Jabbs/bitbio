@@ -1,0 +1,38 @@
+<% if !ENV['STAGING'].present? || Rails.env.development? %>
+  <% content_for :title do %>
+    <%= t('application.root.title_with_tag_line', tag_line: "#{params[:tag]} tags") %>
+  <% end %>
+  <% content_for :description do %>
+    Search for bitBIO scientific services or projects tagged with <%= params[:tag] %>.
+  <% end %>
+<% end %>
+
+<% if current_user %>
+  <% if @projects && @projects.any? %>
+    <div class="row" style="margin-top: 10px;">
+      <div class="span9 pull-right">
+        <%= render 'tag_list' %>
+      <% @projects.each do |project| %>
+        <%= render 'projects/project', project: project %>
+      <% end %>
+      <div class="row"><div class="span9"><%= will_paginate @projects %></div></div>
+      </div>
+    </div>
+    <hr>
+  <% elsif @projects.empty? %>
+    <div class="row">
+      <div class="span9 pull-right">
+        <hr>
+          <p style="text-align:center;"><em>***No projects matched your search. Please check back another time or 
+          sign up for <%= link_to 'project alert emails', '#' %>.***</em></p>
+        <hr>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <div class="row">
+    <div class="span9 pull-right">
+      <%= render 'shared/alerts/sign_in_notice' %>
+    </div>
+  </div>
+<% end %>

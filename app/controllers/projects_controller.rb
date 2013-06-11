@@ -1,8 +1,13 @@
 class ProjectsController < ApplicationController
-  before_filter :signed_in_user, except: [:index, :show]
-  before_filter :verified_user, except: [:index, :show]
+  before_filter :signed_in_user, except: [:home, :index, :show]
+  before_filter :verified_user, except: [:home, :index, :show]
   before_filter :check_if_private_or_locked_or_inactive, only: [:show]
   before_filter :correct_user, only: [:edit, :update, :destroy]
+  
+  def home
+    @blogs = Blog.featured
+    @featured_users = User.featured
+  end
   
   def index
     @projects = Project.where(searchable: true).order("created_at DESC").search(params[:any], params[:na], params[:eur], params[:asia], params[:aus], params[:science], params[:tag]).paginate(page: params[:page], per_page: 9)
@@ -16,7 +21,7 @@ class ProjectsController < ApplicationController
   
   def tags
     respond_to do |f|
-      f.html { redirect_to '/' }
+      f.html
       f.json { render json: Project::TAGS }
     end
   end

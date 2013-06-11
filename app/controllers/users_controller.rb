@@ -9,6 +9,10 @@ class UsersController < ApplicationController
     @user = User.new
   end
   
+  def index
+    redirect_to root_path
+  end
+  
   def project_listings
     @user = User.find(params[:user_id])
     @public_projects = @user.projects.where(active: true).where(visability: 'public').paginate(page: params[:page], per_page: 6)
@@ -57,7 +61,7 @@ class UsersController < ApplicationController
     else
       @blogs = Blog.featured
       @featured_users = User.featured
-      render template: "projects/index"
+      render template: "projects/home"
     end
   end
   

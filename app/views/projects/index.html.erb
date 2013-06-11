@@ -1,43 +1,31 @@
-<% if !ENV['STAGING'].present? || Rails.env.development? %>
-  <% content_for :title do %>
-    <%= t('application.root.title_with_tag_line', tag_line: "Science Community, Science Market, and Science Outsourcing") %>
-  <% end %>
-  <% content_for :description do %>
-    <%= t("application.root.description") %>
+<% content_for :title do %>
+  <%= t('application.root.title_with_tag_line', tag_line: "Search for science projects") %>
+<% end %>
+<% content_for :description do %>
+  Browse scientific projects and sort listings to find those that are of interest.
+<% end %>
+
+<div class="span3 pull-left no-left-margin">
+  <%= render 'shared/sidebar/science_search' %>
+</div>
+
+<% if params[:search] %>
+  <% if current_user && @projects.any? %>
+    <div class="span9 pull-right">
+      <%= render 'tags/tag_list_projects' %>
+      <% @projects.each do |project| %>
+        <%= render 'project', project: project %>
+      <% end %>
+    </div>
+    <div class="span9 pull-right"><%= will_paginate @projects %></div>
+  <% elsif current_user && @projects.empty? %>
+    <div class="span9 pull-right">
+      <%= render 'shared/alerts/no_projects' %>
+    </div>
+  <% elsif !current_user.present? %>
+    <div class="span9 pull-right">
+      <%= render 'shared/alerts/sign_in_notice' %>
+    </div>
   <% end %>
 <% end %>
-    
-    <div class="span3 pull-left no-left-margin">
-      <%= render 'shared/sidebar/science_search' %>
-      <%= render 'shared/sidebar/featured_users' %>
-    </div>
-
-    <% if params[:search] %>
-      <% if current_user && @projects.any? %>
-        <div class="span9 pull-right">
-          <%= render 'tags/tag_list' %>
-          <% @projects.each do |project| %>
-            <%= render 'project', project: project %>
-          <% end %>
-        </div>
-        <div class="span9 pull-right"><%= will_paginate @projects %></div>
-      <% elsif current_user && @projects.empty? %>
-        <div class="span9 pull-right">
-          <%= render 'shared/alerts/no_projects' %>
-        </div>
-      <% elsif !current_user.present? %>
-        <div class="span9 pull-right">
-          <%= render 'shared/alerts/sign_in_notice' %>
-        </div>
-      <% end %>
-    <% end %>
-    
-    <% unless current_user && @projects.any? %>
-      <div class="span9 pull-right">
-        <%= render 'blogs/blogs', blogs: @blogs %>
-        <%= render 'shared/word_cloud' %>
-      </div>
-    <% end %>
-
-
 

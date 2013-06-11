@@ -4,6 +4,7 @@ class BlogsController < ApplicationController
   before_filter :correct_user, only: [:edit, :update, :destroy]
   
   def index
+    @blogs = Blog.scoped.order("created_at DESC").paginate(page: params[:page], per_page: 9)
   end
   
   def show

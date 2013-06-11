@@ -1,0 +1,17 @@
+<% content_for :title do %>
+  <%= t('application.root.title_with_tag_line', tag_line: "Science Community, Science Market, and Science Outsourcing") %>
+<% end %>
+<% content_for :description do %>
+  <%= t("application.root.description") %>
+<% end %>
+
+    
+<div class="span3 pull-left no-left-margin">
+  <%= render 'shared/sidebar/science_search' %>
+  <%= render 'shared/sidebar/featured_users' %>
+</div>
+
+<div class="span9 pull-right">
+  <%= render 'blogs/blogs', blogs: @blogs %>
+  <%= render 'shared/word_cloud' %>
+</div>

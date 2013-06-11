@@ -6,11 +6,14 @@ Bitbio::Application.routes.draw do
   resources :blogs do
     resources :comments, only: [:create]
     resources :likes, only: [:create, :index]
+    collection do
+      get 'tags', to: 'tags#index_blogs', as: :tags
+      get 'tags/:tag', to: 'tags#show_blogs', as: :tag
+    end
   end
-  get "tags/index"
   resources :instruments
   resources :messages, only: [:show]
-  resources :users, except: [:index], path: "/members" do
+  resources :users, path: "/members" do
     get 'resend'
     get 'project_listings'
     resources :messages, only: [:create, :index]
@@ -19,11 +22,10 @@ Bitbio::Application.routes.draw do
   resources :projects do
     resources :comments, only: [:create]
     collection do
-      get 'tags'
+      get 'tags', to: 'tags#index_projects', as: :tags
+      get 'tags/:tag', to: 'tags#show_projects', as: :tag
     end
   end
-  resources :tags, only: [:index]
-  get 'tags/:tag', to: 'tags#show', as: :tag
   resources :verifications, only: [:show]
   
   match '/researchers', to: 'users#researchers_index', via: :get
@@ -35,5 +37,5 @@ Bitbio::Application.routes.draw do
     delete 'logout' => :destroy
   end
 
-  root :to => 'projects#index'
+  root :to => 'projects#home'
 end

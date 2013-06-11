@@ -8,16 +8,16 @@
 <% end %>
 
 <% if current_user %>
-  <% if @projects && !@projects.empty? %>
+  <% if @projects && @projects.any? %>
     <div class="row" style="margin-top: 10px;">
       <div class="span9 pull-right">
-        <%= render 'tag_list' %>
+        <%= render 'tag_list_projects' %>
       <% @projects.each do |project| %>
         <%= render 'projects/project', project: project %>
       <% end %>
+      <div class="row"><div class="span9"><%= will_paginate @projects %></div></div>
       </div>
     </div>
-    <%= will_paginate @projects %>
     <hr>
   <% elsif @projects.empty? %>
     <div class="row">
@@ -32,14 +32,7 @@
 <% else %>
   <div class="row">
     <div class="span9 pull-right">
-      <div class="alert alert-block my-alert" style="margin-bottom: 10px; margin-top: 10px;">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <h4>Notice!</h4>
-        You must be signed in to search or create project listings. Please 
-        <a href="#signupModal" data-toggle="modal">sign up</a>
-        or
-        <a href="#loginModal" data-toggle="modal" class="loginlink">sign in</a>.
-      </div>
+      <%= render 'shared/alerts/sign_in_notice' %>
     </div>
   </div>
 <% end %>

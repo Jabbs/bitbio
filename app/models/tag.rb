@@ -12,11 +12,11 @@ class Tag < ActiveRecord::Base
     self.name = self.name.strip.downcase
   end
   
-  def count
-    self.projects.size
-  end
-  
   def self.top_project_tags
     includes(:projects).sort_by { |tag| tag.projects.size }.reverse.select { |t| t.projects.size != 0 }
+  end
+  
+  def self.top_blog_tags
+    includes(:blogs).sort_by { |tag| tag.blogs.size }.reverse.select { |t| t.blogs.size != 0 }
   end
 end

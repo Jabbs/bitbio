@@ -56,7 +56,7 @@ style: 'position:relative; left: 600px; top: -38px' %></div>
     </div>
   </div>
   <% if @blog.tags %>
-    <i class="icon-tags dark"></i> tags: <%= raw @blog.tags.map { |t| link_to t.name, tag_path(t.name)  }.join(', ') %>
+    <i class="icon-tags dark"></i> tags: <%= raw @blog.tags.map { |t| link_to t.name, tag_blogs_path(t.name)  }.join(', ') %>
   <% end %>
   <hr style="margin-top:5px;">
 </div>

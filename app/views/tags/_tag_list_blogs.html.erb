@@ -1,0 +1,14 @@
+<div style="margin-bottom: 10px;">
+  <div id="short-tag-list">
+    <i class="icon-tags"></i>:
+    <%= raw Tag.top_blog_tags.take(20).map { |t| link_to "#{t.name} (#{t.blogs.size})", tag_blogs_path(t.name) }.join(', ') %>
+    <% if Tag.top_blog_tags.size > 20 %>
+      <i class="icon-expand-alt expand-tags" title="expand tag list"></i>
+    <% end %>
+  </div>
+  <div id="long-tag-list">
+    <i class="icon-tags"></i>:
+    <%= raw Tag.top_blog_tags.map { |t| link_to "#{t.name} (#{t.blogs.size})", tag_blogs_path(t.name) }.join(', ') %>
+    <i class="icon-collapse-alt expand-tags" title="expand tag list"></i>
+  </div>
+</div>
