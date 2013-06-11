@@ -196,7 +196,8 @@ h2.info_header {
 
 .smaller-shell {
   width: 218px;
-  margin-bottom: 20px;
+  margin-bottom: 19px;
+  margin-top: 1px;
   background: white;
   border: 1px solid $header_background;
 }
@@ -483,6 +484,7 @@ h2.info_header {
     display: inline;
     small {
       font-size: 70%;
+      color: black;
     }
   }
   .description {
@@ -680,6 +682,8 @@ h2.info_header {
     text-align: right;
     small {
       font-size: 70%;
+      color: black;
+      font-style: italic;
     }
   }
 }
@@ -771,7 +775,7 @@ h2.info_header {
 
 header {
   min-width: 960px;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
   .navbar {
     margin-bottom: 5px;
   }

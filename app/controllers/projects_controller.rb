@@ -10,7 +10,11 @@ class ProjectsController < ApplicationController
   end
   
   def index
-    @projects = Project.where(searchable: true).order("created_at DESC").search(params[:any], params[:na], params[:eur], params[:asia], params[:aus], params[:science], params[:tag]).paginate(page: params[:page], per_page: 9)
+    if params[:search]
+      @projects = Project.where(searchable: true).order("created_at DESC").search(params[:any], params[:na], params[:eur], params[:asia], params[:aus], params[:science], params[:tag]).paginate(page: params[:page], per_page: 9)
+    else
+      @projects = Project.where(searchable: true).order("created_at DESC").paginate(page: params[:page], per_page: 9)
+    end
     @blogs = Blog.featured
     @featured_users = User.featured
   end

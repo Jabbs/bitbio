@@ -58,7 +58,7 @@
   <% end %>
   <div class="row" style="padding-left:20px; width: 520px; margin-top: 10px;">
     <% if @project.tags.any? %>
-    <i class="icon-tags"></i> tags: <%= raw @project.tags.map { |t| link_to t.name, tag_path(t.name) }.join(', ') %>
+    <i class="icon-tags"></i> tags: <%= raw @project.tags.map { |t| link_to t.name, tag_projects_path(t.name) }.join(', ') %>
     <% end %>
   </div>
   <div class="description">
@@ -79,7 +79,8 @@
       <i class="icon-comment" style="margin-top: 1px; margin-left: 20px;"></i> 
       comments: <%= @project.comments.size %>
     </div>
-    <p class="time_ago pull-right"><small>Listed <%= time_ago_in_words(@project.created_at) %> ago.</small></p>
+    <p class="time_ago pull-right"><small>Listed on <%= @project.created_at.strftime("%D") %> 
+    (<%= time_ago_in_words(@project.created_at) %> ago).</small></p>
   </div>
 </div>
 
