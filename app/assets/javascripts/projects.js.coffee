@@ -7,11 +7,6 @@ jQuery ->
     $(this).children().hide()
     $('.main-nav-set li:first-child').show()
     
-  $('.blog-list-item').mouseenter ->
-    $(this).children().addClass('bluee')
-  $('.blog-list-item').mouseleave ->
-    $(this).children().removeClass('bluee')
-    
   $('#any').mousedown ->
     if $(this).prop('checked') == false
       $('.ctry').prop('checked', false)

@@ -63,7 +63,7 @@ class ProjectsController < ApplicationController
       create_bitly_url(project_url(@project)) if Rails.env.production? && ENV['STAGING'].nil?
       check_if_searchable
       redirect_to @project, notice: "Your project listing has now been activated! You will receive email notifications
-      when your project receives comments or messages from another bitBIO member."
+      when your project receives comments or messages."
     else
       render 'new'
     end

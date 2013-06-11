@@ -4,18 +4,18 @@
 	    <div class="container">
 	      <div class="row" style="padding-left: 0px;">
 	        <div class="span2" style="width: 110px; padding-top: 5px;">
-	          <%= link_to "<i class='icon-beaker'></i>bitBIO".html_safe, root_path, id: 'logo' %>
-
+	          <%= link_to "<i class='icon-beaker'></i>bitBIO".html_safe, root_path, id: 'logo', title: 'Home' %>
   	      </div>
   	      <div class="span3" style="width: 240px; padding-left: 10px;">
             <ul class="breadcrumb">
               <%= bread_crumb_list_items(request.path) %>
             </ul>
           </div>
-          <div class="span7">
+          <div class="span7" style="padding-top: 4px;">
             <h1>
               Science Community and Science Search Engine 
-              <i class="icon-search"></i></h1>
+              <i class="icon-search"></i>
+            </h1>
           </div>
 	      </div>
 
@@ -53,6 +53,7 @@
                 <li id="blogs">
                   <ul class="main-nav-set unstyled">
                     <li><%= link_to 'blogs', blogs_path %></li>
+                    <li style="width: 110px;"><%= link_to 'create blog', new_blog_path %></li>
                     <li style="width: 110px;"><%= link_to 'all blogs', blogs_path %></li>
                     <li style="width: 110px;"><%= link_to 'weekly newsletter', '#' %></li>
                   </ul>

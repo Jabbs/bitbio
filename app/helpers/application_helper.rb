@@ -37,8 +37,6 @@ module ApplicationHelper
     elements = url.split('/')[1..-1]
     if elements && elements.size == 2 && elements[1] != 'new'
       elements[0]
-    elsif elements && elements[2] == 'comments'
-      elements[1]
     elsif elements
       elements[0] if elements[0] == 'tags' || elements[0] == 'projects' || elements[0] == 'blogs'
     end

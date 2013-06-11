@@ -39,8 +39,6 @@ $link_color: #0088cc;
   box-shadow: none;
 }
 
-.container { }
-
 .modal {
   border-radius: 0;
   padding-left: 100px;
@@ -83,8 +81,8 @@ h2 {
 .gold { color: $gold_dark; }
 .silver { color: $silver; }
 .dark { color: $header_background;}
-.blue { color: $blue; }
-.bluee { color: $blue; }
+.blue { color: darken($blue, 15%); }
+.bluee { color: darken($blue, 15%); }
 .red { color: $red; }
 .black { color: black; }
 
@@ -100,6 +98,14 @@ h2 {
 }
 .my-alert {
   background: lighten($blue, 25%);
+  color: $header_background;
+  h4 {
+    color: inherit;
+  }
+}
+
+.my-alert-green {
+  background: lighten($green_very_light, 5%);
   color: $header_background;
   h4 {
     color: inherit;
@@ -292,6 +298,7 @@ h2.info_header {
 
 .blog-well {
   padding-bottom: 2px;
+  margin-left:10px;
   .user { 
     float: left; 
     margin-right: 5px;
@@ -328,7 +335,7 @@ h2.info_header {
   }
   .promoted {
     i, span {
-      color: $blue;
+      color: darken($blue, 15%);
       &:hover {
         cursor: text;
       }
@@ -459,6 +466,7 @@ h2.info_header {
   background: lighten($silver, 15%);
   padding: 10px;
   padding-top: 0px;
+  margin-bottom: 20px;
   .expiration-date {
     position: relative;
     height: 35px;
@@ -621,7 +629,7 @@ h2.info_header {
   margin-left: 0px;
   height: 254px;
   max-height: 254px;
-  &:nth-child(3n+1) {
+  &:nth-child(3n) {
     margin-right: 0px;
   }
   .expiration-date {

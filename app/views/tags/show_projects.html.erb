@@ -9,7 +9,7 @@
 
 <% if current_user %>
   <% if @projects && @projects.any? %>
-    <div class="row" style="margin-top: 10px;">
+    <div class="row">
       <div class="span9 pull-right">
         <%= render 'tag_list_projects' %>
       <% @projects.each do |project| %>
@@ -22,10 +22,7 @@
   <% elsif @projects.empty? %>
     <div class="row">
       <div class="span9 pull-right">
-        <hr>
-          <p style="text-align:center;"><em>***No projects matched your search. Please check back another time or 
-          sign up for <%= link_to 'project alert emails', '#' %>.***</em></p>
-        <hr>
+        <%= render 'shared/alerts/no_projects' %>
       </div>
     </div>
   <% end %>

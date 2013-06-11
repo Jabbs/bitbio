@@ -1,8 +1,11 @@
 <div style="margin-bottom: 10px;">
   <div id="short-tag-list">
+    <% if params[:tag] %>
+      <i class="icon-tag"></i>: <%= params[:tag] %> (<%= Tag.find_by_name(params[:tag]).projects.size %>)<br>
+    <% end %>
     <i class="icon-tags"></i>:
-    <%= raw Tag.top_project_tags.take(20).map { |t| link_to "#{t.name} (#{t.projects.size})", tag_projects_path(t.name) }.join(', ') %>
-    <% if Tag.top_project_tags.size > 20 %>
+    <%= raw Tag.top_project_tags.take(18).map { |t| link_to "#{t.name} (#{t.projects.size})", tag_projects_path(t.name) }.join(', ') %>
+    <% if Tag.top_project_tags.size > 18 %>
     <i class="icon-expand-alt expand-tags" title="expand tag list"></i>
     <% end %>
   </div>

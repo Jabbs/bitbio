@@ -12,7 +12,9 @@
 <% if params[:search] %>
   <% if current_user && @projects.any? %>
     <div class="span9 pull-right">
-      <%= render 'tags/tag_list_projects' %>
+      <%= render 'shared/alerts/search_result_count' %>
+    </div>
+    <div class="span9 pull-right">
       <% @projects.each do |project| %>
         <%= render 'project', project: project %>
       <% end %>
