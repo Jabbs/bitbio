@@ -24,7 +24,7 @@ style: 'position:relative; left: 600px; top: -38px' %></div>
           <span style="margin-left: 5px;"><%= pluralize(@blog.comments.count, 'COMMENT', 'COMMENTS') %></span>
         </small>
       </p>
-      <div class="row">
+      <div class="row" style="margin-bottom: 5px;">
         <div class="span1" style="width:80px">
           <a href="https://twitter.com/share" class="twitter-share-button" data-url="<%= share_url %>" data-text="<%= @blog.title %>" data-via="bit_bio" data-counturl="<%= request.url %>">Tweet</a>
         </div>

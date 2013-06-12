@@ -911,9 +911,8 @@ header {
 #jobs ul { position: relative; width: 30px; left: 162px; z-index:10; }
 #science ul { position: relative; width: 30px; left: 179px; z-index:10; }
 
-ul.nav li.dropdown:hover > ul.dropdown-menu{
-  display: block;    
-}
+ul.nav li.dropdown:hover > ul.dropdown-menu{ display: block; }
+ul.nav li.dropdown > ul.dropdown-menu{ margin-top:0px; border-radius: 0px; }
 
 .my-button {
   margin: 5px 0px 0px 0px;

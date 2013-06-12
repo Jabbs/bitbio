@@ -31,7 +31,7 @@
   <%= project.expiration_date.strftime("%b %e, %Y")  %>
   <% else %>
   <div class="small-links">
-    <%= raw project.tags.map { |t| link_to t.name, tag_path(t.name)  }.join(', ')%>
+    <%= raw project.tags.map { |t| link_to t.name, tag_projects_path(t.name)  }.join(', ')%>
   </div>
   <% end %>
   
