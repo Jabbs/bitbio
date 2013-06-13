@@ -77,7 +77,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @project.destroy
     
-    redirect_to current_user, alert: "Your project has been removed."
+    redirect_to user_project_listings_path(current_user), alert: "Your project has been removed."
   end
   
   private

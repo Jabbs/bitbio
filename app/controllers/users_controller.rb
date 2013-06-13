@@ -21,6 +21,14 @@ class UsersController < ApplicationController
     @inactive_projects = @user.projects.where(active: false)
   end
   
+  def service_listings
+    @user = User.find(params[:user_id])
+    @public_services = @user.services.where(active: true).where(visability: 'public').paginate(page: params[:page], per_page: 6)
+    @private_services = @user.services.where(active: true).where(visability: 'private').paginate(page: params[:page], per_page: 6)
+    @locked_services = @user.services.where(active: true).where(visability: 'locked').paginate(page: params[:page], per_page: 6)
+    @inactive_services = @user.services.where(active: false)
+  end
+  
   def edit
     @user = User.find(params[:id])
     @user.attachments.build

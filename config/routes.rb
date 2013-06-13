@@ -20,6 +20,7 @@ Bitbio::Application.routes.draw do
   resources :users, path: "/members" do
     get 'resend'
     get 'project_listings'
+    get 'service_listings'
     resources :messages, only: [:create, :index]
   end
   resources :password_resets, only: [:new, :create, :edit, :update]

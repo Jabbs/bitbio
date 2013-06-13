@@ -1,0 +1,60 @@
+<div class="span9 pull-right">
+  <div class="row" style="padding-left: 20px;"><h2>My Service Listings</h2></div>
+  <div class="row" style="margin-top: 5px;">
+    <div class="navbar" id="message_nav">
+      <div class="navbar-inner">
+        <ul class="nav">
+
+          <% a = "on" unless params[:private] == 'true' || params[:locked] == 'true' || params[:inactive] == 'true' %>
+          <% b = "on" if params[:private] == 'true' %>
+          <% c = "on" if params[:locked] == 'true' %>
+          <% d = "on" if params[:inactive] == 'true' %>
+
+          <li style="margin-top: 5px;" class=<%= a %>>
+          <%= link_to "<i class='icon-globe'></i> Public (#{@public_services.size})".html_safe,
+           user_service_listings_path(current_user), style: 'padding: 5px 10px;' %></li>
+          <li style="margin-top: 5px;" class=<%= b %>>
+          <%= link_to "<i class='icon-group'></i> Private (#{@private_services.size})".html_safe,
+           user_service_listings_path(current_user, private: true), style: 'padding: 5px 10px;' %></li>
+          <li style="margin-top: 5px;" class=<%= c %>>
+          <%= link_to "<i class='icon-lock'></i> Locked (#{@locked_services.size})".html_safe,
+           user_service_listings_path(current_user, locked: true), style: 'padding: 5px 10px;' %></li>
+          <li style="margin-top: 5px;" class=<%= d %>>
+          <%= link_to "<i class='icon-ban-circle'></i> Inactive (#{@inactive_services.size})".html_safe,
+           user_service_listings_path(current_user, inactive: true), style: 'padding: 5px 10px;' %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <% if params[:inactive] == 'true' %>
+    <% @services = @inactive_services %>
+  <% elsif params[:locked] == 'true' %>
+    <% @services = @locked_services %>
+  <% elsif params[:private] == 'true' %>
+    <% @services = @private_services %>
+  <% else %>
+    <% @services = @public_services %>
+  <% end %>
+  
+  <% if @services.any? %>
+  <div class="span9 pull-right">
+    <% @services.each do |service| %>
+      <%= render 'services/service', service: service %>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="span9 pull-right"><%= will_paginate @services %></div>
+  </div>
+  <% else %>
+  <div class="row">
+    <div class="span9">
+      <div class="alert">
+    		<strong>NOTICE:</strong>
+    	  Empty.
+    	</div>
+    </div>
+  </div>
+  <% end %>
+  
+</div>

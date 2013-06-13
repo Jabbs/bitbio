@@ -116,6 +116,12 @@
                       <i class="icon-beaker" style="margin-right: 6px;"></i> My project listings</a>
                     </li>
                   <% end %>
+                  <% if current_user.services.any? %>
+                    <li>
+                      <a href="<%= user_service_listings_path(current_user) %>">
+                      <i class="icon-beaker" style="margin-right: 6px;"></i> My service listings</a>
+                    </li>
+                  <% end %>
                   <li class="divider"></li>
                   <li>
                     <a href="<%= logout_path %>" data-method="delete" rel="nofollow">

@@ -7,6 +7,7 @@ class Service < ActiveRecord::Base
   
   UNIT_TYPES = ["Sample", "Reaction", "Unit"]
   VISABILITY_OPTIONS = ["public", "private", "locked"]
+  SERVICE_TYPES = ["Instrument/Equipment", "Method", "Application", "Reagent", "Experiment", "Analysis"]
   
   # callbacks
   after_validation :move_friendly_id_error_to_name

@@ -66,6 +66,31 @@ namespace :db do
       project.save!
     end
     
+    100.times do
+      name = ['Illumina', 'Roche', 'Life Sciences', 'PacBio', 'Complete Genomics', 'Agilent', 'Thermo Fisher'].shuffle.first + " " + ['Next-gen', 'Microarray', 'Biochemical', 'Protein', 'DNA'].shuffle.first + " " + ['Sequencing', 'Analysis', 'Experiment', 'Research', 'Study'].shuffle.first + " " + ('a'..'z').to_a.shuffle.first(8).join
+      description = Faker::Lorem.paragraph + ' ' + Faker::Lorem.paragraph + ' ' + Faker::Lorem.paragraph + ' ' + Faker::Lorem.paragraph
+      service_type = Service::SERVICE_TYPES.shuffle.first
+      price = [1000, 200, 12, 40, 99, 300, 1200, 1100, 100, 300, 400, 500, 3100, 800].shuffle.first
+      unit_type = Service::UNIT_TYPES.shuffle.first
+      exp_date = Date.today + [30, 90, 180].shuffle.first.days
+      service = Service.new(name: name, description: description, service_type: service_type, price: price,
+                            unit_type: unit_type, expiration_date: exp_date)
+      service.user_id = User.all.shuffle.first.id
+      
+      x = [1,2,3].shuffle.first
+      Project::TAGS.uniq.shuffle[0..x].each do |tag|
+        if Tag.find_by_name(tag)
+          t = Tag.find_by_name(tag)
+        else
+          t = Tag.create!(name: tag)
+        end
+        service.taggings.build(tag_id: t.id)
+        service.save!
+      end
+      service.view_count = [7,20,25,30,34,40,80,90,100,123,44,2,234,300,23,10,50].shuffle.first
+      service.save!
+    end
+    
     80.times do
       project = Project.all.shuffle.first
       subject = "Project - #{project.name}"

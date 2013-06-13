@@ -1,0 +1,54 @@
+<% action_name == "service_listings" ? add_class = "change_n" : add_class = '' %>
+<div class="span3 service-well <%= add_class %>">
+  
+  <% if service.service_type == "Instrument/Equipment" %>
+    <% back_color = "sci_ser" %>
+  <% elsif service.service_type == "Method" %>
+    <% back_color = "sci" %>
+  <% elsif service.service_type == "Application" %>
+    <% back_color = "ser" %>
+  <% elsif service.service_type == "Reagent" %>
+    <% back_color = "dat" %>
+  <% elsif service.service_type == "Experiment" %>
+    <% back_color = "cli" %>
+  <% elsif service.service_type == "Analysis"%>
+    <% back_color = "def" %>
+  <% end %>
+  <div class="row" style="padding-left: 20px; margin-top: 2px;">
+    <div class="country">
+      <i class="icon-globe"></i>
+      <%= truncate(country_with_us_shortened(service.user.country), length: 18) %>
+    </div>
+    <div class="service <%= back_color %>"><%= service.service_type %></div>
+  </div>
+  <div class="head">
+    <h3><%= link_to truncate(service.name, length: 32), service_path(service) %></h3>
+  </div>
+  <h4>what goes here</h4>
+  
+  <% if current_user?(service.user) && controller_name != 'services' %>
+  expires on
+  <%= service.expiration_date.strftime("%b %e, %Y")  %>
+  <% else %>
+  <div class="small-links">
+    <%= raw service.tags.map { |t| link_to t.name, tag_services_path(t.name)  }.join(', ')%>
+  </div>
+  <% end %>
+  
+  <p><%= truncate(service.description, length: 230) %> <%= link_to "more", service_path(service), class: 'more' %></p>
+
+
+  <!-- <label class="checkbox" style="display: inline; padding-left: 0px; margin-left: 0px; margin-top: 5px; font-size: 70%;">
+    <input type="checkbox" style="display: inline; padding-left: 0px; margin-left: 0px; margin-right: 3px;"> Favorite
+  </label> -->
+  <div class="row">
+    <div class="span1" style="width: 115px; padding-top: 2px;">
+      <i class="icon-eye-open" style="margin-top: 1px;"></i>:<%= service.view_count %>
+      <i class="icon-envelope-alt" style="margin-top: 1px; margin-left: 5px;"></i>:12
+      <i class="icon-comment" style="margin-top: 1px; margin-left: 5px;"></i>:3
+    </div>
+
+    <p class="time_ago pull-right"><small><%= time_ago_in_words(service.created_at) %> ago</small></p>
+  </div>
+  
+</div>

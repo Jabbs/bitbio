@@ -47,7 +47,7 @@ class ServicesController < ApplicationController
     @service = Service.find(params[:id])
     @service.destroy
     
-    redirect_to current_user, alert: "Your service has been removed."
+    redirect_to user_service_listings_path(current_user), alert: "Your service has been removed."
   end
   
   private

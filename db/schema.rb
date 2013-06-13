@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130613013853) do
+ActiveRecord::Schema.define(:version => 20130613032336) do
 
   create_table "attachments", :force => true do |t|
     t.string   "attachable_type"
@@ -174,12 +174,11 @@ ActiveRecord::Schema.define(:version => 20130613013853) do
     t.integer  "view_count",      :default => 0
     t.string   "bitly_url"
     t.string   "visability",      :default => "public"
-    t.string   "expiration_date"
     t.boolean  "searchable",      :default => true
     t.boolean  "active",          :default => true
+    t.date     "expiration_date"
   end
 
-  add_index "services", ["expiration_date"], :name => "index_services_on_expiration_date"
   add_index "services", ["name"], :name => "index_services_on_name"
   add_index "services", ["price"], :name => "index_services_on_price"
   add_index "services", ["searchable"], :name => "index_services_on_searchable"
