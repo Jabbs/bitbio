@@ -1,7 +1,7 @@
 <div style="margin-bottom: 10px;">
   <div id="short-tag-list">
     <% if params[:tag] %>
-      <i class="icon-tag"></i>: <%= params[:tag] %> (<%= Tag.find_by_name(params[:tag]).projects.size %>)<br>
+      <i class="icon-tag"></i>: <strong><%= params[:tag] %> (<%= Tag.find_by_name(params[:tag]).projects.size %>)</strong><br>
     <% end %>
     <i class="icon-tags"></i>:
     <%= raw Tag.top_project_tags.take(18).map { |t| link_to "#{t.name} (#{t.projects.size})", tag_projects_path(t.name) }.join(', ') %>
@@ -10,6 +10,9 @@
     <% end %>
   </div>
   <div id="long-tag-list">
+    <% if params[:tag] %>
+      <i class="icon-tag"></i>: <strong><%= params[:tag] %> (<%= Tag.find_by_name(params[:tag]).projects.size %>)</strong><br>
+    <% end %>
     <i class="icon-tags"></i>:
     <%= raw Tag.top_project_tags.map { |t| link_to "#{t.name} (#{t.projects.size})", tag_projects_path(t.name) }.join(', ') %>
     <i class="icon-collapse-alt expand-tags" title="expand tag list"></i>
