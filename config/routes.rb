@@ -1,7 +1,11 @@
 Bitbio::Application.routes.draw do
-  
+
+  resources :facilities do
+    resources :labs
+  end
   mount Ckeditor::Engine => '/ckeditor'
 
+  resources :services
   resources :attachments
   resources :blogs do
     resources :comments, only: [:create]

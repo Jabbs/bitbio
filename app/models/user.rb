@@ -2,9 +2,10 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :full_name, use: [:slugged, :history]
   geocoded_by :full_address
-  attr_accessible :account_type, :bio, :email, :first_name, :last_name, :organization,
+  attr_accessible :account_type, :bio, :email, :first_name, :last_name,
                   :password, :password_confirmation, :phone, :address, :city, :state,
-                  :zip, :country, :membership, :continent, :attachments_attributes, :_destroy
+                  :zip, :country, :membership, :continent, :attachments_attributes, :_destroy,
+                  :facility_id, :lab_id, :organization
   attr_accessor   :_destroy
   has_secure_password
   
@@ -22,13 +23,15 @@ class User < ActiveRecord::Base
   # validations
   validates :first_name, presence: true, length: { maximum: 30 }
   validates :last_name, presence: true, length: { maximum: 30 }
-  validates :organization, presence: true
   validates :country, presence: true
+  validates :organization, presence: true
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true, length: { minimum: 6 }, on: :create
   validates :password_confirmation, presence: true, on: :create
   
   # associations
+  belongs_to :lab
+  belongs_to :facility
   has_many :sent_messages, foreign_key: "sender_id", class_name: "Message"
   has_many :received_messages, foreign_key: "receiver_id", class_name: "Message"
   has_many :message_receivers, through: :sent_messages, source: :receiver
@@ -36,6 +39,7 @@ class User < ActiveRecord::Base
   has_many :projects, dependent: :destroy
   has_many :comments
   has_many :likes
+  has_many :services
   has_many :blogs, dependent: :destroy
   has_many :attachments, as: :attachable, dependent: :destroy
   accepts_nested_attributes_for :attachments, allow_destroy: true
@@ -52,7 +56,6 @@ class User < ActiveRecord::Base
     self.email = self.email.strip.downcase
     self.first_name = self.first_name.strip.capitalize
     self.last_name = self.last_name.strip.capitalize
-    self.organization = self.organization.strip.titleize
   end
   
   def new_message_count

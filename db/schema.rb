@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130609210432) do
+ActiveRecord::Schema.define(:version => 20130613013853) do
 
   create_table "attachments", :force => true do |t|
     t.string   "attachable_type"
@@ -68,6 +68,14 @@ ActiveRecord::Schema.define(:version => 20130609210432) do
   add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
+  create_table "facilities", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "facilities", ["name"], :name => "index_facilities_on_name"
+
   create_table "friendly_id_slugs", :force => true do |t|
     t.string   "slug",                         :null => false
     t.integer  "sluggable_id",                 :null => false
@@ -89,6 +97,16 @@ ActiveRecord::Schema.define(:version => 20130609210432) do
 
   add_index "instruments", ["alias"], :name => "index_instruments_on_name"
   add_index "instruments", ["project_id"], :name => "index_instruments_on_project_id"
+
+  create_table "labs", :force => true do |t|
+    t.string   "name"
+    t.integer  "facility_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "labs", ["facility_id"], :name => "index_labs_on_facility_id"
+  add_index "labs", ["name"], :name => "index_labs_on_name"
 
   create_table "likes", :force => true do |t|
     t.integer  "user_id"
@@ -143,6 +161,34 @@ ActiveRecord::Schema.define(:version => 20130609210432) do
   add_index "projects", ["user_id"], :name => "index_projects_on_user_id"
   add_index "projects", ["visability"], :name => "index_projects_on_visability"
 
+  create_table "services", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "service_type"
+    t.integer  "price"
+    t.string   "unit_type"
+    t.integer  "user_id"
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.string   "slug"
+    t.integer  "view_count",      :default => 0
+    t.string   "bitly_url"
+    t.string   "visability",      :default => "public"
+    t.string   "expiration_date"
+    t.boolean  "searchable",      :default => true
+    t.boolean  "active",          :default => true
+  end
+
+  add_index "services", ["expiration_date"], :name => "index_services_on_expiration_date"
+  add_index "services", ["name"], :name => "index_services_on_name"
+  add_index "services", ["price"], :name => "index_services_on_price"
+  add_index "services", ["searchable"], :name => "index_services_on_searchable"
+  add_index "services", ["service_type"], :name => "index_services_on_service_type"
+  add_index "services", ["slug"], :name => "index_services_on_slug"
+  add_index "services", ["unit_type"], :name => "index_services_on_unit_type"
+  add_index "services", ["user_id"], :name => "index_services_on_user_id"
+  add_index "services", ["visability"], :name => "index_services_on_visability"
+
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
     t.datetime "created_at",    :null => false
@@ -166,7 +212,6 @@ ActiveRecord::Schema.define(:version => 20130609210432) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
-    t.string   "organization"
     t.string   "phone"
     t.text     "bio"
     t.string   "password_digest"
@@ -193,6 +238,9 @@ ActiveRecord::Schema.define(:version => 20130609210432) do
     t.string   "last_sign_in_ip"
     t.string   "continent"
     t.string   "account_type",           :default => "Researcher"
+    t.string   "organization"
+    t.integer  "facility_id"
+    t.integer  "lab_id"
   end
 
   add_index "users", ["account_type"], :name => "index_users_on_account_type"

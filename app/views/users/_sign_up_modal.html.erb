@@ -37,7 +37,7 @@
     			<div class="span4">
     		    <input style="width: 280px;" id="user_organization" name="user[organization]" 
             placeholder="Organization name" size="30" type="text" 
-            data-provide="typeahead" data-source="<%= User.pluck(:organization).uniq.sort %>"
+            data-provide="typeahead" data-source="<%= Facility.scoped.pluck(:name).sort %>"
             autocomplete="off" value="<%= @signup_user.organization %>"/>
     			</div>
         </div>

@@ -54,6 +54,7 @@ class UsersController < ApplicationController
   def create
     @signup_user = User.new(params[:user])
     if @signup_user.save
+      create_facility
       sign_in @signup_user
       @signup_user.add_to_sign_in_attributes(request.remote_ip)
       @signup_user.send_verification_email
@@ -91,6 +92,15 @@ class UsersController < ApplicationController
   
   private
   
+    def create_facility
+      if facility = Facility.find_by_name(@signup_user.organization)
+      else
+        facility = Facility.create(name: @signup_user.organization)
+      end
+      @signup_user.update_attribute(:facility_id, facility.id)
+      @signup_user.save
+    end
+    
     def admin_user
       redirect_to(root_path) unless current_user && current_user.admin?
     end

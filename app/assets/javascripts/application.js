@@ -55,5 +55,15 @@ $(function() {
     tagClass: "tm-tag-success"
   });
   
+  jQuery(".service-tm-input").tagsManager({
+    prefilled: $('#service-prefilled-tags').data('tags'),
+    typeahead: true,
+    typeaheadSource: $('#service-tags').data('tags'),
+    blinkBGColor_1: '#FFFF9C',
+    blinkBGColor_2: '#CDE69C',
+    maxTags: 6,
+    tagClass: "tm-tag-success"
+  });
+  
 });
 

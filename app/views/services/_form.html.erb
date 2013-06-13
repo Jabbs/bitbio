@@ -1,0 +1,156 @@
+<%= form_for @service do |f| %>
+  <div class="row">
+    <%= render 'shared/error_messages', object: f.object %>
+    <% if @service.new_record? %>
+      <h2><i class="icon-beaker"></i> New Service Listing</h2>
+    <% else %>
+      <h2>Editing Service</h2>
+    <% end %>
+    <hr>
+    <div class="row">
+      <div class="span1" style="width: 90px;">
+        <label><i class="icon-asterisk red"></i> Name:</label>
+      </div>
+      <div class="span8" style="width: 590px;">
+        <input class="span5" id="service_name" name="service[name]" 
+        placeholder="e.g. antibody production, RNA purification, etc." size="30" type="text" 
+        data-provide="typeahead" data-source="<%= Project::SCIENCE_TYPES.uniq.sort %>"
+        autocomplete="off" style="margin-bottom: 0;"
+          value="<%= @service.name %>"
+         />
+        <p>What best describes the service you are listing?</p>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="span1" style="width: 90px;">
+        <label><i class="icon-asterisk red"></i> Type:</label>
+      </div>
+      <div class="span8 radio-account-types" style="width: 590px;">
+        <div class="row" style="width: 630px;">
+          <div class="span2" style="width: 220px;">
+            <%= f.radio_button :service_type, "Instrument/Equipment", checked: true  %>
+            <label><%= "Instrument/Equipment" %></label>
+          </div>
+          <div class="span2" style="width: 150px;">
+            <%= f.radio_button :service_type, "Method"  %>
+            <label><%= "Method" %></label>
+          </div>
+          <div class="span3" style="width: 160px;">
+            <%= f.radio_button :service_type, "Application"  %>
+            <label><%= "Application" %></label>
+          </div>
+        </div>
+        <div class="row" style="width: 630px;">
+          <div class="span2" style="width: 220px;">
+            <%= f.radio_button :service_type, "Reagent" %>
+            <label><%= "Reagent" %></label>
+          </div>
+          <div class="span2" style="width: 150px;">
+            <%= f.radio_button :service_type, "Experiment"  %>
+            <label><%= "Experiment" %></label>
+          </div>
+          <div class="span2" style="width: 160px;">
+            <%= f.radio_button :service_type, "Analysis"  %>
+            <label><%= "Analysis" %></label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="span1" style="width: 90px;">
+        <label><i class="icon-asterisk red"></i> Description:</label>
+      </div>
+      <div class="span7" style="width: 590px;">
+        <%= f.text_area :description, class: 'span6', rows: 5, placeholder: 
+        "Please describe your service in detail." %>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 5px;">
+      <div class="span1" style="width: 90px;">
+        <label>Tags:</label>
+      </div>
+      <div class="span8" style="width: 590px;">
+        <% @service.tag_list.blank? ? service_tags = ["bitbio"] : service_tags = @service.tag_list %>
+        <div id="service-tags" data-tags="<%= Project::TAGS %>"></div>
+        <div id="service-prefilled-tags" data-tags="<%= service_tags %>"></div>
+        <input style="width: 100px;" type="text" name="service[tag_list]" placeholder="tag" class="service-tm-input" autocomplete="off"/>
+        <p>Tag your service for optimal search queries (delimiters: tab, enter, comma). Maximum: 6.</p>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="span1" style="width: 90px;">
+        <label>Price:</label>
+      </div>
+      <div class="span8" style="width: 590px;">
+        <%= f.number_field :price %> per <%= f.select :unit_type, options_for_select(Service::UNIT_TYPES) %>
+      </div>
+       
+    </div>
+    
+    <hr>
+    <div class="row">
+      <div class="span1" style="width: 90px;">
+        <label>Visability:</label>
+      </div>
+      <div class="span8 radio-account-types" style="width: 590px;">
+        <% Service::VISABILITY_OPTIONS.each do |option| %>
+          <%= f.radio_button :visability, option %>
+          <label style="width: 90px; margin-right: 5px;">
+            <% if option == 'public' %>
+            <i class="icon-globe" style="margin-right: 9px; margin-left: 2px;"></i>
+            <% elsif option == 'private' %>
+            <i class="icon-group" style="margin-right: 7px;"></i>
+            <% elsif option == 'locked' %>
+            <i class="icon-lock" style="margin-right: 9px; margin-left: 4px;"></i>
+            <% end %>
+            <%= option.capitalize %>
+          </label>
+          <%= visability_text(option) %>
+          <br>
+        <% end %>
+        <p>Who can view your service?</p>
+      </div>
+    </div>
+    <hr>
+    <% if action_name == 'new' || action_name == 'create' %>
+      <div class="row">
+        <div class="span1" style="width: 90px;">
+          <label>Plan:</label>
+        </div>
+        <div class="span8 radio-account-types" style="width: 590px;">
+          <%= f.radio_button :expiration_date, Date.today + 30.days, checked: true  %>
+          <label>30 day listing - FREE</label>
+          <br>
+          <%= f.radio_button :expiration_date, Date.today + 90.days  %>
+          <label>90 day listing - $60</label>
+          <br>
+          <%= f.radio_button :expiration_date, Date.today + 180.days  %>
+          <label>180 day listing - $100</label>
+          <p>How long would you like to list your service?</p>
+        </div>
+      </div>
+      <hr>
+    <% end %>
+    
+    <div class="row">
+      <div class="span9">
+        <% if action_name == 'edit' || action_name == 'update' %>
+          <% if current_user?(@service.user) %>
+            <%= link_to "Remove", service_path(@service), method: :delete, confirm: "Are you sure?", 
+            class: 'my-button-red large-button pull-right' %>
+          <% end %>
+          <%= f.submit 'Update Service', class: "my-button large-button", disable_with: 'Submitting...',
+          style: 'margin-bottom: 8px;' %> | 
+          <%= link_to 'cancel', @service %>
+        <% else %>
+          <%= f.submit 'List Service', class: "my-button large-button", disable_with: 'Submitting...',
+              style: 'margin-bottom: 5px;' %> |
+          <%= link_to 'cancel', current_user %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

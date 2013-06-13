@@ -2,21 +2,35 @@ namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
     
+    40.times do 
+      name = Faker::Company.name + " " + ["Facility", "Center", "Institute", "University", "Hospital"].shuffle.first
+      Facility.create(name: name)
+    end
+    
+    60.times do
+      name = Faker::Name.last_name + " Lab"
+      Facility.all.shuffle.first.labs.create(name: name)
+    end
+    
     unless User.find_by_email('petejabbour1@gmail.com')
+      lab = Lab.all.shuffle.first
+      facility = lab.facility
       user = User.new(first_name: 'Peter', last_name: 'Jabbour', email: 'petejabbour1@gmail.com', password: 'testing', password_confirmation: 'testing',
-                   account_type: 'Researcher', organization: 'The Stowers Institute', phone: '785-550-8670',
+                   account_type: 'Researcher', facility_id: facility.id, lab_id: lab.id, phone: '785-550-8670',
                    bio: Faker::Lorem.paragraph, address: "3049 W Fullerton #1", city: "Chicago",
-                   state: "IL", zip: "60647", country: "United States of America")
+                   state: "IL", zip: "60647", country: "United States of America", organization: facility.name)
       user.verified = true
       user.save!
     end
     
     40.times do
+      lab = Lab.all.shuffle.first
+      facility = lab.facility
       user = User.new(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, 
                     password: 'testing', password_confirmation: 'testing', account_type: ['Researcher', 'Provider'].shuffle.first, 
-                    organization: Faker::Company.name, phone: Faker::PhoneNumber.phone_number, bio: Faker::Lorem.paragraph,
+                    lab_id: lab.id, facility_id: facility.id, phone: Faker::PhoneNumber.phone_number, bio: Faker::Lorem.paragraph,
                     address: Faker::Address.street_address, city: Faker::Address.city, state: Faker::Address.state_abbr,
-                    zip: Faker::Address.zip_code, country: Ravibhim::Continents::COUNTRIES.shuffle.first)
+                    zip: Faker::Address.zip_code, country: Ravibhim::Continents::COUNTRIES.shuffle.first, organization: facility.name)
       user.verified = true
       user.save!
     end

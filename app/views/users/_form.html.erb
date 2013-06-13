@@ -82,7 +82,7 @@
   		  
   		    <input style="width: 273px;" id="user_organization" name="user[organization]" 
           placeholder="Organization name" size="30" type="text" 
-          data-provide="typeahead" data-source="<%= User.pluck(:organization).uniq.sort %>"
+          data-provide="typeahead" data-source="<%= Facility.scoped.pluck(:name).uniq.sort %>"
           autocomplete="off" 
           <% unless @user.new_record? %>
             value="<%= @user.organization %>"
