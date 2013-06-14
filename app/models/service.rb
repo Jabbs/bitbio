@@ -2,12 +2,12 @@ class Service < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: [:slugged, :history]
   
-  attr_accessible :description, :name, :price, :service_type, :unit_type, :tag_list,
-                  :visability, :expiration_date
+  attr_accessible :description, :name, :tag_list,
+                  :visability, :expiration_date, :resources_attributes
   
-  UNIT_TYPES = ["Sample", "Reaction", "Unit"]
+  UNIT_TYPES = ["Sample", "Reaction", "Unit", "Run", "Analysis"]
   VISABILITY_OPTIONS = ["public", "private", "locked"]
-  SERVICE_TYPES = ["Instrument/Equipment", "Method", "Application", "Reagent", "Experiment", "Analysis"]
+  SERVICE_TYPES = ["Instrument", "Software", "Method", "Reagent", "Experiment", "Other"]
   
   # callbacks
   after_validation :move_friendly_id_error_to_name
@@ -15,14 +15,15 @@ class Service < ActiveRecord::Base
   
   # validations
   validates :description, presence: true, length: { minimum: 90, maximum: 2000 }
-  validates :service_type, presence: true
   validates :visability, presence: true, inclusion: { in: VISABILITY_OPTIONS, message: "%{value} isn't an allowed option" }
   validates :name, presence: true
   
   belongs_to :user
+  has_many :resources
   has_many :taggings, as: :taggable, dependent: :destroy
   has_many :tags, through: :taggings
   accepts_nested_attributes_for :taggings, allow_destroy: true
+  accepts_nested_attributes_for :resources, allow_destroy: true
   
   def strip_inputs
     self.name = self.name.strip

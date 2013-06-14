@@ -869,7 +869,7 @@ header {
 #mynav-list {
   position: absolute;
   top: 40px;
-  width: 500px;
+  width: 400px;
   ul {
     padding-top: 5px;
     li {
@@ -904,12 +904,44 @@ header {
   }
 }
 
+ul.navdrop {
+  margin-top:3px;
+  li {
+    margin: 0px;
+    background: darken($gold, 5%);
+    padding: 5px 10px 5px 10px;
+    border: none;
+    border-radius: 0;
+    border-left: 4px solid white;
+    border-right: 4px solid white;
+    border-bottom: 2px solid white;
+    border-top: 2px solid white;
+    a {
+      color:white;
+      text-decoration:none;
+    }
+    &:last-child {
+      border-bottom: 4px solid white;
+    }
+    &:hover {
+      text-decoration: none;
+      color: white;
+      background: darken($gold, 15%);
+      cursor: pointer;
+      a {
+        color:white;
+      }
+    }
+  }
+}
+
 #community ul { position: relative; width: 30px; left: -3px; z-index:10; }
 #labs ul { position: relative; width: 30px; left: 54px; z-index:10; }
 #blogs ul { position: relative; width: 30px; left: 71px; z-index:10; }
 #conferences ul { position: relative; width: 30px; left: 96px; z-index:10;  }
 #jobs ul { position: relative; width: 30px; left: 162px; z-index:10; }
 #science ul { position: relative; width: 30px; left: 179px; z-index:10; }
+#listing ul { position: relative; width: 127px; z-index:10; }
 
 ul.nav li.dropdown:hover > ul.dropdown-menu{ display: block; }
 ul.nav li.dropdown > ul.dropdown-menu{ margin-top:0px; border-radius: 0px; }
@@ -926,6 +958,9 @@ ul.nav li.dropdown > ul.dropdown-menu{ margin-top:0px; border-radius: 0px; }
     color: white;
     background: darken($gold, 15%);
   }
+}
+.fatter {
+  padding: 7px 10px 6px 10px;
 }
 
 .my-button-red {

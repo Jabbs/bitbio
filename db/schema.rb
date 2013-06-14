@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130613032336) do
+ActiveRecord::Schema.define(:version => 20130614201919) do
 
   create_table "attachments", :force => true do |t|
     t.string   "attachable_type"
@@ -161,12 +161,25 @@ ActiveRecord::Schema.define(:version => 20130613032336) do
   add_index "projects", ["user_id"], :name => "index_projects_on_user_id"
   add_index "projects", ["visability"], :name => "index_projects_on_visability"
 
+  create_table "resources", :force => true do |t|
+    t.string   "name"
+    t.string   "kind"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.text     "note"
+    t.integer  "service_id"
+    t.integer  "quantity",      :default => 1
+    t.integer  "price"
+    t.string   "unit_type"
+    t.string   "currency_type"
+  end
+
+  add_index "resources", ["kind"], :name => "index_resources_on_kind"
+  add_index "resources", ["name"], :name => "index_resources_on_name"
+
   create_table "services", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.string   "service_type"
-    t.integer  "price"
-    t.string   "unit_type"
     t.integer  "user_id"
     t.datetime "created_at",                            :null => false
     t.datetime "updated_at",                            :null => false
@@ -180,11 +193,8 @@ ActiveRecord::Schema.define(:version => 20130613032336) do
   end
 
   add_index "services", ["name"], :name => "index_services_on_name"
-  add_index "services", ["price"], :name => "index_services_on_price"
   add_index "services", ["searchable"], :name => "index_services_on_searchable"
-  add_index "services", ["service_type"], :name => "index_services_on_service_type"
   add_index "services", ["slug"], :name => "index_services_on_slug"
-  add_index "services", ["unit_type"], :name => "index_services_on_unit_type"
   add_index "services", ["user_id"], :name => "index_services_on_user_id"
   add_index "services", ["visability"], :name => "index_services_on_visability"
 

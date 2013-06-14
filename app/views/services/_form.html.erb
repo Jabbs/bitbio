@@ -9,54 +9,31 @@
     <hr>
     <div class="row">
       <div class="span1" style="width: 90px;">
-        <label><i class="icon-asterisk red"></i> Name:</label>
+        <label><i class="icon-asterisk red"></i> Headline:</label>
       </div>
       <div class="span8" style="width: 590px;">
+        <p>Please create a unique headline for your service listing</p>
         <input class="span5" id="service_name" name="service[name]" 
-        placeholder="e.g. antibody production, RNA purification, etc." size="30" type="text" 
+        placeholder="e.g. ABC Inc. Next-Generation Sequencing Services" size="30" type="text" 
         data-provide="typeahead" data-source="<%= Project::SCIENCE_TYPES.uniq.sort %>"
-        autocomplete="off" style="margin-bottom: 0;"
-          value="<%= @service.name %>"
-         />
-        <p>What best describes the service you are listing?</p>
+        autocomplete="off" value="<%= @service.name %>"/>
+        
       </div>
     </div>
     <hr>
+    
     <div class="row">
       <div class="span1" style="width: 90px;">
-        <label><i class="icon-asterisk red"></i> Type:</label>
+        <label><i class="icon-asterisk red"></i> Add:</label>
       </div>
-      <div class="span8 radio-account-types" style="width: 590px;">
-        <div class="row" style="width: 630px;">
-          <div class="span2" style="width: 220px;">
-            <%= f.radio_button :service_type, "Instrument/Equipment", checked: true  %>
-            <label><%= "Instrument/Equipment" %></label>
-          </div>
-          <div class="span2" style="width: 150px;">
-            <%= f.radio_button :service_type, "Method"  %>
-            <label><%= "Method" %></label>
-          </div>
-          <div class="span3" style="width: 160px;">
-            <%= f.radio_button :service_type, "Application"  %>
-            <label><%= "Application" %></label>
-          </div>
-        </div>
-        <div class="row" style="width: 630px;">
-          <div class="span2" style="width: 220px;">
-            <%= f.radio_button :service_type, "Reagent" %>
-            <label><%= "Reagent" %></label>
-          </div>
-          <div class="span2" style="width: 150px;">
-            <%= f.radio_button :service_type, "Experiment"  %>
-            <label><%= "Experiment" %></label>
-          </div>
-          <div class="span2" style="width: 160px;">
-            <%= f.radio_button :service_type, "Analysis"  %>
-            <label><%= "Analysis" %></label>
-          </div>
-        </div>
+      <div class="span8" style="width: 590px;">
+        <%= f.fields_for :resources do |builder| %>
+          <%= render 'resource_fields', f: builder %>
+        <% end %>
+        <%= link_to_add_fields "Add new +", f, :resources %>
       </div>
     </div>
+    
     <hr>
     <div class="row">
       <div class="span1" style="width: 90px;">
@@ -72,22 +49,12 @@
         <label>Tags:</label>
       </div>
       <div class="span8" style="width: 590px;">
+        <p>Tag your service for optimal search queries (delimiters: tab, enter, comma). Maximum: 6.</p>
         <% @service.tag_list.blank? ? service_tags = ["bitbio"] : service_tags = @service.tag_list %>
         <div id="service-tags" data-tags="<%= Project::TAGS %>"></div>
         <div id="service-prefilled-tags" data-tags="<%= service_tags %>"></div>
         <input style="width: 100px;" type="text" name="service[tag_list]" placeholder="tag" class="service-tm-input" autocomplete="off"/>
-        <p>Tag your service for optimal search queries (delimiters: tab, enter, comma). Maximum: 6.</p>
       </div>
-    </div>
-    <hr>
-    <div class="row">
-      <div class="span1" style="width: 90px;">
-        <label>Price:</label>
-      </div>
-      <div class="span8" style="width: 590px;">
-        <%= f.number_field :price %> per <%= f.select :unit_type, options_for_select(Service::UNIT_TYPES) %>
-      </div>
-       
     </div>
     
     <hr>
@@ -96,6 +63,7 @@
         <label>Visability:</label>
       </div>
       <div class="span8 radio-account-types" style="width: 590px;">
+        <p>Who can view your service?</p>
         <% Service::VISABILITY_OPTIONS.each do |option| %>
           <%= f.radio_button :visability, option %>
           <label style="width: 90px; margin-right: 5px;">
@@ -111,7 +79,6 @@
           <%= visability_text(option) %>
           <br>
         <% end %>
-        <p>Who can view your service?</p>
       </div>
     </div>
     <hr>
@@ -121,15 +88,15 @@
           <label>Plan:</label>
         </div>
         <div class="span8 radio-account-types" style="width: 590px;">
+          <p>How long would you like to list your service?</p>
           <%= f.radio_button :expiration_date, Date.today + 30.days, checked: true  %>
-          <label>30 day listing - FREE</label>
+          <label>30 day listing - $20</label>
           <br>
           <%= f.radio_button :expiration_date, Date.today + 90.days  %>
           <label>90 day listing - $60</label>
           <br>
           <%= f.radio_button :expiration_date, Date.today + 180.days  %>
           <label>180 day listing - $100</label>
-          <p>How long would you like to list your service?</p>
         </div>
       </div>
       <hr>

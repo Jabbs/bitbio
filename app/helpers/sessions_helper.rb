@@ -20,7 +20,7 @@ module SessionsHelper
   def signed_in_user
     unless current_user
       store_location
-      redirect_to login_url, notice: "Please sign in to view this page."
+      redirect_to login_url, notice: "Please sign in first."
     end
   end
   

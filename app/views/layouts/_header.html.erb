@@ -125,14 +125,26 @@
                   <li class="divider"></li>
                   <li>
                     <a href="<%= logout_path %>" data-method="delete" rel="nofollow">
-                    <i class="icon-ban-circle" style="margin-right: 6px;" 
+                    <i class="icon-signout" style="margin-right: 4px; margin-left:2px;" 
                     method="delete"></i> Logout</a>
                   </li>
                 </ul>
               </li>
             </ul>
-            <%= link_to '<i class="icon-plus icon-white"></i> LIST PROJECT'.html_safe, new_project_path, 
+            <%= link_to '<i class="icon-plus icon-white"></i> PROJECT'.html_safe, new_project_path, 
                 class: 'pull-right my-button', style: 'position: relative; z-index: 8; padding-top:6px; padding-bottom:4px;' %>
+                
+                <!-- <div class="pull-right">
+                   <ul class="unstyled">
+                     <li id="listing">
+                       <ul class="main-nav-set unstyled navdrop">
+                         <li style="text-align:center;"><%= link_to '<i class="icon-beaker"></i> ADD LISTING'.html_safe, '#' %></li>
+                         <li style="width: 110px;"><%= link_to 'new project listing', new_project_path %></li>
+                         <li style="width: 110px;"><%= link_to 'new service listing', new_service_path %></li>
+                       </ul>
+                     </li>
+                   </ul>
+                 </div> -->
 
   				<% else %>
   				  <ul class="nav pull-right" style="margin-left: 0px;">
