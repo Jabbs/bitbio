@@ -2,35 +2,33 @@
   <div class="row">
     <%= render 'shared/error_messages', object: f.object %>
     <% if @service.new_record? %>
-      <h2><i class="icon-beaker"></i> New Service Listing</h2>
+      <h2><i class="icon-beaker"></i> New Services Listing</h2>
     <% else %>
       <h2>Editing Service</h2>
     <% end %>
     <hr>
     <div class="row">
       <div class="span1" style="width: 90px;">
-        <label><i class="icon-asterisk red"></i> Headline:</label>
+        <label><i class="icon-asterisk red"></i> Name:</label>
       </div>
       <div class="span8" style="width: 590px;">
-        <p>Please create a unique headline for your service listing</p>
-        <input class="span5" id="service_name" name="service[name]" 
-        placeholder="e.g. ABC Inc. Next-Generation Sequencing Services" size="30" type="text" 
-        data-provide="typeahead" data-source="<%= Project::SCIENCE_TYPES.uniq.sort %>"
-        autocomplete="off" value="<%= @service.name %>"/>
-        
+        <%= f.text_field :name, style: "width: 490px;", placeholder: "e.g. Illumina De Novo Assembly" %>
+        <p><small>A unique name is desirable for search queries.</small></p>
       </div>
     </div>
     <hr>
     
-    <div class="row">
-      <div class="span1" style="width: 90px;">
-        <label><i class="icon-asterisk red"></i> Add:</label>
+    <div class="row" style="margin-bottom:5px;">
+      <div class="span9">
+        <label><i class="icon-asterisk red"></i> List at least one service resource:</label>
       </div>
-      <div class="span8" style="width: 590px;">
+    </div>
+    <div class="row">
+      <div class="span8" style="margin-left: 130px;">
         <%= f.fields_for :resources do |builder| %>
           <%= render 'resource_fields', f: builder %>
         <% end %>
-        <%= link_to_add_fields "Add new +", f, :resources %>
+        <%= link_to_add_fields "Add service resource +", f, :resources %>
       </div>
     </div>
     
@@ -41,7 +39,7 @@
       </div>
       <div class="span7" style="width: 590px;">
         <%= f.text_area :description, class: 'span6', rows: 5, placeholder: 
-        "Please describe your service in detail." %>
+        "Please provide a general description of your service(s).", style: 'width: 500px;' %>
       </div>
     </div>
     <div class="row" style="margin-top: 5px;">
@@ -76,7 +74,7 @@
             <% end %>
             <%= option.capitalize %>
           </label>
-          <%= visability_text(option) %>
+          <%= visability_text(option, "service") %>
           <br>
         <% end %>
       </div>

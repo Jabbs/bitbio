@@ -1,24 +1,31 @@
-<fieldset>
-  <%= f.select :kind, Service::SERVICE_TYPES, {}, style: 'width: 110px;' %>
-  <% if @id && @service.new_record? %>
-    <input class="span5" id="service_resources_attributes_name" 
-    name="service[resources_attributes][<%= @id %>][name]" 
-    placeholder="e.g. Bioanalyzer, Illumina HiSeq 2000, etc." size="30" type="text" 
-    data-provide="typeahead" data-source="<%= Project::SCIENCE_EQUIPMENT.uniq.sort %>"
-    autocomplete="off" 
-    <% unless @service.new_record? %>
-      value="<%= f.object.name %>"
-    <% end %>
-     />
-  <% else %>
-    <%= f.text_field :name, class: 'span5' %>
-  <% end %>
-  <%= f.text_area :note, rows: 2, class: 'span6', placeholder: "Description" %>
-  <br>
-  Pricing:
-  <%= f.select :currency_type, ["USD", "EUR", "CAD"], {}, style: 'width: 60px;' %>
-  <%= f.number_field :price, class: 'span1' %> per 
-  <%= f.select :unit_type, options_for_select(Service::UNIT_TYPES), {}, class: 'span2'  %>
-  <%= f.hidden_field :_destroy %>
-  <%= link_to "<i class='icon-remove'></i> remove".html_safe, '#', class: 'remove_fields' %>
-</fieldset>
+<div class="row">
+  <fieldset>
+    <div class="span7" style="border: 1px solid black; padding: 10px; margin-bottom: 10px; width: 490px;">
+      <%= f.select :quantity, (1..99).to_a, {}, style: 'width: 60px;' %>
+      <% if @id && @service.new_record? %>
+        <input class="span4" id="service_resources_attributes_name" 
+        name="service[resources_attributes][<%= @id %>][name]" 
+        placeholder="e.g. Bioanalyzer, Illumina HiSeq 2000, etc." size="30" type="text" 
+        data-provide="typeahead" data-source="<%= Project::SCIENCE_EQUIPMENT.uniq.sort %>"
+        autocomplete="off"
+        <% unless @service.new_record? %>
+          value="<%= f.object.name %>"
+        <% end %>
+         />
+      <% else %>
+        <%= f.text_field :name, class: 'span5' %>
+      <% end %>
+      <%= f.select :kind, Service::SERVICE_TYPES, {}, style: 'width: 110px;' %>
+      <%= f.text_area :note, rows: 2, style: 'width:472px;', placeholder: "description" %>
+      <br>
+      Pricing:
+      <%= f.select :currency_type, ["USD", "EUR", "CAD"], {}, style: 'width: 60px;' %>
+      <%= f.number_field :price, class: 'span1' %> per 
+      <%= f.select :unit_type, options_for_select(Service::UNIT_TYPES), {}, class: 'span2'  %>
+      <%= f.hidden_field :_destroy %>
+    </div>
+    <div class="span1">
+      <%= link_to "<i class='icon-remove'></i> remove".html_safe, '#', class: 'remove_fields' %>
+    </div>
+  </fieldset>
+</div>

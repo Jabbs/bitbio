@@ -1,25 +1,11 @@
 <% action_name == "service_listings" ? add_class = "change_n" : add_class = '' %>
 <div class="span3 project-well <%= add_class %>">
-  
-  <% if service.service_type == "Instrument/Equipment" %>
-    <% back_color = "sci_ser" %>
-  <% elsif service.service_type == "Method" %>
-    <% back_color = "sci" %>
-  <% elsif service.service_type == "Application" %>
-    <% back_color = "ser" %>
-  <% elsif service.service_type == "Reagent" %>
-    <% back_color = "dat" %>
-  <% elsif service.service_type == "Experiment" %>
-    <% back_color = "cli" %>
-  <% elsif service.service_type == "Analysis"%>
-    <% back_color = "def" %>
-  <% end %>
   <div class="row" style="padding-left: 20px; margin-top: 2px;">
     <div class="country">
       <i class="icon-globe"></i>
       <%= truncate(country_with_us_shortened(service.user.country), length: 18) %>
     </div>
-    <div class="service <%= back_color %>"><%= service.service_type %></div>
+    <div class="service">Something here</div>
   </div>
   <div class="head">
     <h3><%= link_to truncate(service.name, length: 32), service_path(service) %></h3>

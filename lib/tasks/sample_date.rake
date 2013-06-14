@@ -35,7 +35,7 @@ namespace :db do
       user.save!
     end
     
-    100.times do
+    102.times do
       name = ['Human', 'Rat', 'Fly', 'Mouse', 'Zebra Fish', 'Yeast', 'Lizard'].shuffle.first + " " + ['DNA', 'Genome', 'RNA', 'Ribosome', 'Histone'].shuffle.first + " " + ['Sequencing', 'Analysis', 'Experiment', 'Research', 'Study'].shuffle.first + " " + ('a'..'z').to_a.shuffle.first(8).join
       description = Faker::Lorem.paragraph + ' ' + Faker::Lorem.paragraph + ' ' + Faker::Lorem.paragraph + ' ' + Faker::Lorem.paragraph
       science_type = ['DNA Sequencing', 'RNA Sequencing', 'Chip-SEQ', 'Micro Array', 'Next-gen Sequencing',
@@ -66,15 +66,11 @@ namespace :db do
       project.save!
     end
     
-    100.times do
+    99.times do
       name = ['Illumina', 'Roche', 'Life Sciences', 'PacBio', 'Complete Genomics', 'Agilent', 'Thermo Fisher'].shuffle.first + " " + ['Next-gen', 'Microarray', 'Biochemical', 'Protein', 'DNA'].shuffle.first + " " + ['Sequencing', 'Analysis', 'Experiment', 'Research', 'Study'].shuffle.first + " " + ('a'..'z').to_a.shuffle.first(8).join
       description = Faker::Lorem.paragraph + ' ' + Faker::Lorem.paragraph + ' ' + Faker::Lorem.paragraph + ' ' + Faker::Lorem.paragraph
-      service_type = Service::SERVICE_TYPES.shuffle.first
-      price = [1000, 200, 12, 40, 99, 300, 1200, 1100, 100, 300, 400, 500, 3100, 800].shuffle.first
-      unit_type = Service::UNIT_TYPES.shuffle.first
       exp_date = Date.today + [30, 90, 180].shuffle.first.days
-      service = Service.new(name: name, description: description, service_type: service_type, price: price,
-                            unit_type: unit_type, expiration_date: exp_date)
+      service = Service.new(name: name, description: description, expiration_date: exp_date)
       service.user_id = User.all.shuffle.first.id
       
       x = [1,2,3].shuffle.first
@@ -89,6 +85,21 @@ namespace :db do
       end
       service.view_count = [7,20,25,30,34,40,80,90,100,123,44,2,234,300,23,10,50].shuffle.first
       service.save!
+
+      x.times do
+        kind = Service::SERVICE_TYPES.shuffle.first
+        name = Faker::Name.last_name + ' ' + ['Next-gen', 'Microarray', 'Biochemical', 'Protein', 'DNA'].shuffle.first + ' ' + ['services', 'analyses', 'methods', 'application'].shuffle.first
+        price = [1000, 200, 12, 40, 99, 300, 1200, 1100, 100, 300, 400, 500, 3100, 800].shuffle.first
+        unit_type = Service::UNIT_TYPES.shuffle.first
+        note = Faker::Lorem.paragraph
+        quantity = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20].shuffle.first
+        unit_type = Service::UNIT_TYPES.shuffle.first
+        currency_type = ["USD", "EUR"].shuffle.first
+        
+        service.resources.create!(name: name, kind: kind, note: note, quantity: quantity,
+                                  price: price, unit_type: unit_type, currency_type: currency_type)
+      end
+      
     end
     
     80.times do
