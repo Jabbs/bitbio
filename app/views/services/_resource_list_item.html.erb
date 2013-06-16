@@ -1,0 +1,10 @@
+<dt>
+  <%= resource.name %> 
+  <% if resource.quantity > 1 %>
+    (<%= resource.quantity %>)
+  <% end %>
+  <span class="pull-right"><%= resource.price %> <%= resource.currency_type %> per <%= resource.unit_type %></span>
+</dt>
+<dd>
+  <%= simple_format(Rinku.auto_link(resource.note).html_safe) %>
+</dd>

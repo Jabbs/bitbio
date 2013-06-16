@@ -12,5 +12,6 @@ class Resource < ActiveRecord::Base
   scope :all_methods, ->() { where(kind: 'Method') }
   scope :reagents, ->() { where(kind: 'Reagent') }
   scope :experiments, ->() { where(kind: 'Experiment') }
+  scope :others, ->() { where(kind: 'Other') }
   
 end

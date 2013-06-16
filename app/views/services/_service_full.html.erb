@@ -1,0 +1,142 @@
+<div class="service-full-well">
+  <div class="row">
+    <div class="span9">
+      <h2><%= @service.name %></h2>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="span4">
+      <span class="dark" style="font-size: 110%; float:left;">
+        <i class="icon-globe"></i>
+        <%= country_with_us_shortened(@service.user.country) %></span>
+    </div>
+    <div class="span5">
+      
+
+      <% if current_user?(@service.user) %>
+        <div style="margin-bottom: 8px">
+          <i class="icon-edit"></i>
+          <%= link_to "Edit", edit_service_path(@service) %>
+        </div>
+      <% end %>
+
+      <h4>
+        <% if current_user && current_user != @service.user && current_user.verified? %>
+          <div class="pull-right">
+            <i class="icon-envelope-alt blue"></i> 
+            <%= content_tag "div", id: 'message', title: "Send a direct message to the service owner", style: 'width: 250px; display: inline', 
+                data: {blah: @service.user.id} do %>
+                send message to the service owner
+            <% end %>
+          </div>
+        <% end %>
+      </h4>
+    </div>
+  </div>
+  <div class="row" style="padding-left:20px; margin-top: 10px;">
+    <% if @service.tags.any? %>
+    <i class="icon-tags"></i> tags: <%= raw @service.tags.map { |t| link_to t.name, tag_services_path(t.name) }.join(', ') %>
+    <% end %>
+  </div>
+  <hr style="margin-top:5px;">
+  <div class="description">
+    <% if current_user?(@service.user) %>
+      <div style="height: 0px;">
+        <div class="expiration-date">
+          expires on <%= @service.expiration_date.strftime("%b %e, %Y")  %><br>
+          <%= link_to 'extend +', '#' %>
+        </div>
+      </div>
+    <% end %>
+    <%= simple_format(Rinku.auto_link(@service.description).html_safe) %>
+  </div>
+  <br>
+  
+  <% if @service.resources.any? %>
+    <% if @service.resources.instruments.any? %>
+    <div class="row">
+      <h3>instruments:</h3>
+      <div class="span9 resource-well">
+        <dl>
+          <% @service.resources.instruments.each do |resource| %>
+            <%= render 'resource_list_item', resource: resource %>
+          <% end %>
+        </dl>
+      </div>
+    </div>
+    <% end %>
+    <% if @service.resources.softwares.any? %>
+    <div class="row">
+      <h3>software:</h3>
+      <div class="span9 resource-well">
+        <dl>
+          <% @service.resources.softwares.each do |resource| %>
+            <%= render 'resource_list_item', resource: resource %>
+          <% end %>
+        </dl>
+      </div>
+    </div>
+    <% end %>
+    <% if @service.resources.all_methods.any? %>
+    <div class="row">
+      <h3>methods:</h3>
+      <div class="span9 resource-well">
+        <dl>
+          <% @service.resources.all_methods.each do |resource| %>
+            <%= render 'resource_list_item', resource: resource %>
+          <% end %>
+        </dl>
+      </div>
+    </div>
+    <% end %>
+    <% if @service.resources.reagents.any? %>
+    <div class="row">
+      <h3>reagents:</h3>
+      <div class="span9 resource-well">
+        <dl>
+          <% @service.resources.reagents.each do |resource| %>
+            <%= render 'resource_list_item', resource: resource %>
+          <% end %>
+        </dl>
+      </div>
+    </div>
+    <% end %>
+    <% if @service.resources.experiments.any? %>
+    <div class="row">
+      <h3>experiments:</h3>
+      <div class="span9 resource-well">
+        <dl>
+          <% @service.resources.experiments.each do |resource| %>
+            <%= render 'resource_list_item', resource: resource %>
+          <% end %>
+        </dl>
+      </div>
+    </div>
+    <% end %>
+    <% if @service.resources.others.any? %>
+    <div class="row">
+      <h3>other:</h3>
+      <div class="span9 resource-well">
+        <dl>
+          <% @service.others.reagents.each do |resource| %>
+            <%= render 'resource_list_item', resource: resource %>
+          <% end %>
+        </dl>
+      </div>
+    </div>
+    <% end %>
+    
+    
+  </div>
+  <% end %>
+  <hr>
+  <div class="row" style="margin-top: 3px;">
+    <div class="span5">
+      <i class="icon-eye-open" style="margin-top: 1px;"></i> views: <%= @service.view_count %>
+
+    </div>
+    <p class="time_ago pull-right"><small>Listed on <%= @service.created_at.strftime("%D") %> 
+    (<%= time_ago_in_words(@service.created_at) %> ago).</small></p>
+  </div>
+</div>
