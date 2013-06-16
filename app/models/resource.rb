@@ -5,7 +5,9 @@ class Resource < ActiveRecord::Base
   
   validates :kind, presence: true
   validates :name, presence: true, uniqueness: { scope: :service_id}
+  
   SERVICE_TYPES = ["Instrument", "Software", "Method", "Reagent", "Experiment", "Other"]
+  UNIT_TYPES = ["Sample", "Reaction", "Unit", "Run", "Analysis"]
   
   scope :instruments, ->() { where(kind: 'Instrument') }
   scope :softwares, ->() { where(kind: 'Software') }
@@ -13,5 +15,13 @@ class Resource < ActiveRecord::Base
   scope :reagents, ->() { where(kind: 'Reagent') }
   scope :experiments, ->() { where(kind: 'Experiment') }
   scope :others, ->() { where(kind: 'Other') }
+  
+  def pricing?
+    if self.price && self.unit_type && self.currency_type
+      true
+    else
+      false
+    end
+  end
   
 end

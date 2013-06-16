@@ -3,7 +3,9 @@
   <% if resource.quantity > 1 %>
     (<%= resource.quantity %>)
   <% end %>
-  <span class="pull-right"><%= resource.price %> <%= resource.currency_type %> per <%= resource.unit_type %></span>
+  <% if resource.pricing? %>
+    <span class="pull-right"><%= resource.price %> <%= resource.currency_type %> per <%= resource.unit_type %></span>
+  <% end %>
 </dt>
 <dd>
   <%= simple_format(Rinku.auto_link(resource.note).html_safe) %>

@@ -1,6 +1,6 @@
 <div class="row">
   <fieldset>
-    <div class="span7" style="border: 1px solid black; padding: 10px; margin-bottom: 10px; width: 484px;">
+    <div class="span7" style="border: 1px solid black; padding: 10px; margin-bottom: 10px; width: 484px; background: white;">
       <%= f.select :quantity, (1..99).to_a, {}, style: 'width: 60px;' %>
       <% if @id && @service.new_record? %>
         <input class="span4" id="service_resources_attributes_name" 
@@ -15,14 +15,14 @@
       <% else %>
         <%= f.text_field :name, class: 'span5' %>
       <% end %>
-      <%= f.select :kind, Service::SERVICE_TYPES, {}, style: 'width: 110px;' %>
+      <%= f.select :kind, Resource::SERVICE_TYPES, {}, style: 'width: 110px;' %>
       <%= f.text_area :note, rows: 2, style: 'width:472px;', placeholder: "description" %>
       <br>
       Price:
       <%= f.number_field :price, class: 'span1' %> 
       <%= f.select :currency_type, ["USD", "EUR", "CAD"], {}, style: 'width: 60px;' %>
       per 
-      <%= f.select :unit_type, options_for_select(Service::UNIT_TYPES), {}, class: 'span2'  %>
+      <%= f.select :unit_type, options_for_select(Resource::UNIT_TYPES), {}, class: 'span2'  %>
       <%= f.hidden_field :_destroy %>
     </div>
     <div class="span1">

@@ -5,9 +5,7 @@ class Service < ActiveRecord::Base
   attr_accessible :description, :name, :tag_list,
                   :visability, :expiration_date, :resources_attributes
   
-  UNIT_TYPES = ["Sample", "Reaction", "Unit", "Run", "Analysis"]
   VISABILITY_OPTIONS = ["public", "private", "locked"]
-  SERVICE_TYPES = ["Instrument", "Software", "Method", "Reagent", "Experiment", "Other"]
   
   # callbacks
   after_validation :move_friendly_id_error_to_name

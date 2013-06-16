@@ -87,13 +87,13 @@ namespace :db do
       service.save!
 
       x.times do
-        kind = Service::SERVICE_TYPES.shuffle.first
+        kind = Resource::SERVICE_TYPES.shuffle.first
         name = Faker::Name.last_name + ' ' + ['Next-gen', 'Microarray', 'Biochemical', 'Protein', 'DNA'].shuffle.first + ' ' + ['services', 'analyses', 'methods', 'application'].shuffle.first
         price = [1000, 200, 12, 40, 99, 300, 1200, 1100, 100, 300, 400, 500, 3100, 800].shuffle.first
-        unit_type = Service::UNIT_TYPES.shuffle.first
+        unit_type = Resource::UNIT_TYPES.shuffle.first
         note = Faker::Lorem.paragraph
         quantity = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20].shuffle.first
-        unit_type = Service::UNIT_TYPES.shuffle.first
+        unit_type = Resource::UNIT_TYPES.shuffle.first
         currency_type = ["USD", "EUR"].shuffle.first
         
         service.resources.create!(name: name, kind: kind, note: note, quantity: quantity,
