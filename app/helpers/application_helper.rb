@@ -39,7 +39,7 @@ module ApplicationHelper
       if elements && elements.size == 2 && elements[1] != 'new'
         elements[0]
       elsif elements
-        elements[0] if elements[0] == 'tags' || elements[0] == 'projects' || elements[0] == 'blogs'
+        elements[0] if elements[0] == 'tags' || elements[0] == 'projects' || elements[0] == 'blogs' || elements[0] == 'services'
       end
     end
   end

@@ -1,0 +1,7 @@
+
+<div class="span9 pull-right">
+  <% @services.each do |service| %>
+    <%= render 'service', service: service %>
+  <% end %>
+</div>
+<div class="span9 pull-right"><%= will_paginate @projects %></div>

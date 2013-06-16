@@ -5,7 +5,12 @@ Bitbio::Application.routes.draw do
   end
   mount Ckeditor::Engine => '/ckeditor'
 
-  resources :services
+  resources :services do
+    collection do
+      get 'tags', to: 'tags#index_services', as: :tags
+      get 'tags/:tag', to: 'tags#show_services', as: :tag
+    end
+  end
   resources :attachments
   resources :blogs do
     resources :comments, only: [:create]

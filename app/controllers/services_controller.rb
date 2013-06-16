@@ -5,6 +5,7 @@ class ServicesController < ApplicationController
   before_filter :correct_user, only: [:edit, :update, :destroy]
   
   def index
+    @services = Service.where(searchable: true).order("created_at DESC").paginate(page: params[:page], per_page: 9)
   end
   
   def show

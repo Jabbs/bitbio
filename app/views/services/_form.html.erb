@@ -18,17 +18,15 @@
     </div>
     <hr>
     
-    <div class="row" style="margin-bottom:5px;">
-      <div class="span9">
-        <label><i class="icon-asterisk red"></i> List at least one service resource:</label>
-      </div>
-    </div>
     <div class="row">
-      <div class="span8" style="margin-left: 130px;">
+      <div class="span1" style="width: 90px;">
+        <label><i class="icon-asterisk red"></i> Services:</label>
+      </div>
+      <div class="span7" style="width: 590px;">
         <%= f.fields_for :resources do |builder| %>
           <%= render 'resource_fields', f: builder %>
         <% end %>
-        <%= link_to_add_fields "Add service resource +", f, :resources %>
+        <%= link_to_add_fields "Add service +", f, :resources %>
       </div>
     </div>
     

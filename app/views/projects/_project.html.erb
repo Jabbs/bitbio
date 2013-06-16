@@ -27,12 +27,12 @@
   <h4><%= truncate(project.science_type, length: 28) %></h4>
   
   <% if current_user?(project.user) && controller_name != 'projects' %>
-  expires on
-  <%= project.expiration_date.strftime("%b %e, %Y")  %>
+    expires on
+    <%= project.expiration_date.strftime("%b %e, %Y")  %>
   <% else %>
-  <div class="small-links">
-    <%= raw project.tags.map { |t| link_to t.name, tag_projects_path(t.name)  }.join(', ')%>
-  </div>
+    <div class="small-links">
+      <%= raw project.tags.map { |t| link_to t.name, tag_projects_path(t.name)  }.join(', ')%>
+    </div>
   <% end %>
   
   <p><%= truncate(project.description, length: 230) %> <%= link_to "more", project_path(project), class: 'more' %></p>
