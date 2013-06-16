@@ -1,0 +1,35 @@
+<% @service.bitly_url? ? share_url = @service.bitly_url : share_url = request.url %>
+<% share_text = "#{@service.name}" %>
+<% tw_link = "https://twitter.com/share?url=#{u(share_url)}&text=#{u(share_text)}&via=bit_bio" %>
+<% title_page = @service.name %>
+<% description_page = @service.description %>
+<% app_title = "bitBIO Online Science Community" %>
+
+<div class="share-well">
+  <div class="row" style="margin: 5px 0px;">
+    <div class="span7" style="margin-left: 40px; width: 490px;">
+      <form style="display:inline;">
+        <label style="display:inline;">Share URL</label>
+        <%= text_field_tag("url", "#{share_url}", id: "url-text", rows: 1, 
+        style: 'width: 400px; margin-top: 6px;') %>
+      </form>
+    </div>
+   
+    <div class="span2" style="width: 120px; margin-left: 0; margin-top: 8px;">
+      
+      <%= link_to tw_link, target: "_blank", style: 'text-decoration: none;' do %>
+        <%= image_tag 'twitter.png' %>
+      <% end %>
+      <%= link_to "http://www.linkedin.com/shareArticle?mini=true&url=#{u(share_url)}&title=#{u(title_page)}&summary=#{u(description_page)}&source=#{u(app_title)}", target: "_blank", style: 'text-decoration: none;' do %>
+        <%= image_tag 'linked_in.png' %>
+      <% end %>
+      <%= link_to "https://plus.google.com/share?url=#{share_url}", target: "_blank", style: 'text-decoration: none;' do %>
+        <%= image_tag 'google_plus.png' %>
+      <% end %>
+      <%= link_to "mailto: #{@service.user.email}?subject=#{u("bitBIO Project: "+ @service.name)}&body=#{u(share_url)}",
+          style: 'text-decoration: none;' do %>
+        <%= image_tag 'envelope.png' %>
+      <% end %>
+    </div>
+  </div>
+</div>

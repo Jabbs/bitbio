@@ -9,6 +9,13 @@ class ServicesController < ApplicationController
   end
   
   def show
+    @service = Service.find(params[:id])
+    @service.add_view_count unless current_user?(@service.user)
+    if request.path != service_path(@service)
+      redirect_to @service, status: :moved_permanently
+    end
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_path, alert: "The service you attempted to view is no longer available."
   end
   
   def new

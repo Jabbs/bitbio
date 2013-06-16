@@ -25,6 +25,15 @@ class Service < ActiveRecord::Base
   accepts_nested_attributes_for :taggings, allow_destroy: true
   accepts_nested_attributes_for :resources, allow_destroy: true
   
+  def add_view_count
+    self.view_count += 1
+    save
+  end
+  
+  def country
+    user.country
+  end
+  
   def strip_inputs
     self.name = self.name.strip
   end

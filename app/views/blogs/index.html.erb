@@ -2,6 +2,10 @@
 <% if @blogs && @blogs.any? %>
   <div class="row">
     <div class="span9 pull-right">
+      <% if current_user %>
+      <div style="height: 0px;"><%= link_to "<i class='icon-plus'></i> ADD BLOG".html_safe, new_blog_path, class: 'my-button-blue',
+      style: 'position:relative; left: 600px; top: -38px; z-index: 12;' %></div>
+      <% end %>
       <%= render 'tags/tag_list_blogs' %>
     <% @blogs.each do |blog| %>
       <%= render 'blogs/blog_list_item', blog: blog %>
