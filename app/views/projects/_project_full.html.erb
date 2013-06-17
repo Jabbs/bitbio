@@ -18,9 +18,11 @@
       <%= country_with_us_shortened(@project.user.country) %></span> 
     </h2>
     <% if current_user?(@project.user) %>
-      <div style="margin-bottom: 8px">
-        <i class="icon-edit"></i>
-        <%= link_to "Edit", edit_project_path(@project) %>
+      <div style='height:0px;'>
+        <div style="margin-bottom: 8px">
+          <%= link_to '<i class="icon-edit"></i> Edit'.html_safe, edit_project_path(@project), class: 'my-button-red',
+              style: 'position:relative; left: 620px;' %>
+        </div>
       </div>
     <% end %>
   </div>

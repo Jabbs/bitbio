@@ -12,15 +12,12 @@
         <%= country_with_us_shortened(@service.user.country) %></span>
     </div>
     <div class="span5">
-      
-
       <% if current_user?(@service.user) %>
-        <div style="margin-bottom: 8px">
-          <i class="icon-edit"></i>
-          <%= link_to "Edit", edit_service_path(@service) %>
+        <div>
+          <%= link_to '<i class="icon-edit"></i> Edit'.html_safe, edit_service_path(@service), 
+          class: 'my-button-red pull-right', style: 'position:relative; top:-35px;' %>
         </div>
       <% end %>
-
       <h4>
         <% if current_user && current_user != @service.user && current_user.verified? %>
           <div class="pull-right">
@@ -34,21 +31,25 @@
       </h4>
     </div>
   </div>
-  <div class="row" style="padding-left:20px; margin-top: 10px;">
+  <div class="row" style="margin-top: 10px;">
     <% if @service.tags.any? %>
-    <i class="icon-tags"></i> tags: <%= raw @service.tags.map { |t| link_to t.name, tag_services_path(t.name) }.join(', ') %>
+      <div class="span7">
+            <i class="icon-tags"></i> tags: <%= raw @service.tags.map { |t| link_to t.name, tag_services_path(t.name) }.join(', ') %>
+      </div>
+    <% end %>
+    <% if current_user?(@service.user) %>
+      <div class="span2 pull-right">
+        <div style="height: 0px;">
+          <div class="pull-right">
+            expires on <%= @service.expiration_date.strftime("%b %e, %Y")  %><br>
+            <%= link_to 'extend +', '#' %>
+          </div>
+        </div>
+      </div>
     <% end %>
   </div>
   <hr style="margin-top:5px;">
   <div class="description">
-    <% if current_user?(@service.user) %>
-      <div style="height: 0px;">
-        <div class="expiration-date">
-          expires on <%= @service.expiration_date.strftime("%b %e, %Y")  %><br>
-          <%= link_to 'extend +', '#' %>
-        </div>
-      </div>
-    <% end %>
     <%= simple_format(Rinku.auto_link(@service.description).html_safe) %>
   </div>
   <br>
