@@ -2,15 +2,15 @@ module SessionsHelper
   
   def sign_in(user)
     cookies[:auth_token] = user.auth_token
+    self.current_user = user
+  end
+  
+  def current_user=(user)
+    @current_user = user
   end
   
   def current_user
-    if cookies[:auth_token]
-      # if User.find_by_auth_token(cookies[:auth_token])
-      user = User.find_by_auth_token(cookies[:auth_token])
-      # end
-      user
-    end
+    @current_user ||= User.find_by_auth_token(cookies[:auth_token])
   end
   
   def current_user?(user)

@@ -56,6 +56,7 @@ class User < ActiveRecord::Base
     self.email = self.email.strip.downcase
     self.first_name = self.first_name.strip.capitalize
     self.last_name = self.last_name.strip.capitalize
+    self.organization = self.organization.strip.titleize
   end
   
   def new_message_count
