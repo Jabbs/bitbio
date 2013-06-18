@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '1.9.3'
+
 gem 'rails', '3.2.11'
 gem 'pg', '0.12.2'
 gem 'bcrypt-ruby', '3.0.1'
@@ -19,6 +21,7 @@ gem 'rmagick'
 gem "figaro"
 gem "fog", "~> 1.3.1"
 gem "ckeditor"
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'rspec-rails', '2.11.0'
