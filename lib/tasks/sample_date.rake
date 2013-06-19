@@ -85,10 +85,12 @@ namespace :db do
       end
       service.view_count = [7,20,25,30,34,40,80,90,100,123,44,2,234,300,23,10,50].shuffle.first
       service.save!
-
+      
+      resource_names = Project::SCIENCE_EQUIPMENT.shuffle.first(x)
       x.times do
         kind = Resource::SERVICE_TYPES.shuffle.first
-        name = Faker::Name.last_name + ' ' + ['Next-gen', 'Microarray', 'Biochemical', 'Protein', 'DNA'].shuffle.first + ' ' + ['services', 'analyses', 'methods', 'application'].shuffle.first
+        name = resource_names.first
+        resource_names = resource_names - [name]
         price = [1000, 200, 12, 40, 99, 300, 1200, 1100, 100, 300, 400, 500, 3100, 800].shuffle.first
         unit_type = Resource::UNIT_TYPES.shuffle.first
         note = Faker::Lorem.paragraph

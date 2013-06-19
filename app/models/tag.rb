@@ -4,12 +4,17 @@ class Tag < ActiveRecord::Base
   
   has_many :projects, through: :taggings, :source => :taggable, :source_type => 'Project'
   has_many :blogs, through: :taggings, :source => :taggable, :source_type => 'Blog'
+  has_many :services, through: :taggings, :source => :taggable, :source_type => 'Service'
   
   validates :name, presence: true, uniqueness: true
   before_save :strip_inputs
   
   def strip_inputs
     self.name = self.name.strip.downcase
+  end
+  
+  def self.top_service_tags
+    includes(:services).sort_by { |tag| tag.services.size }.reverse.select { |t| t.services.size != 0 }
   end
   
   def self.top_project_tags

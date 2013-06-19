@@ -1,11 +1,25 @@
-
-<div class="span9 pull-right">
-  <% if current_user %>
-  <div style="height: 0px;"><%= link_to "<i class='icon-plus'></i> ADD SERVICE".html_safe, new_service_path, class: 'my-button-blue',
-  style: 'position:relative; left: 583px; top: -38px; z-index: 12;' %></div>
-  <% end %>
-  <% @services.each do |service| %>
-    <%= render 'service', service: service %>
-  <% end %>
+<div class="span3 pull-left no-left-margin">
+  <%= render 'shared/sidebar/service_search' %>
 </div>
-<div class="span9 pull-right"><%= will_paginate @projects %></div>
+
+<% if current_user && @services.any? %>
+  <div class="span9 pull-right">
+    <%= render 'add_service' %>
+    <%= render 'shared/alerts/services_result_count' %>
+    </div>
+  <div class="span9 pull-right">
+    <% @services.each do |service| %>
+      <%= render 'service', service: service %>
+    <% end %>
+  </div>
+  <div class="span9 pull-right"><%= will_paginate @services %></div>
+<% elsif current_user && @services.empty? %>
+  <%= render 'add_service' %>
+  <div class="span9 pull-right">
+    <%= render 'shared/alerts/no_services' %>
+  </div>
+<% elsif !current_user.present? %>
+  <div class="span9 pull-right">
+    <%= render 'shared/alerts/sign_in_notice' %>
+  </div>
+<% end %>

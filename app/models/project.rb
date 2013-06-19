@@ -69,7 +69,7 @@ class Project < ActiveRecord::Base
     'Qpix2 Colony Picking Robot', 'Singer RoTor HDA robot', 'Hydra II Microdispenser', 'CAS 4200 PCR Setup Robot',
     'Illumina GAIIx']
     
-  SERVICE_NEEDS = ["Services", "Collaboration", "Science + Services", "Data Analysis", "Research Validation", "Clinical Studies"]
+  SERVICE_NEEDS = ["Services", "Science + Services", "Collaboration", "Data Analysis", "Research Validation", "Clinical Studies"]
   
   TAGS = ["abiogenesis", "anatomy", "antibiotics", 
     "astrobiology", "bacteriology", "biochemistry", "bioinformatics", "biophysics", "biotechnology", "botany", 
@@ -186,7 +186,6 @@ class Project < ActiveRecord::Base
     
       projects = projects.joins(:user).where(users: {continent: continents})
     end
-
     projects
   end
   

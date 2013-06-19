@@ -1,0 +1,78 @@
+<div id="science-search" class="smaller-shell">
+  <%= form_tag services_path, :method => 'get' do %>
+    <%= hidden_field_tag :search, "true" %>
+  <h2 class="info_header">Service Listings</h2>
+  <div class="row">
+    <div class="span3">
+      <label style="padding-left: 10px;"><i class="icon-globe"></i> location:</label>
+      <div style="padding-left: 10px; margin-bottom: 5px;">
+        <span style="margin-right: 8px;">
+          <% if params[:na] == 'yes' || params[:eur] == 'yes' || params[:asia] == 'yes' || params[:aus] == 'yes' %>
+            <% any_check = false %>
+          <% else %>
+            <% any_check = true %>
+          <% end %>
+          <%= check_box_tag :any, 'yes', any_check %>
+          Any
+        </span>
+        <span style="margin-right: 5px;">
+          <% params[:na] == 'yes' ? na_check = true : na_check = false %>
+          <%= check_box_tag :na, 'yes', na_check, class: 'ctry' %>
+          N. America
+        </span>
+        <% params[:eur] == 'yes' ? eur_check = true : eur_check = false %>
+        <%= check_box_tag :eur, 'yes', eur_check, class: 'ctry' %>
+        Europe
+      </div>
+      <div style="padding-left: 10px; margin-bottom: 5px;">
+        <span style="margin-right: 5px;">
+          <% params[:asia] == 'yes' ? asia_check = true : asia_check = false %>
+          <%= check_box_tag :asia, 'yes', asia_check, class: 'ctry' %>
+          Asia
+        </span>
+        <% params[:aus] == 'yes' ? aus_check = true : aus_check = false %>
+        <%= check_box_tag :aus, 'yes', aus_check, class: 'ctry' %>
+        Australia
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 5px;">
+    <div class="span3">
+      <label style="margin-left: 10px;"><i class="icon-beaker"></i> resources:</label>
+      <%= select_tag :science, grouped_options_for_select([ 
+          ['Instrument', Resource.scoped.instruments.pluck(:name).uniq.sort], 
+          ['Software', Resource.scoped.softwares.pluck(:name).uniq.sort], 
+          ['Methods', Resource.scoped.all_methods.pluck(:name).uniq.sort], 
+          ['Reagents', Resource.scoped.reagents.pluck(:name).uniq.sort], 
+          ['Experiments', Resource.scoped.experiments.pluck(:name).uniq.sort], 
+          ['Other', Resource.scoped.others.pluck(:name).uniq.sort], 
+          ], 
+        selected_key = params[:science], prompt = 'any') %>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="span3">
+      <label style="margin-left: 10px;"><i class="icon-tags"></i> top tags:</label>
+      <div style="padding-right: 10px; padding-left: 10px; font-size: 85%;">
+        <%= raw Tag.top_service_tags.first(10).map { |t| link_to "#{t.name} 
+            (#{t.services.size})", tag_services_path(t.name) }.join(', ') %>...
+        <%= link_to '<i class="icon-expand-alt"></i>'.html_safe, tags_services_path, style: 'text-decoration: none;' %>
+      </div>
+    </div>
+  </div>
+  <hr style="margin: 10px;">
+  <div class="row">
+    <div class="span3">
+      <div class="pull-right">
+        <button class="my-button-blue" data-disable-with="Please wait...">
+          <i class="icon-search"></i> Search
+        </button>
+      </div>
+      <p style="margin-left: 10px; width: 100px; line-height: 130%; font-size: 90%; margin-top: 2px; margin-bottom:0px;">
+        Provider? <%= link_to 'search by your services', '#' %>.
+      </p>
+    </div>
+  </div>
+  <% end %>
+</div>

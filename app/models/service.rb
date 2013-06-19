@@ -2,8 +2,7 @@ class Service < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: [:slugged, :history]
   
-  attr_accessible :description, :name, :tag_list,
-                  :visability, :expiration_date, :resources_attributes
+  attr_accessible :description, :name, :tag_list, :visability, :expiration_date, :resources_attributes
   
   VISABILITY_OPTIONS = ["public", "private", "locked"]
   
@@ -22,6 +21,35 @@ class Service < ActiveRecord::Base
   has_many :tags, through: :taggings
   accepts_nested_attributes_for :taggings, allow_destroy: true
   accepts_nested_attributes_for :resources, allow_destroy: true
+  
+  def self.search(any=nil, na=nil, eur=nil, asia=nil, aus=nil, science=nil, tag=nil)
+    services = self.scoped
+    unless science.blank? || science == nil
+      services = services.joins(:resources).where(resources: {name: science})
+    end
+    unless tag.blank? || tag == nil
+      services = services.joins(:tags).where(tags: {name: tag})
+    end
+
+    unless any.present? && any == 'yes'
+      continents = []
+      unless na.blank? || na == nil
+        continents << "North America" if na == 'yes'
+      end
+      unless eur.blank? || eur == nil
+        continents << "Europe" if eur == 'yes'
+      end
+      unless asia.blank? || asia == nil
+        continents << "Asia" if asia == 'yes'
+      end
+      unless aus.blank? || aus == nil
+        continents << "Australia" if aus == 'yes'
+      end
+    
+      services = services.joins(:user).where(users: {continent: continents})
+    end
+    services
+  end
   
   def add_view_count
     self.view_count += 1
