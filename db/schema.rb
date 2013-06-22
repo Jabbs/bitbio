@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130622190806) do
+ActiveRecord::Schema.define(:version => 20130622214054) do
 
   create_table "attachments", :force => true do |t|
     t.string   "attachable_type"
@@ -249,13 +249,7 @@ ActiveRecord::Schema.define(:version => 20130622190806) do
     t.datetime "created_at",                                       :null => false
     t.datetime "updated_at",                                       :null => false
     t.string   "slug"
-    t.string   "address"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip"
     t.string   "country"
-    t.float    "latitude"
-    t.float    "longitude"
     t.string   "membership"
     t.boolean  "verified"
     t.string   "verification_token"

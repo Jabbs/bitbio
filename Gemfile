@@ -22,6 +22,7 @@ gem "figaro"
 gem "fog", "~> 1.3.1"
 gem "ckeditor"
 gem 'newrelic_rpm'
+gem 'gmaps4rails'
 
 group :development, :test do
   gem 'rspec-rails', '2.11.0'

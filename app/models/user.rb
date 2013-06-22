@@ -1,21 +1,14 @@
 class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :full_name, use: [:slugged, :history]
-  geocoded_by :full_address
-  attr_accessible :account_type, :bio, :email, :first_name, :last_name,
-                  :password, :password_confirmation, :phone, :address, :city, :state,
-                  :zip, :country, :membership, :continent, :attachments_attributes, :_destroy,
+  attr_accessible :account_type, :bio, :email, :first_name, :last_name, :password, :password_confirmation, 
+                  :phone, :country, :membership, :continent, :attachments_attributes, :_destroy,
                   :facility_id, :lab_id, :organization
   attr_accessor   :_destroy
   has_secure_password
   
   # callbacks
   before_validation :update_continent
-  after_validation :geocode, :if => :address_changed?
-  after_validation :geocode, :if => :city_changed?
-  after_validation :geocode, :if => :state_changed?
-  after_validation :geocode, :if => :zip_changed?
-  after_validation :geocode, :if => :country_changed?
   before_save :correct_case_of_inputs
   before_create { generate_token(:auth_token) }
   before_create { generate_token(:verification_token) }

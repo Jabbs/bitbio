@@ -39,7 +39,7 @@ module ApplicationHelper
       if elements && elements.size == 2 && elements[1] != 'new'
         elements[0]
       elsif elements
-        elements[0] if elements[0] == 'tags' || elements[0] == 'projects' || elements[0] == 'blogs' || elements[0] == 'services'
+        elements[0] if elements[0] == 'tags' || elements[0] == 'projects' || elements[0] == 'blogs' || elements[0] == 'services' || elements[0] == 'facilities'
       end
     end
   end
@@ -64,18 +64,18 @@ module ApplicationHelper
         crumbs << home; crumbs << c;
         crumbs << content_tag(:li, link_to("#{elements[0].downcase}", "/#{elements[0].downcase}")); crumbs << c;
         crumbs << content_tag(:li, link_to("#{elements[1].downcase}", "/#{elements[0].downcase}/#{elements[1].downcase}")); crumbs << c;
-        crumbs << content_tag(:li, "#{elements[2].titleize}", class: 'active')
+        crumbs << content_tag(:li, "#{elements[2].downcase}", class: 'active')
       elsif elements[1]
         crumbs << home; crumbs << c;
         crumbs << content_tag(:li, link_to("#{elements[0].downcase}", "/#{elements[0].downcase}")); crumbs << c;
         if elements[1] == 'new'
-          crumbs << content_tag(:li, "#{elements[1].titleize} #{elements[0].singularize.titleize}", class: 'active')
+          crumbs << content_tag(:li, "#{elements[1].downcase} #{elements[0].singularize.downcase}", class: 'active')
         else
-          crumbs << content_tag(:li, "#{elements[1].titleize}", class: 'active')
+          crumbs << content_tag(:li, "#{elements[1].downcase}", class: 'active')
         end
       else
         crumbs << home; crumbs << c;
-        crumbs << content_tag(:li, "#{elements[0].titleize}", class: 'active')
+        crumbs << content_tag(:li, "#{elements[0].downcase}", class: 'active')
       end
       
     else
