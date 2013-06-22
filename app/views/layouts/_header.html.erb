@@ -6,13 +6,13 @@
 	        <div class="span2" style="width: 110px; padding-top: 5px;">
 	          <%= link_to "<i class='icon-beaker'></i>bitBIO".html_safe, root_path, id: 'logo', title: 'Home' %>
   	      </div>
-  	      <div class="span3" style="width: 240px; padding-left: 10px;">
+  	      <div class="span3" style="width: 230px; padding-left:20px;">
             <ul class="breadcrumb">
               <%= bread_crumb_list_items(request.path) %>
             </ul>
           </div>
           <div class="span7" style="padding-top: 4px;">
-            <h1>
+            <h1 style="margin:0px;">
               Science Community and Science Search Engine 
               <i class="icon-search"></i>
             </h1>
@@ -39,44 +39,44 @@
                 <li id="community">
                   <ul class="main-nav-set unstyled">
                     <li><%= link_to 'community', '#' %></li>
-                    <li style="width: 110px;"><%= link_to 'ask a question', '#' %></li>
-                    <li style="width: 110px;"><%= link_to 'invite colleagues', '#' %></li>
+                    <li style="width: 120px;"><%= link_to 'ask a question', '#' %></li>
+                    <li style="width: 120px;"><%= link_to 'invite colleagues', '#' %></li>
                   </ul>
                 </li>
                 <li id="labs">
                   <ul class="main-nav-set unstyled">
                     <li><%= link_to 'labs', '#' %></li>
-                    <li style="width: 110px;"><%= link_to 'all labs', '#' %></li>
-                    <li style="width: 110px;"><%= link_to 'map of labs', '#' %></li>
+                    <li style="width: 120px;"><%= link_to 'all labs', '#' %></li>
+                    <li style="width: 120px;"><%= link_to 'map of labs', '#' %></li>
                   </ul>
                 </li>
                 <li id="blogs">
                   <ul class="main-nav-set unstyled">
                     <li><%= link_to 'blogs', blogs_path %></li>
-                    <li style="width: 110px;"><%= link_to 'create blog', new_blog_path %></li>
-                    <li style="width: 110px;"><%= link_to 'all blogs', blogs_path %></li>
-                    <li style="width: 110px;"><%= link_to 'weekly newsletter', '#' %></li>
+                    <li style="width: 120px;"><%= link_to 'create blog', new_blog_path %></li>
+                    <li style="width: 120px;"><%= link_to 'all blogs', blogs_path %></li>
+                    <li style="width: 120px;"><%= link_to 'weekly newsletter', '#' %></li>
                   </ul>
                 </li>
                 <li id="conferences">
                   <ul class="main-nav-set unstyled">
                     <li><%= link_to 'conferences', '#' %></li>
-                    <li style="width: 110px;"><%= link_to 'all conferences', '#' %></li>
+                    <li style="width: 120px;"><%= link_to 'all conferences', '#' %></li>
                   </ul>
                 </li>
                 <li id="jobs">
                   <ul class="main-nav-set unstyled">
                     <li><%= link_to 'jobs', '#' %></li>
-                    <li style="width: 110px;"><%= link_to 'find jobs', '#' %></li>
-                    <li style="width: 110px;"><%= link_to 'hire now', '#' %></li>
-                    <li style="width: 110px;"><%= link_to 'jobs newsletter', '#' %></li>
+                    <li style="width: 120px;"><%= link_to 'find jobs', '#' %></li>
+                    <li style="width: 120px;"><%= link_to 'hire now', '#' %></li>
+                    <li style="width: 120px;"><%= link_to 'jobs newsletter', '#' %></li>
                   </ul>
                 </li>
                 <li id="science">
                   <ul class="main-nav-set unstyled">
                     <li><%= link_to 'search', '#' %></li>
-                    <li style="width: 110px;"><%= link_to 'service listings', services_path %></li>
-                    <li style="width: 110px;"><%= link_to 'project listings', projects_path %></li>
+                    <li style="width: 120px;"><%= link_to 'service listings', services_path %></li>
+                    <li style="width: 120px;"><%= link_to 'project listings', projects_path %></li>
                   </ul>
                 </li>
               </ul>
@@ -85,14 +85,14 @@
     				<ul class="nav pull-right">
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" id="name" data-toggle="dropdown" 
-                style="max-width: 160px; padding-right:0px; padding-left:0px;">
+                style="max-width: 160px; padding-right:0px; padding-left:10px;">
     							Welcome, <%= current_user.first_name %>!
     							<% if current_user.new_message_count != 0 %>
     							  <span class="gold">(<%= current_user.new_message_count %>)</span> 
     							<% end %>
     							<b class="caret"></b>
     						</a>
-                <ul class="dropdown-menu" style='min-width: 100px; width: 160px; padding-left: 0px;'>
+                <ul class="dropdown-menu" style='min-width: 100px; padding-left: 0px;'>
                   <li>
                     <a href="<%= user_path(current_user) %>">
                     <i class="icon-user" style="margin-right: 6px;"></i> My Profile</a>
@@ -132,7 +132,7 @@
               </li>
             </ul>
             <%= link_to '<i class="icon-plus icon-white"></i> PROJECT'.html_safe, new_project_path, 
-                class: 'pull-right my-button', style: 'position: relative; z-index: 8; padding-top:6px; padding-bottom:4px;' %>
+                class: 'pull-right my-button', style: 'position: relative; z-index: 8; padding-top:6px; padding-bottom:6px;' %>
                 
                 <!-- <div class="pull-right">
                    <ul class="unstyled">

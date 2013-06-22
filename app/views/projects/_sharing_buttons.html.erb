@@ -15,7 +15,7 @@
       </form>
     </div>
    
-    <div class="span2" style="width: 120px; margin-left: 0; margin-top: 8px;">
+    <div class="span2" style="width: 120px; margin-left: 2px; margin-top: 8px;">
       
       <%= link_to tw_link, target: "_blank", style: 'text-decoration: none;' do %>
         <%= image_tag 'twitter.png' %>
@@ -26,7 +26,7 @@
       <%= link_to "https://plus.google.com/share?url=#{share_url}", target: "_blank", style: 'text-decoration: none;' do %>
         <%= image_tag 'google_plus.png' %>
       <% end %>
-      <%= link_to "mailto: #{@project.user.email}?subject=#{u("bitBIO Project: "+ @project.name)}&body=#{u(share_url)}",
+      <%= link_to "mailto: ?subject=#{u("bitBIO Project: "+ @project.name)}&body=#{u(share_url)}",
           style: 'text-decoration: none;' do %>
         <%= image_tag 'envelope.png' %>
       <% end %>

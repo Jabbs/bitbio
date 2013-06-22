@@ -58,6 +58,14 @@ body {
   min-height: 600px;
 }
 
+h1,h2,h3,h4,h5,h6, p { margin:0px; padding:0px; }
+h1 { font-size: 230%; }
+h2 { font-size: 200%; }
+h3 { font-size: 170%; }
+h4 { font-size: 110%; }
+h5 { font-size: 90%; }
+h6 { font-size: 80%; }
+p { font-size: 100%; line-height: 1.3em; }
 h2 {
   color: $gold_dark;
   margin-top: 5px;
@@ -280,8 +288,8 @@ h2.info_header {
   .add-blog-button {
     font-size: 80%;
     position: relative;
-    left: 610px;
-    top: -32px;
+    left: 600px;
+    top: -36px;
   }
   .add-services-button {
     font-size: 80%;
@@ -314,12 +322,12 @@ h2.info_header {
     max-height: 50px;
     overflow: hidden;
     padding-top: 5px;
-    h3 {
+    h4 {
       line-height: 120%;
       height: 25px;
       max-height: 25px;
       overflow: hidden;
-      margin-bottom: 3px;
+      margin:0px;
     }
   }
   p {
@@ -625,10 +633,10 @@ h2.info_header {
   margin-bottom: 3px;
   float: right;
   text-overflow: ellipsis;
-  width: 95px;
+  width: 92px;
   max-width: 95px;
-  height: 1.2em;
-  max-height: 1.2em;
+  height: 1.3em;
+  max-height: 1.3em;
   text-align: right;
   overflow: hidden;
 }
@@ -645,6 +653,7 @@ h2.info_header {
   background: lighten($silver, 15%);
   width: 216px;
   padding: 5px;
+  padding-bottom: 15px;
   margin-bottom: 20px;
   margin-right: 10px;
   margin-left: 0px;
@@ -686,8 +695,8 @@ h2.info_header {
     margin-top: 5px;
     margin-bottom: 0px;
     padding: 5px;
-    height: 140px;
-    max-height: 140px;
+    height: 144px;
+    max-height: 144px;
     word-wrap: break-word;
     overflow: hidden;
   }
@@ -705,6 +714,8 @@ h2.info_header {
     }
   }
 }
+
+#science-search { font-size: 90%; }
 
 .change_n {
   &:nth-child(3n+1) {
@@ -886,7 +897,7 @@ header {
 
 #mynav-list {
   position: absolute;
-  top: 40px;
+  top: 43px;
   width: 400px;
   ul {
     padding-top: 5px;
@@ -901,7 +912,7 @@ header {
       }
       ul {
         li {
-          padding: 5px 10px 5px 10px;
+          padding: 6px 10px 6px 10px;
           background: $header_background;
           margin-bottom: 0px;
           border-left: 4px solid white;
@@ -954,11 +965,11 @@ ul.navdrop {
 }
 
 #community ul { position: relative; width: 30px; left: -3px; z-index:10; }
-#labs ul { position: relative; width: 30px; left: 54px; z-index:10; }
-#blogs ul { position: relative; width: 30px; left: 71px; z-index:10; }
-#conferences ul { position: relative; width: 30px; left: 96px; z-index:10;  }
-#jobs ul { position: relative; width: 30px; left: 162px; z-index:10; }
-#science ul { position: relative; width: 30px; left: 179px; z-index:10; }
+#labs ul { position: relative; width: 30px; left: 60px; z-index:10; }
+#blogs ul { position: relative; width: 30px; left: 80px; z-index:10; }
+#conferences ul { position: relative; width: 30px; left: 108px; z-index:10;  }
+#jobs ul { position: relative; width: 30px; left: 182px; z-index:10; }
+#science ul { position: relative; width: 30px; left: 200px; z-index:10; }
 #listing ul { position: relative; width: 127px; z-index:10; }
 
 ul.nav li.dropdown:hover > ul.dropdown-menu{ display: block; }
@@ -967,7 +978,7 @@ ul.nav li.dropdown > ul.dropdown-menu{ margin-top:0px; border-radius: 0px; }
 .my-button {
   margin: 5px 0px 0px 0px;
   background: darken($gold, 5%);
-  padding: 5px 10px 5px 10px;
+  padding: 6px 10px 6px 10px;
   color: white;
   border: none;
   border-radius: 0;
