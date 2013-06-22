@@ -63,8 +63,8 @@ h1 { font-size: 230%; }
 h2 { font-size: 200%; }
 h3 { font-size: 170%; }
 h4 { font-size: 110%; }
-h5 { font-size: 90%; }
-h6 { font-size: 80%; }
+h5 { font-size: 100%; }
+h6 { font-size: 95%; }
 p { font-size: 100%; line-height: 1.3em; }
 h2 {
   color: $gold_dark;
@@ -897,7 +897,7 @@ header {
 
 #mynav-list {
   position: absolute;
-  top: 43px;
+  top: 44px;
   width: 400px;
   ul {
     padding-top: 5px;

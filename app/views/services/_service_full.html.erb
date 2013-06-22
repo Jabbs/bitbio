@@ -120,7 +120,7 @@
       <h3>other:</h3>
       <div class="span9 resource-well">
         <dl>
-          <% @service.others.reagents.each do |resource| %>
+          <% @service.resources.others.each do |resource| %>
             <%= render 'resource_list_item', resource: resource %>
           <% end %>
         </dl>

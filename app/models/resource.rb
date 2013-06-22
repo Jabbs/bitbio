@@ -4,7 +4,7 @@ class Resource < ActiveRecord::Base
   belongs_to :service
   
   validates :kind, presence: true
-  validates :name, presence: true, uniqueness: { scope: :service_id}
+  validates :name, presence: true, uniqueness: { scope: :service_id }
   
   SERVICE_TYPES = ["Instrument", "Software", "Method", "Reagent", "Experiment", "Other"]
   UNIT_TYPES = ["Sample", "Reaction", "Unit", "Run", "Plate", "Flow Cell", "Analysis"]

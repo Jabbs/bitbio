@@ -4,4 +4,7 @@ class Facility < ActiveRecord::Base
   has_many :labs
   has_many :users
   validates :name, uniqueness: true
+  
+  has_one :location, as: :locationable, dependent: :destroy
+  accepts_nested_attributes_for :location, allow_destroy: true
 end

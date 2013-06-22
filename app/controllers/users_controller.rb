@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     if @user.authenticate(params[:user][:password])
       if @user.update_attributes(params[:user])
         @user.attachments.order('created_at DESC').last.destroy if params[:user][:_destroy] == '1'
-        redirect_to @user, notice: 'User was successfully updated.'
+        redirect_to @user, notice: 'Your profile has been successfully updated.'
       else
         render action: "edit"
       end
