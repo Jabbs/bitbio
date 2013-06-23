@@ -13,7 +13,7 @@
                   style: 'padding: 5px 10px;' %></li>
         <% if @contacts && @contacts.any? %>
           <li>
-            <%= content_tag "div", class: "btn", id: 'message', title: "Create a new message" do %>
+            <%= content_tag "div", class: "btn", id: 'message', title: "Create a new message", style: "text-decoration:none;" do %>
               <i class="icon-envelope"></i> New Message
             <% end %>
           </li>

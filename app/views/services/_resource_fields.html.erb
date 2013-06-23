@@ -20,7 +20,7 @@
       <br>
       Price:
       <%= f.number_field :price, class: 'span1' %> 
-      <%= f.select :currency_type, ["USD", "EUR", "CAD"], {}, style: 'width: 60px;' %>
+      <%= f.select :currency_type, ["USD", "EUR", "CAD"], {}, style: 'width: 70px;' %>
       per 
       <%= f.select :unit_type, options_for_select(Resource::UNIT_TYPES), {}, class: 'span2'  %>
       <%= f.hidden_field :_destroy %>

@@ -1,4 +1,5 @@
 class FacilitiesController < ApplicationController
+  before_filter :admin_user, except: [:index]
   
   def index
     @facilities = Facility.order("id ASC")
@@ -46,4 +47,9 @@ class FacilitiesController < ApplicationController
     
     redirect_to facilities_path, alert: "Facility has been removed."
   end
+  
+  private
+    def admin_user
+      redirect_to(root_path) unless current_user && current_user.admin?
+    end
 end

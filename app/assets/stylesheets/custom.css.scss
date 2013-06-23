@@ -65,7 +65,7 @@ h3 { font-size: 170%; }
 h4 { font-size: 110%; }
 h5 { font-size: 105%; }
 h6 { font-size: 100%; }
-p { font-size: 100%; line-height: 1.3em; margin-bottom:5px; }
+p { font-size: 100%; line-height: 1.3em; margin-bottom:5px; margin-top:5px; }
 h2 {
   color: $gold_dark;
   margin-top: 5px;
@@ -97,6 +97,8 @@ h2 {
 
 .no-left-margin {margin-left: 0;}
 .no-right-margin {margin-right: 0;}
+.label-width { width: 98px; }
+.body-width { width: 550px; }
 
 .pointer-enabled {
   cursor: pointer;
@@ -584,9 +586,8 @@ h2.info_header {
 /* services/new */
 
 .listing-well {
-  width: 700px; 
   background: lighten($blue, 20%);
-  padding: 20px;
+  padding: 10px 0px;
 }
 
 
@@ -694,8 +695,8 @@ h2.info_header {
     margin-top: 5px;
     margin-bottom: 0px;
     padding: 5px;
-    height: 144px;
-    max-height: 144px;
+    height: 142px;
+    max-height: 142px;
     word-wrap: break-word;
     overflow: hidden;
   }
@@ -755,6 +756,21 @@ h2.info_header {
     color: white;
     text-shadow: none;
     background-color: darken($blue, 35%);
+  }
+}
+
+#project-accordian {
+  .accordion-group { border-radius: 0px; border: 1px solid $header_background; }
+  .accordion-inner { border: none; padding: 15px;}
+  .accordion-heading {
+    background: $blue;
+    a {
+      font-size: 180%;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      &:hover { text-decoration:none; }
+      &:link { color: white; }
+    }
   }
 }
 

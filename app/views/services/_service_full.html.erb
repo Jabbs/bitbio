@@ -7,7 +7,7 @@
   
   <div class="row">
     <div class="span4">
-      <span class="dark" style="font-size: 110%; float:left;">
+      <span class="black" style="font-size: 110%; float:left;">
         <i class="icon-globe"></i>
         <%= country_with_us_shortened(@service.user.country) %></span>
     </div>
@@ -131,13 +131,9 @@
     
   </div>
   <% end %>
-  <hr>
+  <hr style="margin-bottom:5px;">
   <div class="row" style="margin-top: 3px;">
-    <div class="span5">
-      <i class="icon-eye-open" style="margin-top: 1px;"></i> views: <%= @service.view_count %>
-
-    </div>
-    <p class="time_ago pull-right"><small>Listed on <%= @service.created_at.strftime("%D") %> 
+    <p class="time_ago pull-right"><small>Last updated <%= @service.updated_at.strftime("%D") %> 
     (<%= time_ago_in_words(@service.created_at) %> ago).</small></p>
   </div>
 </div>

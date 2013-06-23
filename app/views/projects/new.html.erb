@@ -1,5 +1,207 @@
-<div class="span9 listing-well pull-right">
-  <div style="margin-left:20px">
-    <%= render 'form' %>
+<%= form_for @project do |f| %>
+<div class="row">
+  <div class="span9 pull-right">
+    <h2 class="black"><i class="icon-beaker"></i> New Project Listing</h2>
+    <%= render 'shared/error_messages', object: f.object %>
+    
+    <div class="accordion" id="project-accordian">
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#project-accordian" href="#collapseOne">
+            General
+          </a>
+        </div>
+        <div id="collapseOne" class="accordion-body collapse in">
+          <div class="accordion-inner">
+            
+            <div class="row">
+              <div class="span1 label-width">
+                <label><i class="icon-asterisk red"></i> Type:</label>
+              </div>
+              <div class="span8 body-width">
+                <input class="span6" id="project_science_type" name="project[science_type]" 
+                placeholder="e.g. antibody production, RNA purification, etc." size="30" type="text" 
+                data-provide="typeahead" data-source="<%= Project::SCIENCE_TYPES.uniq.sort %>"
+                autocomplete="off" style="margin-bottom: 0;"
+                  value="<%= @project.science_type %>"
+                 />
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="span1 label-width">
+                <label><i class="icon-asterisk red"></i> Needs:</label>
+              </div>
+              <div class="span8 radio-account-types body-width">
+                <div class="row" style="width: 650px;">
+                  <div class="span2" style="width: 160px;">
+                    <%= f.radio_button :service_need, Project::SERVICE_NEEDS[0], checked: true  %>
+                    <label><%= Project::SERVICE_NEEDS[0] %></label>
+                  </div>
+                  <div class="span2" style="width: 205px;">
+                    <%= f.radio_button :service_need, Project::SERVICE_NEEDS[1]  %>
+                    <label><%= Project::SERVICE_NEEDS[1] %></label>
+                  </div>
+                  <div class="span3" style="width: 200px;">
+                    <%= f.radio_button :service_need, Project::SERVICE_NEEDS[2]  %>
+                    <label><%= Project::SERVICE_NEEDS[2] %></label>
+                  </div>
+                </div>
+                <div class="row" style="width: 650px;">
+                  <div class="span2" style="width: 160px;">
+                    <%= f.radio_button :service_need, Project::SERVICE_NEEDS[3] %>
+                    <label><%= Project::SERVICE_NEEDS[3] %></label>
+                  </div>
+                  <div class="span2" style="width: 205px;">
+                    <%= f.radio_button :service_need, Project::SERVICE_NEEDS[4]  %>
+                    <label><%= Project::SERVICE_NEEDS[4] %></label>
+                  </div>
+                  <div class="span2" style="width: 200px;">
+                    <%= f.radio_button :service_need, Project::SERVICE_NEEDS[5]  %>
+                    <label><%= Project::SERVICE_NEEDS[5] %></label>
+                  </div>
+                </div>
+                <p>What best describes the needs for your scientific project?</p>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="span8 body-width" style="margin-bottom: 10px; padding-left: 110px;">
+                Technology / Technique Needs
+              </div>
+            </div>
+            <div class="row">
+              <div class="span8 body-width" style="padding-left: 110px;">
+                <%= f.fields_for :instruments do |builder| %>
+                  <%= render 'instrument_fields', f: builder %>
+                <% end %>
+                <%= link_to_add_fields "Add new +", f, :instruments %>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#project-accordian" href="#collapseTwo">
+            Project Details
+          </a>
+        </div>
+        <div id="collapseTwo" class="accordion-body collapse">
+          <div class="accordion-inner">
+            
+            <div class="row">
+               <div class="span1 label-width">
+                 <label><i class="icon-asterisk red"></i> Name:</label>
+               </div>
+               <div class="span8 body-width">
+                 <%= f.text_field :name, placeholder: 'e.g. analyzing yeast histone modification', 
+                 class: 'span6', style: 'margin-bottom: 0;' %>
+                 <p>Choose a unique name for your project.</p>
+               </div>
+             </div>
+             <hr>
+             <div class="row">
+               <div class="span1 label-width">
+                 <label><i class="icon-asterisk red"></i> Description:</label>
+               </div>
+               <div class="span7 body-width">
+                 <%= f.text_area :description, class: 'span6', rows: 5, placeholder: 
+                 "Please describe your project in detail." %>
+               </div>
+             </div>
+             <div class="row" style="margin-top: 5px;">
+               <div class="span1 label-width">
+                 <label>Tags:</label>
+               </div>
+               <div class="span8 body-width">
+                 <% @project.tag_list.blank? ? project_tags = ["bitbio"] : project_tags = @project.tag_list %>
+                 <div id="project-tags" data-tags="<%= Project::TAGS %>"></div>
+                 <div id="project-prefilled-tags" data-tags="<%= project_tags %>"></div>
+                 <input style="width: 100px;" type="text" name="project[tag_list]" placeholder="tag" class="tm-input" autocomplete="off"/>
+                 <p>Tag your project for optimal search queries (delimiters: tab, enter, comma). Maximum: 6.</p>
+               </div>
+             </div>
+             <hr>
+             <div class="row">
+               <div class="span1 label-width">
+                 <label><i class="icon-asterisk red"></i> Start:</label>
+               </div>
+               <div class="span8 body-width">
+                 <%= f.text_field :start_date, placeholder: 'YYYY-MM-DD', 
+                     style: 'margin-bottom: 0; width: 90px;' %>
+                 <p>What date does your project start?</p>
+               </div>
+             </div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#project-accordian" href="#collapseThree">
+            Select A Plan
+          </a>
+        </div>
+        <div id="collapseThree" class="accordion-body collapse">
+          <div class="accordion-inner">
+            
+            <div class="row">
+              <div class="span1 label-width">
+                <label>Visability:</label>
+              </div>
+              <div class="span8 radio-account-types body-width">
+                <% Project::VISABILITY_OPTIONS.each do |option| %>
+                  <%= f.radio_button :visability, option %>
+                  <label style="width: 90px; margin-right: 5px;">
+                    <% if option == 'public' %>
+                    <i class="icon-globe" style="margin-right: 9px; margin-left: 2px;"></i>
+                    <% elsif option == 'private' %>
+                    <i class="icon-group" style="margin-right: 7px;"></i>
+                    <% elsif option == 'locked' %>
+                    <i class="icon-lock" style="margin-right: 9px; margin-left: 4px;"></i>
+                    <% end %>
+                    <%= option.capitalize %>
+                  </label>
+                  <%= visability_text(option) %>
+                  <br>
+                <% end %>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="span1 label-width">
+                <label>Plan:</label>
+              </div>
+              <div class="span8 radio-account-types body-width">
+                <%= f.radio_button :expiration_date, Date.today + 30.days, checked: true  %>
+                <label>30 day listing - FREE</label>
+                <br>
+                <%= f.radio_button :expiration_date, Date.today + 90.days  %>
+                <label>90 day listing - $60</label>
+                <br>
+                <%= f.radio_button :expiration_date, Date.today + 180.days  %>
+                <label>180 day listing - $100</label>
+                <p>How long would you like to list your project?</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="span9">
+                <%= f.submit 'List Project', class: "my-button large-button", disable_with: 'Submitting...',
+                    style: 'margin-bottom: 5px;' %> |
+                <%= link_to 'cancel', current_user %>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      
+      
+    </div>
+    
   </div>
 </div>
+<% end %>

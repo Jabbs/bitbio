@@ -6,7 +6,7 @@ class Resource < ActiveRecord::Base
   validates :kind, presence: true
   validates :name, presence: true, uniqueness: { scope: :service_id }
   
-  SERVICE_TYPES = ["Instrument", "Software", "Method", "Reagent", "Experiment", "Other"]
+  SERVICE_TYPES = ["Instrument", "Software", "Method", "Reagent", "Experiment", "Technique", "Other"]
   UNIT_TYPES = ["Sample", "Reaction", "Unit", "Run", "Plate", "Flow Cell", "Analysis"]
   
   scope :instruments, ->() { where(kind: 'Instrument') }
