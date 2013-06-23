@@ -1,4 +1,9 @@
 jQuery ->
+
+  $(".tip").tooltip({
+    container: 'body'
+  })
+
   # $('.main-nav-set li').hide()
   # $('.main-nav-set li:first-child').show()
   $('.main-nav-set li:first-child').mouseenter ->

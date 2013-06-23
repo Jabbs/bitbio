@@ -15,11 +15,11 @@
     <% back_color = "def" %>
   <% end %>
   <div class="row" style="padding-left: 20px; margin-top: 2px;">
-    <div class="country">
-      <i class="icon-globe"></i>
-      <%= truncate(country_with_us_shortened(project.user.country), length: 18) %>
+    <div class="service <%= back_color %>">
+      <%= project.service_need %>
+      <span class="pull-right"><i class="icon-globe tip white pointer" 
+        title="<%= country_with_us_shortened(project.country) %>"></i></span>
     </div>
-    <div class="service <%= back_color %>"><%= project.service_need %></div>
   </div>
   <div class="head">
     <h3><%= link_to truncate(project.name, length: 32), project_path(project) %></h3>

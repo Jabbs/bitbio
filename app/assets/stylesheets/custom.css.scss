@@ -63,9 +63,9 @@ h1 { font-size: 210%; }
 h2 { font-size: 190%; }
 h3 { font-size: 170%; }
 h4 { font-size: 110%; }
-h5 { font-size: 100%; }
-h6 { font-size: 95%; }
-p { font-size: 95%; line-height: 1.3em; }
+h5 { font-size: 105%; }
+h6 { font-size: 100%; }
+p { font-size: 100%; line-height: 1.3em; margin-bottom:5px; }
 h2 {
   color: $gold_dark;
   margin-top: 5px;
@@ -85,7 +85,7 @@ h2 {
 
 .inline { display: inline; }
 .bold { font-weight: bold; }
-
+.pointer { cursor: pointer; }
 .gold { color: $gold_dark; }
 .silver { color: $silver; }
 .dark { color: $header_background;}
@@ -93,6 +93,7 @@ h2 {
 .bluee { color: darken($blue, 15%); }
 .red { color: $red; }
 .black { color: black; }
+.white { color: white; }
 
 .no-left-margin {margin-left: 0;}
 .no-right-margin {margin-right: 0;}
@@ -603,11 +604,10 @@ h2.info_header {
 }
 
 .service {
-  display: inline;
   font-size: 0.9em;
   margin-bottom: 0px;
   margin-top: 0px;
-  padding: 3px;
+  padding: 3px 8px;
   @include rounded_border;
   color: white;
 }
@@ -634,8 +634,6 @@ h2.info_header {
   margin-bottom: 3px;
   float: right;
   text-overflow: ellipsis;
-  width: 105px;
-  max-width: 105px;
   height: 1.3em;
   max-height: 1.3em;
   text-align: right;
@@ -654,7 +652,7 @@ h2.info_header {
   background: lighten($silver, 15%);
   width: 216px;
   padding: 5px;
-  padding-bottom: 15px;
+  padding-bottom: 20px;
   margin-bottom: 20px;
   margin-right: 10px;
   margin-left: 0px;

@@ -28,7 +28,7 @@
   </div>
   <div class="row" style="padding-left:20px">
     <h4 style='margin-bottom: 5px;'>
-      <div class="service <%= back_color %>"><%= @project.service_need %></div>
+      <div class="service <%= back_color %>" style="width: 160px;"><%= @project.service_need %></div>
       <%= @project.science_type %> 
       
       <% if current_user && current_user != @project.user && current_user.verified? %>
