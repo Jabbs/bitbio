@@ -11,8 +11,7 @@ namespace :db do
       facility = Facility.all.shuffle.first
       user = User.new(first_name: 'Peter', last_name: 'Jabbour', email: 'petejabbour1@gmail.com', password: 'testing', password_confirmation: 'testing',
                    account_type: 'Researcher', facility_id: facility.id, phone: '785-550-8670',
-                   bio: Faker::Lorem.paragraph, address: "3049 W Fullerton #1", city: "Chicago",
-                   state: "IL", zip: "60647", country: "United States of America", organization: facility.name)
+                   bio: Faker::Lorem.paragraph, country: "United States of America", organization: facility.name)
       user.verified = true
       user.save!
     end
