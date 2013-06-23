@@ -1,5 +1,5 @@
 class Facility < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :website, :email, :phone, :location_attributes
   
   has_many :labs
   has_many :users

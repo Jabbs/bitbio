@@ -17,7 +17,7 @@ namespace :db do
       email         = row[11]
       provider      = row[12]
       
-      facility = Facility.new(name: name)
+      facility = Facility.new(name: name, phone: phone, website: website, email: email)
       facility.build_location(address1: address1, address2: address2, address3: address3, city: city,
                             state: state, zip: zip, country: country)
       facility.save!

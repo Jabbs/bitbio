@@ -6,15 +6,20 @@ class Location < ActiveRecord::Base
   geocoded_by :full_address
   acts_as_gmappable :process_geocoding => false
   
-  after_validation :geocode, :if => :address1_changed?
-  after_validation :geocode, :if => :address2_changed?
-  after_validation :geocode, :if => :address3_changed?
-  after_validation :geocode, :if => :city_changed?
-  after_validation :geocode, :if => :state_changed?
-  after_validation :geocode, :if => :zip_changed?
-  after_validation :geocode, :if => :country_changed?
+  after_validation :geocode, :if => :address_changed?
+  
+  validates :country, presence: true
   
   scope :facilities, ->() { where(locationable_type: 'Facility') }
+  scope :with_coordinates, ->() {
+    where("latitude IS NOT NULL")
+    where("longitude IS NOT NULL")
+  }
+  
+  def address_changed?
+    attrs = %w(address1 address2 address3 city state zip country)
+    attrs.any?{|a| send "#{a}_changed?"}
+  end
   
   def full_address
     "#{address1}, #{address2}, #{address3}, #{city}, #{state}, #{zip}, #{country}"

@@ -1,0 +1,57 @@
+<%= form_for @facility do |f| %>
+  <div class="row">
+    <%= render 'shared/error_messages', object: f.object %>
+    <% if @facility.new_record? %>
+      <h2 class="black"><i class="icon-beaker"></i> New facility Listing</h2>
+    <% else %>
+      <h2 class="black">Editing facility</h2>
+    <% end %>
+    <hr>
+    <div class="row">
+      <div class="span1" style="width: 90px;">
+        <label><i class="icon-asterisk red"></i> Name:</label>
+      </div>
+      <div class="span8" style="width: 590px;">
+        <%= f.text_field :name, class: "span6" %>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="span1" style="width: 90px;">
+        <label><i class="icon-asterisk red"></i> General:</label>
+      </div>
+      <div class="span8" style="width: 590px;">
+ 
+          <%= f.text_field :website, class: 'span6', placeholder: "website" %>
+          <%= f.text_field :email, class: 'span6', placeholder: "email" %>
+          <%= f.text_field :phone, class: 'span6', placeholder: "phone" %>
+
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="span1" style="width: 90px;">
+        <label><i class="icon-asterisk red"></i> Location:</label>
+      </div>
+      <div class="span8" style="width: 590px;">
+        <%= f.fields_for :location do |builder| %>
+          <%= render 'location_fields', f: builder %>
+        <% end %>
+      </div>
+    </div>
+    <hr>
+
+    <div class="row">
+      <div class="span9">
+        <% if action_name == 'edit' || action_name == 'update' %>
+          <%= f.submit 'Update facility', class: "my-button large-button", disable_with: 'Submitting...',
+              style: 'margin-bottom: 5px;' %> |
+        <% else %>
+          <%= f.submit 'List facility', class: "my-button large-button", disable_with: 'Submitting...',
+              style: 'margin-bottom: 5px;' %> |
+        <% end %>
+        <%= link_to 'cancel', facilities_path %>
+      </div>
+    </div>
+  </div>
+<% end %>

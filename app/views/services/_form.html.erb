@@ -49,7 +49,7 @@
         <% @service.tag_list.blank? ? service_tags = ["bitbio"] : service_tags = @service.tag_list %>
         <div id="service-tags" data-tags="<%= Project::TAGS %>"></div>
         <div id="service-prefilled-tags" data-tags="<%= service_tags %>"></div>
-        <input style="width: 100px;" type="text" name="service[tag_list]" placeholder="tag" class="service-tm-input" autocomplete="off"/>
+        <input style="width: 100px;" type="text" name="service[tag_list]" placeholder="add tag" class="service-tm-input" autocomplete="off"/>
       </div>
     </div>
     

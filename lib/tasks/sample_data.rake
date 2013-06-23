@@ -13,6 +13,7 @@ namespace :db do
                    account_type: 'Researcher', facility_id: facility.id, phone: '785-550-8670',
                    bio: Faker::Lorem.paragraph, country: "United States of America", organization: facility.name)
       user.verified = true
+      user.admin = true
       user.save!
     end
     
@@ -21,8 +22,7 @@ namespace :db do
       user = User.new(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, 
                     password: 'testing', password_confirmation: 'testing', account_type: ['Researcher', 'Provider'].shuffle.first, 
                     facility_id: facility.id, phone: Faker::PhoneNumber.phone_number, bio: Faker::Lorem.paragraph,
-                    address: Faker::Address.street_address, city: Faker::Address.city, state: Faker::Address.state_abbr,
-                    zip: Faker::Address.zip_code, country: Ravibhim::Continents::COUNTRIES.shuffle.first, organization: facility.name)
+                    country: Ravibhim::Continents::COUNTRIES.shuffle.first, organization: facility.name)
       user.verified = true
       user.save!
     end
