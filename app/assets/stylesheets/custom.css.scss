@@ -65,7 +65,7 @@ h3 { font-size: 170%; }
 h4 { font-size: 110%; }
 h5 { font-size: 100%; }
 h6 { font-size: 95%; }
-p { font-size: 100%; line-height: 1.3em; }
+p { font-size: 95%; line-height: 1.3em; }
 h2 {
   color: $gold_dark;
   margin-top: 5px;
@@ -241,16 +241,17 @@ h2.info_header {
 
 #featured-users {
   .user {
-    float: left;
     padding: 2px;
     border: 1px solid $silver;
     margin-right: 5px;
     margin-left: 5px;
+    width: 40px;
   }
   .top {
     h5 {
       margin-top: 5px;
-      line-height: 90%;
+      line-height: 100%;
+      word-wrap: break-word;
     }
   }
 }

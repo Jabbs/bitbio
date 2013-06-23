@@ -54,7 +54,7 @@ module ApplicationHelper
   
   def bread_crumb_list_items(url)
     elements = url.split('/')[1..-1]
-    c = content_tag(:span, "<i class='icon-caret-right'></i>".html_safe)
+    c = content_tag(:span, "<i class='icon-caret-right' style='padding-right:3px;padding-left:3px;'></i>".html_safe)
     home = content_tag(:li, link_to('home', root_path))
     
     crumbs = []
