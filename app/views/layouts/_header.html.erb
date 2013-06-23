@@ -46,8 +46,7 @@
                 <li id="labs">
                   <ul class="main-nav-set unstyled">
                     <li><%= link_to 'labs', facilities_path %></li>
-                    <li style="width: 120px;"><%= link_to 'all labs', '#' %></li>
-                    <li style="width: 120px;"><%= link_to 'map of labs', facilities_path %></li>
+                    <li style="width: 120px;"><%= link_to 'map of facilities', facilities_path %></li>
                   </ul>
                 </li>
                 <li id="blogs">
@@ -85,14 +84,14 @@
     				<ul class="nav pull-right">
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" id="name" data-toggle="dropdown" 
-                style="max-width: 160px; padding-right:0px; padding-left:10px;">
-    							Welcome, <%= current_user.first_name %>!
+                style="max-width: 170px; padding-right:0px; padding-left:10px;">
+    							Welcome, <%= truncate(current_user.first_name, length: 14) %>!
     							<% if current_user.new_message_count != 0 %>
     							  <span class="gold">(<%= current_user.new_message_count %>)</span> 
     							<% end %>
     							<b class="caret"></b>
     						</a>
-                <ul class="dropdown-menu" style='min-width: 100px; padding-left: 0px;'>
+                <ul class="dropdown-menu" style='min-width: 160px; padding-left: 0px;'>
                   <li>
                     <a href="<%= user_path(current_user) %>">
                     <i class="icon-user" style="margin-right: 6px;"></i> My Profile</a>

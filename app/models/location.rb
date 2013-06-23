@@ -19,9 +19,5 @@ class Location < ActiveRecord::Base
   def full_address
     "#{address1}, #{address2}, #{address3}, #{city}, #{state}, #{zip}, #{country}"
   end
-  
-  def gmaps4rails_address
-  # describe how to retrieve the address from your model, if you use directly a db column, you can dry your code, see wiki
-    "#{address1}, #{address2}, #{address3}, #{city}, #{state}, #{zip}, #{country}"
-  end
+
 end

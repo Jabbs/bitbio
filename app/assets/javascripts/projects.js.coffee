@@ -7,6 +7,11 @@ jQuery ->
     $(this).children().hide()
     $('.main-nav-set li:first-child').show()
     
+  $(".main-nav-set li").click ->
+    url = $(this).find("a").attr('href')
+    if url
+      window.location = url
+    
   $('#any').mousedown ->
     if $(this).prop('checked') == false
       $('.ctry').prop('checked', false)
