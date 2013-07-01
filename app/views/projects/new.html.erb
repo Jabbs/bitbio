@@ -66,12 +66,12 @@
             </div>
             <br>
             <div class="row">
-              <div class="span8 body-width" style="margin-bottom: 10px; padding-left: 110px;">
+              <div class="span8 body-width" style="margin-bottom: 10px;">
                 Technology / Technique Needs
               </div>
             </div>
             <div class="row">
-              <div class="span8 body-width" style="padding-left: 110px;">
+              <div class="span8">
                 <%= f.fields_for :instruments do |builder| %>
                   <%= render 'instrument_fields', f: builder %>
                 <% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130701135250) do
+ActiveRecord::Schema.define(:version => 20130701161047) do
 
   create_table "attachments", :force => true do |t|
     t.string   "attachable_type"
@@ -95,13 +95,15 @@ ActiveRecord::Schema.define(:version => 20130701135250) do
   create_table "instruments", :force => true do |t|
     t.string   "alias"
     t.integer  "project_id"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
-    t.boolean  "must_have",  :default => true
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.boolean  "must_have",     :default => true
+    t.string   "resource_type"
   end
 
   add_index "instruments", ["alias"], :name => "index_instruments_on_name"
   add_index "instruments", ["project_id"], :name => "index_instruments_on_project_id"
+  add_index "instruments", ["resource_type"], :name => "index_instruments_on_resource_type"
 
   create_table "labs", :force => true do |t|
     t.string   "name"

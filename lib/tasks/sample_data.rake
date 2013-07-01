@@ -43,6 +43,7 @@ namespace :db do
       Project::SCIENCE_EQUIPMENT.uniq.shuffle[0..x].each do |i|
         instrument = project.instruments.build(alias: i)
         instrument.must_have = [true, false].shuffle.first
+        instrument.resource_type = Resource::SERVICE_TYPES.shuffle.first
         instrument.save
       end
       Project::TAGS.uniq.shuffle[0..x].each do |tag|
