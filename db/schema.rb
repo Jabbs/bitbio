@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130701161047) do
+ActiveRecord::Schema.define(:version => 20130701225845) do
 
   create_table "attachments", :force => true do |t|
     t.string   "attachable_type"
@@ -67,6 +67,27 @@ ActiveRecord::Schema.define(:version => 20130701161047) do
   add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
   add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
+  create_table "events", :force => true do |t|
+    t.string   "title"
+    t.string   "website"
+    t.text     "description"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string   "twitter_handle"
+    t.string   "location_name"
+    t.string   "organizer"
+    t.string   "phone"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.string   "slug"
+    t.string   "bitly_url"
+    t.integer  "view_count",     :default => 0
+    t.integer  "user_id"
+  end
+
+  add_index "events", ["slug"], :name => "index_events_on_slug"
+  add_index "events", ["user_id"], :name => "index_events_on_user_id"
 
   create_table "facilities", :force => true do |t|
     t.string   "name"

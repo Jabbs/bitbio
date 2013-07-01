@@ -1,0 +1,63 @@
+<% @event.bitly_url? ? share_url = @event.bitly_url : share_url = request.url %>
+
+<% if current_user %>
+<div style="height: 0px;"><%= link_to "<i class='icon-plus'></i> ADD CONFERENCE".html_safe, new_event_path, class: 'my-button-blue',
+style: 'position:relative; left: 591px; top: -40px' %></div>
+<% end %>
+
+<div class="span9 pull-right" id='event-header'>
+  <div class="row">
+    <div class="span2" style="width: 80px;">
+      <% if @event.user.attachments.any? %>
+        <%= image_tag(@event.user.attachments.first.image.url, title: @event.user.full_name).to_s %>
+      <% else %>
+        <%= image_tag 'blank_avatar.jpg', title: @event.user.full_name, id: 'user-avatar' %>
+      <% end %>
+    </div>
+    <div class="span7" style="width: 600px;">
+      <h2><%= @event.title %></h2>
+      <p>
+        <small>
+          posted by <%= link_to "#{@event.user.full_name}", user_path(@event.user) %> on 
+          <%= @event.created_at.strftime('%D %l:%M%P') %>.
+          <span style="margin-left: 5px;"><%= pluralize(@event.view_count, 'VIEW', 'VIEWS') %></span>
+          <span style="margin-left: 5px;"><%= pluralize(@event.comments.count, 'COMMENT', 'COMMENTS') %></span>
+        </small>
+      </p>
+      <div class="row" style="margin-bottom: 5px;">
+        <div class="span1" style="width:80px">
+          <a href="https://twitter.com/share" class="twitter-share-button" data-url="<%= share_url %>" data-text="<%= @event.title %>" data-via="bit_bio" data-counturl="<%= request.url %>">Tweet</a>
+        </div>
+        <div class="span1" style="padding-top: 1px; width:80px;">
+          <div class="fb-like" data-href="<%= request.url %>" data-send="false" data-layout="button_count" data-width="80" data-show-faces="false" data-font="arial"></div>
+        </div>
+        <div class="span1" style="width:80px">
+          <script src="//platform.linkedin.com/in.js" type="text/javascript">
+           lang: en_US
+          </script>
+          <script type="IN/Share" data-url="<%= request.url %>" data-counter="right"></script>
+        </div>
+        <div class="span1" style="width:80px">
+          <div class="g-plusone" data-size="medium"></div>
+          <script type="text/javascript">
+            (function() {
+              var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+              po.src = 'https://apis.google.com/js/plusone.js';
+              var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+            })();
+          </script>
+        </div>
+        <div class="pull-right">
+          <% if current_user?(@event.user) %>
+            <%= link_to '<i class="icon-edit"></i> edit'.html_safe, edit_event_path(@event), class: 'my-button-red' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% if @event.tags %>
+    <i class="icon-tags dark"></i> tags: <%= raw @event.tags.map { |t| link_to t.name, tag_events_path(t.name)  }.join(', ') %>
+  <% end %>
+  <hr style="margin-top:5px;">
+</div>
+<hr>

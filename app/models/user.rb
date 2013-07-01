@@ -33,6 +33,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :likes
   has_many :services
+  has_many :events
   has_many :blogs, dependent: :destroy
   has_many :attachments, as: :attachable, dependent: :destroy
   accepts_nested_attributes_for :attachments, allow_destroy: true

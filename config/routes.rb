@@ -1,5 +1,7 @@
 Bitbio::Application.routes.draw do
 
+  resources :events
+
   resources :facilities do
     resources :labs
   end

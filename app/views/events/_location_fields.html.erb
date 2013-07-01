@@ -1,0 +1,11 @@
+<fieldset>
+  <%= f.text_field :address1, class: 'span5', placeholder: "address 1" %>
+  <%= f.text_field :address2, class: 'span5', placeholder: "address 2" %>
+  <%= f.text_field :address3, class: 'span5', placeholder: "address 3" %>
+  <br>
+  <%= f.text_field :city, class: 'span2', placeholder: "city" %>
+  <%= f.text_field :state, class: 'span2', placeholder: "state/province" %>
+  <%= f.text_field :zip, class: 'span2', placeholder: "postal code" %>
+  <%= f.select :country, Ravibhim::Continents::COUNTRIES, 
+      { prompt: "--select country--" }, class: "span5" %>
+</fieldset>

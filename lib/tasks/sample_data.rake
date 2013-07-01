@@ -40,7 +40,7 @@ namespace :db do
       project.user_id = User.all.shuffle.first.id
       
       x = [1,2,3].shuffle.first
-      Project::SCIENCE_EQUIPMENT.uniq.shuffle[0..x].each do |i|
+      Project::Event.uniq.shuffle[0..x].each do |i|
         instrument = project.instruments.build(alias: i)
         instrument.must_have = [true, false].shuffle.first
         instrument.resource_type = Resource::SERVICE_TYPES.shuffle.first
@@ -79,7 +79,7 @@ namespace :db do
       service.view_count = [7,20,25,30,34,40,80,90,100,123,44,2,234,300,23,10,50].shuffle.first
       service.save!
       
-      resource_names = Project::SCIENCE_EQUIPMENT.shuffle.first(x)
+      resource_names = Project::Event.shuffle.first(x)
       x.times do
         kind = Resource::SERVICE_TYPES.shuffle.first
         name = resource_names.first

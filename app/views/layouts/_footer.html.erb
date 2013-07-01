@@ -20,9 +20,11 @@
 					<li><%= link_to "About Us", '#' %></li>
 				</ul>
   		</div>
-      <div style="padding-left:20px;">
-        <%= render 'shared/info' %>
-      </div>
+  		<% if controller_name == 'projects' && action_name == 'home' %>
+        <div style="padding-left:20px;">
+          <%= render 'shared/info' %>
+        </div>
+      <% end %>
     </div>
   </div>
 </footer>

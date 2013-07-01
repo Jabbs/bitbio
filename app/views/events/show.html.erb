@@ -1,0 +1,32 @@
+<% if !ENV['STAGING'].present? || Rails.env.development? %>
+  <% content_for :title do %>
+    <%= t('application.root.title_with_tag_line', tag_line: "#{@event.title}") %>
+  <% end %>
+  <% content_for :description do %>
+    <%= @event.title %> by <%= @event.user.full_name %> posted on <%= @event.created_at.strftime("%D") %>.
+  <% end %>
+<% end %>
+
+<div class="row">
+  <div class="span9 pull-right">
+    <%= render 'events/header' %>
+    
+    <p><%= simple_format(Rinku.auto_link(@event.description).html_safe) %></p>
+    <hr>
+    <%= render 'comments/comments' %>
+
+    <%= render 'comments/form_info' %>
+    <br>
+  </div>
+</div>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+      
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=537185399671192";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
