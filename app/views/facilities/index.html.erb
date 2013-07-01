@@ -30,19 +30,23 @@
                 <%= f.email %><br>
                 <%= f.phone %>
               <td>
-                <% if f.location.address1 && f.location.address2 %>
-                  <%= f.location.address1 %>, <%= f.location.address2 %><br>
-                <% elsif f.location.address1 %>
-                  <%= f.location.address1 %><br>
-                <% end %>
-                <% if f.location.address3 %>
-                  <%= f.location.address3 %><br>
-                <% end %>
-                <%= city_state_zip_country(f.location) %><br>
-                <% if f.location.geocoded? %>
-                  <%= f.location.latitude %>/<%= f.location.longitude %>
+                <% if f.location.present? %>
+                  <% if f.location.address1 && f.location.address2 %>
+                    <%= f.location.address1 %>, <%= f.location.address2 %><br>
+                  <% elsif f.location.address1 %>
+                    <%= f.location.address1 %><br>
+                  <% end %>
+                  <% if f.location.address3 %>
+                    <%= f.location.address3 %><br>
+                  <% end %>
+                  <%= city_state_zip_country(f.location) %><br>
+                  <% if f.location.geocoded? %>
+                    <%= f.location.latitude %>/<%= f.location.longitude %>
+                  <% else %>
+                    <span class='red'>NO COORDINATES</span>
+                  <% end %>
                 <% else %>
-                  <span class='red'>NO COORDINATES</span>
+                  <span class='red'>NO LOCATION</span>
                 <% end %>
               </td>
               <td>

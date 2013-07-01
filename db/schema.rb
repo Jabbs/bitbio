@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130623150412) do
+ActiveRecord::Schema.define(:version => 20130701135250) do
 
   create_table "attachments", :force => true do |t|
     t.string   "attachable_type"
@@ -75,9 +75,11 @@ ActiveRecord::Schema.define(:version => 20130623150412) do
     t.string   "website"
     t.string   "email"
     t.string   "phone"
+    t.string   "slug"
   end
 
   add_index "facilities", ["name"], :name => "index_facilities_on_name"
+  add_index "facilities", ["slug"], :name => "index_facilities_on_slug"
 
   create_table "friendly_id_slugs", :force => true do |t|
     t.string   "slug",                         :null => false

@@ -1,4 +1,6 @@
 class Facility < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name, use: [:slugged, :history]
   attr_accessible :name, :website, :email, :phone, :location_attributes
   
   has_many :labs

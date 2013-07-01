@@ -103,7 +103,9 @@ class UsersController < ApplicationController
     def create_facility
       if facility = Facility.find_by_name(@signup_user.organization)
       else
-        facility = Facility.create(name: @signup_user.organization)
+        facility = Facility.new(name: @signup_user.organization)
+        facility.build_location(country:  @signup_user.country)
+        facility.save
       end
       @signup_user.update_attribute(:facility_id, facility.id)
       @signup_user.save
