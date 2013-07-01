@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   if Rails.env.production? # && ENV['STAGING'] == "true"
-    http_basic_authenticate_with :name => "pj", :password => "pj"
+    http_basic_authenticate_with :name => "bitbio", :password => "bitbio"
   end
   before_filter :ensure_domain
   before_filter :instantiate_message_and_user

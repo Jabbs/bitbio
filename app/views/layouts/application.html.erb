@@ -2,7 +2,7 @@
 <html>
 <head>
   <% if !ENV['STAGING'].present? || Rails.env.development? %>
-    <link rel="image_src" href="<%= image_path('bitbio_logo.png') %>" />
+    <link rel="image_src" href="<%= image_path('logo_120x120.png') %>" />
     <title><%= content_for?(:title) ? yield(:title) : t('application.root.title') %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : t('application.root.description') %>">
   <% else %>
