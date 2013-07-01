@@ -94,13 +94,13 @@
                 <ul class="dropdown-menu" style='min-width: 160px; padding-left: 0px;'>
                   <li>
                     <a href="<%= user_path(current_user) %>">
-                    <i class="icon-user" style="margin-right: 6px;"></i> My Profile</a>
+                    <i class="icon-user" style="margin-right: 8px;"></i> My Profile</a>
                   </li>
-                  <li>
+                  <!-- <li>
                     <a href="#">
                     <i class="icon-wrench" style="margin-right: 6px;"></i> Settings
                     </a>
-                  </li>
+                  </li> -->
                   <li>
                     <a href="<%= user_messages_path(current_user) %>">
                     <i class="icon-envelope" style="margin-right: 6px;"></i> Messages
@@ -112,19 +112,19 @@
                   <% if current_user.projects.any? %>
                     <li>
                       <a href="<%= user_project_listings_path(current_user) %>">
-                      <i class="icon-beaker" style="margin-right: 6px;"></i> My project listings</a>
+                      <i class="icon-beaker" style="margin-right: 7px;"></i> My project listings</a>
                     </li>
                   <% end %>
                   <% if current_user.services.any? %>
                     <li>
                       <a href="<%= user_service_listings_path(current_user) %>">
-                      <i class="icon-beaker" style="margin-right: 6px;"></i> My service listings</a>
+                      <i class="icon-building" style="margin-right: 8px; margin-left:1px;"></i> My service listings</a>
                     </li>
                   <% end %>
                   <li class="divider"></li>
                   <li>
                     <a href="<%= logout_path %>" data-method="delete" rel="nofollow">
-                    <i class="icon-signout" style="margin-right: 4px; margin-left:2px;" 
+                    <i class="icon-signout" style="margin-right: 6px; margin-left:2px;" 
                     method="delete"></i> Logout</a>
                   </li>
                 </ul>

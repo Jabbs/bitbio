@@ -4,7 +4,7 @@ class Resource < ActiveRecord::Base
   belongs_to :service
   
   validates :kind, presence: true
-  validates :name, presence: true, uniqueness: { scope: :service_id }
+  validates :name, presence: true
   
   SERVICE_TYPES = ["Instrument", "Software", "Method", "Reagent", "Experiment", "Technique", "Other"]
   UNIT_TYPES = ["Sample", "Reaction", "Unit", "Run", "Plate", "Flow Cell", "Analysis"]
@@ -15,6 +15,8 @@ class Resource < ActiveRecord::Base
   scope :reagents, ->() { where(kind: 'Reagent') }
   scope :experiments, ->() { where(kind: 'Experiment') }
   scope :others, ->() { where(kind: 'Other') }
+  
+  scope :searchable, ->() { joins(:service).where(services: {searchable: true}) }
   
   def pricing?
     if self.price && self.unit_type && self.currency_type

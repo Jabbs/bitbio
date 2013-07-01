@@ -6,7 +6,7 @@
         <input class="span4" id="service_resources_attributes_name" 
         name="service[resources_attributes][<%= @id %>][name]" 
         placeholder="e.g. Bioanalyzer, Illumina HiSeq 2000, etc." size="30" type="text" 
-        data-provide="typeahead" data-source="<%= Project::SCIENCE_EQUIPMENT.uniq.sort %>"
+        data-provide="typeahead" data-source="<%= Resource.pluck(:name).uniq.sort %>"
         autocomplete="off"
         <% unless @service.new_record? %>
           value="<%= f.object.name %>"
@@ -26,7 +26,7 @@
       <%= f.hidden_field :_destroy %>
     </div>
     <div class="span1">
-      <%= link_to "<i class='icon-remove'></i> remove".html_safe, '#', class: 'remove_fields' %>
+      <%= link_to "<i class='icon-trash'></i>".html_safe, '#', class: 'remove_fields', style: 'text-decoration: none;' %>
     </div>
   </fieldset>
 </div>

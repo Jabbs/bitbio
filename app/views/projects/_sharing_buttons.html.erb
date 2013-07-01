@@ -18,17 +18,17 @@
     <div class="span2" style="width: 120px; margin-left: 2px; margin-top: 8px;">
       
       <%= link_to tw_link, target: "_blank", style: 'text-decoration: none;' do %>
-        <%= image_tag 'twitter.png' %>
-      <% end %>
+        <i class="icon-twitter bigger no-decoration"></i>
+      <% end %>|
       <%= link_to "http://www.linkedin.com/shareArticle?mini=true&url=#{u(share_url)}&title=#{u(title_page)}&summary=#{u(description_page)}&source=#{u(app_title)}", target: "_blank", style: 'text-decoration: none;' do %>
-        <%= image_tag 'linked_in.png' %>
-      <% end %>
+        <i class="icon-linkedin bigger no-decoration"></i>
+      <% end %>|
       <%= link_to "https://plus.google.com/share?url=#{share_url}", target: "_blank", style: 'text-decoration: none;' do %>
-        <%= image_tag 'google_plus.png' %>
-      <% end %>
+        <i class="icon-google-plus bigger no-decoration"></i>
+      <% end %>|
       <%= link_to "mailto: ?subject=#{u("bitBIO Project: "+ @project.name)}&body=#{u(share_url)}",
           style: 'text-decoration: none;' do %>
-        <%= image_tag 'envelope.png' %>
+        <i class="icon-envelope bigger no-decoration"></i>
       <% end %>
     </div>
   </div>

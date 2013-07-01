@@ -94,7 +94,8 @@ h2 {
 .red { color: $red; }
 .black { color: black; }
 .white { color: white; }
-
+.bigger { font-size: 150%; }
+.no-decoration { text-decoration: none; }
 .no-left-margin {margin-left: 0;}
 .no-right-margin {margin-right: 0;}
 .label-width { width: 98px; }
@@ -644,8 +645,8 @@ h2.info_header {
 .small-links {
   line-height: 110%;
   font-size: 80%;
-  height: 23px;
-  max-height: 23px;
+  height: 25px;
+  max-height: 25px;
   overflow: hidden;
 }
 

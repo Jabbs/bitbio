@@ -40,12 +40,12 @@
     <div class="span3">
       <label style="margin-left: 10px;"><i class="icon-beaker"></i> resources:</label>
       <%= select_tag :science, grouped_options_for_select([ 
-          ['Instrument', Resource.scoped.instruments.pluck(:name).uniq.sort], 
-          ['Software', Resource.scoped.softwares.pluck(:name).uniq.sort], 
-          ['Methods', Resource.scoped.all_methods.pluck(:name).uniq.sort], 
-          ['Reagents', Resource.scoped.reagents.pluck(:name).uniq.sort], 
-          ['Experiments', Resource.scoped.experiments.pluck(:name).uniq.sort], 
-          ['Other', Resource.scoped.others.pluck(:name).uniq.sort], 
+          ['Instrument', Resource.instruments.searchable.order("name ASC").map { |r| r.name }.uniq], 
+          ['Software', Resource.softwares.searchable.order("name ASC").map { |r| r.name }.uniq], 
+          ['Methods', Resource.all_methods.searchable.order("name ASC").map { |r| r.name }.uniq], 
+          ['Reagents', Resource.reagents.searchable.order("name ASC").map { |r| r.name }.uniq], 
+          ['Experiments', Resource.experiments.searchable.order("name ASC").map { |r| r.name }.uniq], 
+          ['Other', Resource.others.searchable.order("name ASC").map { |r| r.name }.uniq], 
           ], 
         selected_key = params[:science], prompt = 'any') %>
 
@@ -69,9 +69,9 @@
           <i class="icon-search"></i> Search
         </button>
       </div>
-      <p style="margin-left: 10px; width: 100px; line-height: 130%; font-size: 90%; margin-top: 2px; margin-bottom:0px;">
+      <!-- <p style="margin-left: 10px; width: 100px; line-height: 130%; font-size: 90%; margin-top: 2px; margin-bottom:0px;">
         Provider? <%= link_to 'search by your services', '#' %>.
-      </p>
+      </p> -->
     </div>
   </div>
   <% end %>
