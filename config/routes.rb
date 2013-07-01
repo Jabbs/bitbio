@@ -1,6 +1,12 @@
 Bitbio::Application.routes.draw do
 
-  resources :events
+  resources :events do
+    resources :comments, only: [:create]
+    collection do
+      get 'tags', to: 'tags#index_events', as: :tags
+      get 'tags/:tag', to: 'tags#show_events', as: :tag
+    end
+  end
 
   resources :facilities do
     resources :labs

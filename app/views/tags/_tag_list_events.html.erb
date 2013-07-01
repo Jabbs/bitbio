@@ -1,0 +1,20 @@
+<div style="margin-bottom: 10px;">
+  <div id="short-tag-list">
+    <% if params[:tag] %>
+      <i class="icon-tag"></i>: <strong><%= params[:tag] %> (<%= Tag.find_by_name(params[:tag]).events.size %>)</strong><br>
+    <% end %>
+    <i class="icon-tags"></i>:
+    <%= raw Tag.top_event_tags.take(18).map { |t| link_to "#{t.name} (#{t.events.size})", tag_events_path(t.name) }.join(', ') %>
+    <% if Tag.top_event_tags.size > 18 %>
+      <i class="icon-expand-alt expand-tags" title="expand tag list"></i>
+    <% end %>
+  </div>
+  <div id="long-tag-list">
+    <% if params[:tag] %>
+      <i class="icon-tag"></i>: <strong><%= params[:tag] %> (<%= Tag.find_by_name(params[:tag]).events.size %>)</strong><br>
+    <% end %>
+    <i class="icon-tags"></i>:
+    <%= raw Tag.top_event_tags.map { |t| link_to "#{t.name} (#{t.events.size})", tag_events_path(t.name) }.join(', ') %>
+    <i class="icon-collapse-alt expand-tags" title="expand tag list"></i>
+  </div>
+</div>

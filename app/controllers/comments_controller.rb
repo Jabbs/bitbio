@@ -14,6 +14,9 @@ class CommentsController < ApplicationController
       elsif @comment.commentable_type == "Blog"
         @blog = Blog.find(params[:blog_id])
         render template: 'blogs/show'
+      elsif @comment.commentable_type == "Event"
+        @event = Event.find(params[:event_id])
+        render template: 'events/show'
       end
     end
   end

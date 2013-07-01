@@ -20,4 +20,12 @@ class TagsController < ApplicationController
       @blogs = []
     end
   end
+  
+  def show_events
+    if params[:tag] && Event.tagged_with(params[:tag])
+      @events = Event.tagged_with(params[:tag]).order("created_at DESC").paginate(page: params[:page], per_page: 9)
+    else
+      @events = []
+    end
+  end
 end
