@@ -3,7 +3,7 @@
     Featured Blog Posts
   </h2>
   <% if current_user %>
-    <div style="height: 0px;"><%= link_to "<i class='icon-plus'></i> ADD BLOG".html_safe, new_blog_path, class: 'my-button-blue add-blog-button' %></div>
+    <div style="height: 0px;"><%= link_to "<i class='icon-plus'></i> ADD BLOG".html_safe, new_blog_path, class: 'my-button-red add-blog-button' %></div>
   <% end %>
   <% blogs.each do |blog| %>
     <%= render 'blogs/blog_list_item', blog: blog %>

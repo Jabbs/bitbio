@@ -14,6 +14,30 @@
           <%= f.text_field :title, class: 'span9' %>
         </div>
       </div>
+      <div class="row">
+        <div class="span9">
+          <i class="icon-asterisk red"></i> Photo:
+        </div>
+      </div>
+      <div class="row">
+        <div class="span9">
+         <%= f.fields_for :attachments do |attch| %>
+           <% attch.object.new_record? ? new_attch = "new_attch" : new_attch = '' %>
+           <fieldset class="<%= new_attch %>">
+              <% if attch.object.new_record? %>
+                <%= attch.file_field :image %>
+              <% else %>
+                <%= image_tag(attch.object.image.url).to_s %>
+                <%= f.hidden_field :_destroy %>
+                <%= link_to "<i class='icon-trash'></i> remove".html_safe, '#', class: 'remove_fields', 
+                    style: 'margin-left: 5px;' %>
+              <% end %>
+           </fieldset>
+         <% end %>
+          <p style="margin-top: 5px;"><small>Accepted file formats: jpg jpeg gif png.</small></p>
+        </div>
+      </div>
+      
       <hr>
       <div class="row">
         <div class="span9">

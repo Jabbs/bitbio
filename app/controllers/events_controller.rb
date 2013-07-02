@@ -23,6 +23,7 @@ class EventsController < ApplicationController
   def new
     @event = current_user.events.build
     @event.build_location
+    @event.attachments.build
   end
   
   def create
@@ -38,11 +39,13 @@ class EventsController < ApplicationController
   
   def edit
     @event = Event.find(params[:id])
+    @event.attachments.build
   end
   
   def update
     @event = Event.find(params[:id])
     if @event.update_attributes(params[:event])
+      @event.attachments.order('created_at DESC').last.destroy if params[:event][:_destroy] == '1'
       create_tags
       @event.save!
       redirect_to @event, notice: 'Event was successfully updated.'

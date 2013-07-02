@@ -7,6 +7,7 @@ class ProjectsController < ApplicationController
   def home
     @blogs = Blog.featured
     @featured_users = User.featured
+    @events = Event.order("start_date DESC").last(6)
   end
   
   def index

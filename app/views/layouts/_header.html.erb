@@ -11,8 +11,9 @@
               <%= bread_crumb_list_items(request.path) %>
             </ul>
           </div>
-          <div class="span7" style="padding-top: 4px;">
+          <div class="span7" style="padding-top: 6px;">
             <h1 style="margin:0px;">
+              <i class="icon-user-md"></i>
               Science Community and Science Search Engine 
               <i class="icon-search"></i>
             </h1>
@@ -73,7 +74,7 @@
                 </li>
                 <li id="science">
                   <ul class="main-nav-set unstyled">
-                    <li><%= link_to 'search', '#' %></li>
+                    <li><%= link_to 'search', projects_path %></li>
                     <li style="width: 120px;"><%= link_to 'service listings', services_path %></li>
                     <li style="width: 120px;"><%= link_to 'project listings', projects_path %></li>
                   </ul>
@@ -94,7 +95,7 @@
                 <ul class="dropdown-menu" style='min-width: 160px; padding-left: 0px;'>
                   <li>
                     <a href="<%= user_path(current_user) %>">
-                    <i class="icon-user" style="margin-right: 8px;"></i> My Profile</a>
+                    <i class="icon-user" style="margin-right: 7px; margin-left:1px;"></i> My Profile</a>
                   </li>
                   <!-- <li>
                     <a href="#">
@@ -118,7 +119,7 @@
                   <% if current_user.services.any? %>
                     <li>
                       <a href="<%= user_service_listings_path(current_user) %>">
-                      <i class="icon-building" style="margin-right: 8px; margin-left:1px;"></i> My service listings</a>
+                      <i class="icon-hospital" style="margin-right: 8px; margin-left:1px;"></i> My service listings</a>
                     </li>
                   <% end %>
                   <li class="divider"></li>

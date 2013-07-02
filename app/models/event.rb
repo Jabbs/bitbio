@@ -2,12 +2,16 @@ class Event < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: [:slugged, :history]
   attr_accessible :description, :end_date, :location_name, :organizer, :phone, :start_date, :title, :twitter_handle, :website,
-                  :user_id, :tag_list, :location_attributes
+                  :user_id, :tag_list, :location_attributes, :attachments_attributes, :_destroy
+  attr_accessor   :_destroy
+                 
   belongs_to :user
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :taggings, as: :taggable, dependent: :destroy
   has_many :tags, through: :taggings
   has_one :location, as: :locationable, dependent: :destroy
+  has_many :attachments, as: :attachable, dependent: :destroy
+  accepts_nested_attributes_for :attachments, allow_destroy: true
   accepts_nested_attributes_for :location, allow_destroy: true
   accepts_nested_attributes_for :taggings, allow_destroy: true
   

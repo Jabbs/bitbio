@@ -3,9 +3,9 @@
     <div class="span9">
       <%= render 'shared/error_messages', object: f.object %>
       <% if action_name == "edit" %>
-      <h2 style="margin-top: 5px;">Editing Account</h2>
+        <h2 style="margin-top: 5px;">Editing Account</h2>
       <% else %>
-      <h2 style="margin-top: 5px;">Join the bitBIO science community!</h2>
+        <h2 style="margin-top: 5px;">Join the bitBIO science community!</h2>
       <% end %>
       <hr style="margin-top: 5px;">
       
@@ -17,16 +17,17 @@
            </div>
            <div class="span6">
             <%= f.fields_for :attachments do |attch| %>
-            <% attch.object.new_record? ? new_attch = "new_attch" : new_attch = '' %>
-            <fieldset class="<%= new_attch %>">
-               <% if attch.object.new_record? %>
-                 <%= attch.file_field :image %>
-               <% else %>
-                 <%= image_tag(attch.object.image.url).to_s %>
-                 <%= f.hidden_field :_destroy %>
-                 <%= link_to "<i class='icon-trash'></i> remove".html_safe, '#', class: 'remove_fields', style: 'margin-left: 5px;' %>
-               <% end %>
-            </fieldset>
+              <% attch.object.new_record? ? new_attch = "new_attch" : new_attch = '' %>
+              <fieldset class="<%= new_attch %>">
+                 <% if attch.object.new_record? %>
+                   <%= attch.file_field :image %>
+                 <% else %>
+                   <%= image_tag(attch.object.image.url).to_s %>
+                   <%= f.hidden_field :_destroy %>
+                   <%= link_to "<i class='icon-trash'></i> remove".html_safe, '#', class: 'remove_fields', 
+                       style: 'margin-left: 5px;' %>
+                 <% end %>
+              </fieldset>
             <% end %>
              <p style="margin-top: 5px;"><small>Accepted file formats: jpg jpeg gif png.</small></p>
            </div>

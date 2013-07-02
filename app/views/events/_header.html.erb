@@ -8,10 +8,10 @@ style: 'position:relative; left: 587px; top: -40px' %></div>
 <div class="span9 pull-right" id='event-header'>
   <div class="row">
     <div class="span2" style="width: 80px;">
-      <% if @event.user.attachments.any? %>
-        <%= image_tag(@event.user.attachments.first.image.url, title: @event.user.full_name).to_s %>
+      <% if @event.attachments.any? %>
+        <%= image_tag(@event.attachments.first.image.url, title: @event.title).to_s %>
       <% else %>
-        <%= image_tag 'blank_avatar.jpg', title: @event.user.full_name, id: 'user-avatar' %>
+        <%= image_tag 'blank_avatar.jpg', title: @event.title, id: 'user-avatar' %>
       <% end %>
     </div>
     <div class="span7" style="width: 600px;">

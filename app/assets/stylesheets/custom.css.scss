@@ -16,6 +16,7 @@ $green_light: #6DF45F;
 $green: #5DCE4F;
 $green_dark: #469D3D;
 $silver: #C0C0C0;
+$silver-stripe-color: #D8D8D8;
 $link_color: #0088cc;
 
 /* MIXINS */
@@ -74,12 +75,12 @@ h2 {
 #logo {
   height: 80px;
   font-size: 2.8em;
-  padding-top: 20px;
   line-height: 1em;
   text-decoration: none;
-  color: black;
+  color: $header_background;
   &:hover {
     color: $blue;
+    i { color: $blue; }
   }
 }
 
@@ -89,6 +90,7 @@ h2 {
 .gold { color: $gold_dark; }
 .silver { color: $silver; }
 .dark { color: $header_background;}
+.green { color: $green-dark; }
 .blue { color: darken($blue, 15%); }
 .bluee { color: darken($blue, 15%); }
 .red { color: $red; }
@@ -203,7 +205,8 @@ h2.info_header {
   text-align: left;
   font-size: 130%;
   color: black;
-  background: $silver;
+//  background: $silver;
+  background-image: url("stripe2.png");
 }
 
 .smaller-shell {
@@ -252,10 +255,13 @@ h2.info_header {
     width: 40px;
   }
   .top {
+    p { font-size: 85%; margin-top:0px; }
     h5 {
       margin-top: 5px;
       line-height: 100%;
+      font-size: 90%;
       word-wrap: break-word;
+      a { color: black; text-decoration: none; }
     }
   }
 }
@@ -310,6 +316,14 @@ h2.info_header {
   }
 }
 
+.bigger-shell-silver {
+  width: 698px;
+//  margin-top: 10px;
+  margin-bottom: 20px;
+  border: 1px solid $silver;
+  border-bottom: none;
+}
+
 .blog-well {
   padding-bottom: 2px;
   margin-left:10px;
@@ -327,12 +341,14 @@ h2.info_header {
     max-height: 50px;
     overflow: hidden;
     padding-top: 5px;
+    p { margin-top: 0px; font-size: 90%; }
     h4 {
       line-height: 120%;
       height: 25px;
       max-height: 25px;
       overflow: hidden;
-      margin:0px;
+      margin: 0px;
+      a { color: $gold_dark; text-decoration: none; }
     }
   }
   p {
@@ -764,16 +780,56 @@ h2.info_header {
   .accordion-group { border-radius: 0px; border: 1px solid $header_background; }
   .accordion-inner { border: none; padding: 15px;}
   .accordion-heading {
-    background: $blue;
+    background-image: url("stripe2.png");
     a {
       font-size: 180%;
       padding-top: 20px;
       padding-bottom: 20px;
       &:hover { text-decoration:none; }
-      &:link { color: white; }
+      &:link { color: $header_background; }
     }
   }
 }
+
+/* events/show */
+
+.event-well {
+  width: 204px;
+  height: 190px;
+  margin-left: 0px;
+  padding: 1em;
+  overflow: hidden;
+  border-bottom: 1px solid $silver;
+  h4 a { color: black; text-decoration: none; }
+  p { margin:0; font-size: 90%; margin-top: 3px; }
+  .start { 
+    position:relative;
+    z-index:5; 
+    left:120px;
+    top: -105px;
+    .inside { border: 1px solid $silver; padding: .5em; border-top:none; } 
+  }
+  &:nth-child(3n+1) {
+    border-left: 1px solid $silver;
+    border-bottom: 1px solid $silver;
+  } 
+  &:nth-child(3n+2) {
+    border-left: 1px solid $silver;
+    border-bottom: 1px solid $silver;
+    width: 203px;
+  }
+  .event {
+    height: 90px;
+    a { text-decoration: none; color: $header_background; font-size: 600%; }
+  }
+}
+
+.add-event-button {
+  position: relative;
+  left: 576px;
+  top: -30px;
+}
+
 
 /* users/new */
 
@@ -1033,6 +1089,21 @@ ul.nav li.dropdown > ul.dropdown-menu{ margin-top:0px; border-radius: 0px; }
   &:hover {
     text-decoration: none;
     background: darken($blue, 35%);
+    color: white;
+  }
+}
+
+.my-button-green {
+  margin-top: 2px;
+  background: darken($green, 20%);
+  padding: 5px 10px 5px 10px;
+  color: white;
+  margin-right: 10px;
+  box-shadow: none;
+  border: none;
+  &:hover {
+    text-decoration: none;
+    background: darken($green, 30%);
     color: white;
   }
 }
