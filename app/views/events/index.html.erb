@@ -6,6 +6,7 @@
       style: 'position:relative; left: 587px; top: -40px; z-index: 12;' %></div>
       <% end %>
       <%= render 'tags/tag_list_events' %>
+    <br>
     <% @events.each do |event| %>
       <%= render 'events/event_list_item', event: event %>
     <% end %>

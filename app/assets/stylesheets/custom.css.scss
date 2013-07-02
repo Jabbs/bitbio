@@ -348,7 +348,7 @@ h2.info_header {
       max-height: 25px;
       overflow: hidden;
       margin: 0px;
-      a { color: $gold_dark; text-decoration: none; }
+      a { color: darken($gold_dark, 5%); text-decoration: none; }
     }
   }
   p {
@@ -800,7 +800,10 @@ h2.info_header {
   padding: 1em;
   overflow: hidden;
   border-bottom: 1px solid $silver;
-  h4 a { color: black; text-decoration: none; }
+  h4 a { 
+    color: black; text-decoration: none; 
+    &:hover { color: $red; }
+  }
   p { margin:0; font-size: 90%; margin-top: 3px; }
   .start { 
     position:relative;
@@ -823,10 +826,15 @@ h2.info_header {
     a { text-decoration: none; color: $header_background; font-size: 600%; }
   }
 }
+.change-border {
+  border: 1px solid $silver;
+  width: 203px;
+}
 
 .add-event-button {
   position: relative;
-  left: 576px;
+  font-size: 80%;
+  left: 599px;
   top: -30px;
 }
 

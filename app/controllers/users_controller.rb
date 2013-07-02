@@ -70,6 +70,7 @@ class UsersController < ApplicationController
     else
       @blogs = Blog.featured
       @featured_users = User.featured
+      @events = Event.featured
       render template: "projects/home"
     end
   end

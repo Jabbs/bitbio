@@ -19,6 +19,10 @@ class Event < ActiveRecord::Base
   validates :description, presence: true
   validates :title, presence: true, uniqueness: true
   
+  def self.featured
+    Event.order("start_date DESC").first(6)
+  end
+  
   def self.tagged_with(name)
     Tag.find_by_name(name).events if Tag.find_by_name(name)
   end
@@ -36,10 +40,6 @@ class Event < ActiveRecord::Base
     self.tags = names.split(",").map do |n|
       Tag.where(name: n.strip).first_or_create!
     end
-  end
-  
-  def self.featured
-    Event.last(5)
   end
   
   def add_view_count

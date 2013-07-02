@@ -7,7 +7,8 @@ class ProjectsController < ApplicationController
   def home
     @blogs = Blog.featured
     @featured_users = User.featured
-    @events = Event.order("start_date DESC").last(6)
+    @events = Event.featured
+    logger.debug "EVNET COUNT: #{@events.count}"
   end
   
   def index
