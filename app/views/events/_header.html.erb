@@ -11,19 +11,39 @@ style: 'position:relative; left: 587px; top: -40px' %></div>
       <% if @event.attachments.any? %>
         <%= image_tag(@event.attachments.first.image.url, title: @event.title).to_s %>
       <% else %>
-        <%= image_tag 'blank_avatar.jpg', title: @event.title, id: 'user-avatar' %>
+        <i class='icon-calendar-empty huge dark'></i>
       <% end %>
     </div>
     <div class="span7" style="width: 600px;">
-      <h2><%= @event.title %></h2>
-      <p>
-        <small>
-          posted by <%= link_to "#{@event.user.full_name}", user_path(@event.user) %> on 
-          <%= @event.created_at.strftime('%D %l:%M%P') %>.
-          <span style="margin-left: 5px;"><%= pluralize(@event.view_count, 'VIEW', 'VIEWS') %></span>
-          <span style="margin-left: 5px;"><%= pluralize(@event.comments.count, 'COMMENT', 'COMMENTS') %></span>
-        </small>
-      </p>
+      <h2 style="margin-top:0px; padding-top:0px;"><%= @event.title %></h2>
+      <div class="row">
+        <div class="span4" style="width: 400px;">
+          <p>
+            <i class="icon-time"></i>
+            <%= date_time_info(@event) %>
+            <small>
+              <span style="margin-left: 5px;"><%= pluralize(@event.view_count, 'VIEW', 'VIEWS') %></span>
+              <span style="margin-left: 5px;"><%= pluralize(@event.comments.count, 'COMMENT', 'COMMENTS') %></span>
+            </small>
+          </p>
+          <p><i class="icon-link"></i> <%= Rinku.auto_link(@event.website, :all, 'target="_blank"').html_safe %></p>
+          <p><i class="icon-phone"></i> <%= @event.phone %></p>
+          <% unless @event.organizer.blank? %>
+            <p>Organized by <%= @event.organizer %>.</p>
+          <% end %>
+        </div>
+        <div class="span1" style="width: 15px; margin:0px;"><i class="icon-map-marker"></i></div>
+        <div class="span2" style="width: 165px; margin-left:0px;">
+          <ul class="unstyled">
+            <li><%= @event.location.address1 %></li>
+            <li><%= @event.location.address2 %></li>
+            <li><%= @event.location.address3 %></li>
+            <li><%= @event.location.city %>, <%= @event.location.state %>, <%= @event.location.zip %></li>
+            <li><%= @event.location.country %></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
       <div class="row" style="margin-bottom: 5px;">
         <div class="span1" style="width:80px">
           <a href="https://twitter.com/share" class="twitter-share-button" data-url="<%= share_url %>" data-text="<%= @event.title %>" data-via="bit_bio" data-counturl="<%= request.url %>">Tweet</a>
@@ -55,8 +75,10 @@ style: 'position:relative; left: 587px; top: -40px' %></div>
       </div>
     </div>
   </div>
-  <% if @event.tags %>
+  <% if @event.tags.any? %>
     <i class="icon-tags dark"></i> tags: <%= raw @event.tags.map { |t| link_to t.name, tag_events_path(t.name)  }.join(', ') %>
+  <% else %>
+    <i class="icon-tags dark"></i> tags: n/a
   <% end %>
   <hr style="margin-top:5px;">
 </div>
