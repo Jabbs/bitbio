@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="span9 pull-right">
+    <h2>Invite Colleagues</h2>
+    <%= form_for @invitation do %>
+      <%= text_area_tag :email_group %>
+      <%= submit_tag "Send Invatations", class: "my-button" %>
+    <% end %>
+  </div>
+</div>
+

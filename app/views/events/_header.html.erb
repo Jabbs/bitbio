@@ -39,7 +39,7 @@ style: 'position:relative; left: 587px; top: -40px' %></div>
             <li><%= @event.location.address2 %></li>
             <li><%= @event.location.address3 %></li>
             <li><%= @event.location.city %>, <%= @event.location.state %>, <%= @event.location.zip %></li>
-            <li><%= @event.location.country %></li>
+            <li><%= country_with_us_shortened(@event.location.country) %></li>
           </ul>
         </div>
       </div>

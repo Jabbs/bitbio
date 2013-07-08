@@ -1,5 +1,7 @@
 Bitbio::Application.routes.draw do
 
+  resources :invitations, only: [:new, :create]
+
   resources :events do
     resources :comments, only: [:create]
     collection do

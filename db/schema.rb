@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130701225845) do
+ActiveRecord::Schema.define(:version => 20130705140318) do
 
   create_table "attachments", :force => true do |t|
     t.string   "attachable_type"
@@ -86,8 +86,8 @@ ActiveRecord::Schema.define(:version => 20130701225845) do
     t.integer  "user_id"
   end
 
-  add_index "events", ["slug"], :name => "index_events_on_slug"
-  add_index "events", ["user_id"], :name => "index_events_on_user_id"
+  add_index "events", ["slug"], :name => "index_conferences_on_slug"
+  add_index "events", ["user_id"], :name => "index_conferences_on_user_id"
 
   create_table "facilities", :force => true do |t|
     t.string   "name"
@@ -125,6 +125,16 @@ ActiveRecord::Schema.define(:version => 20130701225845) do
   add_index "instruments", ["alias"], :name => "index_instruments_on_name"
   add_index "instruments", ["project_id"], :name => "index_instruments_on_project_id"
   add_index "instruments", ["resource_type"], :name => "index_instruments_on_resource_type"
+
+  create_table "invitations", :force => true do |t|
+    t.string   "email"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "invitations", ["email"], :name => "index_invitations_on_email"
+  add_index "invitations", ["user_id"], :name => "index_invitations_on_user_id"
 
   create_table "labs", :force => true do |t|
     t.string   "name"
