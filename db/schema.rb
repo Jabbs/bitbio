@@ -86,8 +86,8 @@ ActiveRecord::Schema.define(:version => 20130705140318) do
     t.integer  "user_id"
   end
 
-  add_index "events", ["slug"], :name => "index_events_on_slug"
-  add_index "events", ["user_id"], :name => "index_events_on_user_id"
+  add_index "events", ["slug"], :name => "index_conferences_on_slug"
+  add_index "events", ["user_id"], :name => "index_conferences_on_user_id"
 
   create_table "facilities", :force => true do |t|
     t.string   "name"
