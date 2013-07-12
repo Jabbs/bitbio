@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130705140318) do
+ActiveRecord::Schema.define(:version => 20130712200517) do
 
   create_table "attachments", :force => true do |t|
     t.string   "attachable_type"
@@ -78,16 +78,16 @@ ActiveRecord::Schema.define(:version => 20130705140318) do
     t.string   "location_name"
     t.string   "organizer"
     t.string   "phone"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.string   "slug"
     t.string   "bitly_url"
-    t.integer  "view_count",     :default => 0
+    t.string   "view_count"
     t.integer  "user_id"
   end
 
-  add_index "events", ["slug"], :name => "index_conferences_on_slug"
-  add_index "events", ["user_id"], :name => "index_conferences_on_user_id"
+  add_index "events", ["slug"], :name => "index_events_on_slug"
+  add_index "events", ["user_id"], :name => "index_events_on_user_id"
 
   create_table "facilities", :force => true do |t|
     t.string   "name"
