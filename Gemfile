@@ -23,6 +23,8 @@ gem "fog", "~> 1.3.1"
 gem "ckeditor"
 gem 'newrelic_rpm'
 gem 'gmaps4rails'
+gem 'haml'
+gem 'haml-rails'
 
 group :development, :test do
   gem 'rspec-rails', '2.11.0'

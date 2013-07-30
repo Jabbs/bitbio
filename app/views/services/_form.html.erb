@@ -86,13 +86,13 @@
         <div class="span8 radio-account-types" style="width: 590px;">
           <p>How long would you like to list your service?</p>
           <%= f.radio_button :expiration_date, Date.today + 30.days, checked: true  %>
-          <label>30 day listing - $20</label>
+          <label>30 day listing</label>
           <br>
           <%= f.radio_button :expiration_date, Date.today + 90.days  %>
-          <label>90 day listing - $60</label>
+          <label>90 day listing</label>
           <br>
           <%= f.radio_button :expiration_date, Date.today + 180.days  %>
-          <label>180 day listing - $100</label>
+          <label>180 day listing</label>
         </div>
       </div>
       <hr>

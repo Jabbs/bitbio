@@ -58,4 +58,5 @@ Bitbio::Application.routes.draw do
   end
 
   root :to => 'projects#home'
+  # root :to => 'static_pages#landing'
 end
