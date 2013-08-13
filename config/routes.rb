@@ -53,14 +53,17 @@ Bitbio::Application.routes.draw do
   
   match '/researchers', to: 'users#researchers_index', via: :get
   match '/providers', to: 'users#providers_index', via: :get
-  match '/coming_soon', to: 'static_pages#coming_soon', via: :get
 
   controller :sessions do
     get 'login' => :new
     post 'login' => :create
     delete 'logout' => :destroy
   end
-
-  root :to => 'projects#home'
+  
+  if ENV["ALPHA"] == "true"
+    root :to => 'static_pages#coming_soon'
+  else
+    root :to => 'projects#home'
+  end
   # root :to => 'static_pages#landing'
 end

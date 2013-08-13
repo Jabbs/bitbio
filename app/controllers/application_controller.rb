@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  if Rails.env.production? # && ENV['STAGING'] == "true"
+  if Rails.env.production? && ENV['STAGING'] == "true"
     http_basic_authenticate_with :name => "bitbio", :password => "bitbio"
   end
   before_filter :check_if_alpha
@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   def check_if_alpha
     if ENV["ALPHA"] == "true" && action_name != 'coming_soon'
-      redirect_to coming_soon_path unless controller_name == "contacts"
+      redirect_to root_path unless controller_name == "contacts"
     end
   end
   
