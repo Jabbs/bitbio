@@ -1,0 +1,70 @@
+.row{style: "margin-top: 10px;"}
+  .span4
+    = link_to "<i class='icon-beaker'></i>bitBIO".html_safe, root_path, id: 'logo', title: 'Home'
+  .span8
+    %h1{ style: "font-size: 150%; float:right; margin-top:5px; margin-right: 4px;"}
+      %i.icon-user-md
+      Science Community and Science Search Engine
+      %i.icon-search
+%br
+.row
+  .span12
+    - flash.each do |name, msg|
+      %div{:class => "alert alert-#{name == :notice ? "success" : "error"}", :style => "margin-top: 10px;"}
+        %a.close{"data-dismiss" => "alert"} ×
+        = msg
+.row
+  .span9.bigger-shell
+    %h2.info_header
+      .red.center
+        Science Outsourcing - Service Provider Search - Research Collaboration
+    = image_tag 'science_types_word_cloud.png'
+  .span3.smaller-shell{ style: "margin-left: 16px;"}
+    %h2.info_header
+      .blue{ style: "margin-left: 60px;"}
+        Sign Up
+    %p.center{style: "margin-top: 10px; margin-bottom: 10px;"} Get notified of beta release!
+    = form_for @contact do |f|
+      .center
+        = f.text_field :first_name, class: "span2", placeholder: "First Name"
+        = f.text_field :last_name, class: "span2", placeholder: "Last Name"
+        = f.text_field :email, class: "span2", style: "width: 180px;", placeholder: "Email"
+      = f.submit "Sign Up", class: "my-button-blue", style: "margin-left: 74px;"
+    .row
+      .span3
+        .center
+          %a{href: "mailto:info@bitbio.org?", style: 'text-decoration:none;', title: "Send Email"}
+            %i.icon-envelope
+          |
+          %a{href: "https://twitter.com/bit_bio", style: 'text-decoration:none;', target: "_blank", title: "Twitter"}
+            %i.icon-twitter
+    %br
+%br
+.row
+  .span12
+    %h2{:style => "margin-bottom:5px; margin-top:0px;"} What is bitBIO?
+    %p
+      An online
+      %strong.gold science community
+      and resource built by you, for you. If
+      you are outsourcing science, searching for service providers, collaborating on a research project,
+      or looking for assistance, bitBIO is for you.
+    %p{style: "margin-top:10px;"}
+      Gain instant
+      %strong.gold access
+      to new resources, providers, and equipment
+      you may have otherwise not found, and easily exchange science with research institutes, hospitals, universities,
+      and other service providers, globally.
+    %p{style: "margin-top:10px;"}
+      Find out what scientific methods other researchers or service providers are using.
+      %strong.gold Search for projects
+      to exchange science advice, opinions, and services.
+    %p{style: "margin-top:10px;"}
+      Learn about new research, methods, and technologies to use for your project and what the science
+      market has to offer. Quickly
+      %strong.gold promote research
+      questions and answers
+      in the science community to help each other.
+    %p{style: "margin-top:10px;"}
+      Why rely on expensive services to broker your science project when all you really need is 
+      access, exposure, and some help from the science community.

@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  def landing
-    
+  def coming_soon
+    @contact = Contact.new
   end
 end

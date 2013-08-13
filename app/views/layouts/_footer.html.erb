@@ -1,3 +1,4 @@
+
 <footer>
   <div class="container">
     <div class="row">
@@ -5,20 +6,22 @@
   		  © bitBIO 2013
   		</div>
   		<div class="span10">
-  			<ul>
-					<li class="title"><strong>Legal Stuff</strong></li>
-					<li><%= link_to "Terms of Service", '#' %></li>
-					<li><%= link_to "Privacy Policy", '#' %></li>
-				</ul>
-				<ul>
-					<li class="title"><strong>Support</strong></li>
-					<li><%= link_to "Contact Us", '#' %></li>
-					<li><%= link_to "FAQ's", '#' %></li>
-				</ul>
-				<ul>
-					<li class="title"><strong>Company</strong></li>
-					<li><%= link_to "About Us", '#' %></li>
-				</ul>
+  		  <% unless action_name == "coming_soon" || controller_name == "contacts" %>
+    			<ul>
+  					<li class="title"><strong>Legal Stuff</strong></li>
+  					<li><%= link_to "Terms of Service", '#' %></li>
+  					<li><%= link_to "Privacy Policy", '#' %></li>
+  				</ul>
+  				<ul>
+  					<li class="title"><strong>Support</strong></li>
+  					<li><%= link_to "Contact Us", '#' %></li>
+  					<li><%= link_to "FAQ's", '#' %></li>
+  				</ul>
+  				<ul>
+  					<li class="title"><strong>Company</strong></li>
+  					<li><%= link_to "About Us", '#' %></li>
+  				</ul>
+				<% end %>
   		</div>
   		<% if controller_name == 'projects' && action_name == 'home' %>
         <div style="padding-left:20px;">

@@ -1,5 +1,8 @@
 Bitbio::Application.routes.draw do
 
+  resources :contacts
+
+
   resources :invitations, only: [:new, :create]
 
   resources :events do
@@ -50,6 +53,7 @@ Bitbio::Application.routes.draw do
   
   match '/researchers', to: 'users#researchers_index', via: :get
   match '/providers', to: 'users#providers_index', via: :get
+  match '/coming_soon', to: 'static_pages#coming_soon', via: :get
 
   controller :sessions do
     get 'login' => :new

@@ -19,6 +19,9 @@
 //= require_tree .
 
 $(function() {
+  
+  $('select').selectpicker();
+  
   $("#project_start_date").datepicker({
 		dateFormat: "yy-mm-dd"
 	});
