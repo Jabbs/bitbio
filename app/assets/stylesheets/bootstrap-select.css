@@ -3,7 +3,7 @@
     float: none;
     display: inline-block;
     margin-bottom: 10px;
-    margin-left: 0;
+    margin-left: 10px;
 }
 .form-search .bootstrap-select.btn-group,
 .form-inline .bootstrap-select.btn-group,

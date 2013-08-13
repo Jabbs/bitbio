@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
       redirect_back_or root_path
     else
       @blogs = Blog.featured
+      @events = Event.featured
       @featured_users = User.featured
       @session_user = User.new
       @session_user.errors.add(:email, "Invalid email/password combination")
