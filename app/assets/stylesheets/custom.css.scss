@@ -58,7 +58,6 @@ $link_color: #0088cc;
 body {
   min-height: 600px;
 }
-
 h1,h2,h3,h4,h5,h6, p { margin:0px; padding:0px; }
 h1 { font-size: 210%; }
 h2 { font-size: 190%; }
@@ -74,14 +73,15 @@ h2 {
 
 #logo {
   height: 80px;
-  font-size: 2.8em;
+  font-size: 5.8em;
   line-height: 1em;
   text-decoration: none;
   color: black;
-  &:hover {
-    color: $blue;
-    i { color: $blue; }
-  }
+  font-family: 'Londrina Shadow';
+//  &:hover {
+//    color: $blue;
+//    i { color: $blue; }
+//  }
 }
 .center { text-align: center; }
 .inline { display: inline; }
@@ -476,6 +476,14 @@ h2.info_header {
 //    @include rounded_border;
     word-wrap: break-word;
   }
+}
+
+/* coming_soon */
+
+.step {
+  font-size: 120%;
+  line-height: 120%;
+  margin-top: 10px;
 }
 
 /* projects/show */

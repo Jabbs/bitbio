@@ -4,7 +4,7 @@
   <h2 class="info_header">Science Listings</h2>
   <div class="row">
     <div class="span3">
-      <label style="padding-left: 10px;"><i class="icon-globe"></i> location:</label>
+      <label style="padding-left: 10px;">location:</label>
       <div style="padding-left: 10px; margin-bottom: 5px;">
         <span style="margin-right: 8px;">
           <% if params[:na] == 'yes' || params[:eur] == 'yes' || params[:asia] == 'yes' || params[:aus] == 'yes' %>
@@ -38,15 +38,15 @@
   </div>
   <div class="row" style="margin-top: 5px;">
     <div class="span3">
-      <label style="margin-left: 10px;"><i class="icon-beaker"></i> project needs:</label>
+      <label style="margin-left: 10px;">project needs:</label>
       <%= select_tag :science, options_for_select(Project::SERVICE_NEEDS, selected: params[:science]), 
-      { prompt: "any", class: 'span2' } %>
+      { prompt: "any" } %>
     </div>
   </div>
   <% unless Tag.top_project_tags.empty? %>
     <div class="row">
       <div class="span3">
-        <label style="margin-left: 10px;"><i class="icon-tags"></i> top tags:</label>
+        <label style="margin-left: 10px;">top tags:</label>
         <div style="padding-right: 10px; padding-left: 10px; font-size: 85%;">
           <%= raw Tag.top_project_tags.first(10).map { |t| link_to "#{t.name} (#{t.projects.size})", tag_projects_path(t.name) }.join(', ') %>...
           <%= link_to '<i class="icon-expand-alt"></i>'.html_safe, tags_projects_path, style: 'text-decoration: none;' %>

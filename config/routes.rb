@@ -65,5 +65,5 @@ Bitbio::Application.routes.draw do
   else
     root :to => 'projects#home'
   end
-  # root :to => 'static_pages#landing'
+  # root :to => 'static_pages#coming_soon'
 end

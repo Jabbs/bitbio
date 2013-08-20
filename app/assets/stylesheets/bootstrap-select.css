@@ -26,7 +26,7 @@
 }
 
 .bootstrap-select:not([class*="span"]) {
-    width: 220px;
+    width: 200px;
 }
 
 .bootstrap-select > .btn {

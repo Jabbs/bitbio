@@ -1,8 +1,18 @@
-
+<% if action_name == "coming_soon" || controller_name == "contacts" %>
 <footer>
   <div class="container">
     <div class="row">
-  		<div class="span2">
+  		<div class="span12" style="margin-top:8px;">
+  		  <div class="center">© bitBIO 2013</div>
+  		</div>
+  	</div>
+  </div>
+</footer>
+<% else %>
+<footer>
+  <div class="container">
+    <div class="row">
+  		<div class="span2" style="margin-top:8px;">
   		  © bitBIO 2013
   		</div>
   		<div class="span10">
@@ -31,3 +41,5 @@
     </div>
   </div>
 </footer>
+
+<% end %>
