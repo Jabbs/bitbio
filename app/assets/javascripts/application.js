@@ -20,6 +20,12 @@
 
 $(function() {
   
+  $('.carousel').each(function(){
+      $(this).carousel({
+          interval: false
+      });
+  });
+  
   $('select').selectpicker();
   
   $("#project_start_date").datepicker({
