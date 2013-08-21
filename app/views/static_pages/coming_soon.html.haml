@@ -46,12 +46,12 @@
           = f.text_field :first_name, class: "span2", placeholder: "First Name"
           = f.text_field :last_name, class: "span2", placeholder: "Last Name"
           = f.text_field :email, class: "span2", placeholder: "Email"
-        = f.submit "Sign Up", class: "my-button-blue", style: "margin-left:10px;"
+        = f.submit "Sign Up", class: "my-button-silver", style: "margin-left:10px;"
       %a{href: "mailto:info@bitbio.org?", style: 'text-decoration:none;', title: "Send Email"}
-        %i.icon-envelope.bigger
+        %i.icon-envelope.bigger.dark
       |
       %a{href: "https://twitter.com/bit_bio", style: 'text-decoration:none;', title: "Twitter", target: "_blank"}
-        %i.icon-twitter.bigger
+        %i.icon-twitter.bigger.dark
 %br
 .row
   .span12
@@ -126,6 +126,20 @@
     %h2.center.black Connect with us on Twitter
     %br
     .center
+      %blockquote.twitter-tweet{align: "center"}
+        %p>
+          Lean Launchpad course for
+          %a{:href => "https://twitter.com/search?q=%23LifeSciences&src=hash"} #LifeSciences
+          \&
+          %a{:href => "https://twitter.com/search?q=%23Healthcare&src=hash"} #Healthcare
+          = succeed "." do
+            %a{:href => "http://t.co/nqpO8Bs9gF"} http://t.co/nqpO8Bs9gF
+          Registration ends Sept 6th. $100 for pre-revenue
+          = succeed "." do
+            %a{:href => "https://twitter.com/search?q=%23startups&src=hash"} #startups
+        \— bitBIO (@bit_bio)
+        %a{:href => "https://twitter.com/bit_bio/statuses/370183595698032640"} August 21, 2013
+      %script{:async => "", :charset => "utf-8", :src => "//platform.twitter.com/widgets.js"}
       %blockquote.twitter-tweet{align: "center"}
         %p>
           The oldest complete genome to date.
