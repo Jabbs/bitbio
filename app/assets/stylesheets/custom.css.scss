@@ -73,6 +73,20 @@ h2 {
 
 #logo {
   height: 80px;
+  font-size: 3.0em;
+  line-height: 1em;
+  text-decoration: none;
+  color: black;
+  font-family: 'Londrina Shadow';
+  margin-bottom:0px;
+//  &:hover {
+//    color: $blue;
+//    i { color: $blue; }
+//  }
+}
+
+#logo2 {
+  height: 80px;
   font-size: 5.8em;
   line-height: 1em;
   text-decoration: none;
@@ -897,6 +911,14 @@ h2.info_header {
 }
 
 /* layouts/header */
+h1.slogan {
+  margin-bottom:0;
+  color: $blue;
+  font-size: 1.3em;
+  float: right;
+  padding-top: 2px;
+  font-weight: 200;
+}
 
 header {
   min-width: 960px;
@@ -929,14 +951,6 @@ header {
 		    }
 		  }
 		}
-	  h1 {
-	    color: black;
-	    font-size: 1.4em;
-	    display: inline;
-	    float: right;
-	    padding-right: 10px;
-	    padding-top: 2px;
-	  }
 		ul {
 			li.on {
 				a {

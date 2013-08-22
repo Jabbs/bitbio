@@ -1,0 +1,23 @@
+.span9.bigger-shell.pull-right{:style => "padding-bottom: 5px;"}
+  %h2.info_header
+    What do you need?
+  %div{:style => "height: 0px;"}= link_to "SEARCH PROJECTS <i class='icon-arrow-right'></i>".html_safe, projects_path, class: 'my-button-blue add-services-button'
+  / %div{:style => "height: 0px;"}= link_to "SEARCH SERVICES <i class='icon-arrow-right'></i>".html_safe, services_path, class: 'my-button-blue add-projects-button'
+  .row
+    .span6
+      = image_tag 'science_types_word_cloud.png'
+    .span3.no-left-margin{ style: "width: 218px;"}
+      .center
+        %h2
+          %i.icon-gears.bigger
+        .step{style: "margin-top:0px; font-size:100%; font-weight: 300;"} Design Research Project
+        %h4.center{style: "margin-top:10px;"}
+          %i.icon-arrow-down
+        %h2.blue
+          %i.icon-search
+        .step{style: "margin-top:0px; font-size:100%; font-weight: 300;"} Search and Filter Projects
+        %h4.center{style: "margin-top:10px;"}
+          %i.icon-arrow-down
+        %h2.red
+          %i.icon-beaker
+        .step{style: "margin-top:0px; font-size:100%; font-weight: 300;"} Perform Science / Collaborate

@@ -14,10 +14,10 @@
 </div>
 
 <div class="span9 pull-right">
+  <%= render 'shared/word_cloud' %>
   <% unless @blogs.empty? %>
     <%= render 'blogs/blogs', blogs: @blogs %>
   <% end %>
-  <%= render 'shared/word_cloud' %>
   <% unless @events.empty? %>
     <%= render 'events/events', events: @events %>
   <% end %>
