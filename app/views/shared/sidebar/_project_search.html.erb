@@ -39,8 +39,10 @@
   <div class="row" style="margin-top: 5px;">
     <div class="span3">
       <label style="margin-left: 10px;">project needs:</label>
-      <%= select_tag :science, options_for_select(Project::SERVICE_NEEDS, selected: params[:science]), 
-      { prompt: "any" } %>
+      <span style="margin-left:10px;">
+        <%= select_tag :science, options_for_select(Project::SERVICE_NEEDS, selected: params[:science]), 
+        { prompt: "any" } %>
+      </span>
     </div>
   </div>
   <% unless Tag.top_project_tags.empty? %>

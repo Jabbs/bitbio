@@ -4,7 +4,7 @@
   <h2 class="info_header">Service Listings</h2>
   <div class="row">
     <div class="span3">
-      <label style="padding-left: 10px;"><i class="icon-globe"></i> location:</label>
+      <label style="padding-left: 10px;">location:</label>
       <div style="padding-left: 10px; margin-bottom: 5px;">
         <span style="margin-right: 8px;">
           <% if params[:na] == 'yes' || params[:eur] == 'yes' || params[:asia] == 'yes' || params[:aus] == 'yes' %>
@@ -38,23 +38,24 @@
   </div>
   <div class="row" style="margin-top: 5px;">
     <div class="span3">
-      <label style="margin-left: 10px;"><i class="icon-beaker"></i> resources:</label>
-      <%= select_tag :science, grouped_options_for_select([ 
-          ['Instrument', Resource.instruments.searchable.order("name ASC").map { |r| r.name }.uniq], 
-          ['Software', Resource.softwares.searchable.order("name ASC").map { |r| r.name }.uniq], 
-          ['Methods', Resource.all_methods.searchable.order("name ASC").map { |r| r.name }.uniq], 
-          ['Reagents', Resource.reagents.searchable.order("name ASC").map { |r| r.name }.uniq], 
-          ['Experiments', Resource.experiments.searchable.order("name ASC").map { |r| r.name }.uniq], 
-          ['Other', Resource.others.searchable.order("name ASC").map { |r| r.name }.uniq], 
-          ], 
-        selected_key = params[:science], prompt = 'any') %>
-
+      <label style="margin-left: 10px;">resource:</label>
+      <span style="margin-left:10px;">
+        <%= select_tag :science, grouped_options_for_select([ 
+            ['Instrument', Resource.instruments.searchable.order("name ASC").map { |r| r.name }.uniq], 
+            ['Software', Resource.softwares.searchable.order("name ASC").map { |r| r.name }.uniq], 
+            ['Methods', Resource.all_methods.searchable.order("name ASC").map { |r| r.name }.uniq], 
+            ['Reagents', Resource.reagents.searchable.order("name ASC").map { |r| r.name }.uniq], 
+            ['Experiments', Resource.experiments.searchable.order("name ASC").map { |r| r.name }.uniq], 
+            ['Other', Resource.others.searchable.order("name ASC").map { |r| r.name }.uniq], 
+            ], 
+          selected_key = params[:science], prompt = 'any') %>
+      </span>
     </div>
   </div>
   <% unless Tag.top_service_tags.empty? %>
     <div class="row">
       <div class="span3">
-        <label style="margin-left: 10px;"><i class="icon-tags"></i> top tags:</label>
+        <label style="margin-left: 10px;">top tags:</label>
         <div style="padding-right: 10px; padding-left: 10px; font-size: 85%;">
           <%= raw Tag.top_service_tags.first(10).map { |t| link_to "#{t.name} 
               (#{t.services.size})", tag_services_path(t.name) }.join(', ') %>...

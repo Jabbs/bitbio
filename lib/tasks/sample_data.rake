@@ -40,7 +40,7 @@ namespace :db do
       project.user_id = User.all.shuffle.first.id
       
       x = [1,2,3].shuffle.first
-      Project::Event.uniq.shuffle[0..x].each do |i|
+      Project::SCIENCE_EQUIPMENT.uniq.shuffle[0..x].each do |i|
         instrument = project.instruments.build(alias: i)
         instrument.must_have = [true, false].shuffle.first
         instrument.resource_type = Resource::SERVICE_TYPES.shuffle.first

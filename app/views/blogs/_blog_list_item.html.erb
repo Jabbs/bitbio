@@ -36,12 +36,12 @@
           #{blog.likes.count}</span>".html_safe, blog_likes_path(blog), remote: true, method: :post, 
           id: "thumb_#{blog.id}", class: "blog-list-item #{promoted}", title: 'promote blog +' %>
       <% else %>
-        <i class="icon-thumbs-up dark"></i><span class="dark">: <%= blog.likes.count %></span>
+        <i class="icon-thumbs-up dark" title="promotions"></i><span class="dark">: <%= blog.likes.count %></span>
       <% end %>
         
         <br>
-      <i class="icon-eye-open dark"></i><span class="dark">: <%= blog.view_count %></span><br>
-      <i class="icon-comment dark"></i><span class="dark">: <%= blog.comments.count %></span>
+      <i class="icon-eye-open dark" title="view count"></i><span class="dark">: <%= blog.view_count %></span><br>
+      <i class="icon-comment dark" title="comments"></i><span class="dark">: <%= blog.comments.count %></span>
     </div>
   </div>
 </div>

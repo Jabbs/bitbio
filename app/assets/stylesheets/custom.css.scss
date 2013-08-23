@@ -97,6 +97,7 @@ h2 {
 //    i { color: $blue; }
 //  }
 }
+.white-link { color: white; &:hover { color: white; }}
 .center { text-align: center; }
 .inline { display: inline; }
 .bold { font-weight: bold; }
@@ -222,6 +223,16 @@ h2.info_header {
   color: black;
 //  background: $silver;
   background-image: url("stripe2.png");
+}
+h2.info_header_2 {
+  margin-bottom: 5px;
+  margin-top: 0px;
+  padding-left: 10px;
+  text-align: left;
+  font-size: 130%;
+  color: black;
+//  background: $silver;
+  background-image: url("stripe3.png");
 }
 
 .smaller-shell {
@@ -821,6 +832,8 @@ h2.info_header {
   }
 }
 
+/* events/new */
+
 /* events/show */
 
 .event-well {
@@ -913,11 +926,11 @@ h2.info_header {
 /* layouts/header */
 h1.slogan {
   margin-bottom:0;
-  color: $blue;
+  color: $header_background;
   font-size: 1.3em;
   float: right;
   padding-top: 2px;
-  font-weight: 200;
+  font-weight: 300;
 }
 
 header {
@@ -1079,7 +1092,7 @@ ul.navdrop {
 #blogs ul { position: relative; width: 30px; left: 80px; z-index:10; }
 #events ul { position: relative; width: 30px; left: 108px; z-index:10;  }
 #jobs ul { position: relative; width: 30px; left: 144px; z-index:10; }
-#science ul { position: relative; width: 30px; left: 162px; z-index:10; }
+#science ul { position: relative; width: 30px; left: 144px; z-index:10; }
 #listing ul { position: relative; width: 127px; z-index:10; }
 
 ul.nav li.dropdown:hover > ul.dropdown-menu{ display: block; }

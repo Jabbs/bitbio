@@ -13,7 +13,11 @@
           </div>
           <div class="span7" style="padding-top: 6px;">
             <h1 class="slogan">
-              Science Community, Science Market, and Science Outsourcing
+              <% if action_name == "show" %>
+                Science Community, Market, and Outsourcing
+              <% else %>
+                Science Community, Science Market, and Science Outsourcing
+              <% end %>
             </h1>
           </div>
 	      </div>
@@ -59,17 +63,18 @@
                 <li id="events">
                   <ul class="main-nav-set unstyled">
                     <li><%= link_to 'events', events_path %></li>
+                    <li style="width: 120px;"><%= link_to 'add event', new_event_path %></li>
                     <li style="width: 120px;"><%= link_to 'all events', events_path %></li>
                   </ul>
                 </li>
-                <li id="jobs">
+                <!-- <li id="jobs">
                   <ul class="main-nav-set unstyled">
                     <li><%= link_to 'jobs', '#' %></li>
                     <li style="width: 120px;"><%= link_to 'find jobs', '#' %></li>
                     <li style="width: 120px;"><%= link_to 'hire now', '#' %></li>
                     <li style="width: 120px;"><%= link_to 'jobs newsletter', '#' %></li>
                   </ul>
-                </li>
+                </li> -->
                 <li id="science">
                   <ul class="main-nav-set unstyled">
                     <li><%= link_to 'search', projects_path %></li>
@@ -129,8 +134,8 @@
                 </ul>
               </li>
             </ul>
-            <%= link_to '<i class="icon-plus icon-white"></i> PROJECT'.html_safe, new_project_path, 
-                class: 'pull-right my-button', style: 'position: relative; z-index: 8; padding-top:7px; padding-bottom:5px; top: -2px;' %>
+            <%= link_to '<i class="icon-plus icon-white"></i> LIST PROJECT'.html_safe, new_project_path, 
+                class: 'pull-right my-button', style: 'position: relative; z-index: 8; padding-top:7px; padding-bottom:5px; top: -2px; font-size:90%;' %>
                 
                 <!-- <div class="pull-right">
                    <ul class="unstyled">
@@ -147,10 +152,10 @@
   				<% else %>
   				  <ul class="nav pull-right" style="margin-left: 0px;">
   						<li>
-  							<a href="#loginModal" data-toggle="modal" class="loginlink" style="padding-right:2px;">Log in</a>
+  							<a href="#loginModal" data-toggle="modal" class="loginlink" style="padding-right:2px;">Sign In</a>
   						</li>
   					</ul>
-  					<a href="#signupModal" class="my-button pull-right" data-toggle="modal">Sign Up</a>
+  					<a href="#signupModal" class="my-button-red pull-right" data-toggle="modal">Create an Account</a>
   				<% end %>
           </div>
 

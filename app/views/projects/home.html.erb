@@ -14,6 +14,9 @@
 </div>
 
 <div class="span9 pull-right">
+  <% unless current_user %>
+    <%= render 'shared/sign_up_box' %>
+  <% end %>
   <%= render 'shared/word_cloud' %>
   <% unless @blogs.empty? %>
     <%= render 'blogs/blogs', blogs: @blogs %>

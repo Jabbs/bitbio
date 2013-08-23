@@ -33,6 +33,7 @@ class EventsController < ApplicationController
       create_bitly_url(event_url(@event)) if Rails.env.production? && ENV['STAGING'].nil?
       redirect_to @event, notice: "Your event entry has been created!"
     else
+      @event.attachments.build
       render 'new'
     end
   end

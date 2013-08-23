@@ -25,6 +25,9 @@ class MessagesController < ApplicationController
       redirect_to user_messages_path(current_user, sent: true), notice: "Your message has been sent to #{@message.receiver.full_name}"
     else
       if @project
+        @comments = @project.comments.order("created_at ASC")
+        @comment = @project.comments.new
+        @commentable = @project
         render 'projects/show'
       else
         @sent_messages = current_user.sent_messages.order("created_at DESC")

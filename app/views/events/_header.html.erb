@@ -26,8 +26,12 @@ style: 'position:relative; left: 587px; top: -40px' %></div>
               <span style="margin-left: 5px;"><%= pluralize(@event.comments.count, 'COMMENT', 'COMMENTS') %></span>
             </small>
           </p>
-          <p><i class="icon-link"></i> <%= Rinku.auto_link(@event.website, :all, 'target="_blank"').html_safe %></p>
-          <p><i class="icon-phone"></i> <%= @event.phone %></p>
+          <% if @event.website.present? %>
+            <p><i class="icon-link"></i> <%= Rinku.auto_link(@event.website, :all, 'target="_blank"').html_safe %></p>
+          <% end %>
+          <% if @event.phone.present? %>
+            <p><i class="icon-phone"></i> <%= @event.phone %></p>
+          <% end %>
           <% unless @event.organizer.blank? %>
             <p>Organized by <%= @event.organizer %>.</p>
           <% end %>

@@ -14,13 +14,12 @@
           <%= f.text_field :title, class: 'span9' %>
         </div>
       </div>
+      <br>
       <div class="row">
-        <div class="span9">
-          <i class="icon-asterisk red"></i> Photo:
+        <div class="span1">
+          Photo:
         </div>
-      </div>
-      <div class="row">
-        <div class="span9">
+        <div class="span8">
          <%= f.fields_for :attachments do |attch| %>
            <% attch.object.new_record? ? new_attch = "new_attch" : new_attch = '' %>
            <fieldset class="<%= new_attch %>">
@@ -47,18 +46,18 @@
       <br>
       <div class="row">
         <div class="span2">
-          Start Date-Time
+          Start
         </div>
         <div class="span7">
-          <%= f.datetime_select :start_date, { minute_step: 15, use_short_month: true }, { class: "span1" } %>
+          <%= f.datetime_select :start_date, { minute_step: 15, use_short_month: true }, { class: "span2" } %>
         </div>
       </div>
       <div class="row">
         <div class="span2">
-          End Date-Time
+          End
         </div>
         <div class="span7">
-          <%= f.datetime_select :end_date, { minute_step: 15, use_short_month: true }, { class: "span1" } %>
+          <%= f.datetime_select :end_date, { minute_step: 15, use_short_month: true }, { class: "span2" } %>
         </div>
       </div>
       <hr>
@@ -74,22 +73,13 @@
       </div>
       <hr>
       <div class="row">
-        <div class="span9">
+        <div class="span4">
           Organized by:
-        </div>
-      </div>
-      <div class="row">
-        <div class="span9">
           <%= f.text_field :organizer, class: 'span4' %>
         </div>
-      </div>
-      <div class="row">
-        <div class="span9">
+        <div class="span5">
           Phone:
-        </div>
-      </div>
-      <div class="row">
-        <div class="span9">
+          <br>
           <%= f.text_field :phone, class: 'span4' %>
         </div>
       </div>
@@ -100,7 +90,7 @@
       </div>
       <div class="row">
         <div class="span9">
-          <%= f.text_field :website, class: 'span9' %>
+          <%= f.text_field :website, class: 'span6' %>
         </div>
       </div>
       <hr>
