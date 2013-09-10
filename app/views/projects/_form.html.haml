@@ -1,0 +1,139 @@
+= form_for @project do |f|
+  .row
+    .span9
+      = render 'shared/error_messages', object: f.object
+      - if @project.new_record?
+        %h2.black
+          %i.icon-beaker
+          New Project Listing
+      - else
+        %h2.black Editing Project
+  %hr/
+  .row
+    .span1{:style => "width: 90px;"}
+      %label
+        %i.icon-asterisk.red
+        Type:
+    .span8{:style => "width: 590px;"}
+      %input#project_science_type.span5{:autocomplete => "off", "data-provide" => "typeahead", "data-source" => Project::SCIENCE_TYPES.uniq.sort, :name => "project[science_type]", :placeholder => "e.g. antibody production, RNA purification, etc.", :size => "30", :style => "margin-bottom: 0;", :type => "text", :value => @project.science_type}/
+      %p What specific type of project best defines your needs?
+  %hr/
+  .row
+    .span1{:style => "width: 90px;"}
+      %label
+        %i.icon-asterisk.red
+        Needs:
+    .span8.radio-account-types{:style => "width: 590px;"}
+      .row{:style => "width: 630px;"}
+        .span2{:style => "width: 160px;"}
+          = f.radio_button :service_need, Project::SERVICE_NEEDS[0], checked: true
+          %label= Project::SERVICE_NEEDS[0]
+        .span2{:style => "width: 205px;"}
+          = f.radio_button :service_need, Project::SERVICE_NEEDS[1]
+          %label= Project::SERVICE_NEEDS[1]
+        .span3{:style => "width: 200px;"}
+          = f.radio_button :service_need, Project::SERVICE_NEEDS[2]
+          %label= Project::SERVICE_NEEDS[2]
+      .row{:style => "width: 630px;"}
+        .span2{:style => "width: 160px;"}
+          = f.radio_button :service_need, Project::SERVICE_NEEDS[3]
+          %label= Project::SERVICE_NEEDS[3]
+        .span2{:style => "width: 205px;"}
+          = f.radio_button :service_need, Project::SERVICE_NEEDS[4]
+          %label= Project::SERVICE_NEEDS[4]
+        .span2{:style => "width: 200px;"}
+          = f.radio_button :service_need, Project::SERVICE_NEEDS[5]
+          %label= Project::SERVICE_NEEDS[5]
+      %p What best describes the needs for your scientific project?
+  %br/
+  .row
+    .span8{:style => "margin-bottom: 10px; width: 590px;"}
+      Technology / Technique Needs
+  .row
+    .span8
+      = f.fields_for :instruments do |builder|
+        = render 'instrument_fields', f: builder
+      = link_to_add_fields "Add new +", f, :instruments
+  %hr/
+  .row
+    .span1{:style => "width: 90px;"}
+      %label
+        %i.icon-asterisk.red
+        Name:
+    .span8{:style => "width: 590px;"}
+      = f.text_field :name, placeholder: 'e.g. analyzing histone modification', class: 'span5', |
+        style: 'margin-bottom: 0;'                                                              |
+      %p Please choose a unique name for your project.
+  %hr/
+  .row
+    .span1{:style => "width: 90px;"}
+      %label
+        %i.icon-asterisk.red
+        Description:
+    .span7{:style => "width: 590px;"}
+      = f.text_area :description, class: 'span6', rows: 5, placeholder: |
+        "Please describe your project in detail."                       |
+  .row{:style => "margin-top: 5px;"}
+    .span1{:style => "width: 90px;"}
+      %label Tags:
+    .span8{:style => "width: 590px;"}
+      - @project.tag_list.blank? ? project_tags = ["bitbio"] : project_tags = @project.tag_list
+      #project-tags{"data-tags" => Project::TAGS}
+      #project-prefilled-tags{"data-tags" => project_tags}
+      %input.tm-input{:autocomplete => "off", :name => "project[tag_list]", :placeholder => "tag", :style => "width: 100px;", :type => "text"}/
+      %p Tag your project for optimal search queries (delimiters: tab, enter, comma). Maximum: 6.
+  %hr/
+  .row
+    .span1{:style => "width: 90px;"}
+      %label
+        %i.icon-asterisk.red
+        Start:
+    .span8{:style => "width: 590px;"}
+      = f.text_field :start_date, placeholder: 'YYYY-MM-DD', style: 'margin-bottom: 0; width: 90px;'
+      %p What date does your project start?
+  %hr/
+  .row
+    .span1{:style => "width: 90px;"}
+      %label Visability:
+    .span8.radio-account-types{:style => "width: 590px;"}
+      - Project::VISABILITY_OPTIONS.each do |option|
+        = f.radio_button :visability, option
+        %label{:style => "width: 90px; margin-right: 5px;"}
+          - if option == 'public'
+            %i.icon-globe{:style => "margin-right: 9px; margin-left: 2px;"}
+          - elsif option == 'private'
+            %i.icon-group{:style => "margin-right: 7px;"}
+          - elsif option == 'locked'
+            %i.icon-lock{:style => "margin-right: 9px; margin-left: 4px;"}
+          = option.capitalize
+        = visability_text(option)
+        %br/
+      %p Who can view your project?
+  %hr/
+  - if action_name == 'new' || action_name == 'create'
+    .row
+      .span1{:style => "width: 90px;"}
+        %label Plan:
+      .span8.radio-account-types{:style => "width: 590px;"}
+        = f.radio_button :expiration_date, Date.today + 30.days, checked: true
+        %label 30 day listing
+        %br/
+        = f.radio_button :expiration_date, Date.today + 90.days
+        %label 90 day listing
+        %br/
+        = f.radio_button :expiration_date, Date.today + 180.days
+        %label 180 day listing
+        %p How long would you like to list your project?
+    %hr/
+  .row
+    .span9
+      - if action_name == 'edit' || action_name == 'update'
+        - if current_user?(@project.user)
+          = link_to "Remove", project_path(@project), method: :delete, confirm: "Are you sure?", class: 'my-button-red large-button pull-right'
+        = f.submit 'Update Project', class: "my-button large-button", disable_with: 'Submitting...', style: 'margin-bottom: 8px;'
+        |
+        \#{link_to 'cancel', @project}
+      - else
+        = f.submit 'List Project', class: "my-button large-button", disable_with: 'Submitting...', style: 'margin-bottom: 5px;'
+        |
+        \#{link_to 'cancel', current_user}

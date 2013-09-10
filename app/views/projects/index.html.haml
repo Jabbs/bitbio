@@ -1,0 +1,22 @@
+- content_for :title do
+  = t('application.root.title_with_tag_line', tag_line: "Search for science projects")
+- content_for :description do
+  Browse scientific projects and sort listings to find those that are of interest.
+.row
+  .span3
+    = render 'shared/sidebar/project_search'
+  - if current_user && @projects.any?
+    .span9.pull-right
+      = render 'shared/alerts/search_result_count'
+    .span9.pull-right
+      - @projects.each do |project|
+        = render 'project', project: project
+    .span9.pull-right= will_paginate @projects
+  - elsif current_user && @projects.empty?
+    .span9.pull-right
+      = render 'shared/alerts/no_projects'
+  - elsif !current_user.present?
+    .span9.pull-right
+      = render 'shared/alerts/sign_in_notice'
+
+

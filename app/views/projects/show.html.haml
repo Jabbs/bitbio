@@ -1,0 +1,14 @@
+- if !ENV['STAGING'].present? || Rails.env.development?
+  - content_for :title do
+    = t('application.root.title_with_tag_line', tag_line: "#{@project.name}")
+  - content_for :description do
+    = @project.name
+    \- #{@project.description}
+.row
+  .span9.offset3
+    = render 'projects/sharing_buttons'
+    = render 'projects/project_full'
+    = render 'comments/comments'
+    = render 'comments/form_info'
+    %br
+    

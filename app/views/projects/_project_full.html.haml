@@ -1,0 +1,73 @@
+.project-full-well
+  - if @project.service_need == "Science + Services"
+    - back_color = "sci_ser"
+  - elsif @project.service_need == "Science"
+    - back_color = "sci"
+  - elsif @project.service_need == "Services"
+    - back_color = "ser"
+  - elsif @project.service_need == "Data Analysis"
+    - back_color = "dat"
+  - elsif @project.service_need == "Clinical Studies"
+    - back_color = "cli"
+  - else
+    - back_color = "def"
+  .row{:style => "padding-left:20px"}
+    %h2
+      = @project.name
+      %span.black{:style => "font-size: 70%; float:right;"}
+        %i.icon-globe
+        = country_with_us_shortened(@project.user.country)
+    - if current_user?(@project.user)
+      %div{:style => "height:0px;"}
+        %div{:style => "margin-bottom: 8px"}
+          = link_to '<i class="icon-edit"></i> Edit'.html_safe, edit_project_path(@project), class: 'my-button-red', |
+            style: 'position:relative; left: 620px;'                                                                 |
+  .row{:style => "padding-left:20px"}
+    %h4{:style => "margin-bottom: 5px;"}
+    %div{:class => "service #{back_color}", :style => "width: 160px;"}= @project.service_need
+    = @project.science_type
+    - if current_user && current_user != @project.user && current_user.verified?
+      .pull-right
+        %i.icon-envelope-alt.blue
+        = content_tag "div", id: 'message', title: "Send a direct message to the project owner", style: 'width: 250px; display: inline', |
+          data: {blah: @project.user.id} do                                                                                              |
+          send message to the project owner
+  .row{:style => "padding-left:20px; margin-bottom: 5px;"}
+    %i.icon-calendar{:style => "margin-right: 2px;"}
+    start date: #{@project.start_date.strftime("%b %e, %Y")}
+    %span{:style => "font-size: 75%;"}
+      (#{to_days_ago_or_from_now(@project.days_til_start)})
+  - if @project.instruments.any?
+    .row
+      .span6
+        %strong Needs:
+        - @project.instruments.order("must_have DESC").each do |instrument|
+          %div
+            \• #{instrument.alias}
+            %span{:style => "font-size: 75%;"}
+              (#{instrument.must_have ? '<i class="icon-ok red"></i> must have'.html_safe : 'nice to have'})
+  .row{:style => "padding-left:20px; width: 520px; margin-top: 10px;"}
+    - if @project.tags.any?
+      %i.icon-tags
+      tags: #{raw @project.tags.map { |t| link_to t.name, tag_projects_path(t.name) }.join(', ')}
+  .description
+    - if current_user?(@project.user)
+      %div{:style => "height: 0px;"}
+        .expiration-date
+          expires on #{@project.expiration_date.strftime("%b %e, %Y")}
+          %br/
+          = link_to 'extend +', '#'
+    = simple_format(Rinku.auto_link(@project.description).html_safe)
+  .row{:style => "margin-top: 3px;"}
+    .span5
+      %i.icon-eye-open{:style => "margin-top: 1px;"}
+      views: #{@project.view_count}
+      %i.icon-envelope-alt{:style => "margin-top: 1px; margin-left: 20px;"}
+      messages: #{@project.messages.size}
+      %i.icon-comment{:style => "margin-top: 1px; margin-left: 20px;"}
+      comments: #{@project.comments.size}
+    %p.time_ago.pull-right
+      %small
+        Listed on #{@project.created_at.strftime("%D")}
+        (#{time_ago_in_words(@project.created_at)} ago).
+

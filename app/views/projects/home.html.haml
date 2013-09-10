@@ -1,0 +1,17 @@
+- content_for :title do
+  = t('application.root.title_with_tag_line', tag_line: "Science Community, Science Market, and Science Outsourcing")
+- content_for :description do
+  = t("application.root.description")
+.row
+  .span3
+    = render 'shared/sidebar/project_search'
+    - unless @featured_users.empty?
+      = render 'shared/sidebar/featured_users'
+  .span9
+    - unless current_user
+      = render 'shared/sign_up_box'
+    = render 'shared/word_cloud'
+    - unless @blogs.empty?
+      = render 'blogs/blogs', blogs: @blogs
+    - unless @events.empty?
+      = render 'events/events', events: @events
