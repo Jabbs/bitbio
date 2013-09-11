@@ -1,0 +1,27 @@
+%hr
+- if action_name == "coming_soon" || controller_name == "contacts"
+  %footer
+    .row
+      .span12{:style => "margin-top:8px;"}
+        .center © bitBIO 2013
+- else
+  %footer
+    .row
+      .span2{:style => "margin-top:8px;"}
+        © bitBIO 2013
+      .span10
+        - unless action_name == "coming_soon" || controller_name == "contacts"
+          %ul
+            %li.title
+              %strong Legal Stuff
+            %li= link_to "Terms of Service", '#'
+            %li= link_to "Privacy Policy", '#'
+          %ul
+            %li.title
+              %strong Support
+            %li= link_to "Contact Us", '#'
+            %li= link_to "FAQ's", '#'
+          %ul
+            %li.title
+              %strong Company
+            %li= link_to "About Us", '#'

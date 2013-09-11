@@ -32,6 +32,7 @@ $link_color: #0088cc;
 .container { 
   background: white; 
   padding: 0px 40px 0 40px; 
+  margin-bottom:100px;
   -moz-box-shadow: 5px 0 5px -5px $blue, 0 5px 5px -5px $blue, -5px 0 5px -5px $blue;
   -webkit-box-shadow: 5px 0 5px -5px $blue, 0 5px 5px -5px $blue, -5px 0 5px -5px $blue;
   box-shadow: 5px 0 5px -5px $blue, 0 5px 5px -5px $blue, -5px 0 5px -5px $blue;
@@ -77,7 +78,7 @@ h5 { font-size: 105%; }
 h6 { font-size: 100%; }
 p { font-size: 100%; line-height: 1.3em; margin-bottom:5px; margin-top:5px; }
 h2 {
-  color: $gold_dark;
+  color: $header_background;
   margin-top: 5px;
 }
 
@@ -251,6 +252,7 @@ h2.info_header_2 {
   margin-top: 1px;
   background: white;
   border: 1px solid $header_background;
+  border-top: 4px solid $header_background;
 }
 
 #science-search {
@@ -332,6 +334,7 @@ h2.info_header_2 {
   //  margin-top: 10px;
     margin-bottom: 20px;
     border: 1px solid $header_background;
+    border-top: 4px solid $header_background;
 }
 
 .bigger-shell {
@@ -339,6 +342,7 @@ h2.info_header_2 {
 //  margin-top: 10px;
   margin-bottom: 20px;
   border: 1px solid $header_background;
+  border-top: 4px solid $header_background;
   .add-blog-button {
     font-size: 80%;
     position: relative;
@@ -363,7 +367,8 @@ h2.info_header_2 {
   width: 698px;
 //  margin-top: 10px;
   margin-bottom: 20px;
-  border: 1px solid $silver;
+  border: 1px solid $header_background;
+  border-top: 4px solid $header_background;
   border-bottom: none;
 }
 
@@ -852,7 +857,7 @@ h2.info_header_2 {
   margin-left: 0px;
   padding: 1em;
   overflow: hidden;
-  border-bottom: 1px solid $silver;
+  border-bottom: 1px solid $header_background;
   h4 a { 
     color: black; text-decoration: none; 
     &:hover { color: $red; }
@@ -863,15 +868,15 @@ h2.info_header_2 {
     z-index:5; 
     left:120px;
     top: -105px;
-    .inside { border: 1px solid $silver; padding: .5em; border-top:none; } 
+    .inside { border: 1px solid $header_background; padding: .5em; border-top:none; } 
   }
   &:nth-child(3n+1) {
-    border-left: 1px solid $silver;
-    border-bottom: 1px solid $silver;
+    border-left: 1px solid $header_background;
+    border-bottom: 1px solid $header_background;
   } 
   &:nth-child(3n+2) {
-    border-left: 1px solid $silver;
-    border-bottom: 1px solid $silver;
+    border-left: 1px solid $header_background;
+    border-bottom: 1px solid $header_background;
     width: 203px;
   }
   .event {
@@ -1030,7 +1035,7 @@ header {
 
 #mynav-list {
   position: absolute;
-  top: 44px;
+  top: 48px;
   width: 400px;
   ul {
     padding-top: 5px;
@@ -1199,8 +1204,8 @@ ul.nav li.dropdown > ul.dropdown-menu{ margin-top:0px; border-radius: 0px; }
 /* layouts/footer */
 
 footer {
-  background: lighten($silver, 20%);
-  margin-top: 40px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   padding-top: 5px;
   min-height: 40px;
   .title {color: $header_background;}
