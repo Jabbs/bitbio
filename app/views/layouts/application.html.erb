@@ -22,7 +22,7 @@
   <% unless action_name == "coming_soon" || controller_name == "contacts" %>
     <%= render 'layouts/header' %>
   <% end %>
-  <div class="container" id="<%= controller_name %>_<%= action_name %>" style="min-height: 400px;">
+  <div class="container" id="<%= controller_name %>_<%= action_name %>" style="min-height: 400px; padding-top:20px;">
   	<div class="row">
     	<div class="span12">
     	  <div class="span9 pull-right">
@@ -46,17 +46,17 @@
     	</div>
   	</div>
   </div>
-<% unless current_user %>
-  <!-- Modal -->
-  <%= render 'users/sign_up_modal' %>
-  <%= render 'users/login_modal' %>
-<% end %>
-<%= render 'layouts/footer' %>
-<% if request.path == '/' %>
-          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-<% end %>
-<% if controller_name == "facilities" && action_name == "index" %>
-  <%= yield :scripts %>
-<% end %>
+  <% unless current_user %>
+    <!-- Modal -->
+    <%= render 'users/sign_up_modal' %>
+    <%= render 'users/login_modal' %>
+  <% end %>
+  <%= render 'layouts/footer' %>
+  <% if request.path == '/' %>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  <% end %>
+  <% if controller_name == "facilities" && action_name == "index" %>
+    <%= yield :scripts %>
+  <% end %>
 </body>
 </html>

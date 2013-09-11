@@ -1,0 +1,6 @@
+.span9.bigger-shell.pull-right
+  %h2.info_header
+    Featured Blog Posts
+  %div{:style => "height: 0px;"}= link_to "<i class='icon-plus'></i> ADD BLOG".html_safe, new_blog_path, class: 'my-button-red add-blog-button'
+  - blogs.each do |blog|
+    = render 'blogs/blog_list_item', blog: blog

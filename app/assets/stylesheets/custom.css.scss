@@ -29,12 +29,21 @@ $link_color: #0088cc;
 
 /* Overrides */
 
+.container { 
+  background: white; 
+  padding: 0px 40px 0 40px; 
+  -moz-box-shadow: 5px 0 5px -5px $blue, 0 5px 5px -5px $blue, -5px 0 5px -5px $blue;
+  -webkit-box-shadow: 5px 0 5px -5px $blue, 0 5px 5px -5px $blue, -5px 0 5px -5px $blue;
+  box-shadow: 5px 0 5px -5px $blue, 0 5px 5px -5px $blue, -5px 0 5px -5px $blue;
+}
+
 .navbar .container {
   width: 940px;
+  border-top: 3px solid $red;
 }
 
 .navbar .navbar-inner {
-  background: white;
+  background: inherit;
   border: none;
   border-radius: 0;
   box-shadow: none;
@@ -57,6 +66,7 @@ $link_color: #0088cc;
 
 body {
   min-height: 600px;
+  background-image: url('dna_gel.jpg');
 }
 h1,h2,h3,h4,h5,h6, p { margin:0px; padding:0px; }
 h1 { font-size: 210%; }
@@ -935,7 +945,7 @@ h1.slogan {
 
 header {
   min-width: 960px;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
   .navbar {
     margin-bottom: 5px;
   }
