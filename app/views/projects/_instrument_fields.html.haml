@@ -1,11 +1,7 @@
 %fieldset
   = f.select :resource_type, Resource::SERVICE_TYPES, {}, style: 'width: 110px;'
   - if @id && @project.new_record?
-    <input style="width:360px;" id="project_instruments_attributes_alias"
-    name="project[instruments_attributes][#{@id}][alias]"
-    placeholder="e.g. Bioanalyzer, Illumina HiSeq 2000, etc." size="30" type="text"
-    data-provide="typeahead" data-source="#{Resource.pluck(:name).uniq.sort}"
-    autocomplete="off"
+    <input style="width:360px;" id="project_instruments_attributes_alias" name="project[instruments_attributes][#{@id}][alias]" placeholder="e.g. Bioanalyzer, Illumina HiSeq 2000, etc." size="30" type="text" data-provide="typeahead" data-source="#{Resource.pluck(:name).uniq.sort}" autocomplete="off"
     - unless @project.new_record?
       value="#{f.object.alias}"
     \/>

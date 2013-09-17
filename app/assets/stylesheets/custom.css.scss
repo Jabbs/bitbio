@@ -67,7 +67,7 @@ $link_color: #0088cc;
 
 body {
   min-height: 600px;
-  background-image: url('dna_gel.jpg');
+  background-image: url('dna_gel_small.jpg');
 }
 h1,h2,h3,h4,h5,h6, p { margin:0px; padding:0px; }
 h1 { font-size: 210%; }
@@ -159,6 +159,8 @@ label {
 
 .underline-header {
   border-bottom: 2px solid black;
+  line-height:1em;
+  padding-bottom:5px;
 }
 
 .taglines {
@@ -950,7 +952,7 @@ h1.slogan {
 
 header {
   min-width: 960px;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   .navbar {
     margin-bottom: 5px;
   }
