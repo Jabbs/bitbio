@@ -34,7 +34,7 @@ class Blog < ActiveRecord::Base
   end
   
   def self.featured
-    Blog.last(5)
+    Blog.last(5).reverse
   end
   
   def add_view_count

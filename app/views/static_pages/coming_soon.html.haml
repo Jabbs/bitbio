@@ -4,95 +4,95 @@
       %div{:class => "alert alert-#{name == :notice ? "success" : "error"}", :style => "margin-top: 20px;"}
         %a.close{"data-dismiss" => "alert"} ×
         = msg
-%br
-.row{style: "margin-top: 10px;"}
-  .center.bigger
-    = link_to "bitBIO".html_safe, root_path, id: 'logo2', title: 'Home'
-%br
+.div{style: "height:0px;"}
+  = image_tag "coming_soon.jpg", id: "coming-soon"
+/ %br
+/ .row{style: "margin-top: 10px;"}
+/   .center.bigger
+/     = link_to "bitBIO".html_safe, root_path, id: 'logo2', title: 'Home'
+/ %br
+/ .row
+/   .span2.center.offset2
+/     %h2.huge
+/       %i.icon-gears
+/     .step List Research Projects
+/   .span1
+/     %h3.center
+/       %br
+/       %i.icon-arrow-right
+/   .span2.center
+/     %h2.huge.blue
+/       %i.icon-search
+/     .step Search and Filter Projects
+/   .span1
+/     %h3.center
+/       %br
+/       %i.icon-arrow-right
+/   .span2.center
+/     %h2.huge.red
+/       %i.icon-beaker
+/     .step Perform Science / Collaborate
+/ %br
+/ %br
+/ %h1.center.blue{style: "font-size: 400%;"}
+/   The Science Search Engine
 .row
-  .span2.center.offset2
-    %h2.huge
-      %i.icon-gears
-    .step List Research Projects
-  .span1
-    %h3.center
-      %br
-      %i.icon-arrow-right
-  .span2.center
-    %h2.huge.blue
-      %i.icon-search
-    .step Search and Filter Projects
-  .span1
-    %h3.center
-      %br
-      %i.icon-arrow-right
-  .span2.center
-    %h2.huge.red
-      %i.icon-beaker
-    .step Perform Science / Collaborate
-%br
-%br
-%h1.center.blue{style: "font-size: 400%;"}
-  The Science Search Engine
-%br
+  .span12
+    = image_tag "computer_bitbio.png", title: "Bitbio"
 %br
 .row
   .span12
     .center
-      %h5 Stay notified of our beta release!
-      %br
       = form_for @contact do |f|
         .center
           = f.text_field :first_name, class: "span2", placeholder: "First Name"
           = f.text_field :last_name, class: "span2", placeholder: "Last Name"
           = f.text_field :email, class: "span2", placeholder: "Email"
-        = f.submit "Sign Up", class: "my-button-silver", style: "margin-left:10px;"
+          = f.submit "Sign Up", class: "my-button-silver", style: "margin-left:10px; margin-bottom:12px;"
       %a{href: "mailto:info@bitbio.org?", style: 'text-decoration:none;', title: "Send Email"}
         %i.icon-envelope.bigger.dark
       |
       %a{href: "https://twitter.com/bit_bio", style: 'text-decoration:none;', title: "Twitter", target: "_blank"}
         %i.icon-twitter.bigger.dark
 %br
+/ .row
+/   .span12
+/     %hr
+/ .row
+/   .span8.offset2
+/     %h2.center.red
+/       PREVIEW
+/     %br
+/     #carousel-example-generic.carousel.slide.center
+/       .carousel-inner
+/         .item.active
+/           .center
+/             = image_tag 'science_types_word_cloud.png'
+/         .item
+/           .center
+/             = image_tag "bitbio_screenshot_5.png"
+/         .item
+/           .center
+/             = image_tag "bitbio_screenshot_2.png"
+/         .item
+/           .center
+/             = image_tag "bitbio_screenshot_4.png"
+/       / Controls
+/       %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic"}
+/         %span.icon-chevron-left{ style: "font-size: 60%;"}
+/       %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic"}
+/         %span.icon-chevron-right{ style: "font-size: 60%;"}
 .row
   .span12
     %hr
 .row
   .span8.offset2
-    %h2.center.red
-      PREVIEW
-    %br
-    #carousel-example-generic.carousel.slide.center
-      .carousel-inner
-        .item.active
-          .center
-            = image_tag 'science_types_word_cloud.png'
-        .item
-          .center
-            = image_tag "bitbio_screenshot_5.png"
-        .item
-          .center
-            = image_tag "bitbio_screenshot_2.png"
-        .item
-          .center
-            = image_tag "bitbio_screenshot_4.png"
-      / Controls
-      %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic"}
-        %span.icon-chevron-left{ style: "font-size: 60%;"}
-      %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic"}
-        %span.icon-chevron-right{ style: "font-size: 60%;"}
-.row
-  .span12
-    %hr
-.row
-  .span8.offset2
-    %h2.center What is bitBIO?
+    %h1.center What is Bitbio?
     %br
     %p.center
       An online
       %strong science community
-      and resource built by researchers and service providers in the life science industries. Whether
-      you are seeking a service provider, collaborating on research,
-      or looking for assistance, bitBIO can help.
+      and resource built by researchers and service providers in the life science industries.
     %br
     %p.center{style: "margin-top:10px;"}
       Gain instant
@@ -117,46 +117,46 @@
     %p.center{style: "margin-top:10px;"}
       Why rely on expensive services to broker your science project when all you really need is 
       access, exposure, and some help from the science community.
-%br
-.row
-  .span12
-    %hr
-.row
-  .span12
-    %h2.center.black Connect with us on Twitter
-    %br
-    .center
-      %blockquote.twitter-tweet{align: "center"}
-        %p>
-          Lean Launchpad course for
-          %a{:href => "https://twitter.com/search?q=%23LifeSciences&src=hash"} #LifeSciences
-          \&
-          %a{:href => "https://twitter.com/search?q=%23Healthcare&src=hash"} #Healthcare
-          = succeed "." do
-            %a{:href => "http://t.co/nqpO8Bs9gF"} http://t.co/nqpO8Bs9gF
-          Registration ends Sept 6th. $100 for pre-revenue
-          = succeed "." do
-            %a{:href => "https://twitter.com/search?q=%23startups&src=hash"} #startups
-        \— bitBIO (@bit_bio)
-        %a{:href => "https://twitter.com/bit_bio/statuses/370183595698032640"} August 21, 2013
-      %script{:async => "", :charset => "utf-8", :src => "//platform.twitter.com/widgets.js"}
-      %blockquote.twitter-tweet{align: "center"}
-        %p>
-          The oldest complete genome to date.
-          %a{:href => "http://t.co/Vx0Z9It5mc"} http://t.co/Vx0Z9It5mc
-          %a{:href => "https://twitter.com/search?q=%23dna&src=hash"} #dna
-          %a{:href => "https://twitter.com/search?q=%23sequencing&src=hash"} #sequencing
-          %a{:href => "https://twitter.com/search?q=%23genomics&src=hash"} #genomics
-        \— bitBIO (@bit_bio)
-        %a{:href => "https://twitter.com/bit_bio/statuses/350241781230731264"} June 27, 2013
-      %script{:async => "", :charset => "utf-8", :src => "//platform.twitter.com/widgets.js"}
-      %blockquote.twitter-tweet{align: "center"}
-        %p>
-          Scientists capture first images of molecules before and after reaction:
-          %a{:href => "http://t.co/CmWVywKjkl"} http://t.co/CmWVywKjkl
-        \— bitBIO (@bit_bio)
-        %a{:href => "https://twitter.com/bit_bio/statuses/340614527605407744"} May 31, 2013
-      %script{:async => "", :charset => "utf-8", :src => "//platform.twitter.com/widgets.js"}
+/ %br
+/ .row
+/   .span12
+/     %hr
+/ .row
+/   .span12
+/     %h2.center.black Connect with us on Twitter
+/     %br
+/     .center
+/       %blockquote.twitter-tweet{align: "center"}
+/         %p>
+/           Lean Launchpad course for
+/           %a{:href => "https://twitter.com/search?q=%23LifeSciences&src=hash"} #LifeSciences
+/           \&
+/           %a{:href => "https://twitter.com/search?q=%23Healthcare&src=hash"} #Healthcare
+/           = succeed "." do
+/             %a{:href => "http://t.co/nqpO8Bs9gF"} http://t.co/nqpO8Bs9gF
+/           Registration ends Sept 6th. $100 for pre-revenue
+/           = succeed "." do
+/             %a{:href => "https://twitter.com/search?q=%23startups&src=hash"} #startups
+/         \— bitBIO (@bit_bio)
+/         %a{:href => "https://twitter.com/bit_bio/statuses/370183595698032640"} August 21, 2013
+/       %script{:async => "", :charset => "utf-8", :src => "//platform.twitter.com/widgets.js"}
+/       %blockquote.twitter-tweet{align: "center"}
+/         %p>
+/           The oldest complete genome to date.
+/           %a{:href => "http://t.co/Vx0Z9It5mc"} http://t.co/Vx0Z9It5mc
+/           %a{:href => "https://twitter.com/search?q=%23dna&src=hash"} #dna
+/           %a{:href => "https://twitter.com/search?q=%23sequencing&src=hash"} #sequencing
+/           %a{:href => "https://twitter.com/search?q=%23genomics&src=hash"} #genomics
+/         \— bitBIO (@bit_bio)
+/         %a{:href => "https://twitter.com/bit_bio/statuses/350241781230731264"} June 27, 2013
+/       %script{:async => "", :charset => "utf-8", :src => "//platform.twitter.com/widgets.js"}
+/       %blockquote.twitter-tweet{align: "center"}
+/         %p>
+/           Scientists capture first images of molecules before and after reaction:
+/           %a{:href => "http://t.co/CmWVywKjkl"} http://t.co/CmWVywKjkl
+/         \— bitBIO (@bit_bio)
+/         %a{:href => "https://twitter.com/bit_bio/statuses/340614527605407744"} May 31, 2013
+/       %script{:async => "", :charset => "utf-8", :src => "//platform.twitter.com/widgets.js"}
 / .row
 /   .span6.offset3.medium-shell
 /     %h2.info_header
