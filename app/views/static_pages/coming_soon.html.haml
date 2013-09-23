@@ -38,22 +38,30 @@
 /   The Science Search Engine
 .row
   .span12
-    = image_tag "computer_bitbio.png", title: "Bitbio"
+    %h1.center Science Community, Science Market, and Science Outsourcing
 %br
 .row
-  .span12
-    .center
+  .span9
+    = image_tag "computer_bitbio.png", title: "Bitbio"
+  .span3
+    .well#contact-well
       = form_for @contact do |f|
         .center
+          %h4 Stay notified of beta release
+          %br
           = f.text_field :first_name, class: "span2", placeholder: "First Name"
           = f.text_field :last_name, class: "span2", placeholder: "Last Name"
           = f.text_field :email, class: "span2", placeholder: "Email"
-          = f.submit "Sign Up", class: "my-button-silver", style: "margin-left:10px; margin-bottom:12px;"
-      %a{href: "mailto:info@bitbio.org?", style: 'text-decoration:none;', title: "Send Email"}
-        %i.icon-envelope.bigger.dark
-      |
-      %a{href: "https://twitter.com/bit_bio", style: 'text-decoration:none;', title: "Twitter", target: "_blank"}
-        %i.icon-twitter.bigger.dark
+        .center
+          = f.submit "Sign Up", class: "my-button-blue", style: "margin-left:10px;"
+          %hr
+          %a{href: "mailto:info@bitbio.org?", style: 'text-decoration:none;', title: "Send Email"}
+            %i.icon-envelope.bigger.dark
+          |
+          %a{href: "https://twitter.com/bit_bio", style: 'text-decoration:none;', title: "Twitter", target: "_blank"}
+            %i.icon-twitter.bigger.dark
+%br
+
 / .row
 /   .span12
 /     %hr
