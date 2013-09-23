@@ -118,7 +118,7 @@ class ProjectsController < ApplicationController
         end
       elsif @project.visability == 'private'
         unless current_user && current_user.verified
-          redirect_to root_path, alert: "This project is only viewable to verified bitBIO members. Please sign up or log in to view this project."
+          redirect_to root_path, alert: "This project is only viewable to verified Bitbio members. Please sign up or log in to view this project."
         end
       elsif @project.visability == 'locked'
         unless current_user && current_user.verified && current_user?(@project.user)

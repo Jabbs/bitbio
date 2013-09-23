@@ -3,7 +3,7 @@
 - tw_link = "https://twitter.com/share?url=#{u(share_url)}&text=#{u(share_text)}&via=bit_bio"
 - title_page = @project.name
 - description_page = @project.description
-- app_title = "bitBIO Online Science Community"
+- app_title = "Bitbio Online Science Community"
 .share-well
   .row{:style => "margin: 5px 0px;"}
     .span7{:style => "margin-left: 40px; width: 490px;"}
@@ -21,5 +21,5 @@
       = link_to "https://plus.google.com/share?url=#{share_url}", target: "_blank", style: 'text-decoration: none;' do
         %i.icon-google-plus.bigger.no-decoration
       |
-      = link_to "mailto: ?subject=#{u("bitBIO Project: "+ @project.name)}&body=#{u(share_url)}", style: 'text-decoration: none;' do
+      = link_to "mailto: ?subject=#{u("Bitbio Project: "+ @project.name)}&body=#{u(share_url)}", style: 'text-decoration: none;' do
         %i.icon-envelope.bigger.no-decoration
