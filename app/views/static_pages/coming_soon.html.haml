@@ -50,10 +50,13 @@
           %h4 Stay notified of beta release
           %br
           = f.text_field :first_name, class: "span2", placeholder: "First Name"
+          %br
           = f.text_field :last_name, class: "span2", placeholder: "Last Name"
+          %br
           = f.text_field :email, class: "span2", placeholder: "Email"
+          %br
         .center
-          = f.submit "Sign Up", class: "my-button-blue", style: "margin-left:10px;"
+          = f.submit "Submit", class: "my-button-blue"
           %hr
           %a{href: "mailto:info@bitbio.org?", style: 'text-decoration:none;', title: "Send Email"}
             %i.icon-envelope.bigger.dark

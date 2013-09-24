@@ -529,10 +529,11 @@ h2.info_header_2 {
 
 #contact-well {
   position: relative;
+  border: 1px solid $header_background;
   left: -70px;
   width: 260px;
   padding-bottom:0px;
-  background: $silver;
+  background: lighten($blue, 20%);
 }
 
 .step {
@@ -1160,13 +1161,12 @@ ul.nav li.dropdown > ul.dropdown-menu{ margin-top:0px; border-radius: 0px; }
 }
 
 .my-button-blue{
-  margin-top: 2px;
-  background: darken($blue, 15%);
+  margin: 5px 0px 0px 0px;
+  background: darken($blue, 15%);;
   padding: 5px 10px 5px 10px;
   color: white;
-  margin-right: 10px;
-  box-shadow: none;
   border: none;
+  border-radius: 0;
   &:hover {
     text-decoration: none;
     background: darken($blue, 35%);
@@ -1189,7 +1189,7 @@ ul.nav li.dropdown > ul.dropdown-menu{ margin-top:0px; border-radius: 0px; }
   }
 }
 
-.my-button-silver{
+.my-button-silver {
   margin-top: 2px;
   background: darken($silver, 15%);
   padding: 5px 10px 5px 10px;
