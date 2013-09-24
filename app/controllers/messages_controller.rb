@@ -8,6 +8,8 @@ class MessagesController < ApplicationController
     @sent_messages = current_user.sent_messages.order("created_at DESC").paginate(page: params[:page], per_page: 20)
     @received_messages = current_user.received_messages.order("created_at DESC").paginate(page: params[:page], per_page: 20)
     @contacts = current_user.contacts.sort_by{|e| e[:last_name]}
+    @messages = []
+    params[:sent] == "true" ? @messages = @sent_messages : @messages = @received_messages
   end
   
   def show
@@ -30,10 +32,7 @@ class MessagesController < ApplicationController
         @commentable = @project
         render 'projects/show'
       else
-        @sent_messages = current_user.sent_messages.order("created_at DESC")
-        @received_messages = current_user.received_messages.order("created_at DESC")
-        @contacts = current_user.contacts.sort_by{|e| e[:last_name]}
-        render 'index'
+        redirect_to user_messages_path(current_user), alert: "Message not sent. Please include a subject and body."
       end
     end
   end

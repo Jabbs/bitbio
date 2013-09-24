@@ -68,8 +68,7 @@
                     %i.icon-asterisk.red
                     Name:
                 .span8.body-width
-                  = f.text_field :name, placeholder: 'e.g. analyzing yeast histone modification', |
-                    class: 'span6', style: 'margin-bottom: 0;'                                    |
+                  = f.text_field :name, placeholder: 'e.g. analyzing yeast histone modification', class: 'span6', style: 'margin-bottom: 0;'
                   %p Choose a unique name for your project.
               %hr/
               .row
@@ -96,8 +95,7 @@
                     %i.icon-asterisk.red
                     Start:
                 .span8.body-width
-                  = f.text_field :start_date, placeholder: 'YYYY-MM-DD', |
-                    style: 'margin-bottom: 0; width: 90px;'              |
+                  = f.text_field :start_date, placeholder: 'YYYY-MM-DD', style: 'margin-bottom: 0; width: 90px;'
                   %p What date does your project start?
         .accordion-group
           .accordion-heading
@@ -138,7 +136,6 @@
               %hr/
               .row
                 .span9
-                  = f.submit 'List Project', class: "my-button large-button", disable_with: 'Submitting...', |
-                    style: 'margin-bottom: 5px;'                                                             |
+                  = f.submit 'List Project', class: "my-button large-button", disable_with: 'Submitting...', style: 'margin-bottom: 5px;'
                   |
                   \#{link_to 'cancel', current_user}

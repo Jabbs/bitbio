@@ -42,7 +42,7 @@
                 <li id="community">
                   <ul class="main-nav-set unstyled">
                     <li><%= link_to 'community', '#' %></li>
-                    <li style="width: 120px;"><%= link_to 'ask a question', '#' %></li>
+                    <!-- <li style="width: 120px;"><%= link_to 'ask a question', '#' %></li> -->
                     <li style="width: 120px;"><%= link_to 'invite colleagues', new_invitation_path %></li>
                   </ul>
                 </li>
@@ -57,7 +57,7 @@
                     <li><%= link_to 'blogs', blogs_path %></li>
                     <li style="width: 120px;"><%= link_to 'create blog', new_blog_path %></li>
                     <li style="width: 120px;"><%= link_to 'all blogs', blogs_path %></li>
-                    <li style="width: 120px;"><%= link_to 'weekly newsletter', '#' %></li>
+                    <!-- <li style="width: 120px;"><%= link_to 'weekly newsletter', '#' %></li> -->
                   </ul>
                 </li>
                 <li id="events">
@@ -78,7 +78,7 @@
                 <li id="science">
                   <ul class="main-nav-set unstyled">
                     <li><%= link_to 'search', projects_path %></li>
-                    <li style="width: 120px;"><%= link_to 'service listings', services_path %></li>
+                    <!-- <li style="width: 120px;"><%= link_to 'service listings', services_path %></li> -->
                     <li style="width: 120px;"><%= link_to 'project listings', projects_path %></li>
                   </ul>
                 </li>
@@ -119,12 +119,12 @@
                       <i class="icon-beaker" style="margin-right: 7px;"></i> My project listings</a>
                     </li>
                   <% end %>
-                  <% if current_user.services.any? %>
+                  <!-- <% if current_user.services.any? %>
                     <li>
                       <a href="<%= user_service_listings_path(current_user) %>">
                       <i class="icon-hospital" style="margin-right: 8px; margin-left:1px;"></i> My service listings</a>
                     </li>
-                  <% end %>
+                  <% end %> -->
                   <li class="divider"></li>
                   <li>
                     <a href="<%= logout_path %>" data-method="delete" rel="nofollow">

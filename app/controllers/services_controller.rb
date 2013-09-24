@@ -1,8 +1,9 @@
 class ServicesController < ApplicationController
-  before_filter :signed_in_user, except: [:index, :show]
-  before_filter :verified_user, except: [:index, :show]
-  before_filter :check_if_private_or_locked_or_inactive, only: [:show]
-  before_filter :correct_user, only: [:edit, :update, :destroy]
+  before_filter :send_to_root
+  # before_filter :signed_in_user, except: [:index, :show]
+  # before_filter :verified_user, except: [:index, :show]
+  # before_filter :check_if_private_or_locked_or_inactive, only: [:show]
+  # before_filter :correct_user, only: [:edit, :update, :destroy]
   
   def index
     if params[:search]
@@ -120,6 +121,10 @@ class ServicesController < ApplicationController
       if current_user
         redirect_to root_path
       end
+    end
+    
+    def send_to_root
+      redirect_to root_path
     end
   
 end

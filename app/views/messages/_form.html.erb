@@ -14,7 +14,7 @@
           <div class="field" style="margin-top: 10px;">
             <label class="inline" style="margin-left: 10px;">To:</label>
             <%= f.select :receiver_id, options_from_collection_for_select(@contacts, 'id', "full_name"), 
-                {}, {style: 'width: 406px'} %> 
+                {prompt: "-- select a contact --"}, {style: 'width: 406px', class: "span5"} %> 
           </div>
         <% else %>
           <%= f.hidden_field :receiver_id %>
@@ -26,14 +26,14 @@
           </div>
         <% else %>
           <div class="field">
-            <%= f.text_field :subject, placeholder: "Subject", style: 'width: 415px' %> 
+            <%= f.text_field :subject, placeholder: "Subject", class: "span5" %> 
           </div>
         <% end %>
       	<div class="field">
           <%= f.text_area :content, rows: 3, placeholder: "Message content" %>
         </div>
         <div class="cancel">cancel</div>
-      		<%= f.submit 'Send', class: "my-button pull-right", style: "margin-top: 0px; margin-right: 20px;", disable_with: 'Submitting...' %>
+      		<%= f.submit 'Send', class: "my-button pull-right", style: "margin-top: 0px; margin-right: 18px;", disable_with: 'Submitting...' %>
       <% end %>
     </div>
   </div>
