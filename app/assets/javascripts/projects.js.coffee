@@ -16,6 +16,11 @@ jQuery ->
     url = $(this).find("a").attr('href')
     if url
       window.location = url
+      
+  $(".service").click ->
+    url = $(this).find("a").attr('href')
+    if url
+      window.location = url
     
   $('#any').mousedown ->
     if $(this).prop('checked') == false

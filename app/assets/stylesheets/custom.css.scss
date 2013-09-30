@@ -1,3 +1,4 @@
+$linkColor: #686868;
 @import "bootstrap";
 
 /* COLORS */
@@ -700,6 +701,7 @@ h2.info_header_2 {
   padding: 3px 8px;
   @include rounded_border;
   color: white;
+  background: white;
 }
 .sci_ser {
   background: $red;
@@ -781,6 +783,7 @@ h2.info_header_2 {
   }
   p {
     background: white;
+    font-size:95%;
     margin-top: 5px;
     margin-bottom: 0px;
     padding: 5px;
@@ -799,7 +802,6 @@ h2.info_header_2 {
     small {
       font-size: 70%;
       color: black;
-      font-style: italic;
     }
   }
 }

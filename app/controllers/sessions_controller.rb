@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       @events = Event.featured
       @featured_users = User.featured
       @session_user = User.new
-      @session_user.errors.add(:email, "Invalid email/password combination")
+      @session_user.errors.add(:email, "and password combination invalid.")
       render template: "projects/home"
     end
   end

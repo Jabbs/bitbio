@@ -1,0 +1,35 @@
+- if !ENV['STAGING'].present? || Rails.env.development?
+  - content_for :title do
+    = t('application.root.title_with_tag_line', tag_line: "Sign In")
+  - content_for :description do
+    Sign in to your Bitbio account to exchange science services with others.
+= form_tag do
+  .row
+    .span6.offset3
+      .medium-shell{ style: "margin-top:20px;" }
+        %h2.info_header Please Sign In
+        %hr/
+        .row
+          .span1.offset1
+            %label Email:
+          .span3
+            = text_field_tag :email, params[:email], class: "span3"
+        .row
+          .span1.offset1
+            %label Password:
+          .span3
+            = password_field_tag :password, params[:password], class: "span3"
+        .row
+          .span5
+            = submit_tag 'Login', class: "my-button-silver large-button pull-right"
+        %hr/
+        .row
+          .span3.offset1
+            %p.inline
+              Don't have an account?
+              = succeed "!" do
+                %a{"data-toggle" => "modal", href: "#signupModal"} Sign up
+            %p
+              %small= link_to "forgot password?", new_password_reset_path
+        %br
+          
