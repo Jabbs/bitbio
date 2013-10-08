@@ -2,11 +2,13 @@
 %div{:class => "span3 project-well #{add_class}"}
   .row{:style => "padding-left: 20px; margin-top: 2px;"}
     %div{:class => "service"}
-      = link_to truncate(project.name, length: 32), project_path(project)
+      = link_to truncate(project.name, length: 42), project_path(project)
+  %h4{ style: "margin-top:5px;"}
+    %i.icon-beaker
+    = truncate(project.science_type, length: 28)
   .head
-    %i.icon-map-marker.green
+    %i.icon-map-marker.green{ style: "padding-left:2px;"}
     = country_with_us_shortened(project.country)
-  %h4{ style: "margin-top:5px;"}= truncate(project.science_type, length: 28)
   - if current_user?(project.user) && controller_name != 'projects'
     expires on
     \#{project.expiration_date.strftime("%b %e, %Y")}
@@ -14,7 +16,7 @@
     .small-links
       = raw project.tags.map { |t| link_to t.name, tag_projects_path(t.name)  }.join(', ')
   %p
-    = truncate(project.description, length: 230)
+    = truncate(project.description, length: 160)
     = link_to "more", project_path(project), class: 'more'
   /
     <label class="checkbox" style="display: inline; padding-left: 0px; margin-left: 0px; margin-top: 5px; font-size: 70%;">
