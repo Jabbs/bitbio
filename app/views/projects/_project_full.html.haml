@@ -29,8 +29,7 @@
     - if current_user && current_user != @project.user && current_user.verified?
       .pull-right
         %i.icon-envelope-alt.blue
-        = content_tag "div", id: 'message', title: "Send a direct message to the project owner", style: 'width: 250px; display: inline', |
-          data: {blah: @project.user.id} do                                                                                              |
+        = content_tag "div", id: 'message', title: "Send a direct message to the project owner", style: 'width: 250px; display: inline', data: {blah: @project.user.id} do                                                                                                    
           send message to the project owner
   .row{:style => "padding-left:20px; margin-bottom: 5px;"}
     %i.icon-calendar{:style => "margin-right: 2px;"}

@@ -31,6 +31,16 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 
+  # rotation issue
+  # http://stackoverflow.com/questions/18519160/exif-image-rotation-issue-using-carrierwave-and-rmagick-to-upload-to-s3
+  def auto_orient
+    manipulate! do |img|
+      img = img.auto_orient
+    end
+  end
+  
+  process :auto_orient
+
   # Process files as they are uploaded:
   process :resize_to_fill => [80, 80]
   #
