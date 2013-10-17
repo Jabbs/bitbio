@@ -1,7 +1,7 @@
 - action_name == "project_listings" ? add_class = "change_n" : add_class = ''
 %div{:class => "span3 project-well #{add_class}"}
   .row{:style => "padding-left: 20px; margin-top: 2px;"}
-    %div{:class => "service"}
+    %div{:class => "service center"}
       = link_to truncate(project.name, length: 42), project_path(project)
   %h4{ style: "margin-top:5px;"}
     %i.icon-beaker

@@ -1,5 +1,10 @@
 jQuery ->
 
+  $(".service").click ->
+    url = $(this).find("a").attr('href')
+    if url
+      window.location = url
+
   $(".tip").tooltip({
     container: 'body'
   })
