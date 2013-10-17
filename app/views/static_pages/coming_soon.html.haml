@@ -1,7 +1,7 @@
 .row
-  .span6.offset3
+  .span12
     - flash.each do |name, msg|
-      %div{:class => "alert alert-#{name == :notice ? "success" : "error"}", :style => "margin-top: 20px;"}
+      %div{:class => "alert alert-#{name == :notice ? "success" : "error"}", :style => "margin-top: 0px;"}
         %a.close{"data-dismiss" => "alert"} ×
         = msg
 .div{style: "height:0px;"}
@@ -38,16 +38,20 @@
 /   The Science Search Engine
 .row
   .span12
-    %h1.center Science Community, Science Market, and Science Outsourcing
+    .div{style: "height: 50px;"}
+      .info_header
+        %h1.center#header-coming-soon
+          %i.icon-beaker
+          Science Community and Marketplace
 %br
 .row
   .span9
-    = image_tag "computer_bitbio.png", title: "Bitbio"
+    = image_tag "computer_bitbio.png", style: "position:relative; z-index:2; left:-25px"
   .span3
-    .well#contact-well
+    #contact-well
       = form_for @contact do |f|
         .center
-          %h4 Stay notified of beta release
+          %h4 Join our community!
           %br
           = f.text_field :first_name, class: "span2", placeholder: "First Name"
           %br
@@ -59,12 +63,35 @@
           = f.submit "Submit", class: "my-button-blue"
           %hr
           %a{href: "mailto:info@bitbio.org?", style: 'text-decoration:none;', title: "Send Email"}
-            %i.icon-envelope.bigger.dark
+            %i.icon-envelope
           |
           %a{href: "https://twitter.com/bit_bio", style: 'text-decoration:none;', title: "Twitter", target: "_blank"}
-            %i.icon-twitter.bigger.dark
+            %i.icon-twitter
+%p{style: "position:relative; z-index:2; padding: 10px 25px; background: white; margin: 20px; 200px;"}
+  &#8594;
+  Bitbio is an online
+  %strong science community
+  and resource built by researchers and service providers in the life science industries.
+  Gain instant
+  %strong access
+  to resources, providers, and equipment
+  you may have otherwise not found. Exchange science research projects or services 
+  with hospitals, universities, research institutes,
+  or other service providers across the globe.
+  Find out what scientific methods other researchers or service providers are using.
+  %strong Search for projects
+  to exchange science advice, opinions, and services.
+  Learn about new research, methods, and technologies to use for your project and what the science
+  market has to offer. Quickly
+  %strong promote research
+  questions and answers
+  in the science community to help a colleague.
+  %br
+  %br
+  %em
+    *** Why rely on expensive services to broker your science project when all you really need is 
+    access, exposure, and some help from the science community. ***
 %br
-
 / .row
 /   .span12
 /     %hr
@@ -92,41 +119,8 @@
 /         %span.icon-chevron-left{ style: "font-size: 60%;"}
 /       %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic"}
 /         %span.icon-chevron-right{ style: "font-size: 60%;"}
-.row
-  .span12
-    %hr
-.row
-  .span8.offset2
-    %h1.center What is Bitbio?
-    %br
-    %p.center
-      An online
-      %strong science community
-      and resource built by researchers and service providers in the life science industries.
-    %br
-    %p.center{style: "margin-top:10px;"}
-      Gain instant
-      %strong access
-      to new resources, providers, and equipment
-      you may have otherwise not found, and exchange science research projects or services 
-      with hospitals, universities, research institutes,
-      or other service providers across the globe.
-    %br
-    %p.center{style: "margin-top:10px;"}
-      Find out what scientific methods other researchers or service providers are using.
-      %strong Search for projects
-      to exchange science advice, opinions, and services.
-    %br
-    %p.center{style: "margin-top:10px;"}
-      Learn about new research, methods, and technologies to use for your project and what the science
-      market has to offer. Quickly
-      %strong promote research
-      questions and answers
-      in the science community to help a fellow colleague.
-    %br
-    %p.center{style: "margin-top:10px;"}
-      Why rely on expensive services to broker your science project when all you really need is 
-      access, exposure, and some help from the science community.
+
+
 / %br
 / .row
 /   .span12
