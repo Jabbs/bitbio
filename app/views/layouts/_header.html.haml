@@ -1,0 +1,88 @@
+%header
+  .navbar
+    .navbar-inner
+      .container
+        .row{style: "padding-left: 0px;"}
+          .span2{style: "width: 110px; padding-top: 5px;"}
+            = link_to "<i class='icon-beaker'></i>Bitbio".html_safe, root_path, id: 'logo', title: 'Home'
+          .span3{style: "width: 230px; padding-left:20px;"}
+            %ul.breadcrumb
+              = bread_crumb_list_items(request.path)
+          .span7{style: "padding-top: 6px;"}
+            %h1.slogan
+              - if action_name == "show"
+                Science Community, Market, and Outsourcing
+              - else
+                Science Community, Science Market, and Science Outsourcing
+                
+        .row{style: "margin-top: 5px;"}
+          - if request.path == '/'
+            .span1{style: "margin-top: 10px; width: 45px;"}
+              #twitter-follow{style: "display:inline; margin-top: 7px;"}
+                %a.twitter-follow-button{"data-show-count" => "false", "data-show-screen-name" => "false", href: "https://twitter.com/bit_bio"} Follow @bit_bio
+            .span2{style: "margin-top: 12px; width: 155px;"}
+              for project alerts.
+          - else
+            .span3
+          = render 'layouts/navigation_buttons'
+          - if current_user
+            %ul.nav.pull-right
+              %li.dropdown
+                %a#name.dropdown-toggle{"data-toggle" => "dropdown", href: "#", style: "max-width: 170px; padding-right:0px; padding-left:10px;"}
+                  Welcome, #{truncate(current_user.first_name, length: 14)}!
+                  - if current_user.new_message_count != 0
+                    %span.gold
+                      (#{current_user.new_message_count})
+                  %b.caret
+                %ul.dropdown-menu{style: "min-width: 160px; padding-left: 0px;"}
+                  %li
+                    %a{href: user_path(current_user)}
+                      %i.icon-user{style: "margin-right: 7px; margin-left:1px;"}
+                      My Profile
+                  /
+                    <li>
+                    <a href="#">
+                    <i class="icon-wrench" style="margin-right: 6px;"></i> Settings
+                    </a>
+                    </li>
+                  %li
+                    %a{href: user_messages_path(current_user)}
+                      %i.icon-envelope{style: "margin-right: 6px;"}
+                      Messages
+                      - if current_user.new_message_count != 0
+                        (#{current_user.new_message_count})
+                  - if current_user.projects.any?
+                    %li
+                      %a{href: user_project_listings_path(current_user)}
+                        %i.icon-beaker{style: "margin-right: 7px;"}
+                        My project listings
+                  /
+                    <haml_silent> if current_user.services.any? </haml_silent><haml_block>
+                    <li>
+                    <a href="<haml_loud> user_service_listings_path(current_user) </haml_loud>">
+                    <i class="icon-hospital" style="margin-right: 8px; margin-left:1px;"></i> My service listings</a>
+                    </li>
+                    </haml_block>
+                  %li.divider
+                  %li
+                    %a{"data-method" => "delete", href: logout_path, rel: "nofollow"}
+                      %i.icon-signout{method: "delete", style: "margin-right: 6px; margin-left:2px;"}
+                      Logout
+            = link_to '<i class="icon-plus icon-white"></i> LIST PROJECT'.html_safe, new_project_path,                                           class: 'pull-right my-button', style: 'position: relative; z-index: 8; padding-top:7px; padding-bottom:5px; top: -4px; font-size:90%;'
+            /
+              <div class="pull-right">
+              <ul class="unstyled">
+              <li id="listing">
+              <ul class="main-nav-set unstyled navdrop">
+              <li style="text-align:center;"><haml_loud> link_to '<i class="icon-beaker"></i> ADD LISTING'.html_safe, '#' </haml_loud></li>
+              <li style="width: 110px;"><haml_loud> link_to 'new project listing', new_project_path </haml_loud></li>
+              <li style="width: 110px;"><haml_loud> link_to 'new service listing', new_service_path </haml_loud></li>
+              </ul>
+              </li>
+              </ul>
+              </div>
+          - else
+            %ul.nav.pull-right{style: "margin-left: 0px;"}
+              %li
+                %a.loginlink{"data-toggle" => "modal", href: "#loginModal", style: "padding-right:2px;"} Sign In
+            %a.my-button-red.pull-right{"data-toggle" => "modal", href: "#signupModal"} Create an Account
