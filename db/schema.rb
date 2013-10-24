@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131024132414) do
+ActiveRecord::Schema.define(:version => 20131024221931) do
 
   create_table "attachments", :force => true do |t|
     t.string   "attachable_type"
@@ -155,6 +155,26 @@ ActiveRecord::Schema.define(:version => 20131024132414) do
 
   add_index "labs", ["facility_id"], :name => "index_labs_on_facility_id"
   add_index "labs", ["name"], :name => "index_labs_on_name"
+
+  create_table "leads", :force => true do |t|
+    t.string   "email"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "full_name"
+    t.string   "organization"
+    t.string   "department"
+    t.string   "country"
+    t.string   "phone"
+    t.string   "type"
+    t.text     "notes"
+    t.string   "title"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "leads", ["country"], :name => "index_leads_on_country"
+  add_index "leads", ["email"], :name => "index_leads_on_email"
+  add_index "leads", ["last_name"], :name => "index_leads_on_last_name"
 
   create_table "likes", :force => true do |t|
     t.integer  "user_id"
