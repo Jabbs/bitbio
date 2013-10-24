@@ -36,16 +36,11 @@ class UsersController < ApplicationController
   
   def update
     @user = User.find(params[:id])
-    
-    if @user.authenticate(params[:user][:password])
-      if @user.update_attributes(params[:user])
-        @user.attachments.order('created_at DESC').last.destroy if params[:user][:_destroy] == '1'
-        redirect_to @user, notice: 'Your profile has been successfully updated.'
-      else
-        render action: "edit"
-      end
+    if @user.update_attributes(params[:user])
+      @user.attachments.order('created_at DESC').last.destroy if params[:user][:_destroy] == '1'
+      redirect_to @user, notice: 'Your profile has been successfully updated.'
     else
-      redirect_to edit_user_url(@user), alert: 'Incorrect password'
+      render "edit"
     end
   end
   
@@ -85,12 +80,12 @@ class UsersController < ApplicationController
     redirect_to root_path, alert: "The member you attempted to view is no longer available."
   end
   
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-    
-    redirect_to root_path, alert: "Your account has been cancelled."
-  end
+  # def destroy
+  #   @user = User.find(params[:id])
+  #   @user.destroy
+  #   
+  #   redirect_to root_path, alert: "Your account has been cancelled."
+  # end
   
   def resend
     @user = User.find(params[:user_id])

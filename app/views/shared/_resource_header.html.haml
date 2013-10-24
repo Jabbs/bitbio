@@ -1,0 +1,11 @@
+- resource_header = resource_header(request.path)
+- unless resource_header.blank?
+  .row
+    - if current_user && (controller_name != 'projects' && action_name != 'index')
+      .span3
+        = link_to "&#8592; back".html_safe, :back
+    - elsif current_user && (controller_name != 'blogs' && action_name != 'index')
+      .span3
+        = link_to "&#8592; back".html_safe, :back
+    .span9.pull-right{style: "margin-bottom: 10px;"}
+      %h2.underline-header= resource_header

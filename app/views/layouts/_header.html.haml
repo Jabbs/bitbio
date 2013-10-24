@@ -7,13 +7,10 @@
             = link_to "<i class='icon-beaker'></i>Bitbio".html_safe, root_path, id: 'logo', title: 'Home'
           .span3{style: "width: 230px; padding-left:20px;"}
             %ul.breadcrumb
-              = bread_crumb_list_items(request.path)
+              = render "layouts/breadcrumbs"
           .span7{style: "padding-top: 6px;"}
             %h1.slogan
-              - if action_name == "show"
-                Science Community, Market, and Outsourcing
-              - else
-                Science Community, Science Market, and Science Outsourcing
+              Science Community, Marketplace, and Outsourcing
                 
         .row{style: "margin-top: 5px;"}
           - if request.path == '/'

@@ -169,9 +169,10 @@ label {
 }
 
 .underline-header {
-  border-bottom: 2px solid black;
+  border-bottom: 1px solid black;
   line-height:1em;
   padding-bottom:5px;
+  font-weight: 200;
 }
 
 .taglines {
@@ -719,8 +720,8 @@ h2.info_header_2 {
 
 #search-results {
   position: relative;
-  margin-left: 130px;
-  top: -40px;
+  margin-left: 110px;
+  top: -35px;
 }
 
 .main-nav-set li {

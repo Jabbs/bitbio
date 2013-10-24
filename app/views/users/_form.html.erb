@@ -32,18 +32,6 @@
              <p style="margin-top: 5px;"><small>Accepted file formats: jpg jpeg gif png.</small></p>
            </div>
         </div>
-      
-      <div class="row">
-       <div class="span2">
-          <label>Account Type:</label>
-        </div>
-        <div class="span6 radio-account-types">
-          <%= f.radio_button :account_type, "Researcher", checked: true  %>
-  		    <label style="display: inline; margin-right: 20px;"><i class="icon-user icon-white"></i> Researcher</label>
-  		    <%= f.radio_button :account_type, "Provider" %>
-  		    <label style="display: inline; margin-right: 20px;"><i class="icon-home icon-white"></i> Service Provider</label>
-        </div>
-      </div>
       <hr>
       <% end %>
       <div class="row">
@@ -81,7 +69,7 @@
   			</div>
   			<div class="span6">
   		  
-  		    <input style="width: 273px;" id="user_organization" name="user[organization]" 
+  		    <input style="width: 373px;" id="user_organization" name="user[organization]" 
           placeholder="Organization name" size="30" type="text" 
           data-provide="typeahead" data-source="<%= Facility.scoped.pluck(:name).uniq.sort %>"
           autocomplete="off" 
@@ -119,33 +107,23 @@
   		    <% end %>
   			</div>
       </div>
-      <hr>
-      <div class="row">
-  			<div class="span2">
-  				<label class="inline"><i class="icon-asterisk red"></i> Password:</label>
-  			</div>
-  			<div class="span2">
-  				 <%= f.password_field :password, class: 'span2' %>
-  			</div>
-  		</div>
-  		<div class="row">
-  			<div class="span2">
-  				<label class="inline"><i class="icon-asterisk red"></i> Confirm Password:</label>
-  			</div>
-  			<div class="span2">
-  				 <%= f.password_field :password_confirmation, class: 'span2' %>
-  			</div>
-  		</div>
+      <% if @user.new_record? %>
+        <hr>
+        <div class="row">
+    			<div class="span2">
+    				<label class="inline"><i class="icon-asterisk red"></i> Password:</label>
+    			</div>
+    			<div class="span2">
+    				 <%= f.password_field :password, class: 'span2' %>
+    			</div>
+    		</div>
+      <% end %>
       <hr>
       <div class="row">
         <div class="span9">
           <% if action_name == 'edit' || action_name == 'update' %>
             <%= f.submit "Update Account", class: "my-button large-button", disable_with: 'Submitting...' %> |
             <%= link_to "cancel", @user%>
-            <% if current_user?(@user) %>
-              <%= link_to "Cancel My Account", user_path(@user), method: :delete, confirm: "Are you sure?", 
-                  class: 'my-button-red large-button pull-right' %>
-            <% end %>
           <% else %>
             <%= f.submit "Create Account", class: "my-button large-button", disable_with: 'Submitting...' %>
           <% end %>

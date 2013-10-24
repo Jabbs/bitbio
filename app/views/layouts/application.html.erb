@@ -23,18 +23,9 @@
     <%= render 'layouts/header' %>
   <% end %>
   <div class="container" id="<%= controller_name %>_<%= action_name %>" style="min-height: 400px; padding-top:20px;">
+    <%= render "shared/flash", flash: flash %>
   	<div class="row">
     	<div class="span12">
-    	  <div class="span9 pull-right">
-    	    <% unless action_name == "coming_soon" || controller_name == "contacts" %>
-      	    <% flash.each do |name, msg| %>
-      	       <div class="alert alert-<%= name == :notice ? "success" : "error" %>" style="margin-top: 10px;">
-           	     <a class="close" data-dismiss="alert">×</a>
-           	     <%= msg %>
-      	       </div>
-          	<% end %>
-        	<% end %>
-    	  </div>
 
       	<% if current_user %>
         	<%= render 'messages/form' %>
