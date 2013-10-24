@@ -1,18 +1,15 @@
-<% if !ENV['STAGING'].present? || Rails.env.development? %>
-  <% content_for :title do %>
-    <%= t('application.root.title_with_tag_line', tag_line: "#{@blog.title}") %>
-  <% end %>
-  <% content_for :description do %>
-    <%= @blog.title %> by <%= @blog.user.full_name %> posted on <%= @blog.created_at.strftime("%D") %>.
-  <% end %>
+<% content_for :title do %>
+  <%= t('application.root.title_with_tag_line', tag_line: "#{@blog.title}") %>
+<% end %>
+<% content_for :description do %>
+  <%= @blog.title %> by <%= @blog.user.full_name %> posted on <%= @blog.created_at.strftime("%D") %>.
 <% end %>
 
 <div class="row">
   <div class="span9 pull-right">
     <%= render 'blogs/header' %>
-    
-    <p><%= simple_format(Rinku.auto_link(@blog.body).html_safe) %></p>
-    <hr>
+    <%= @blog.body.html_safe %>
+    <hr style="margin-top: 40px;">
     <div class="row">
       <div class="span9">
     <% if is_liked?(@blog) %>

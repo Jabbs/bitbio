@@ -2,7 +2,6 @@ Bitbio::Application.routes.draw do
 
   resources :contacts
 
-
   resources :invitations, only: [:new, :create]
 
   resources :events do

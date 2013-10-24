@@ -10,8 +10,9 @@
     %i.icon-map-marker.green{ style: "padding-left:2px;"}
     = country_with_us_shortened(project.country)
   - if current_user?(project.user) && controller_name != 'projects'
-    expires on
-    \#{project.expiration_date.strftime("%b %e, %Y")}
+    .small-links
+      expires on
+      \#{project.expiration_date.strftime("%b %e, %Y")}
   - else
     .small-links
       = raw project.tags.map { |t| link_to t.name, tag_projects_path(t.name)  }.join(', ')

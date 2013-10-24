@@ -61,6 +61,5 @@ style: 'position:relative; left: 591px; top: -40px' %></div>
       <%= raw @blog.tags.map { |t| link_to t.name, tag_blogs_path(t.name)  }.join(', ') %>
     </div>
   <% end %>
-  <hr style="margin-top:5px;">
+  <hr style="margin-top:5px; margin-bottom: 40px;">
 </div>
-<hr>
