@@ -1,10 +1,10 @@
 - if action_name == "coming_soon" || controller_name == "contacts"
 
 - else
-  %hr
   %footer
+    %hr{ style: "margin-bottom:5px;"}
     .row
-      .span2{:style => "margin-top:8px;"}
+      .span2
         © Bitbio 2013
       .span10
         - unless action_name == "coming_soon" || controller_name == "contacts"

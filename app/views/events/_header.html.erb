@@ -80,7 +80,10 @@ style: 'position:relative; left: 587px; top: -40px' %></div>
     </div>
   </div>
   <% if @event.tags.any? %>
-    <i class="icon-tags dark"></i> tags: <%= raw @event.tags.map { |t| link_to t.name, tag_events_path(t.name)  }.join(', ') %>
+    <i class="icon-tags dark"></i> tags: 
+    <div class="smaller inline">
+      <%= raw @event.tags.map { |t| link_to t.name, tag_events_path(t.name)  }.join(', ') %>
+    </div>
   <% else %>
     <i class="icon-tags dark"></i> tags: n/a
   <% end %>
