@@ -1,51 +1,52 @@
 .span9.bigger-shell.pull-right.blue-top
   %h1.info_header.light.blue-text.info_header_3
     = @project.name
+  .no-height
+    - if current_user?(@project.user)
+      = link_to '<i class="icon-edit"></i> Edit'.html_safe, edit_project_path(@project), class: 'my-button-red', style: 'position:relative; left: 622px; top: 5px;'
+      .div{style: "position:relative; left:517px; top:22px;"}
+        %i.icon-time.black
+        expires on #{@project.expiration_date.strftime("%b %e, %Y")}
+    - else
+      = link_to 'Contact Owner'.html_safe, edit_project_path(@project), class: 'my-button-red', style: 'position:relative; left: 625px; top: 5px;'
   .row
-    %br
-    %span.black{:style => "font-size: 60%; font-weight: 300;"}
-      %i.icon-map-marker.green
-      = country_with_us_shortened(@project.user.country)
-  - if current_user?(@project.user)
-    %div{:style => "height:0px;"}
-      %div{:style => "margin-bottom: 8px"}
-        = link_to '<i class="icon-edit"></i> Edit'.html_safe, edit_project_path(@project), class: 'my-button-red', |
-          style: 'position:relative; left: 620px;'                                                                 |
+    .span8{ style: "padding-left:15px;"}
+      %i.icon-beaker{ style: "padding-right:1px;"}
+      = truncate(@project.science_type, length: 28)
+      |
+      = @project.service_need
+      .head
+        %i.icon-map-marker.green{ style: "padding-left:2px; padding-right:5px;"}
+        = country_with_us_shortened(@project.country)
+      %i.icon-calendar{:style => "margin-right: 2px;"}
+      Start date: #{@project.start_date.strftime("%b %e, %Y")}
+      %span{:style => "font-size: 75%;"}
+        (#{to_days_ago_or_from_now(@project.days_til_start)})
+
   .row{:style => "padding-left:20px"}
     %h4{:style => "margin-bottom: 5px;"}
-    %div{:style => "width: 160px;"}= @project.service_need
-    = @project.science_type
     - if current_user && current_user != @project.user && current_user.verified?
       .pull-right
         %i.icon-envelope-alt.blue
         = content_tag "div", id: 'message', title: "Send a direct message to the project owner", style: 'width: 250px; display: inline', data: {blah: @project.user.id} do                                                                                                    
           send message to the project owner
-  .row{:style => "padding-left:20px; margin-bottom: 5px;"}
-    %i.icon-calendar{:style => "margin-right: 2px;"}
-    start date: #{@project.start_date.strftime("%b %e, %Y")}
-    %span{:style => "font-size: 75%;"}
-      (#{to_days_ago_or_from_now(@project.days_til_start)})
-  - if @project.instruments.any?
-    .row
-      .span6
-        %strong Requirements:
-        - @project.instruments.order("must_have DESC").each do |instrument|
-          %div
-            \• #{instrument.alias}
-            %span{:style => "font-size: 75%;"}
-              (#{instrument.must_have ? '<i class="icon-ok red"></i> must have'.html_safe : 'nice to have'})
-  .row{:style => "padding-left:20px; width: 520px; margin-top: 10px;"}
-    - if @project.tags.any?
-      %i.icon-tags
-      tags: #{raw @project.tags.map { |t| link_to t.name, tag_projects_path(t.name) }.join(', ')}
-  .description
-    - if current_user?(@project.user)
-      %div{:style => "height: 0px;"}
-        .expiration-date
-          expires on #{@project.expiration_date.strftime("%b %e, %Y")}
-          %br/
-          = link_to 'extend +', '#'
-    = simple_format(Rinku.auto_link(@project.description).html_safe)
+  .row
+    .span9{ style: "padding-left:15px; width: 670px;"}
+      .well
+        - if @project.instruments.any?
+          %strong Requirements:
+          - @project.instruments.order("must_have DESC").each do |instrument|
+            %div
+              %span{:style => "font-size: 75%;"}
+                #{instrument.must_have ? '<i class="icon-ok red"></i> must have'.html_safe : 'nice to have'}
+              = instrument.alias
+              = instrument.try(:resource_type)
+        = simple_format(Rinku.auto_link(@project.description).html_safe)
+        - if @project.tags.any?
+          %i.icon-tags
+          tags:
+          .small.inline
+            #{raw @project.tags.map { |t| link_to t.name, tag_projects_path(t.name) }.join(', ')}
   .row{:style => "margin-top: 3px;"}
     %p.time_ago.pull-right
       %small

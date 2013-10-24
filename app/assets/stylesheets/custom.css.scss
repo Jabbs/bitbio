@@ -1,4 +1,5 @@
-$linkColor: #686868;
+//$linkColor: #686868;
+$linkColor: #A23031;
 @import "bootstrap";
 
 /* COLORS */
@@ -122,6 +123,7 @@ h1.light, h2.light { font-weight: 500; }
 }
 .white-link { color: white; &:hover { color: white; }}
 .center { text-align: center; }
+.right { text-align: right; }
 .inline { display: inline; }
 .bold { font-weight: bold; }
 .pointer { cursor: pointer; }
@@ -136,6 +138,7 @@ h1.light, h2.light { font-weight: 500; }
 .white { color: white; }
 .bigger { font-size: 150%; }
 .no-decoration { text-decoration: none; }
+.no-height { height: 0px; }
 .no-margin {margin:0;}
 .no-padding {padding:0;}
 .no-left-margin {margin-left: 0;}
@@ -614,15 +617,6 @@ h1.info_header_3 {
   padding: 10px;
   padding-top: 0px;
   margin-bottom: 20px;
-  .expiration-date {
-    position: relative;
-    height: 35px;
-    width: 160px;
-    top: -48px;
-    left: 515px;
-    text-align: center;
-    background: white;
-  }
   .time_ago {
     background: inherit;
     padding: 0;
@@ -822,15 +816,6 @@ h1.info_header_3 {
   max-height: 266px;
   &:nth-child(3n) {
     margin-right: 0px;
-  }
-  .expiration-date {
-    position: relative;
-    height: 35px;
-    width: 90px;
-    top: 41px;
-    left: 122px;
-    text-align: center;
-    background: white;
   }
   .head {
     height: 18px;
@@ -1297,6 +1282,10 @@ footer {
   margin-bottom: 20px;
   padding-top: 5px;
   min-height: 40px;
+  a { 
+    color: $gray;
+    &:hover { text-decoration: none; }
+  }
   .title {color: $header_background;}
   ul {
     float: right;
