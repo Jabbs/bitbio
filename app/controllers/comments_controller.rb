@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     @comments = @commentable.comments.order("created_at ASC")
     
     if @comment.save
-      @comment.send_new_comment_email
+      @comment.send_new_comment_email unless @commentable.user == @comment.user
       redirect_to @commentable, notice: 'Your comment has been posted'
     else
       if @comment.commentable_type == "Project"

@@ -1183,6 +1183,8 @@ ul.navdrop {
 #jobs ul { position: relative; width: 30px; left: 144px; z-index:10; }
 #science ul { position: relative; width: 30px; left: 144px; z-index:10; }
 #listing ul { position: relative; width: 127px; z-index:10; }
+#list-project ul { position: relative; width: 187px; z-index:10; left: 250px; }
+.yellow-button {background: $yellow;}
 
 ul.nav li.dropdown:hover > ul.dropdown-menu{ display: block; }
 ul.nav li.dropdown > ul.dropdown-menu{ margin-top:0px; border-radius: 0px; }

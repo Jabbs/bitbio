@@ -1,0 +1,38 @@
+.span9
+  #mynav-list
+    %ul.unstyled
+      %li#community
+        %ul.main-nav-set.unstyled
+          %li= link_to 'community', '#'
+          / <li style="width: 120px;"><haml_loud> link_to 'ask a question', '#' </haml_loud></li>
+          %li{style: "width: 120px;"}= link_to 'invite colleagues', new_invitation_path
+      %li#labs
+        %ul.main-nav-set.unstyled
+          %li= link_to 'labs', facilities_path
+          %li{style: "width: 120px;"}= link_to 'map of facilities', facilities_path
+      %li#blogs
+        %ul.main-nav-set.unstyled
+          %li= link_to 'blogs', blogs_path
+          %li{style: "width: 120px;"}= link_to 'create blog', new_blog_path
+          %li{style: "width: 120px;"}= link_to 'all blogs', blogs_path
+          / <li style="width: 120px;"><haml_loud> link_to 'weekly newsletter', '#' </haml_loud></li>
+      %li#events
+        %ul.main-nav-set.unstyled
+          %li= link_to 'events', events_path
+          %li{style: "width: 120px;"}= link_to 'add event', new_event_path
+          %li{style: "width: 120px;"}= link_to 'all events', events_path
+      /
+        <li id="jobs">
+        <ul class="main-nav-set unstyled">
+        <li><haml_loud> link_to 'jobs', '#' </haml_loud></li>
+        <li style="width: 120px;"><haml_loud> link_to 'find jobs', '#' </haml_loud></li>
+        <li style="width: 120px;"><haml_loud> link_to 'hire now', '#' </haml_loud></li>
+        <li style="width: 120px;"><haml_loud> link_to 'jobs newsletter', '#' </haml_loud></li>
+        </ul>
+        </li>
+      %li#science
+        %ul.main-nav-set.unstyled
+          %li= link_to 'search', projects_path
+          / <li style="width: 120px;"><haml_loud> link_to 'service listings', services_path </haml_loud></li>
+          %li{style: "width: 120px;"}= link_to 'project listings', projects_path
+      
