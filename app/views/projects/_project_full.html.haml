@@ -1,18 +1,20 @@
 .span9.bigger-shell.pull-right.blue-top
   %h1.info_header.light.blue-text.info_header_3
     = @project.name
-  .no-height
-    - if current_user?(@project.user)
-      = link_to '<i class="icon-edit"></i> Edit'.html_safe, edit_project_path(@project), class: 'my-button-red', style: 'position:relative; left: 622px; top: 5px;'
-      .div{style: "position:relative; left:517px; top:22px;"}
-        %i.icon-time.black
-        expires on #{@project.expiration_date.strftime("%b %e, %Y")}
-    - else
-      = link_to 'Contact Owner'.html_safe, edit_project_path(@project), class: 'my-button-red', style: 'position:relative; left: 625px; top: 5px;'
+  .row{ style: "margin-top:5px;"}
+    .span9
+      .no-height
+        - if current_user?(@project.user)
+          = link_to '<i class="icon-edit"></i> Edit'.html_safe, edit_project_path(@project), class: 'my-button-red', style: 'position:relative; left: 622px; top: 10px;'
+          .div{style: "position:relative; left:517px; top:22px;"}
+            %i.icon-time.black
+            expires on #{@project.expiration_date.strftime("%b %e, %Y")}
+        - else
+          = link_to '<i class="icon-user"></i> Contact Owner'.html_safe, edit_project_path(@project), class: 'my-button-red', style: 'position:relative; left: 553px; top: 10px;'
   .row
     .span8{ style: "padding-left:15px;"}
       %i.icon-beaker{ style: "padding-right:1px;"}
-      = truncate(@project.science_type, length: 28)
+      = truncate(@project.science_type, length: 58)
       |
       = @project.service_need
       .head
@@ -30,6 +32,7 @@
         %i.icon-envelope-alt.blue
         = content_tag "div", id: 'message', title: "Send a direct message to the project owner", style: 'width: 250px; display: inline', data: {blah: @project.user.id} do                                                                                                    
           send message to the project owner
+  %br
   .row
     .span9{ style: "padding-left:15px; width: 670px;"}
       .well
@@ -37,19 +40,22 @@
           %strong Requirements:
           - @project.instruments.order("must_have DESC").each do |instrument|
             %div
-              %span{:style => "font-size: 75%;"}
-                #{instrument.must_have ? '<i class="icon-ok red"></i> must have'.html_safe : 'nice to have'}
+              .span2{:style => "font-size: 75%; margin-left: 0px; width: 100px;"}
+                #{instrument.must_have ? '<i class="icon-ok red"></i> must have'.html_safe : '<i class="icon-ok gold"></i> nice to have'.html_safe}
               = instrument.alias
               = instrument.try(:resource_type)
+        %hr
         = simple_format(Rinku.auto_link(@project.description).html_safe)
+        %hr
         - if @project.tags.any?
           %i.icon-tags
           tags:
           .small.inline
             #{raw @project.tags.map { |t| link_to t.name, tag_projects_path(t.name) }.join(', ')}
-  .row{:style => "margin-top: 3px;"}
-    %p.time_ago.pull-right
-      %small
-        Listed on #{@project.created_at.strftime("%D")}
-        (#{time_ago_in_words(@project.created_at)} ago).
+  .row
+    .span9{style: "width: 685px;"}
+      %p.right
+        %small
+          Listed on #{@project.created_at.strftime("%D")}
+          (#{time_ago_in_words(@project.created_at)} ago)
 
