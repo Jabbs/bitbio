@@ -5,8 +5,9 @@
     = @project.name
     \- #{@project.description}
 .row
-  .span9.offset3
+  .span3
     = render 'projects/sharing_buttons'
+  .span9
     = render 'projects/project_full'
     = render 'comments/comments'
     = render 'comments/form_info'

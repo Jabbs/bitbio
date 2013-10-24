@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131024125912) do
+ActiveRecord::Schema.define(:version => 20131024132414) do
 
   create_table "attachments", :force => true do |t|
     t.string   "attachable_type"
@@ -288,7 +288,7 @@ ActiveRecord::Schema.define(:version => 20131024125912) do
     t.string   "last_name"
     t.string   "email"
     t.string   "phone"
-    t.text     "bio"
+    t.text     "bio",                    :default => ""
     t.string   "password_digest"
     t.string   "auth_token"
     t.string   "password_reset_token"

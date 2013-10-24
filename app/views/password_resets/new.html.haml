@@ -1,0 +1,21 @@
+- content_for :title do
+  = t('application.root.title_with_tag_line', tag_line: "Password Reset")
+- content_for :description do
+  This is the password resets page. Enter your email address associated with your account to retrieve a new password.
+  
+= form_tag password_resets_path, :method => :post do
+  .row
+    .span6.offset3
+      .medium-shell{ style: "margin-top:20px;" }
+        %h2.info_header Reset Password
+        %hr/
+        .row
+          .span1.offset1
+            %label Email:
+          .span3
+            = text_field_tag :email, params[:email], class: "span3"
+        %hr/
+        .row
+          .offset3.span2
+            = submit_tag 'Reset Password', class: "btn pull-right", disable_with: 'Submitting...'
+        %br

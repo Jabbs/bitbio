@@ -4,14 +4,15 @@
 - title_page = @project.name
 - description_page = @project.description
 - app_title = "Bitbio Online Science Community"
-.share-well
+.smaller-shell
+  %h2.info_header.light Share
   .row{:style => "margin: 5px 0px;"}
-    .span7{:style => "margin-left: 40px; width: 490px;"}
+    .span3{:style => "margin-left: 10px;"}
       %form{:style => "display:inline;"}
-        %label{:style => "display:inline;"} Share URL
-        = text_field_tag("url", "#{share_url}", id: "url-text", rows: 1, |
-          style: 'width: 400px; margin-top: 6px;')                       |
-    .span2{:style => "width: 120px; margin-left: 2px; margin-top: 8px;"}
+        %i.icon-link
+        = text_field_tag("url", "#{share_url}", id: "url-text", rows: 1, style: 'width: 165px; margin-top: 6px;')
+  .row.left-margin
+    .span3{:style => "width: 120px; margin-left: 5px; margin-top: 0px; margin-bottom: 10px;"}
       = link_to tw_link, target: "_blank", style: 'text-decoration: none;' do
         %i.icon-twitter.bigger.no-decoration
       |

@@ -1,31 +1,19 @@
-.project-full-well
-  - if @project.service_need == "Science + Services"
-    - back_color = "sci_ser"
-  - elsif @project.service_need == "Science"
-    - back_color = "sci"
-  - elsif @project.service_need == "Services"
-    - back_color = "ser"
-  - elsif @project.service_need == "Data Analysis"
-    - back_color = "dat"
-  - elsif @project.service_need == "Clinical Studies"
-    - back_color = "cli"
-  - else
-    - back_color = "def"
+.span9.bigger-shell.pull-right.blue-top
+  %h1.info_header.light.blue-text.info_header_3
+    = @project.name
   .row
-    %h1.center
-      = @project.name
-      %br
-      %span.black{:style => "font-size: 60%; font-weight: 300;"}
-        %i.icon-map-marker.green
-        = country_with_us_shortened(@project.user.country)
-    - if current_user?(@project.user)
-      %div{:style => "height:0px;"}
-        %div{:style => "margin-bottom: 8px"}
-          = link_to '<i class="icon-edit"></i> Edit'.html_safe, edit_project_path(@project), class: 'my-button-red', |
-            style: 'position:relative; left: 620px;'                                                                 |
+    %br
+    %span.black{:style => "font-size: 60%; font-weight: 300;"}
+      %i.icon-map-marker.green
+      = country_with_us_shortened(@project.user.country)
+  - if current_user?(@project.user)
+    %div{:style => "height:0px;"}
+      %div{:style => "margin-bottom: 8px"}
+        = link_to '<i class="icon-edit"></i> Edit'.html_safe, edit_project_path(@project), class: 'my-button-red', |
+          style: 'position:relative; left: 620px;'                                                                 |
   .row{:style => "padding-left:20px"}
     %h4{:style => "margin-bottom: 5px;"}
-    %div{:class => "#{back_color}", :style => "width: 160px;"}= @project.service_need
+    %div{:style => "width: 160px;"}= @project.service_need
     = @project.science_type
     - if current_user && current_user != @project.user && current_user.verified?
       .pull-right
@@ -40,7 +28,7 @@
   - if @project.instruments.any?
     .row
       .span6
-        %strong Needs:
+        %strong Requirements:
         - @project.instruments.order("must_have DESC").each do |instrument|
           %div
             \• #{instrument.alias}
@@ -59,13 +47,6 @@
           = link_to 'extend +', '#'
     = simple_format(Rinku.auto_link(@project.description).html_safe)
   .row{:style => "margin-top: 3px;"}
-    .span5
-      %i.icon-eye-open{:style => "margin-top: 1px;"}
-      views: #{@project.view_count}
-      %i.icon-envelope-alt{:style => "margin-top: 1px; margin-left: 20px;"}
-      messages: #{@project.messages.size}
-      %i.icon-comment{:style => "margin-top: 1px; margin-left: 20px;"}
-      comments: #{@project.comments.size}
     %p.time_ago.pull-right
       %small
         Listed on #{@project.created_at.strftime("%D")}

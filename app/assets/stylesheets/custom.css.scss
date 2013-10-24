@@ -20,6 +20,7 @@ $green_dark: #469D3D;
 $silver: #C0C0C0;
 $silver-stripe-color: #D8D8D8;
 $link_color: #0088cc;
+$grey_light: #F6F6F6;
 
 /* MIXINS */
 
@@ -83,6 +84,7 @@ h2 {
   color: $header_background;
   margin-top: 5px;
 }
+h1.light, h2.light { font-weight: 500; }
 
 #logo {
   height: 80px;
@@ -138,6 +140,7 @@ h2 {
 .no-padding {padding:0;}
 .no-left-margin {margin-left: 0;}
 .no-right-margin {margin-right: 0;}
+.left-margin { margin-left: 20px;}
 .label-width { width: 98px; }
 .body-width { width: 550px; }
 .huge { font-size: 600%; }
@@ -244,7 +247,7 @@ label {
 
 /* shared/sidebar */
 
-h2.info_header {
+h2.info_header, h1.info_header {
   margin-bottom: 5px;
   margin-top: 0px;
   padding-left: 10px;
@@ -263,6 +266,10 @@ h2.info_header_2 {
   color: black;
 //  background: $silver;
   background-image: url("stripe3.png");
+}
+h1.info_header_3 {
+  background-image: url("stripe4.png");
+  color: darken($blue, 30%);
 }
 
 .smaller-shell {
@@ -389,6 +396,10 @@ h2.info_header_2 {
   border: 1px solid $header_background;
   border-top: 4px solid $header_background;
   border-bottom: none;
+}
+.blue-top { 
+  border: 1px solid darken($blue, 30%);
+  border-top: 4px solid darken($blue, 30%);
 }
 
 .blog-well {
@@ -747,12 +758,14 @@ h2.info_header_2 {
   margin-top: 0px;
   @include rounded_border;
   height: 40px;
-  background:white;
+  background-image: url("stripe4.png");
   padding:5px;
   border: 1px solid darken($blue, 20%);
+  border-top: 4px solid darken($blue, 20%);
   &:hover {
     cursor:pointer;
     border: 1px solid darken($blue, 30%);
+    border-top: 4px solid darken($blue, 30%);
     a {text-decoration:none; color:darken($blue, 30%);}
   }
   a {

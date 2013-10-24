@@ -37,10 +37,10 @@
 .span9.pull-right
   %h3 BIO
   %p
-    - if !@user.bio.empty?
+    - if @user.bio && !@user.bio.empty?
       .well
         %p= @user.bio
     - else
       .well{ style: "min-height: 200px;"}
         %p
-          %em You have not filled out a bio.
+          %em Empty.
