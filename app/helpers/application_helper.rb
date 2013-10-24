@@ -84,6 +84,7 @@ module ApplicationHelper
     end
     
     crumbs.each {|item| concat(content_tag(:li, item))}
+    return
   end
   
   
