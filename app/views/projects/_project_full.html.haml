@@ -9,8 +9,8 @@
           .div{style: "position:relative; left:517px; top:22px;"}
             %i.icon-time.black
             expires on #{@project.expiration_date.strftime("%b %e, %Y")}
-        - else
-          = link_to '<i class="icon-user"></i> Contact Owner'.html_safe, edit_project_path(@project), class: 'my-button-red', style: 'position:relative; left: 553px; top: 10px;'
+        - elsif current_user && current_user.verified?                                                                                                 
+          = link_to '<i class="icon-envelope"></i> Contact Owner'.html_safe, "#", class: 'my-button-blue', style: 'position:relative; left: 550px; top: 10px;', id: 'message', data: {blah: @project.user.id}
   .row
     .span8{ style: "padding-left:15px;"}
       %i.icon-beaker{ style: "padding-right:1px;"}
@@ -24,14 +24,6 @@
       Start date: #{@project.start_date.strftime("%b %e, %Y")}
       %span{:style => "font-size: 75%;"}
         (#{to_days_ago_or_from_now(@project.days_til_start)})
-
-  .row{:style => "padding-left:20px"}
-    %h4{:style => "margin-bottom: 5px;"}
-    - if current_user && current_user != @project.user && current_user.verified?
-      .pull-right
-        %i.icon-envelope-alt.blue
-        = content_tag "div", id: 'message', title: "Send a direct message to the project owner", style: 'width: 250px; display: inline', data: {blah: @project.user.id} do                                                                                                    
-          send message to the project owner
   %br
   .row
     .span9{ style: "padding-left:15px; width: 670px;"}
@@ -40,8 +32,10 @@
           %strong Requirements:
           - @project.instruments.order("must_have DESC").each do |instrument|
             %div
-              .span2{:style => "font-size: 75%; margin-left: 0px; width: 100px;"}
-                #{instrument.must_have ? '<i class="icon-ok red"></i> must have'.html_safe : '<i class="icon-ok gold"></i> nice to have'.html_safe}
+              .span2{:style => "font-size: 75%; margin-left: 0px; width: 80px;"}
+                #{instrument.must_have ? '<i class="icon-ok"></i> must have'.html_safe : '<i class="icon-leaf gold"></i> nice to have'.html_safe}
+              %span{style: "padding-right:5px;"}
+                &#8594;
               = instrument.alias
               = instrument.try(:resource_type)
         %hr

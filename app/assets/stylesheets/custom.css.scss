@@ -206,13 +206,13 @@ label {
   }
 }
 
-#message {
-  color: $link_color;
-  &:hover {
-    cursor: pointer;
-    text-decoration: underline;
-  }
-}
+//#message {
+//  color: $link_color;
+//  &:hover {
+//    cursor: pointer;
+//    text-decoration: underline;
+//  }
+//}
 
 .message-header {
   padding: 5px;
