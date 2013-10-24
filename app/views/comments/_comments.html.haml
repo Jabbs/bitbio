@@ -1,0 +1,12 @@
+%h3.underline-header{style: "border-bottom: 1px solid black; margin-bottom: 10px;"} Comments
+- if current_user && current_user.verified?
+  - unless @comments.empty?
+    - @comments.each do |comment|
+      - if comment.root?
+        = render 'comments/list_item', comment: comment
+      - comment.children.each do |child|
+        = render 'comments/child_list_item', comment: child
+        - child.children.each do |grandchild|
+          = render 'comments/grandchild_list_item', comment: grandchild
+          - grandchild.children.each do |greatgrandchild|
+            = render 'comments/greatgrandchild_list_item', comment: greatgrandchild

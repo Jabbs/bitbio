@@ -1,0 +1,11 @@
+.div{ id: "comment-#{comment.id}", style: "height: 0px; position: relative; top: -40px;"}
+.well.comment-well{style: "margin-left:60px;"}
+  .row.no-margin.no-padding
+    = render "comments/comment_body", comment: comment
+    %p.pull-left.small
+      posted
+      = time_ago_in_words(comment.created_at)
+      ago.
+      &#8226;
+      = link_to "mailto: ?body=#{u(request.url + "#" + "comment-" + comment.id.to_s)}", style: 'text-decoration: none;', title: "share this comment via email" do
+        %i.icon-envelope.no-decoration

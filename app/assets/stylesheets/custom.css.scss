@@ -134,12 +134,17 @@ h2 {
 .white { color: white; }
 .bigger { font-size: 150%; }
 .no-decoration { text-decoration: none; }
+.no-margin {margin:0;}
+.no-padding {padding:0;}
 .no-left-margin {margin-left: 0;}
 .no-right-margin {margin-right: 0;}
 .label-width { width: 98px; }
 .body-width { width: 550px; }
 .huge { font-size: 600%; }
 .small {font-size: 80%;}
+.smaller {font-size: 85%;}
+.span1minus30 { width: 30px; }
+.span5plus20 {width: 400px;}
 
 .pointer-enabled {
   cursor: pointer;
@@ -579,11 +584,12 @@ h2.info_header_2 {
 }
 
 .comment-well {
-  width: 690px;
-  margin-bottom: 30px;
-  p {
-    margin-bottom: 0;
-  }
+  margin-bottom:15px;
+  padding: 5px 10px 5px 10px;
+}
+
+.comment-reply-form {
+  display: none;
 }
 
 .share-well {

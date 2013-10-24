@@ -25,6 +25,7 @@ gem 'newrelic_rpm'
 gem 'gmaps4rails'
 gem 'haml'
 gem 'haml-rails'
+gem "ancestry"
 
 group :development, :test do
   gem 'rspec-rails', '2.11.0'

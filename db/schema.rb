@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130813154727) do
+ActiveRecord::Schema.define(:version => 20131024013402) do
 
   create_table "attachments", :force => true do |t|
     t.string   "attachable_type"
@@ -62,8 +62,10 @@ ActiveRecord::Schema.define(:version => 20130813154727) do
     t.datetime "new_comment_email_sent_at"
     t.string   "commentable_type"
     t.integer  "commentable_id"
+    t.string   "ancestry"
   end
 
+  add_index "comments", ["ancestry"], :name => "index_comments_on_ancestry"
   add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
   add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"

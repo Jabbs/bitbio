@@ -1,8 +1,10 @@
 class Comment < ActiveRecord::Base
-  attr_accessible :content, :user_id
+  attr_accessible :content, :user_id, :parent_id
+  has_ancestry
   
   belongs_to :user
   belongs_to :commentable, polymorphic: true
+  has_many :likes, as: :likeable, dependent: :destroy
   
   validates :content, presence: true
   validates :user_id, presence: true

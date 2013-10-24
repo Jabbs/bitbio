@@ -43,7 +43,9 @@ Bitbio::Application.routes.draw do
   end
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :projects do
-    resources :comments, only: [:create]
+    resources :comments, only: [:create] do
+      resources :likes, only: [:create, :index]
+    end
     collection do
       get 'tags', to: 'tags#index_projects', as: :tags
       get 'tags/:tag', to: 'tags#show_projects', as: :tag

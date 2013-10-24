@@ -1,0 +1,6 @@
+%p.inline{style: "margin-top:0px;"}
+  %strong.smaller
+    %i.icon-user{style: "padding-right:3px;"}
+    = link_to "#{comment.user.full_name}", comment.user
+  \-
+  = simple_format(Rinku.auto_link(comment.content).html_safe, class: "smaller inline")

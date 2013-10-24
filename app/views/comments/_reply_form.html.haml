@@ -1,0 +1,8 @@
+.div{ style: "margin-top:10px; margin-left:10px;"}
+  = form_for [@commentable_parent, @commentable, @comment] do |f|
+    = f.hidden_field :user_id, value: current_user.id
+    = f.hidden_field :parent_id, value: comment.id
+    = f.text_area :content, rows: 2, placeholder: "Leave a reply...", class: "span5"
+    %br
+    = f.submit "Submit Reply", class: "btn", disable_with: 'Submitting...'
+    = link_to "cancel", '#', class: "cancelreply", data: {commentnumber: comment.id}
