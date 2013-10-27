@@ -8,20 +8,22 @@
   = image_tag "coming_soon.jpg", id: "coming-soon"
 .row
   .span12
-    .div{style: "height: 50px;"}
+    %h1#header-coming-soon
+      = link_to "<i class='icon-beaker'></i>Bitbio".html_safe, root_path, id: 'logo', title: 'Home'
+      %em{style: "margin-left:190px;"}
+        Science Community and Marketplace
+    .div{style: "height: 0px;"}
       .info_header_coming_soon
-        %h1.center#header-coming-soon
-          %i.icon-beaker
-          Science Community and Marketplace
+        
 %br
-.row
+.row{ style: "margin-top:20px;"}
   .span9
     = image_tag "computer_bitbio.png", style: "position:relative; z-index:2; left:-25px"
   .span3
     #contact-well
       = form_for @contact do |f|
         .center
-          %h4 Join our community!
+          %h4{ style: "font-weight: 400;"} Join our community and sign up for our beta release!
           %br
           = f.text_field :first_name, class: "span2", placeholder: "First Name"
           %br
@@ -31,31 +33,61 @@
           %br
         .center
           = f.submit "Submit", class: "my-button-blue"
-%p{style: "position:relative; z-index:2; padding: 10px 25px; background: white; margin: 20px; 200px;"}
-  &#8594;
-  Bitbio is an online
-  %strong science community
-  and resource built by researchers and service providers in the life science industries.
-  Gain instant
-  %strong access
-  to resources, providers, and equipment
-  you may have otherwise not found. Exchange science research projects or services 
-  with hospitals, universities, research institutes,
-  or other service providers across the globe.
-  Find out what scientific methods other researchers or service providers are using.
-  %strong Search for projects
-  to exchange science advice, opinions, and services.
-  Learn about new research, methods, and technologies to use for your project and what the science
-  market has to offer. Quickly
-  %strong promote research
-  questions and answers
-  in the science community to help a colleague.
-  %br
-  %br
-  %em
-    *** Why rely on expensive services to broker your science project when all you really need is 
-    access, exposure, and some help from the science community. ***
-%br
+.row{ style: "position:relative; z-index:5;"}
+  .span10.offset1
+    %hr
+    .center
+      %h2{ style: "font-weight:300;"} An online community and resource built by researchers and service providers in the life science industries.
+    %hr
+.row{ style: "position:relative; z-index:3;"}
+  .span10.offset1
+    .well{ style: "background:white; padding-top: 30px;"}
+      .row
+        .span2
+          = image_tag "instruments/hiseq_2000.jpg"
+        .span7{style: "margin-left:0px; width:590px;"}
+          %p{ style: "padding:0px; margin:0px; padding-top: 10px; line-height:160%;"}
+            %i.icon-ok.bigger.green
+            Gain instant access
+            to resources, providers, and equipment
+            you may have otherwise not found. 
+            %br
+            %i.icon-ok.bigger.green
+            Exchange science research projects or services 
+            with hospitals, universities, research institutes,
+            or other service providers across the globe.
+      %hr
+      .row
+        .span7
+          %p{ style: "padding:0px; margin:0px; padding-top: 20px; line-height:160%;"}
+            %i.icon-ok.bigger.green
+            Find out what scientific methods other researchers or service providers are using. Promote
+            those that work best for you.
+            %br
+            %i.icon-ok.bigger.green
+            Learn new methods and technologies to use in your research and find out what the science
+            marketplace has to offer.
+        .span2
+          = image_tag "instruments/scimethod.gif"
+      %hr
+      .row
+        .span2
+          %i.icon-search.giant
+        .span7
+          %p{ style: "padding:0px; margin:0px; padding-top: 20px; line-height:160%;"}
+            %i.icon-ok.bigger.green
+            Search for projects
+            to exchange advice, opinions, and services or create your own project listing.
+            %br
+            %i.icon-ok.bigger.green
+            Browse through blog posts and technology reviews. Create your own blog post and participate in the conversation.
+      %hr
+      .center
+        %p
+          %em
+            *** Why rely on expensive services to broker your science project when all you need is 
+            access, exposure, and help from the scientific community. ***
+    %br
 .row
   .span12
     .center
@@ -65,3 +97,5 @@
         %i.icon-envelope.giant{ style: "padding-left: 50px;"}
 %br
 %br
+.small
+  © Bitbio 2013
