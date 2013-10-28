@@ -23,7 +23,7 @@
     #contact-well
       = form_for @contact do |f|
         .center
-          %h4{ style: "font-weight: 400;"} Join our community and sign up for our beta release!
+          %h4{ style: "font-weight: 500;"} Join our community and sign up for our beta release!
           %br
           = f.text_field :first_name, class: "span2", placeholder: "First Name"
           %br
@@ -31,6 +31,10 @@
           %br
           = f.text_field :email, class: "span2", placeholder: "Email"
           %br
+          .smaller
+            What type of scientist are you?
+        .div{style: "margin-left:30px;"}
+          = f.select :user_type, ["Researcher", "Service Provider", "SaaS Provider", "Manufacturer", "Other"]
         .center
           = f.submit "Submit", class: "my-button-blue"
 .row{ style: "position:relative; z-index:5;"}

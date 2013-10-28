@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131024221931) do
+ActiveRecord::Schema.define(:version => 20131028213932) do
 
   create_table "attachments", :force => true do |t|
     t.string   "attachable_type"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20131024221931) do
     t.string   "email"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "user_type"
   end
 
   create_table "events", :force => true do |t|
