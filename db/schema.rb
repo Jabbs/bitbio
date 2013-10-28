@@ -74,9 +74,9 @@ ActiveRecord::Schema.define(:version => 20131028213932) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "user_type"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.string   "user_type",  :default => "Other"
   end
 
   create_table "events", :force => true do |t|
