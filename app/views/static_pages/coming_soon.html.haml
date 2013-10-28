@@ -16,9 +16,9 @@
       .info_header_coming_soon
         
 %br
-.row{ style: "margin-top:20px;"}
+.row{ style: "margin-top:0px; margin-bottom: 50px;"}
   .span9
-    = image_tag "computer_bitbio.png", style: "position:relative; z-index:2; left:-25px"
+    = image_tag "computer_bitbio.png", style: "position:relative; z-index:2; left:-25px; top:40px;"
   .span3
     #contact-well
       = form_for @contact do |f|
@@ -36,7 +36,12 @@
         .div{style: "margin-left:30px;"}
           = f.select :user_type, ["Researcher", "Service Provider", "SaaS Provider", "Manufacturer", "Other"]
         .center
-          = f.submit "Submit", class: "my-button-blue"
+          = f.submit "SUBMIT", class: "my-button-blue"
+        .center
+          .small{style: "line-height:140%; margin-top:10px;"}
+            100% privacy guaranteed.
+            %br
+            We'll never share your email.
 .row{ style: "position:relative; z-index:5;"}
   .span10.offset1
     %hr
@@ -91,15 +96,13 @@
           %em
             *** Why rely on expensive services to broker your science project when all you need is 
             access, exposure, and help from the scientific community. ***
-    %br
+.small{style: "position:relative; z-index:5; left: 8px;"}
+  © Bitbio 2013
 .row
-  .span12
+  .span12{ style: "margin-bottom:40px; margin-top:40px;"}
     .center
       %a{href: "https://twitter.com/bit_bio", style: 'text-decoration:none;', title: "Twitter", target: "_blank"}
         %i.icon-twitter.giant{ style: "margin-right: 50px;"}
       %a{href: "mailto:info@bitbio.org?", style: 'text-decoration:none;', title: "Send Email"}
         %i.icon-envelope.giant{ style: "margin-left: 50px;"}
-%br
-%br
-.small
-  © Bitbio 2013
+
