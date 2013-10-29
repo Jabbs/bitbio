@@ -40,9 +40,15 @@ class User < ActiveRecord::Base
   has_many :reverse_connection_requests, foreign_key: "receiver_id", class_name: "ConnectionRequest", dependent: :destroy
   has_many :connections, foreign_key: "connecter_id", dependent: :destroy
   has_many :reverse_connections, foreign_key: "connected_id", class_name: "Connection", dependent: :destroy
+  has_many :connected_users, through: :connections, source: :connected
+  has_many :connecter_users, through: :reverse_connections, source: :connecter
     
   def self.featured
     User.last(3)
+  end
+  
+  def all_connection_users
+    self.connected_users + self.connecter_users
   end
   
   def update_continent

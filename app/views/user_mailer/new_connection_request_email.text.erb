@@ -1,11 +1,12 @@
 <% if @sender.attachments.any? %>
-  <%= image_tag(@sender.attachments.first.image.url, title: @sender.full_name).to_s %>
+  <%= link_to image_tag(@sender.attachments.first.image.url, title: @sender.full_name).to_s, user_url(@sender) %>
 <% else %>
-  <%= image_tag 'blank_avatar.jpg', title: @sender.full_name, id: 'user-avatar' %>
+  <%= link_to image_tag('blank_avatar_thumb.jpg', title: @sender.full_name), user_url(@sender) %>
 <% end %>
 
-I'd like to add you as a connection on Bitbio
+I'd like to add you as a connection on Bitbio.
 
 - <%= @sender.full_name %>
 
-<%= link_to "accept", connection_reply_url(id: @connection_request.id) %>
+<%= link_to "Accept", connection_reply_url(id: @connection_request.connection_token), class: "btn" %>
+<%= link_to "View Profile", user_url(@sender), style: "font-size: 80%; padding-left:10px;" %>

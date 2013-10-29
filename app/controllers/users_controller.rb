@@ -73,6 +73,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @projects = @user.projects
+    @all_connection_users = @user.all_connection_users
     if request.path != user_path(@user)
       redirect_to @user, status: :moved_permanently
     end

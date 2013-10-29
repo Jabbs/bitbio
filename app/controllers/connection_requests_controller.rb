@@ -14,7 +14,7 @@ class ConnectionRequestsController < ApplicationController
   end
   
   def reply
-    if @connection_request = ConnectionRequest.find_by_id(params[:id].to_s)
+    if @connection_request = ConnectionRequest.find_by_connection_token(params[:id].to_s)
       @connection = Connection.new(connected_id: @connection_request.receiver_id, connecter_id: @connection_request.sender_id)
       if @connection.save
         redirect_to root_url, notice: "You are now connected with #{@connection.connected.first_name}!"

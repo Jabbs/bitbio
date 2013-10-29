@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131029171315) do
+ActiveRecord::Schema.define(:version => 20131029181859) do
 
   create_table "attachments", :force => true do |t|
     t.string   "attachable_type"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20131029171315) do
     t.datetime "new_connection_request_email_sent_at"
     t.datetime "created_at",                           :null => false
     t.datetime "updated_at",                           :null => false
+    t.string   "connection_token"
   end
 
   add_index "connection_requests", ["receiver_id"], :name => "index_connection_requests_on_receiver_id"
