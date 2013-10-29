@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131028223348) do
+ActiveRecord::Schema.define(:version => 20131029171315) do
 
   create_table "attachments", :force => true do |t|
     t.string   "attachable_type"
@@ -69,6 +69,28 @@ ActiveRecord::Schema.define(:version => 20131028223348) do
   add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
   add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
+  create_table "connection_requests", :force => true do |t|
+    t.integer  "sender_id",                            :null => false
+    t.integer  "receiver_id",                          :null => false
+    t.datetime "new_connection_request_email_sent_at"
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+  end
+
+  add_index "connection_requests", ["receiver_id"], :name => "index_connection_requests_on_receiver_id"
+  add_index "connection_requests", ["sender_id"], :name => "index_connection_requests_on_sender_id"
+
+  create_table "connections", :force => true do |t|
+    t.integer  "connecter_id"
+    t.integer  "connected_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "connections", ["connected_id"], :name => "index_connections_on_connected_id"
+  add_index "connections", ["connecter_id", "connected_id"], :name => "index_connections_on_connecter_id_and_connected_id", :unique => true
+  add_index "connections", ["connecter_id"], :name => "index_connections_on_connecter_id"
 
   create_table "contacts", :force => true do |t|
     t.string   "first_name"

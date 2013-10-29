@@ -36,7 +36,11 @@ class User < ActiveRecord::Base
   has_many :blogs, dependent: :destroy
   has_many :attachments, as: :attachable, dependent: :destroy
   accepts_nested_attributes_for :attachments, allow_destroy: true
-  
+  has_many :connection_requests, foreign_key: "sender_id", dependent: :destroy
+  has_many :reverse_connection_requests, foreign_key: "receiver_id", class_name: "ConnectionRequest", dependent: :destroy
+  has_many :connections, foreign_key: "connecter_id", dependent: :destroy
+  has_many :reverse_connections, foreign_key: "connected_id", class_name: "Connection", dependent: :destroy
+    
   def self.featured
     User.last(3)
   end

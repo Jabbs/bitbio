@@ -1,5 +1,8 @@
 Bitbio::Application.routes.draw do
 
+  resources :connection_requests, only: [:create]
+  match "/connection_reply", to: "connection_requests#reply", via: :get
+
   resources :contacts
 
   resources :invitations, only: [:new, :create]

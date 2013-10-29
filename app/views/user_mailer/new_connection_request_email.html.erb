@@ -1,0 +1,24 @@
+<tr>
+	<td style="padding-top:10px">
+		<% if @sender.attachments.any? %>
+		  <%= image_tag(@sender.attachments.first.image.url, title: @sender.full_name).to_s %>
+		<% else %>
+		  <%= image_tag 'blank_avatar.jpg', title: @sender.full_name, id: 'user-avatar' %>
+		<% end %>
+	</td>
+</tr>
+<tr>
+	<td style="padding-top:20px; padding-left:10px; padding-right:10px;">
+	  I'd like to add you as a connection on Bitbio
+	</td>
+</tr>
+<tr>
+	<td style="padding-top:20px; padding-left:10px; padding-right:10px;">
+	  - <%= @sender.full_name %>
+	</td>
+</tr>
+<tr>
+	<td style="padding-top:20px">
+  	<%= link_to "accept", connection_reply_url(id: @connection_request.id) %>
+	</td>
+</tr>

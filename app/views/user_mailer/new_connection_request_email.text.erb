@@ -1,0 +1,11 @@
+<% if @sender.attachments.any? %>
+  <%= image_tag(@sender.attachments.first.image.url, title: @sender.full_name).to_s %>
+<% else %>
+  <%= image_tag 'blank_avatar.jpg', title: @sender.full_name, id: 'user-avatar' %>
+<% end %>
+
+I'd like to add you as a connection on Bitbio
+
+- <%= @sender.full_name %>
+
+<%= link_to "accept", connection_reply_url(id: @connection_request.id) %>
