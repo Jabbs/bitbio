@@ -122,10 +122,10 @@
       <div class="row">
         <div class="span9">
           <% if action_name == 'edit' || action_name == 'update' %>
-            <%= f.submit "Update Account", class: "my-button large-button", disable_with: 'Submitting...' %> |
+            <%= f.submit "Update Account", class: "btn", disable_with: 'Submitting...' %> |
             <%= link_to "cancel", @user%>
           <% else %>
-            <%= f.submit "Create Account", class: "my-button large-button", disable_with: 'Submitting...' %>
+            <%= f.submit "Create Account", class: "btn", disable_with: 'Submitting...' %>
           <% end %>
         </div>
       </div>

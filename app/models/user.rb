@@ -51,6 +51,23 @@ class User < ActiveRecord::Base
     self.connected_users + self.connecter_users
   end
   
+  def connection_users_limit_nine
+    connections = self.all_connection_users
+    connections.shuffle.take(9)
+  end
+  
+  def number_of_connections
+    self.connected_users.size + self.connecter_users.size
+  end
+  
+  def connected_with(user)
+    if user.all_connection_users.include?(self)
+      true
+    else
+      false
+    end
+  end
+  
   def update_continent
     self.continent = Ravibhim::Continents.get_continent(self.country)
   end

@@ -1,11 +1,16 @@
-#conncetions.smaller-shell
-  %h2.info_header{ style: "margin-bottom: 10px;"} Connections (#{@all_connection_users.size})
-  - if @all_connection_users.any?
-    - @all_connection_users.each do |user|
-      - if user.attachments.any?
-        = link_to image_tag(user.attachments.first.image.url(:thumb), title: user.full_name).to_s, user_path(user)
-      - else
-        = link_to image_tag('blank_avatar_thumb.jpg', title: user.full_name), user_path(user)
-  - else
-    .div{style: "padding-left:10px; margin-bottom: 10px;"}
-      No Connections.
+#conncetions.smaller-shell{style: "padding-bottom:10px;"}
+  %h2.info_header{ style: "margin-bottom: 10px;"} Connections (#{@number_of_connections})
+  .div{style: "padding-left:5px;"}
+    - if @connection_users.any?
+      - @connection_users.each do |user|
+        - if user.attachments.any?
+          = link_to image_tag(user.attachments.first.image.url(:thumb), title: user.full_name).to_s, user_path(user)
+        - else
+          = link_to image_tag('blank_avatar_thumb.jpg', title: user.full_name), user_path(user)
+      
+      .div{style: "margin-top: 10px; padding-left:15px;"}
+        - if current_user?(@user)
+          = link_to "view all", user_connections_path(@user)
+    - else
+      .div{style: "padding-left:10px; margin-bottom: 10px;"}
+        No Connections.

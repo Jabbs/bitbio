@@ -41,6 +41,7 @@ Bitbio::Application.routes.draw do
     get 'resend'
     get 'project_listings'
     get 'service_listings'
+    get 'connections', to: "users#all_connections"
     resources :messages, only: [:create, :index]
   end
   resources :password_resets, only: [:new, :create, :edit, :update]

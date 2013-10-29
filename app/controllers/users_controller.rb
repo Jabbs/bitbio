@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-  before_filter :signed_in_user, only: [:edit, :update, :project_listings]
+  before_filter :signed_in_user, only: [:edit, :update, :project_listings, :all_connections]
   before_filter :admin_user, only: [:researchers_index]
   before_filter :correct_user, only: [:edit, :update]
-  before_filter :correct_user_different_params, only: [:project_listings]
+  before_filter :correct_user_different_params, only: [:project_listings, :all_connections]
   before_filter :signed_in_user_go_to_dash, only: [:new, :create]
   
   def new
@@ -73,12 +73,18 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @projects = @user.projects
-    @all_connection_users = @user.all_connection_users
+    @number_of_connections = @user.number_of_connections
+    @connection_users = @user.connection_users_limit_nine
     if request.path != user_path(@user)
       redirect_to @user, status: :moved_permanently
     end
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path, alert: "The member you attempted to view is no longer available."
+  end
+  
+  def all_connections
+    @user = User.find(params[:user_id])
+    @all_connections = @user.all_connection_users
   end
   
   # def destroy
