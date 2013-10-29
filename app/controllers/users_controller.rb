@@ -84,7 +84,7 @@ class UsersController < ApplicationController
   
   def all_connections
     @user = User.find(params[:user_id])
-    @all_connections = @user.all_connection_users
+    @all_connections = @user.all_connection_users.paginate(page: params[:page], per_page: 12)
   end
   
   # def destroy

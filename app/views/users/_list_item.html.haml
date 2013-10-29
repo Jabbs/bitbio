@@ -1,0 +1,13 @@
+.row
+  .span2{style: "width: 80px;"}
+    - if user.attachments.any?
+      = image_tag(user.attachments.first.image.url, title: user.full_name).to_s
+    - else
+      = image_tag 'blank_avatar.jpg', title: user.full_name, id: 'user-avatar'
+  .span5{style: "margin-top: -8px;"}
+    %h2= user.full_name
+    %i.icon-building.blue{ style: "padding-left:1px; padding-right:3px"}
+    %h6.inline= user.facility.name
+    %br
+    %i.icon-map-marker.green{ style: "padding-left:2px; padding-right:5px"}
+    = country_with_us_shortened(user.country)
