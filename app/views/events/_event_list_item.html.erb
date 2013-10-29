@@ -18,8 +18,8 @@
             <i class="icon-comment dark"></i><span class="dark">: <%= event.comments.count %></span>
           </div>
         </div>
-        <h4><%= link_to truncate(event.title, length: 80), event_path(event), title: event.title %></h4>
-        <p><%= event.organizer %></p>
+        <h4 style="height:40px; overflow:hidden;"><%= link_to truncate(event.title, length: 80), event_path(event), title: event.title %></h4>
+        <p style="height:15px; overflow:hidden;"><%= event.organizer %></p>
       </div>
       <div class="row" style="margin-top:.5em;">
         <div class="span3" style="width: 204px;">
