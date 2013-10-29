@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
   end
   
   def all_connection_users
-    self.connected_users + self.connecter_users
+    (self.connected_users + self.connecter_users).sort_by{|e| e[:last_name]}
   end
   
   def connection_users_limit_nine

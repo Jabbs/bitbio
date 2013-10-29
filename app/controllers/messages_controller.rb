@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
   def index
     @sent_messages = current_user.sent_messages.order("created_at DESC").paginate(page: params[:page], per_page: 20)
     @received_messages = current_user.received_messages.order("created_at DESC").paginate(page: params[:page], per_page: 20)
-    @contacts = current_user.contacts.sort_by{|e| e[:last_name]}
+    @contacts = current_user.all_connection_users
     @messages = []
     params[:sent] == "true" ? @messages = @sent_messages : @messages = @received_messages
   end
