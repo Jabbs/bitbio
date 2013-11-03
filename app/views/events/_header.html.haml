@@ -1,0 +1,73 @@
+- @event.bitly_url? ? share_url = @event.bitly_url : share_url = request.url
+- if current_user
+  %div.no-height= link_to "<i class='icon-plus'></i> ADD EVENT".html_safe, new_event_path, class: 'my-button-blue', style: 'position:relative; left: 566px; top: -62px'
+#event-header
+  .row
+    .span2{style: "width: 80px;"}
+      - if @event.attachments.any?
+        = image_tag(@event.attachments.first.image.url, title: @event.title).to_s
+      - else
+        %i.icon-calendar-empty.huge.dark
+    .span7{style: "width: 560px;"}
+      %h2{style: "margin-top:0px; padding-top:0px;"}= @event.title
+      .row
+        .span4{style: "width: 360px;"}
+          %p
+            %i.icon-time
+            = date_time_info(@event)
+            %small
+              %span{style: "margin-left: 5px;"}= pluralize(@event.view_count, 'VIEW', 'VIEWS')
+              %span{style: "margin-left: 5px;"}= pluralize(@event.comments.count, 'COMMENT', 'COMMENTS')
+          - if @event.website.present?
+            %p
+              %i.icon-link
+              = Rinku.auto_link(@event.website, :all, 'target="_blank"').html_safe
+          - if @event.phone.present?
+            %p
+              %i.icon-phone
+              = @event.phone
+          - unless @event.organizer.blank?
+            %p
+              Organized by #{@event.organizer}.
+        .span1{style: "width: 15px; margin:0px;"}
+          %i.icon-map-marker
+        .span2{style: "width: 165px; margin-left:0px;"}
+          %ul.unstyled
+            %li= @event.location.address1
+            %li= @event.location.address2
+            %li= @event.location.address3
+            %li
+              = @event.location.city
+              , #{@event.location.state}, #{@event.location.zip}
+            %li= country_with_us_shortened(@event.location.country)
+      %hr/
+      .row{style: "margin-bottom: 5px;"}
+        .span1{style: "width:80px"}
+          %a.twitter-share-button{"data-counturl" => request.url, "data-text" => @event.title, "data-url" => share_url, "data-via" => "2Bitbio", href: "https://twitter.com/share"} Tweet
+        .span1{style: "padding-top: 1px; width:80px;"}
+          .fb-like{"data-font" => "arial", "data-href" => request.url, "data-layout" => "button_count", "data-send" => "false", "data-show-faces" => "false", "data-width" => "80"}
+        .span1{style: "width:80px"}
+          %script{src: "//platform.linkedin.com/in.js", type: "text/javascript"}
+            :cdata
+              lang: en_US
+          %script{"data-counter" => "right", "data-url" => request.url, type: "IN/Share"}
+        .span1{style: "width:80px"}
+          .g-plusone{"data-size" => "medium"}
+          :javascript
+            (function() {
+              var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+              po.src = 'https://apis.google.com/js/plusone.js';
+              var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+            })();
+        .pull-right
+          - if current_user?(@event.user)
+            = link_to '<i class="icon-edit"></i> edit'.html_safe, edit_event_path(@event), class: 'my-button-red'
+  - if @event.tags.any?
+    %i.icon-tags.dark
+    tags:
+    .smaller.inline
+      = raw @event.tags.map { |t| link_to t.name, tag_events_path(t.name)  }.join(', ')
+  - else
+    %i.icon-tags.dark
+    tags: n/a
+%hr/

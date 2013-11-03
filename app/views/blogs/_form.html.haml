@@ -1,0 +1,41 @@
+= form_for @blog do |f|
+  = render 'shared/error_messages', object: f.object
+  - if @blog.new_record?
+    %h2
+      New Blog Entry
+  - else
+    %h2
+      Editing Blog
+  %hr/
+  %label
+    %i.icon-asterisk.red
+    Title
+  = f.text_field :title, class: 'span8', style: "width:645px;", placeholder: "Choose a title that best fits your blog entry"
+  %hr/
+  = f.cktext_area :body
+  %br/
+  .row{style: "margin-top: 20px;"}
+    .span1{style: "width: 90px;"}
+      %label
+        %strong
+          Tags:
+    .span8{style: "width: 590px;"}
+      %p Tag your blog for optimal search queries (delimiters: tab, enter, comma). Maximum: 6.
+      #blog-tags{"data-tags" => Project::TAGS}
+      #blog-prefilled-tags{"data-tags" => @blog.tag_list}
+      %input.blog-tm-input{autocomplete: "off", name: "blog[tag_list]", placeholder: "tag", style: "width: 100px;", type: "text"}/
+  %hr/
+  %p You may preview your blog entry by selecting the preview icon at the top of the blog editor.
+  %p All blog entries may be edited after submission.
+  .row{style: "margin-top: 20px;"}
+    .span9
+      - if @blog.new_record?
+        = f.submit 'Submit Blog Entry', class: "btn btn-large", disable_with: 'Submitting...', |
+          style: 'margin-bottom: 5px;'                                                                  |
+        |
+        \#{link_to 'cancel', root_path}
+      - else
+        = f.submit 'Update Blog Entry', class: "btn btn-large", disable_with: 'Submitting...', |
+          style: 'margin-bottom: 5px;'                                                                  |
+        |
+        \#{link_to 'cancel', @blog}

@@ -15,9 +15,11 @@ class Event < ActiveRecord::Base
   accepts_nested_attributes_for :location, allow_destroy: true
   accepts_nested_attributes_for :taggings, allow_destroy: true
   
+  validates :title, presence: true, uniqueness: true
   validates :user_id, presence: true
   validates :description, presence: true
-  validates :title, presence: true, uniqueness: true
+  validates :start_date, presence: true
+  validates :end_date, presence: true
   
   def self.featured
     Event.order("start_date DESC").first(6)

@@ -1,20 +1,18 @@
-<% if !ENV['STAGING'].present? || Rails.env.development? %>
-  <% content_for :title do %>
-    <%= t('application.root.title_with_tag_line', tag_line: "#{@event.title}") %>
-  <% end %>
-  <% content_for :description do %>
-    <%= @event.title %> by <%= @event.user.full_name %> posted on <%= @event.created_at.strftime("%D") %>.
-  <% end %>
+<% content_for :title do %>
+  <%= t('application.root.title_with_tag_line', tag_line: "#{@event.title}") %>
+<% end %>
+<% content_for :description do %>
+  <%= @event.title %> by <%= @event.user.full_name %> posted on <%= @event.created_at.strftime("%D") %>.
 <% end %>
 
 <div class="row">
-  <div class="span9 pull-right">
-    <%= render 'events/header' %>
-    
-    <p><%= simple_format(Rinku.auto_link(@event.description).html_safe) %></p>
+  <div class="span9 offset3">
+    <div class="well">
+      <%= render 'events/header' %>
+      <p><%= simple_format(Rinku.auto_link(@event.description).html_safe) %></p>
+    </div>
     <hr>
     <%= render 'comments/comments' %>
-
     <%= render 'comments/form_info' %>
     <br>
   </div>
