@@ -10,9 +10,8 @@
       Editing Event
   %hr/
   %label
-    %i.icon-asterisk.red
     Title
-  = f.text_field :title, class: 'span8', style: "width:645px;", placeholder: "Choose a title that best fits your event", autocomplete: :off
+  = f.text_field :title, class: 'span6', placeholder: "Choose a title that best fits your event", autocomplete: :off
   %br/
   %br/
   .row
@@ -35,7 +34,6 @@
   .row
     .span9
       %label
-        %i.icon-asterisk.red
         Event Dates:
   %br/
   .row
@@ -52,7 +50,6 @@
   .row
     .span1{style: "width: 90px;"}
       %label
-        %i.icon-asterisk.red
         Location:
     .span8{style: "width: 590px;"}
       = f.fields_for :location do |builder|
@@ -75,7 +72,6 @@
   %hr/
   .row
     .span9
-      %i.icon-asterisk.red
       Description:
   %br/
   = f.cktext_area :description

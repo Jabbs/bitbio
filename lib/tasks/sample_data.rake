@@ -59,43 +59,43 @@ namespace :db do
       project.save!
     end
     
-    99.times do
-      name = ['Illumina', 'Roche', 'Life Sciences', 'PacBio', 'Complete Genomics', 'Agilent', 'Thermo Fisher'].shuffle.first + " " + ['Next-gen', 'Microarray', 'Biochemical', 'Protein', 'DNA'].shuffle.first + " " + ['Sequencing', 'Analysis', 'Experiment', 'Research', 'Study'].shuffle.first + " " + ('a'..'z').to_a.shuffle.first(8).join
-      description = Faker::Lorem.paragraph + ' ' + Faker::Lorem.paragraph + ' ' + Faker::Lorem.paragraph + ' ' + Faker::Lorem.paragraph
-      exp_date = Date.today + [30, 90, 180].shuffle.first.days
-      service = Service.new(name: name, description: description, expiration_date: exp_date)
-      service.user_id = User.all.shuffle.first.id
-      
-      x = [1,2,3].shuffle.first
-      Project::TAGS.uniq.shuffle[0..x].each do |tag|
-        if Tag.find_by_name(tag)
-          t = Tag.find_by_name(tag)
-        else
-          t = Tag.create!(name: tag)
-        end
-        service.taggings.build(tag_id: t.id)
-        service.save!
-      end
-      service.view_count = [7,20,25,30,34,40,80,90,100,123,44,2,234,300,23,10,50].shuffle.first
-      service.save!
-      
-      resource_names = Project::SCIENCE_EQUIPMENT.shuffle.first(x)
-      x.times do
-        kind = Resource::SERVICE_TYPES.shuffle.first
-        name = resource_names.first
-        resource_names = resource_names - [name]
-        price = [1000, 200, 12, 40, 99, 300, 1200, 1100, 100, 300, 400, 500, 3100, 800].shuffle.first
-        unit_type = Resource::UNIT_TYPES.shuffle.first
-        note = Faker::Lorem.paragraph
-        quantity = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20].shuffle.first
-        unit_type = Resource::UNIT_TYPES.shuffle.first
-        currency_type = ["USD", "EUR"].shuffle.first
-        
-        service.resources.create!(name: name, kind: kind, note: note, quantity: quantity,
-                                  price: price, unit_type: unit_type, currency_type: currency_type)
-      end
-      
-    end
+    # 99.times do
+    #   name = ['Illumina', 'Roche', 'Life Sciences', 'PacBio', 'Complete Genomics', 'Agilent', 'Thermo Fisher'].shuffle.first + " " + ['Next-gen', 'Microarray', 'Biochemical', 'Protein', 'DNA'].shuffle.first + " " + ['Sequencing', 'Analysis', 'Experiment', 'Research', 'Study'].shuffle.first + " " + ('a'..'z').to_a.shuffle.first(8).join
+    #   description = Faker::Lorem.paragraph + ' ' + Faker::Lorem.paragraph + ' ' + Faker::Lorem.paragraph + ' ' + Faker::Lorem.paragraph
+    #   exp_date = Date.today + [30, 90, 180].shuffle.first.days
+    #   service = Service.new(name: name, description: description, expiration_date: exp_date)
+    #   service.user_id = User.all.shuffle.first.id
+    #   
+    #   x = [1,2,3].shuffle.first
+    #   Project::TAGS.uniq.shuffle[0..x].each do |tag|
+    #     if Tag.find_by_name(tag)
+    #       t = Tag.find_by_name(tag)
+    #     else
+    #       t = Tag.create!(name: tag)
+    #     end
+    #     service.taggings.build(tag_id: t.id)
+    #     service.save!
+    #   end
+    #   service.view_count = [7,20,25,30,34,40,80,90,100,123,44,2,234,300,23,10,50].shuffle.first
+    #   service.save!
+    #   
+    #   resource_names = Project::SCIENCE_EQUIPMENT.shuffle.first(x)
+    #   x.times do
+    #     kind = Resource::SERVICE_TYPES.shuffle.first
+    #     name = resource_names.first
+    #     resource_names = resource_names - [name]
+    #     price = [1000, 200, 12, 40, 99, 300, 1200, 1100, 100, 300, 400, 500, 3100, 800].shuffle.first
+    #     unit_type = Resource::UNIT_TYPES.shuffle.first
+    #     note = Faker::Lorem.paragraph
+    #     quantity = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20].shuffle.first
+    #     unit_type = Resource::UNIT_TYPES.shuffle.first
+    #     currency_type = ["USD", "EUR"].shuffle.first
+    #     
+    #     service.resources.create!(name: name, kind: kind, note: note, quantity: quantity,
+    #                               price: price, unit_type: unit_type, currency_type: currency_type)
+    #   end
+    #   
+    # end
     
     80.times do
       project = Project.all.shuffle.first
@@ -131,5 +131,31 @@ namespace :db do
     200.times do
       Project.all.shuffle.first.comments.create!(content: Faker::Lorem.paragraph, user_id: User.all.shuffle.first.id)
     end
+    
+    30.times do
+      user = User.all.shuffle.first
+      description = Faker::Lorem.paragraph + Faker::Lorem.paragraph + Faker::Lorem.paragraph + Faker::Lorem.paragraph + Faker::Lorem.paragraph
+      start_date = [7,20,25,30,34,40,80,90,100,123,44,2,234,300,23,10,50].shuffle.first.days.from_now.to_date
+      end_date = start_date + [1, 2, 3, 4].shuffle.first.days
+      organizer = Faker::Name.first_name + " " + Faker::Name.last_name
+      phone = Faker::PhoneNumber.phone_number
+      event = user.events.build(title: Faker::Lorem.sentence, description: description, start_date: start_date,
+                                end_date: end_date, organizer: organizer, phone: phone)
+      event.view_count = [7,20,25,30,34,40,80,90,100,123,44,2,234,300,23,10,50].shuffle.first
+      country = "United States"
+      event.build_location(country: country)
+      x = [1,2,3].shuffle.first
+      Project::TAGS.uniq.shuffle[0..x].each do |tag|
+        if Tag.find_by_name(tag)
+          t = Tag.find_by_name(tag)
+        else
+          t = Tag.create!(name: tag)
+        end
+        event.taggings.build(tag_id: t.id)
+        event.save!
+      end
+      event.save!
+    end
+    
   end
 end
