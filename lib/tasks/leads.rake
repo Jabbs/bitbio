@@ -12,12 +12,12 @@ namespace :db do
       department     = row[5]
       country        = row[6]
       phone          = row[7]
-      type           = row[8]
+      account_type   = row[8]
       notes          = row[9]
       title          = row[10]
 
       lead = Lead.new(email: email, first_name: first_name, last_name: last_name, organization: organization,
-                   department: department, country: country, phone: phone, type: type, notes: notes,
+                   department: department, country: country, phone: phone, account_type: account_type, notes: notes,
                    title: title)
       lead.save
     end
