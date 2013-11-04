@@ -4,11 +4,13 @@ class FacilitiesController < ApplicationController
   
   def index
     @facilities = Facility.order("id ASC")
-    @locations = Location.geocoded.facilities.where(user_generated: false)
+    @locations = Location.geocoded.facilities
     @json = @locations.to_gmaps4rails do |location, marker|
-      marker.infowindow render_to_string(partial: "/facilities/info_window", locals: { location: location })
-      marker.title "#{location.locationable.name}"
-      marker.json({ :id => location.id})
+      unless location.locationable.user_generated == true
+        marker.infowindow render_to_string(partial: "/facilities/info_window", locals: { location: location })
+        marker.title "#{location.locationable.name}"
+        marker.json({ :id => location.id})
+      end
     end
   end
   
