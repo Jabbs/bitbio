@@ -1,0 +1,55 @@
+.row
+  .span3
+  .span9.pull-right
+    = gmaps4rails(@json)
+- if current_user && current_user.admin?
+  .row
+    .span12
+      %h2 Facilities
+      = link_to 'add new', new_facility_path, class: 'btn'
+      %table.table.table-striped
+        %thead
+          %tr
+            %th ID
+            %th Name
+            %th Contact Info
+            %th Address
+        %tbody
+          - @facilities.each do |f|
+            %tr
+              %td= f.id
+              %td= f.name
+              %td
+                - if f.website
+                  = Rinku.auto_link(f.website, :all, 'target="_blank"').html_safe
+                  %br/
+                = f.email
+                %br/
+                = f.phone
+              %td
+                - if f.location.present?
+                  - if f.location.address1 && f.location.address2
+                    = f.location.address1
+                    , #{f.location.address2}
+                    %br/
+                  - elsif f.location.address1
+                    = f.location.address1
+                    %br/
+                  - if f.location.address3
+                    = f.location.address3
+                    %br/
+                  = city_state_zip_country(f.location)
+                  %br/
+                  - if f.location.geocoded?
+                    = f.location.latitude
+                    \/#{f.location.longitude}
+                  - else
+                    %span.red NO COORDINATES
+                - else
+                  %span.red NO LOCATION
+              %td
+                = link_to 'edit', edit_facility_path(f), class: 'btn btn-small'
+                = link_to 'remove', facility_path(f), class: 'btn btn-small btn-danger', method: :delete, confirm: "Are you sure?"
+  .row
+    .span12
+      = will_paginate @facilities

@@ -3,7 +3,7 @@ class FacilitiesController < ApplicationController
   before_filter :admin_user, except: [:index]
   
   def index
-    @facilities = Facility.order("id ASC")
+    @facilities = Facility.order("id ASC").paginate(page: params[:page], per_page: 100)
     @locations = Location.geocoded.facilities.where(display_on_map: true)
     @json = @locations.to_gmaps4rails do |location, marker|
       marker.infowindow render_to_string(partial: "/facilities/info_window", locals: { location: location })
@@ -44,9 +44,12 @@ class FacilitiesController < ApplicationController
   
   def destroy
     @facility = Facility.find(params[:id])
-    @facility.destroy
-    
-    redirect_to facilities_path, alert: "Facility has been removed."
+    if @facility.users.any?
+      redirect_to facilities_path, alert: "Cannot destroy a facility that has users."
+    else
+      @facility.destroy
+      redirect_to facilities_path, alert: "Facility has been removed."
+    end
   end
   
   private

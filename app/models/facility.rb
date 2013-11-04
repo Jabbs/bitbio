@@ -3,7 +3,7 @@ class Facility < ActiveRecord::Base
   friendly_id :name, use: [:slugged, :history]
   attr_accessible :name, :website, :email, :phone, :location_attributes
   
-  has_many :labs
+  has_many :labs, dependent: :destroy
   has_many :users
   validates :name, uniqueness: true
   

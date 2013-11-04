@@ -20,7 +20,16 @@ namespace :db do
       facility = Facility.new(name: name, phone: phone, website: website, email: email)
       facility.build_location(address1: address1, address2: address2, address3: address3, city: city,
                             state: state, zip: zip, country: country)
-      facility.save!
+      facility.save
+    end
+    
+    CSV.foreach('lib/assets/facilities2.csv', headers: true, :encoding => 'windows-1251:utf-8') do |row|
+      name          = row[0]
+      country       = row[1]
+      
+      facility = Facility.new(name: name)
+      facility.build_location(country: country, display_on_map: false)
+      facility.save
     end
   end
   
