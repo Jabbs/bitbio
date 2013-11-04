@@ -1,0 +1,11 @@
+%h5= location.locationable.name
+%ul.unstyled
+  - if !location.address1.empty? && !location.address2.empty?
+    %li
+      = location.address1
+      , #{location.address2}
+  - elsif !location.address1.empty?
+    %li= location.address1
+  - if !location.address3.empty?
+    %li= location.address3
+  %li= city_state_zip_country(location)
