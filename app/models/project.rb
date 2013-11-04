@@ -98,10 +98,10 @@ class Project < ActiveRecord::Base
   before_save :strip_inputs
   
   # validations
-  validates :description, presence: true, length: { minimum: 90, maximum: 2000 }
   validates :science_type, presence: true
-  validates :visability, presence: true, inclusion: { in: VISABILITY_OPTIONS, message: "%{value} isn't an allowed option" }
   validates :name, presence: true, uniqueness: true
+  validates :description, presence: true, length: { minimum: 90, maximum: 2000 }
+  validates :visability, presence: true, inclusion: { in: VISABILITY_OPTIONS, message: "%{value} isn't an allowed option" }
   validates :start_date, presence: true
   
   # associations
@@ -135,6 +135,11 @@ class Project < ActiveRecord::Base
   
   def inactive?
     !self.active?
+  end
+  
+  def activate
+    self.active = true
+    self.save
   end
   
   def strip_inputs

@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     @public_projects = @user.projects.where(active: true).where(visability: 'public').paginate(page: params[:page], per_page: 6)
     @private_projects = @user.projects.where(active: true).where(visability: 'private').paginate(page: params[:page], per_page: 6)
     @locked_projects = @user.projects.where(active: true).where(visability: 'locked').paginate(page: params[:page], per_page: 6)
-    @inactive_projects = @user.projects.where(active: false)
+    @inactive_projects = @user.projects.where(active: false).paginate(page: params[:page], per_page: 6)
   end
   
   def service_listings

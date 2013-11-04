@@ -144,8 +144,10 @@ h1.light, h2.light { font-weight: 500; }
 .no-left-margin {margin-left: 0;}
 .no-right-margin {margin-right: 0;}
 .left-margin { margin-left: 20px;}
+.small-left-margin { margin-left: 10px;}
 .label-width { width: 98px; }
 .body-width { width: 550px; }
+.small-padding { padding: 10px; }
 .huge { font-size: 600%; }
 .giant { font-size: 900%; }
 .small {font-size: 80%;}
@@ -179,6 +181,13 @@ h1.light, h2.light { font-weight: 500; }
 label {
   cursor: auto;
   font-weight: 500;
+}
+
+.remove_fields {
+  position:relative;
+  left:630px;
+  top:-60px;
+  &:hover {text-decoration: none;}
 }
 
 .underline-header {
@@ -1313,6 +1322,7 @@ footer {
   @extend .control-group;
   @extend .error;
   display: inline;
+  input, textarea {color: black;}
 }
  
 .field_with_errors .message {

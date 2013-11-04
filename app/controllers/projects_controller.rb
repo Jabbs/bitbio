@@ -25,6 +25,9 @@ class ProjectsController < ApplicationController
     @project = Project.new
   end
   
+  def information
+  end
+  
   def tags
     respond_to do |f|
       f.html
@@ -68,10 +71,19 @@ class ProjectsController < ApplicationController
     if @project.save
       create_bitly_url(project_url(@project)) if Rails.env.production? && ENV['STAGING'].nil?
       check_if_searchable
-      redirect_to @project, notice: "Your project listing has now been activated! You will receive email notifications
-      when your project receives comments or messages."
+      redirect_to @project
     else
       render 'new'
+    end
+  end
+  
+  def activate
+    @project = Project.find(params[:id])
+    @project.active = true
+    if @project.save
+      redirect_to @project, notice: "Your project listing is now active! You can control alert notifications under your account settings."
+    else
+      redirect_to @project, alert: "There was a problem activating your project."
     end
   end
   

@@ -6,11 +6,14 @@
       .no-height
         - if current_user?(@project.user)
           = link_to '<i class="icon-edit"></i> Edit'.html_safe, edit_project_path(@project), class: 'my-button-red', style: 'position:relative; left: 622px; top: 10px;'
-          .div{style: "position:relative; left:517px; top:22px;"}
-            %i.icon-time.black
-            expires on #{@project.expiration_date.strftime("%b %e, %Y")}
+          - if @project.expiration_date
+            .div{style: "position:relative; left:517px; top:22px;"}
+              %i.icon-time.black
+              expires on #{@project.expiration_date.strftime("%b %e, %Y")}                                                                                              
         - elsif current_user && current_user.verified?                                                                                                 
           = link_to '<i class="icon-envelope"></i> Contact Owner'.html_safe, "#", class: 'my-button-blue', style: 'position:relative; left: 550px; top: 10px;', id: 'message', data: {blah: @project.user.id}
+        - if current_user?(@project.user) && !@project.active?
+          = link_to 'ACTIVATE PROJECT'.html_safe, project_activate_path(@project), class: 'btn', style: 'position:relative; left: 458px; top: -55px;'
   .row
     .span8{ style: "padding-left:15px;"}
       %i.icon-beaker{ style: "padding-right:1px;"}
@@ -46,10 +49,11 @@
           tags:
           .small.inline
             #{raw @project.tags.map { |t| link_to t.name, tag_projects_path(t.name) }.join(', ')}
-  .row
-    .span9{style: "width: 685px;"}
-      %p.right
-        %small
-          Listed on #{@project.created_at.strftime("%D")}
-          (#{time_ago_in_words(@project.created_at)} ago)
+  - if @project.active
+    .row
+      .span9{style: "width: 685px;"}
+        %p.right
+          %small
+            Listed on #{@project.created_at.strftime("%D")}
+            (#{time_ago_in_words(@project.created_at)} ago)
 

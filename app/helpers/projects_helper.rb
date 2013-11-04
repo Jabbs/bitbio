@@ -14,7 +14,7 @@ module ProjectsHelper
   
   def visability_text(option, name=nil)
     if option == 'public'
-      "Viewable to anyone with your unique #{name.nil? ? 'project' : 'service'} url."
+      "Viewable to anyone with your #{name.nil? ? 'project' : 'service'} url."
     elsif option == 'private'
       "Viewable and searchable only by verified Bitbio members."
     elsif option == 'locked'
