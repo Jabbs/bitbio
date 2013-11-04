@@ -11,9 +11,10 @@
         %thead
           %tr
             %th ID
-            %th Name
+            %th Facility
             %th Contact Info
             %th Address
+            %th On Map?
         %tbody
           - @facilities.each do |f|
             %tr
@@ -47,6 +48,11 @@
                     %span.red NO COORDINATES
                 - else
                   %span.red NO LOCATION
+              %td
+                - if f.location.geocoded?
+                  = f.location.display_on_map
+                - else
+                  false
               %td
                 = link_to 'edit', edit_facility_path(f), class: 'btn btn-small'
                 = link_to 'remove', facility_path(f), class: 'btn btn-small btn-danger', method: :delete, confirm: "Are you sure?"
