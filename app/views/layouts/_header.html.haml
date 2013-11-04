@@ -52,7 +52,7 @@
                     %li
                       %a{href: user_project_listings_path(current_user)}
                         %i.icon-beaker{style: "margin-right: 7px;"}
-                        My project listings
+                        My Projects
                   /
                     <haml_silent> if current_user.services.any? </haml_silent><haml_block>
                     <li>
@@ -65,7 +65,7 @@
                     %a{"data-method" => "delete", href: logout_path, rel: "nofollow"}
                       %i.icon-signout{method: "delete", style: "margin-right: 6px; margin-left:2px;"}
                       Logout
-            = link_to '<i class="icon-plus"></i> LIST PROJECT'.html_safe, information_projects_path,                                           class: 'pull-right btn', style: 'position: relative; z-index: 8; padding-top:7px; padding-bottom:5px; top: -4px; font-size:90%;'
+            = link_to '<i class="icon-plus"></i> PROJECT'.html_safe, information_projects_path,                                           class: 'pull-right btn', style: 'position: relative; z-index: 8; padding-top:7px; padding-bottom:5px; top: -4px; font-size:90%;'
             /
               <div class="pull-right">
               <ul class="unstyled">
@@ -81,5 +81,5 @@
           - else
             %ul.nav.pull-right{style: "margin-left: 0px;"}
               %li
-                %a.loginlink{"data-toggle" => "modal", href: "#loginModal", style: "padding-right:2px;"} Sign In
+                %a.loginlink{"data-toggle" => "modal", href: "#loginModal", style: "padding-right:2px; color: black;"} Sign In
             %a.my-button-red.pull-right{"data-toggle" => "modal", href: "#signupModal"} Create an Account

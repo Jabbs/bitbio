@@ -5,7 +5,7 @@
       = link_to truncate(project.name, length: 42), project_path(project)
   %h4{ style: "margin-top:5px;"}
     %i.icon-beaker
-    = truncate(project.science_type, length: 28)
+    = truncate(project.protocol, length: 28)
   .head
     %i.icon-map-marker.green{ style: "padding-left:2px;"}
     = country_with_us_shortened(project.country)

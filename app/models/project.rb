@@ -1,12 +1,12 @@
 class Project < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: [:slugged, :history]
-  attr_accessible :description, :name, :science_type, :service_need, :start_date, :instruments_attributes,
+  attr_accessible :description, :name, :protocol, :service_need, :start_date, :instruments_attributes,
                   :visability, :expiration_date, :tag_list
   
   VISABILITY_OPTIONS = ["public", "private", "locked"]
   
-  SCIENCE_TYPES = ["Alignment", "Allele-specific transcription", "Alternative Splicing", "Ancient DNA", 
+  PROTOCOLS = ["Alignment", "Allele-specific transcription", "Alternative Splicing", "Ancient DNA", 
     "Antibody production", "Antibody purification", "Atomic force microscopy (AFM)", "Bioinformatics", 
     "Bisulfite Sequencing", "Cancer biology", "Cell based assay", "ChIP-Seq", "ChIP-Seq Analysis", 
     "ChIP-on-chip", "Chromatin immunoprecipitation (ChIP) sequencing", "Chromosome Walking", 
@@ -98,7 +98,7 @@ class Project < ActiveRecord::Base
   before_save :strip_inputs
   
   # validations
-  validates :science_type, presence: true
+  validates :protocol, presence: true
   validates :name, presence: true, uniqueness: true
   validates :description, presence: true, length: { minimum: 90, maximum: 2000 }
   validates :visability, presence: true, inclusion: { in: VISABILITY_OPTIONS, message: "%{value} isn't an allowed option" }
@@ -144,7 +144,7 @@ class Project < ActiveRecord::Base
   
   def strip_inputs
     self.name = self.name.strip
-    self.science_type = self.science_type.strip
+    self.protocol = self.protocol.strip
   end
   
   def days_til_start
@@ -158,7 +158,7 @@ class Project < ActiveRecord::Base
   def self.search(any=nil, na=nil, eur=nil, asia=nil, aus=nil, science=nil, tag=nil)
     projects = self.scoped
     # unless keyword.blank? || keyword == nil
-    #   projects = projects.where("name LIKE ? OR description LIKE ? OR science_type LIKE ?", "%#{keyword}%","%#{keyword}%","%#{keyword}%")
+    #   projects = projects.where("name LIKE ? OR description LIKE ? OR protocol LIKE ?", "%#{keyword}%","%#{keyword}%","%#{keyword}%")
     # end
     # unless location.blank? || location == nil
     #   projects = projects.joins(:user).where(users: {continent: location})

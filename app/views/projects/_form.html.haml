@@ -1,9 +1,4 @@
 = form_for @project do |f|
-  - if @project.new_record?
-    %h2 New Project Listing
-  - else
-    %h2 Editing Project
-  %br/
   = render 'shared/error_messages', object: f.object
   #project-accordian.accordion
     .accordion-group
@@ -12,11 +7,11 @@
           1. General
       #collapseOne.accordion-body.collapse.in
         .accordion-inner
-          %label Choose a science type. Begin typing for suggestions...
-          %input#project_science_type.span6{:autocomplete => "off", "data-provide" => "typeahead", "data-source" => Project::SCIENCE_TYPES.uniq.sort, :name => "project[science_type]", :placeholder => "e.g. DNA Sequencing, RNA Purification, etc.", :size => "30", :style => "margin-bottom: 0;", :type => "text", :value => @project.science_type}/
+          %label What protocol best describes your project? Begin typing for suggestions...
+          %input.span6{:autocomplete => "off", "data-provide" => "typeahead", "data-source" => Project::PROTOCOLS.uniq.sort, :name => "project[protocol]", :placeholder => "e.g. DNA Sequencing, RNA Purification, etc.", :size => "30", :style => "margin-bottom: 0;", :type => "text", :value => @project.protocol}/
           %hr/
           %label{ style: "margin-bottom:15px;"}
-            What best describes the needs for your scientific project?
+            What best describes your project needs?
           .radio-account-types.body-width.well
             .row{:style => "width: 650px;"}
               .span2{:style => "width: 160px;"}
@@ -40,7 +35,7 @@
                 %label= Project::SERVICE_NEEDS[5]
           %br/
           %label
-            Do you have any Technology or Technique Requirements?
+            Do you have any specific Requirements? (instrument, software, etc.)
 
           = f.fields_for :instruments do |builder|
             = render 'instrument_fields', f: builder
@@ -54,7 +49,7 @@
           %label Choose a unique name for your project:
           = f.text_field :name, placeholder: 'e.g. Analyzing yeast histone modification', class: 'span6', style: 'margin-bottom: 0;'
           %hr/
-          %label Please describe your project in detail:
+          %label Please describe your project in some detail:
           = f.text_area :description, class: 'span6', rows: 5, placeholder: "Description here..."
           %label Tag your project for optimal search queries (delimiters: tab, enter, comma). Maximum: 6. Begin typing for suggestions...
           #project-tags{"data-tags" => Project::TAGS}

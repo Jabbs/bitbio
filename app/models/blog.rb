@@ -11,8 +11,8 @@ class Blog < ActiveRecord::Base
   accepts_nested_attributes_for :taggings, allow_destroy: true
   
   validates :user_id, presence: true
-  validates :body, presence: true
   validates :title, presence: true, uniqueness: true
+  validates :body, presence: true
   
   def self.tagged_with(name)
     Tag.find_by_name(name).blogs if Tag.find_by_name(name)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131103235643) do
+ActiveRecord::Schema.define(:version => 20131104145353) do
 
   create_table "attachments", :force => true do |t|
     t.string   "attachable_type"
@@ -248,7 +248,7 @@ ActiveRecord::Schema.define(:version => 20131103235643) do
   create_table "projects", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.string   "science_type"
+    t.string   "protocol"
     t.integer  "user_id"
     t.string   "service_need"
     t.datetime "created_at",                            :null => false
@@ -264,7 +264,7 @@ ActiveRecord::Schema.define(:version => 20131103235643) do
   end
 
   add_index "projects", ["active"], :name => "index_projects_on_active"
-  add_index "projects", ["science_type"], :name => "index_projects_on_science_type"
+  add_index "projects", ["protocol"], :name => "index_projects_on_protocol"
   add_index "projects", ["searchable"], :name => "index_projects_on_searchable"
   add_index "projects", ["service_need"], :name => "index_projects_on_service_need"
   add_index "projects", ["slug"], :name => "index_projects_on_slug"

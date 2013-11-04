@@ -30,12 +30,12 @@ namespace :db do
     102.times do
       name = ['Human', 'Rat', 'Fly', 'Mouse', 'Zebra Fish', 'Yeast', 'Lizard'].shuffle.first + " " + ['DNA', 'Genome', 'RNA', 'Ribosome', 'Histone'].shuffle.first + " " + ['Sequencing', 'Analysis', 'Experiment', 'Research', 'Study'].shuffle.first + " " + ('a'..'z').to_a.shuffle.first(8).join
       description = Faker::Lorem.paragraph + ' ' + Faker::Lorem.paragraph + ' ' + Faker::Lorem.paragraph + ' ' + Faker::Lorem.paragraph
-      science_type = ['DNA Sequencing', 'RNA Sequencing', 'Chip-SEQ', 'Micro Array', 'Next-gen Sequencing',
+      protocol = ['DNA Sequencing', 'RNA Sequencing', 'Chip-SEQ', 'Micro Array', 'Next-gen Sequencing',
                       'Microscopy', 'Cytometry'].shuffle.first
       service_need = Project::SERVICE_NEEDS.shuffle.first
       start_date = [7,20,25,30,34,40,80,90,100,123,44,2,234,300,23,10,50].shuffle.first.days.from_now.to_date
       exp_date = Date.today + [30, 90, 180].shuffle.first.days
-      project = Project.new(name: name, description: description, science_type: science_type, service_need: service_need,
+      project = Project.new(name: name, description: description, protocol: protocol, service_need: service_need,
                             start_date: start_date, expiration_date: exp_date)
       project.user_id = User.all.shuffle.first.id
       

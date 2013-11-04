@@ -6,7 +6,7 @@ class Location < ActiveRecord::Base
   geocoded_by :full_address
   acts_as_gmappable :process_geocoding => false
   
-  # after_validation :geocode, :if => :address_changed?
+  after_validation :geocode, :if => :address_changed?
   
   validates :country, presence: true
   
