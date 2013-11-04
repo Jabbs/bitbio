@@ -1,6 +1,6 @@
 - @event.bitly_url? ? share_url = @event.bitly_url : share_url = request.url
 - if current_user
-  %div.no-height= link_to "<i class='icon-plus'></i> ADD EVENT".html_safe, new_event_path, class: 'my-button-blue', style: 'position:relative; left: 566px; top: -62px'
+  %div.no-height= link_to "<i class='icon-plus'></i> ADD EVENT".html_safe, new_event_path, class: 'my-button-blue', style: 'position:relative; left: 587px; top: -40px'
 #event-header
   .row
     .span2{style: "width: 80px;"}
@@ -8,10 +8,10 @@
         = image_tag(@event.attachments.first.image.url, title: @event.title).to_s
       - else
         %i.icon-calendar-empty.huge.dark
-    .span7{style: "width: 560px;"}
+    .span7{style: "width: 600px;"}
       %h2{style: "margin-top:0px; padding-top:0px;"}= @event.title
       .row
-        .span4{style: "width: 360px;"}
+        .span4{style: "width: 400px;margin-right:20px;"}
           %p
             %i.icon-time
             = date_time_info(@event)
@@ -27,8 +27,8 @@
               %i.icon-phone
               = @event.phone
           - unless @event.organizer.blank?
-            %p
-              Organized by #{@event.organizer}.
+            %p.smaller
+              Organizer: #{@event.organizer}.
         .span1{style: "width: 15px; margin:0px;"}
           %i.icon-map-marker
         .span2{style: "width: 165px; margin-left:0px;"}
@@ -40,7 +40,14 @@
               = @event.location.city
               , #{@event.location.state}, #{@event.location.zip}
             %li= country_with_us_shortened(@event.location.country)
-      %hr/
+      - if @event.tags.any?
+        .smaller.inline
+          %i.icon-tags.dark
+          = raw @event.tags.map { |t| link_to t.name, tag_events_path(t.name)  }.join(', ')
+      - else
+        %i.icon-tags.dark
+        tags: n/a
+      %hr{style: "margin-top:0px;"}
       .row{style: "margin-bottom: 5px;"}
         .span1{style: "width:80px"}
           %a.twitter-share-button{"data-counturl" => request.url, "data-text" => @event.title, "data-url" => share_url, "data-via" => "2Bitbio", href: "https://twitter.com/share"} Tweet
@@ -62,12 +69,4 @@
         .pull-right
           - if current_user?(@event.user)
             = link_to '<i class="icon-edit"></i> edit'.html_safe, edit_event_path(@event), class: 'my-button-red'
-  - if @event.tags.any?
-    %i.icon-tags.dark
-    tags:
-    .smaller.inline
-      = raw @event.tags.map { |t| link_to t.name, tag_events_path(t.name)  }.join(', ')
-  - else
-    %i.icon-tags.dark
-    tags: n/a
 %hr/

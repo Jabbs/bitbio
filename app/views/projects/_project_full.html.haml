@@ -13,7 +13,7 @@
         - elsif current_user && current_user.verified?                                                                                                 
           = link_to '<i class="icon-envelope"></i> Contact Owner'.html_safe, "#", class: 'my-button-blue', style: 'position:relative; left: 550px; top: 10px;', id: 'message', data: {blah: @project.user.id}
         - if current_user?(@project.user) && !@project.active?
-          = link_to 'ACTIVATE PROJECT'.html_safe, project_activate_path(@project), class: 'btn', style: 'position:relative; left: 458px; top: -55px;'
+          = link_to 'ACTIVATE PROJECT'.html_safe, project_activate_path(@project), class: 'btn', style: 'position:relative; left: 525px; top: -95px;'
   .row
     .span8{ style: "padding-left:15px;"}
       %i.icon-beaker{ style: "padding-right:1px;"}
@@ -39,15 +39,14 @@
                 #{instrument.must_have ? '<i class="icon-ok"></i> must have'.html_safe : '<i class="icon-leaf gold"></i> nice to have'.html_safe}
               %span{style: "padding-right:5px;"}
                 &#8594;
-              = instrument.alias
+              = instrument.try(:alias)
               = instrument.try(:resource_type)
         %hr
         = simple_format(Rinku.auto_link(@project.description).html_safe)
         %hr
         - if @project.tags.any?
-          %i.icon-tags
-          tags:
           .small.inline
+            %i.icon-tags
             #{raw @project.tags.map { |t| link_to t.name, tag_projects_path(t.name) }.join(', ')}
   - if @project.active
     .row

@@ -78,10 +78,10 @@ class ProjectsController < ApplicationController
   end
   
   def activate
-    @project = Project.find(params[:id])
+    @project = Project.find(params[:project_id])
     @project.active = true
     if @project.save
-      redirect_to @project, notice: "Your project listing is now active! You can control alert notifications under your account settings."
+      redirect_to @project, notice: "Your project listing is now active!"
     else
       redirect_to @project, alert: "There was a problem activating your project."
     end
