@@ -6,11 +6,11 @@
     \- #{@project.description}
 .row
   .span3
-    - if @project.active
+    - if @project.active || admin_user?
       = render 'projects/sharing_buttons'
   .span9
     = render 'projects/project_full'
-    - if @project.active
+    - if @project.active || admin_user?
       = render 'comments/comments'
       = render 'comments/form_info'
     %br

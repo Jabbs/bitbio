@@ -156,7 +156,7 @@ class Project < ActiveRecord::Base
   end
 
   def self.search(any=nil, na=nil, eur=nil, asia=nil, aus=nil, science=nil, tag=nil)
-    projects = self.scoped
+    projects = self.where(active: true)
     # unless keyword.blank? || keyword == nil
     #   projects = projects.where("name LIKE ? OR description LIKE ? OR protocol LIKE ?", "%#{keyword}%","%#{keyword}%","%#{keyword}%")
     # end
