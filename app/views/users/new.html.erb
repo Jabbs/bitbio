@@ -1,11 +1,9 @@
-<% if !ENV['STAGING'].present? || Rails.env.development? %>
-  <% content_for :title do %>
-    <%= t('application.root.title_with_tag_line', tag_line: "Create New Account") %>
-  <% end %>
-  <% content_for :description do %>
-    Create your free account and begin submitting your science projects to the community or began searching
-    the listings of current research projects.
-  <% end %>
+<% content_for :title do %>
+  <%= t('application.root.title_with_tag_line', tag_line: "Create New Account") %>
+<% end %>
+<% content_for :description do %>
+  Create your free account and begin submitting your science projects to the community or began searching
+  the listings of current research projects.
 <% end %>
 
 <div class="span9 pull-right">

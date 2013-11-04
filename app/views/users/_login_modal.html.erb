@@ -13,7 +13,7 @@
           <hr style="margin-top: 5px;">
           <div class="row">
             <div class="span2">
-      				<label><i class="icon-asterisk red"></i> Email:</label>
+      				<label>Email:</label>
       			</div>
       			<div class="span2">
       			  <%= text_field_tag :email, params[:email] %>
@@ -21,7 +21,7 @@
           </div>
           <div class="row">
       			<div class="span2">
-      				<label class="inline"><i class="icon-asterisk red"></i> Password:</label>
+      				<label class="inline">Password:</label>
       			</div>
       			<div class="span2">
       				 <%= password_field_tag :password, params[:password] %>
@@ -29,14 +29,9 @@
       		</div>
           <hr>
           <div class="row">
-            <div class="span3">
-      			  <p><%= link_to "forgot password?", '#', id: 'show_forgot_pass' %></p>
-            </div>
-    	    </div>
-          <div class="row">
             <div class="span6">
-              <a class="my-button-red large-button pull-left pointer-enabled" data-dismiss="modal" aria-hidden="true">Cancel</a>
-              <%= submit_tag 'Login', class: "my-button large-button pull-right", disable_with: 'Please wait...' %>
+      			  <%= link_to "forgot password?", '#', id: 'show_forgot_pass' %>
+              <%= submit_tag 'Login', class: "btn btn-large pull-right", disable_with: 'Please wait...' %>
             </div>
           </div>
         </div>
@@ -54,7 +49,7 @@
         <hr style="margin-top: 5px;">
         <div class="row">
           <div class="span2">
-    				<label><i class="icon-asterisk red"></i> Email:</label>
+    				<label>Email:</label>
     			</div>
     			<div class="span2">
     			  <%= text_field_tag :email, params[:email] %>
@@ -63,8 +58,7 @@
         <hr>
         <div class="row">
           <div class="span6">
-            <a class="my-button-red large-button pull-left pointer-enabled" data-dismiss="modal" aria-hidden="true">Cancel</a>
-            <%= submit_tag 'Reset Password', class: "my-button large-button pull-right", disable_with: 'Submitting...' %>
+            <%= submit_tag 'Reset Password', class: "btn btn-large pull-right", disable_with: 'Submitting...' %>
           </div>
         </div>
       </div>

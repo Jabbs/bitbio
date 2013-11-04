@@ -8,11 +8,11 @@
   <%= form_for @signup_user do |f| %>
     <div class="row" style="margin-top: 10px;">
       <div class="span6">
-        <h2 style="margin-top: 5px;">Join the Bitbio science community!</h2>
+        <h2 style="margin-top: 5px;">Join the <i class="icon-beaker"></i> <span class="logo-font">Bitbio</span> community!</h2>
         <hr style="margin-top: 5px;">
         <div class="row">
           <div class="span2">
-    				<label><i class="icon-asterisk red"></i> Name:</label>
+    				<label>Name:</label>
     			</div>
     			<div class="span2" style="width: 130px;">
     		    <%= f.text_field :first_name, placeholder: "First", style: 'width: 130px; margin-right: 5px;' %> 
@@ -23,7 +23,7 @@
         </div>
         <div class="row">
           <div class="span2">
-    				<label><i class="icon-asterisk red"></i> Email:</label>
+    				<label>Email:</label>
     			</div>
     			<div class="span4">
     		    <%= f.text_field :email, placeholder: "Email", style: 'width: 280px' %> 
@@ -31,7 +31,7 @@
         </div>
         <div class="row">
           <div class="span2">
-    				<label><i class="icon-asterisk red"></i> Organization:</label>
+    				<label>Organization:</label>
     			</div>
     			<div class="span4">
     		    <input style="width: 280px;" id="user_organization" name="user[organization]" 
@@ -42,7 +42,7 @@
         </div>
         <div class="row">
           <div class="span2">
-    				<label><i class="icon-asterisk red"></i> Country:</label>
+    				<label>Country:</label>
     			</div>
     			<div class="span4">
     			  <% request.location.country == "United States" ? country = "United States of America" : country = "" %>
@@ -53,17 +53,25 @@
         <hr>
         <div class="row">
     			<div class="span2">
-    				<label class="inline"><i class="icon-asterisk red"></i> Password:</label>
+    				<label class="inline">Choose a Password:</label>
     			</div>
-    			<div class="span2">
+    			<div class="span4">
     				 <%= f.password_field :password, class: 'span2' %>
     			</div>
     		</div>
         <hr>
         <div class="row">
-          <div class="span6">
-            <a class="my-button-red large-button pull-left pointer-enabled" data-dismiss="modal" aria-hidden="true">Cancel</a>
-            <%= f.submit "Create Account", class: "my-button large-button pull-right", disable_with: 'Submitting...' %>
+          <div class="span4">
+            <p class="small" style: "margin-top:0px; margin-bottom:20px;">
+              By creating this account I agree to Bitbio's
+              <%= link_to 'terms of use', terms_path %>
+              and
+              <%= link_to 'privacy policy', privacy_path %>.
+            </p>
+          </div>
+          <div class="span2">
+            <!-- <a class="pull-left pointer-enabled" data-dismiss="modal" aria-hidden="true">Cancel</a> -->
+            <%= f.submit "Join!", class: "btn btn-large pull-right", disable_with: 'Submitting...' %>
           </div>
         </div>
       </div>

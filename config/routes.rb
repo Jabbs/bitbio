@@ -2,6 +2,13 @@ Bitbio::Application.routes.draw do
 
   resources :connection_requests, only: [:create]
   match "/connection_reply", to: "connection_requests#reply", via: :get
+  
+  # static pages
+  match '/about', to: 'static_pages#about', via: :get
+  match '/how_it_works', to: 'static_pages#how_it_works', via: :get
+  match '/privacy', to: 'static_pages#privacy', via: :get
+  match '/terms', to: 'static_pages#terms', via: :get
+  match '/press', to: 'static_pages#press', via: :get
 
   resources :contacts
 

@@ -5,20 +5,24 @@
     %hr{ style: "margin-bottom:5px;"}
     .row
       .span2
-        © Bitbio 2013
+        .smaller
+          © Bitbio 2013
       .span10
         - unless action_name == "coming_soon" || controller_name == "contacts"
           %ul
             %li.title
               %strong Legal Stuff
-            %li= link_to "Terms of Service", '#'
-            %li= link_to "Privacy Policy", '#'
+            .smaller
+              %li= link_to "Terms of Service", terms_path
+              %li= link_to "Privacy Policy", privacy_path
           %ul
             %li.title
               %strong Support
-            %li= link_to "Contact Us", '#'
-            %li= link_to "FAQ's", '#'
+            .smaller
+              %li= mail_to "info@bitbio.org", "Contact Us", target: "_blank"
           %ul
             %li.title
               %strong Company
-            %li= link_to "About Us", '#'
+            .smaller
+              %li= link_to "About", about_path
+              %li= link_to "How It Works", how_it_works_path

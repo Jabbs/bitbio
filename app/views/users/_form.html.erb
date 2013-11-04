@@ -5,7 +5,7 @@
       <% if action_name == "edit" %>
         <h2 style="margin-top: 5px;">Editing Account</h2>
       <% else %>
-        <h2 style="margin-top: 5px;">Join the Bitbio science community!</h2>
+        <h2 style="margin-top: 5px;">Join the <i class="icon-beaker"></i> <span class="logo-font">Bitbio</span> science community!</h2>
       <% end %>
       <hr style="margin-top: 5px;">
       
@@ -36,7 +36,7 @@
       <% end %>
       <div class="row">
         <div class="span2">
-  				<label><i class="icon-asterisk red"></i> Name:</label>
+  				<label>Name:</label>
   			</div>
   			<div class="span6">
   		    <%= f.text_field :first_name, class: "span2", placeholder: "First" %> 
@@ -46,7 +46,7 @@
 
       <div class="row">
         <div class="span2">
-  				<label><i class="icon-asterisk red"></i> Email:</label>
+  				<label>Email:</label>
   			</div>
   			<div class="span6">
   		    <%= f.text_field :email, class: "span3", placeholder: "Email", style: 'width: 273px' %> 
@@ -65,7 +65,7 @@
       <% end %>
       <div class="row">
         <div class="span2">
-  				<label><i class="icon-asterisk red"></i> Organization:</label>
+  				<label>Organization:</label>
   			</div>
   			<div class="span6">
   		  
@@ -94,7 +94,7 @@
       <% end %>
       <div class="row">
         <div class="span2">
-  				<label><i class="icon-asterisk red"></i> Country:</label>
+  				<label>Country:</label>
   			</div>
   			<div class="span6">
   			  <% request.location.country == "United States" ? country = "United States of America" : country = "" %>
@@ -111,7 +111,7 @@
         <hr>
         <div class="row">
     			<div class="span2">
-    				<label class="inline"><i class="icon-asterisk red"></i> Password:</label>
+    				<label class="inline">Password:</label>
     			</div>
     			<div class="span2">
     				 <%= f.password_field :password, class: 'span2' %>
@@ -125,6 +125,13 @@
             <%= f.submit "Update Account", class: "btn", disable_with: 'Submitting...' %> |
             <%= link_to "cancel", @user%>
           <% else %>
+            <p class="small" style: "margin-top:0px; margin-bottom:20px;">
+              By creating this account I agree to Bitbio's
+              <%= link_to 'terms of use', terms_path %>
+              and
+              <%= link_to 'privacy policy', privacy_path %>.
+            </p>
+            </br>
             <%= f.submit "Create Account", class: "btn", disable_with: 'Submitting...' %>
           <% end %>
         </div>
