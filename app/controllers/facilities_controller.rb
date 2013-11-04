@@ -1,4 +1,5 @@
 class FacilitiesController < ApplicationController
+  http_basic_authenticate_with :name => "bitbio", :password => "bitbio"
   before_filter :admin_user, except: [:index]
   
   def index

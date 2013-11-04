@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  http_basic_authenticate_with :name => "bitbio", :password => "bitbio"
   before_filter :signed_in_user, only: [:edit, :update, :project_listings, :all_connections]
   before_filter :admin_user, only: [:researchers_index]
   before_filter :correct_user, only: [:edit, :update]
