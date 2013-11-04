@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131104164631) do
+ActiveRecord::Schema.define(:version => 20131104165147) do
 
   create_table "attachments", :force => true do |t|
     t.string   "attachable_type"
@@ -125,12 +125,13 @@ ActiveRecord::Schema.define(:version => 20131104164631) do
 
   create_table "facilities", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.string   "website"
     t.string   "email"
     t.string   "phone"
     t.string   "slug"
+    t.boolean  "user_generated", :default => false
   end
 
   add_index "facilities", ["name"], :name => "index_facilities_on_name"
