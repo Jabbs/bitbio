@@ -108,8 +108,7 @@ class UsersController < ApplicationController
       if facility = Facility.find_by_name(@signup_user.organization)
       else
         facility = Facility.new(name: @signup_user.organization)
-        facility.user_generated = true
-        facility.build_location(country:  @signup_user.country)
+        facility.build_location(country:  @signup_user.country, display_on_map: false)
         facility.save
       end
       @signup_user.update_attribute(:facility_id, facility.id)
