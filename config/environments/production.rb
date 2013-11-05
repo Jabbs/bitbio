@@ -5,7 +5,7 @@ Bitbio::Application.configure do
   config.action_mailer.raise_delivery_errors = true
   
   # Send out mailers when .delivery is invoked
-  config.action_mailer.perform_deliveries = true
+  config.action_mailer.perform_deliveries = false
   
   # Gmail mailer configuration
   config.action_mailer.delivery_method = :smtp

@@ -26,6 +26,8 @@ gem 'gmaps4rails'
 gem 'haml'
 gem 'haml-rails'
 gem "ancestry"
+gem 'unicorn'
+gem "rack-timeout"
 
 group :development, :test do
   gem 'rspec-rails', '2.11.0'
