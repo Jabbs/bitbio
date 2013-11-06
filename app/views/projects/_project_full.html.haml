@@ -11,7 +11,7 @@
               %i.icon-time.black
               expires on #{@project.expiration_date.strftime("%b %e, %Y")}                                                                                              
         - elsif current_user && current_user.verified?                                                                                                 
-          = link_to '<i class="icon-envelope"></i> Contact Owner'.html_safe, "#", class: 'my-button-blue', style: 'position:relative; left: 550px; top: 10px;', id: 'message', data: {blah: @project.user.id}
+          = link_to '<i class="icon-envelope"></i> Contact Owner'.html_safe, "#", class: 'my-button-blue', style: 'position:relative; left: 550px; top: -50px;', id: 'message', data: {blah: @project.user.id}
         - if current_user?(@project.user) && !@project.active?
           = link_to 'ACTIVATE PROJECT'.html_safe, project_activate_path(@project), class: 'btn', style: 'position:relative; left: 525px; top: -95px;'
   .row
