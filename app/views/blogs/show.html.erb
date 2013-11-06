@@ -19,10 +19,8 @@
       </div>
     </p>
 
-    <% elsif current_user %>
-      <%= link_to '<i class="icon-thumbs-up"></i> PROMOTE'.html_safe, blog_likes_path(@blog), class: 'my-button-silver', method: :post %>
     <% else %>
-      <a href="#loginModal" data-toggle="modal" class="loginlink my-button-silver"><i class="icon-thumbs-up"></i> PROMOTE</a>
+      <%= link_to '<i class="icon-thumbs-up"></i> PROMOTE'.html_safe, blog_likes_path(@blog), class: 'my-button-silver', method: :post %>
     <% end %>
     <% if @blog.likes.any? %>
       <p class="inline"><strong class="dark" style="padding-left: 5px;"><%= pluralize(@blog.likes.count, 'member') %> promoted this.</strong></p>
