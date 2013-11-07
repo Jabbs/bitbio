@@ -25,6 +25,7 @@
         .center
           %h4{ style: "font-weight: 500;"} Join our community and sign up for our beta release!
           %br
+          = render 'shared/error_messages', object: f.object
           = f.text_field :first_name, class: "span2", placeholder: "First Name"
           %br
           = f.text_field :last_name, class: "span2", placeholder: "Last Name"
