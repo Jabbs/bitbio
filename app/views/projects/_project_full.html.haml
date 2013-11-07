@@ -5,7 +5,7 @@
     .span9
       .no-height
         - if current_user?(@project.user)
-          = link_to '<i class="icon-edit"></i> Edit'.html_safe, edit_project_path(@project), class: 'my-button-red', style: 'position:relative; left: 622px; top: 10px;'
+          = link_to '<i class="icon-edit"></i> Edit'.html_safe, edit_project_path(@project), class: 'my-button-silver', style: 'position:relative; left: 622px; top: -50px;'
           - if @project.expiration_date
             .div{style: "position:relative; left:517px; top:22px;"}
               %i.icon-time.black
@@ -39,8 +39,8 @@
                 #{instrument.must_have ? '<i class="icon-ok"></i> must have'.html_safe : '<i class="icon-leaf gold"></i> nice to have'.html_safe}
               %span{style: "padding-right:5px;"}
                 &#8594;
+              #{instrument.try(:resource_type)}:
               = instrument.try(:alias)
-              = instrument.try(:resource_type)
         %hr
         = simple_format(Rinku.auto_link(@project.description).html_safe)
         %hr

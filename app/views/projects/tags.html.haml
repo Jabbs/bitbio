@@ -2,7 +2,7 @@
   - content_for :title do
     = t('application.root.title_with_tag_line', tag_line: "#{params[:tag]} tags")
   - content_for :description do
-    Search for Bitbio scientific services or projects tagged with #{params[:tag]}.
+    Search for BitBio scientific services or projects tagged with #{params[:tag]}.
 - if current_user
   - if @projects && @projects.any?
     .row{:style => "margin-top: 10px;"}

@@ -16,7 +16,7 @@ module ProjectsHelper
     if option == 'public'
       "Viewable to anyone with your #{name.nil? ? 'project' : 'service'} url."
     elsif option == 'private'
-      "Viewable and searchable only by verified Bitbio members."
+      "Viewable and searchable only by verified BitBio members."
     elsif option == 'locked'
       "Unviewable and unsearchable by anyone except you."
     end

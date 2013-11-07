@@ -6,7 +6,7 @@
     <title><%= content_for?(:title) ? yield(:title) : t('application.root.title') %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : t('application.root.description') %>">
   <% else %>
-    <title>Bitbio Staging Site</title>
+    <title>BitBio Staging Site</title>
   <% end %>
   <%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/flick/jquery-ui.css", "application" %>
   <%= stylesheet_link_tag    "application", :media => "all" %>

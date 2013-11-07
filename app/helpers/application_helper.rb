@@ -94,7 +94,7 @@ module ApplicationHelper
       
     else
       crumbs << home; crumbs << c;
-      crumbs << content_tag(:li, "Bitbio", class: 'active')
+      crumbs << content_tag(:li, "BitBio", class: 'active')
     end
     
     crumbs.each {|item| concat(content_tag(:li, item))}

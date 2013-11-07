@@ -4,7 +4,7 @@
       .container
         .row{style: "padding-left: 0px;"}
           .span2{style: "width: 110px; padding-top: 5px;"}
-            = link_to "<i class='icon-beaker'></i>Bitbio".html_safe, root_path, id: 'logo', title: 'Home'
+            = link_to "<i class='icon-beaker'></i>BitBio".html_safe, root_path, id: 'logo', title: 'Home'
           .span3{style: "width: 230px; padding-left:20px;"}
             %ul.breadcrumb
               = render "layouts/breadcrumbs"
@@ -16,7 +16,7 @@
           - if request.path == '/'
             .span1{style: "margin-top: 10px; width: 45px;"}
               #twitter-follow{style: "display:inline; margin-top: 7px;"}
-                %a.twitter-follow-button{"data-show-count" => "false", "data-show-screen-name" => "false", href: "https://twitter.com/Bitbiology"} Follow @Bitbiology
+                %a.twitter-follow-button{"data-show-count" => "false", "data-show-screen-name" => "false", href: "https://twitter.com/BitBiology"} Follow @BitBio
             .span2{style: "margin-top: 12px; width: 155px;"}
               for project alerts.
           - else

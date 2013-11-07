@@ -99,7 +99,7 @@ class ServicesController < ApplicationController
         end
       elsif @service.visability == 'private'
         unless current_user && current_user.verified
-          redirect_to root_path, alert: "This service is only viewable to verified Bitbio members. Please sign up or log in to view this service."
+          redirect_to root_path, alert: "This service is only viewable to verified BitBio members. Please sign up or log in to view this service."
         end
       elsif @service.visability == 'locked'
         unless current_user && current_user.verified && current_user?(@service.user)

@@ -4,6 +4,6 @@
 en:
   application:
     root:
-      description: "Bitbio is an online science community and marketplace to exchange science, collaborate on research, and discover new methods or techniques."
-      title: "Science Community, Marketplace, and Resource | Bitbio"
-      title_with_tag_line: "%{tag_line} | Bitbio"
+      description: "BitBio is an online science community and marketplace to exchange science, collaborate on research, and discover new methods or techniques."
+      title: "Science Community, Marketplace, and Resource | BitBio"
+      title_with_tag_line: "%{tag_line} | BitBio"
