@@ -2,8 +2,7 @@
 - if current_user && current_user.verified?
   - unless @comments.empty?
     - @comments.each do |comment|
-      - if comment.root?
-        = render 'comments/list_item', comment: comment
+      = render 'comments/list_item', comment: comment
       - comment.children.each do |child|
         = render 'comments/child_list_item', comment: child
         - child.children.each do |grandchild|

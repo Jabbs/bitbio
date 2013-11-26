@@ -11,7 +11,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event.add_view_count unless current_user?(@event.user)
     @comment = @event.comments.new
-    @comments = @event.comments.order("created_at ASC")
+    @comments = @event.comments.roots.order("created_at ASC")
     @commentable = @event
     if request.path != event_path(@event)
       redirect_to @event, status: :moved_permanently

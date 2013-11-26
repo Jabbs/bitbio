@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   before_filter :load_commentable
   def create
     @comment = @commentable.comments.new(params[:comment])
-    @comments = @commentable.comments.order("created_at ASC")
+    @comments = @commentable.comments.roots.order("created_at ASC")
     
     if @comment.save
       @comment.send_new_comment_email unless @commentable.user == @comment.user

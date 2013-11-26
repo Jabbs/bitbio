@@ -38,7 +38,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @project.add_view_count unless current_user?(@project.user)
-    @comments = @project.comments.order("created_at ASC")
+    @comments = @project.comments.roots.order("created_at ASC")
     @comment = @project.comments.new
     @commentable = @project
     if request.path != project_path(@project)
