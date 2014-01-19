@@ -12,14 +12,16 @@ class User < ActiveRecord::Base
   before_save :correct_case_of_inputs
   before_create { generate_token(:auth_token) }
   before_create { generate_token(:verification_token) }
+  before_create { generate_number_token(:invite_token) }
   
   # validations
   validates :first_name, presence: true, length: { maximum: 30 }
   validates :last_name, presence: true, length: { maximum: 30 }
-  validates :country, presence: true
-  validates :organization, presence: true
   validates :email, presence: true, uniqueness: true
-  validates :password, presence: true, length: { minimum: 6 }, on: :create
+  validates_format_of :email, :with => /@/
+  validates :organization, presence: true
+  validates :country, presence: true
+  validates :password, presence: true, on: :create
   
   # associations
   belongs_to :lab
@@ -131,6 +133,12 @@ class User < ActiveRecord::Base
   def generate_token(column)
     begin
       self[column] = SecureRandom.urlsafe_base64
+    end while User.exists?(column => self[column])
+  end
+  
+  def generate_number_token(column)
+    begin
+      self[column] = ('1'..'9').to_a.shuffle[0,5].join
     end while User.exists?(column => self[column])
   end
   

@@ -89,7 +89,7 @@
       .row{style: "margin-top: 20px;"}
         .span9
           - if @event.new_record?
-            = f.submit 'Submit Event Entry', class: "btn btn-large", disable_with: 'Submitting...', |
+            = f.submit 'Submit Event Entry', class: "btn btn-large btn-info", disable_with: 'Submitting...', |
               style: 'margin-bottom: 5px;'                                                                   |
             |
             \#{link_to 'cancel', root_path}

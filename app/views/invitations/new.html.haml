@@ -1,0 +1,11 @@
+.row
+  .span9.pull-right
+    %h2.underline-header Invite Colleagues
+    COPY WHAT THEY DID ON BUILT IN CHICAGO
+    %form{:style => "display:inline;"}
+      %i.icon-link
+      = text_field_tag("url", "http://www.bitbio.org/?invite_token=#{current_user.invite_token}", id: "url-text", rows: 1, style: 'width: 365px; margin-top: 6px;')
+    = form_for @invitation do
+      = text_area_tag :email_group
+      = submit_tag "Send Invatations", class: "my-button"
+

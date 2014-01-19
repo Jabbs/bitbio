@@ -5,6 +5,7 @@ class ProjectsController < ApplicationController
   before_filter :correct_user, only: [:edit, :update, :destroy]
   
   def home
+    session[:invite_token] = params[:invite_token] if params[:invite_token]
     @blogs = Blog.featured
     @featured_users = User.featured
     @events = Event.featured

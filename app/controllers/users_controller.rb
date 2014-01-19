@@ -58,6 +58,7 @@ class UsersController < ApplicationController
   def create
     @signup_user = User.new(params[:user])
     if @signup_user.save
+      add_referrer
       create_facility
       sign_in @signup_user
       @signup_user.add_to_sign_in_attributes(request.remote_ip)
@@ -103,6 +104,12 @@ class UsersController < ApplicationController
   end
   
   private
+  
+    def add_referrer
+      if User.find_by_invite_token(session[:invite_token])
+        @signup_user.referrer_id = User.find_by_invite_token(session[:invite_token]).id
+      end
+    end
   
     def create_facility
       if facility = Facility.find_by_name(@signup_user.organization)

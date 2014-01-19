@@ -24,12 +24,10 @@
       #blog-prefilled-tags{"data-tags" => @blog.tag_list}
       %input.blog-tm-input{autocomplete: "off", name: "blog[tag_list]", placeholder: "tag", style: "width: 100px;", type: "text"}/
   %hr/
-  %p You may preview your blog entry by selecting the preview icon at the top of the blog editor.
-  %p All blog entries may be edited after submission.
   .row{style: "margin-top: 20px;"}
     .span9
       - if @blog.new_record?
-        = f.submit 'Submit Blog Entry', class: "btn btn-large", disable_with: 'Submitting...', |
+        = f.submit 'Submit Blog Entry', class: "btn btn-large btn-info", disable_with: 'Submitting...', |
           style: 'margin-bottom: 5px;'                                                                  |
         |
         \#{link_to 'cancel', root_path}

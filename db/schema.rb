@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131104172306) do
+ActiveRecord::Schema.define(:version => 20140119055412) do
 
   create_table "attachments", :force => true do |t|
     t.string   "attachable_type"
@@ -343,7 +343,7 @@ ActiveRecord::Schema.define(:version => 20131104172306) do
     t.datetime "updated_at",                                       :null => false
     t.string   "slug"
     t.string   "country"
-    t.string   "membership"
+    t.string   "membership",             :default => "basic"
     t.boolean  "verified"
     t.string   "verification_token"
     t.datetime "verification_sent_at"
@@ -355,13 +355,17 @@ ActiveRecord::Schema.define(:version => 20131104172306) do
     t.string   "organization"
     t.integer  "facility_id"
     t.integer  "lab_id"
+    t.string   "invite_token"
+    t.integer  "referrer_id"
   end
 
   add_index "users", ["account_type"], :name => "index_users_on_account_type"
   add_index "users", ["continent"], :name => "index_users_on_continent"
   add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["id"], :name => "index_users_on_id"
+  add_index "users", ["invite_token"], :name => "index_users_on_invite_token"
   add_index "users", ["last_name"], :name => "index_users_on_last_name"
+  add_index "users", ["referrer_id"], :name => "index_users_on_referrer_id"
   add_index "users", ["slug"], :name => "index_users_on_slug", :unique => true
 
 end

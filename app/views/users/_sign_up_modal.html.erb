@@ -1,4 +1,4 @@
-<% if @signup_user.errors.any? %>
+<% if @signup_user.errors.any? || invite_token_present? %>
   <div id="showSignupModal"></div>
 <% end %>
 <div id="signupModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -10,6 +10,7 @@
       <div class="span6">
         <h2 style="margin-top: 5px;">Join the <i class="icon-beaker"></i> <span class="logo-font">BitBio</span> community!</h2>
         <hr style="margin-top: 5px;">
+        <%= render 'shared/error_messages', object: f.object %>
         <div class="row">
           <div class="span2">
     				<label>Name:</label>
