@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140119055412) do
+ActiveRecord::Schema.define(:version => 20140119184911) do
 
   create_table "attachments", :force => true do |t|
     t.string   "attachable_type"
@@ -165,6 +165,7 @@ ActiveRecord::Schema.define(:version => 20140119055412) do
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.text     "message"
   end
 
   add_index "invitations", ["email"], :name => "index_invitations_on_email"

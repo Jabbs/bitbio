@@ -1,11 +1,35 @@
+- share_url = "http://www.bitbio.org/?invite_token=#{current_user.invite_token}"
+- share_text = "Join me on BitBio! The science community, marketplace, and resource."
+- tw_link = "https://twitter.com/share?url=#{u(share_url)}&text=#{u(share_text)}&via=#{t('application.root.twitter_name')}"
+- li_link = "http://www.linkedin.com/shareArticle?mini=true&url=#{u(share_url)}&title=#{u(share_text)}&summary=#{t('application.root.description')}"
 .row
   .span9.pull-right
     %h2.underline-header Invite Colleagues
-    COPY WHAT THEY DID ON BUILT IN CHICAGO
+    %br
+    %br
+    %label.no-margin Share via this invite link:
     %form{:style => "display:inline;"}
-      %i.icon-link
-      = text_field_tag("url", "http://www.bitbio.org/?invite_token=#{current_user.invite_token}", id: "url-text", rows: 1, style: 'width: 365px; margin-top: 6px;')
+      = text_field_tag("url", share_url, id: "url-text", rows: 1, style: 'width: 465px; margin-top: 6px;')
+    %h2.no-margin.sharing-petition.blue.inline
+      = link_to tw_link, target: "_blank", style: 'text-decoration: none;', class: 'btn tw_color', style: "margin-left: 5px;" do
+        %i.icon-twitter.no-decoration.side-padding
+      = link_to li_link, target: "_blank", style: 'text-decoration: none;', class: 'btn tw_color' do
+        %i.icon-linkedin.no-decoration.side-padding
+      = link_to "mailto: ?subject=#{u(share_text)}&body=#{u(share_url)}", style: 'text-decoration: none;', class: 'btn gp_color' do
+        %i.icon-envelope.no-decoration.side-padding
+    %br
+    %br
+    %hr{style: "margin-left:30px;"}
+    .no-height
+      %label{style: "position:relative;top:-32px;z-index:3;"} OR
+    %h2 Send an email
+    %br
     = form_for @invitation do
-      = text_area_tag :email_group
-      = submit_tag "Send Invatations", class: "my-button"
+      %label To: (recipients email)
+      = text_area_tag :message, nil, class: "span9", placeholder: "Enter multiple email addresses separated by commas"
+      %br
+      %label Message:
+      = text_area_tag :email_group, t('application.root.description') + " Follow this link to sign up! #{share_url}", class: "span9", rows: 5
+      %br
+      = submit_tag "Send Invatations", disable_with: 'Submitting...', class: "btn btn-info btn-large"
 

@@ -1,6 +1,6 @@
 class InvitationsController < ApplicationController
-  before_filter :signed_in_user, except: [:index, :show]
-  before_filter :verified_user, except: [:index, :show]
+  before_filter :signed_in_user
+  before_filter :verified_user
   
   def new
     @invitation = Invitation.new
