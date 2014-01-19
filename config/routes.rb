@@ -80,4 +80,5 @@ Bitbio::Application.routes.draw do
     root :to => 'projects#home'
   end
   # root :to => 'static_pages#coming_soon'
+  mount Sidekiq::Web, at: '/sidekiq'
 end

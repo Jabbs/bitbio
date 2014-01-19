@@ -24,4 +24,8 @@ after_fork do |server, worker|
     config['pool']            = ENV['DB_POOL'] || 5
     ActiveRecord::Base.establish_connection(config)
   end
+  
+  Sidekiq.configure_client do |config|
+    config.redis = { size: 1, namespace: 'sidekiq' }
+  end
 end

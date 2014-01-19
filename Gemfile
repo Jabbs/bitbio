@@ -28,6 +28,13 @@ gem 'haml-rails'
 gem "ancestry"
 gem 'unicorn'
 gem "rack-timeout"
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
+gem 'autoscaler'
+gem 'exception_notification'
+gem 'newrelic_rpm'
+gem "placeholder-gem"
 
 group :development, :test do
   gem 'rspec-rails', '2.11.0'
