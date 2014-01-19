@@ -21,6 +21,7 @@ $green_dark: #469D3D;
 $silver: #C0C0C0;
 $silver-stripe-color: #D8D8D8;
 $link_color: #0088cc;
+$grey: #E5E5E5;
 $grey_light: #F6F6F6;
 
 /* MIXINS */
@@ -130,6 +131,8 @@ h1.light, h2.light { font-weight: 500; }
 .pointer { cursor: pointer; }
 .gold { color: $gold_dark; }
 .silver { color: $silver; }
+.grey { color: $grey;}
+.grey_light { color: $grey_light;}
 .dark { color: $header_background;}
 .green { color: $green-dark; }
 .blue { color: darken($blue, 15%); }
@@ -142,6 +145,7 @@ h1.light, h2.light { font-weight: 500; }
 .no-height { height: 0px; }
 .no-margin {margin:0;}
 .no-padding {padding:0;}
+.right-left-padding {padding: 0 20px 20px 20px;}
 .no-left-margin {margin-left: 0;}
 .no-right-margin {margin-right: 0;}
 .left-margin { margin-left: 20px;}
@@ -185,9 +189,6 @@ label {
 }
 
 .remove_fields {
-  position:relative;
-  left:630px;
-  top:-60px;
   &:hover {text-decoration: none;}
 }
 

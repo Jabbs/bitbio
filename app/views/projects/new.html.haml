@@ -1,3 +1,8 @@
 .row
-  .span9.offset3
-    = render 'form'
+  .span3
+    = render "projects/progress", stage: "design"
+  .span9
+    .bigger-shell.pull-right.blue-top
+      %h1.info_header.light.blue-text.info_header_3
+        Project Submission Form
+      = render 'form'

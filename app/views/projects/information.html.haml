@@ -1,17 +1,22 @@
 .row
   .span9.offset3.bigger-shell
-    %h2.info_header What you should know about the BitBio marketplace:
+    %h2.info_header Before you begin the project submission process:
     .small-padding
       %ul.unstyled
+        %br
         %li
           %i.icon-check
-          Please include as much information needed so interested service providers, researchers, or collaborators can effective understand the scope of your research
+          Please include as much information needed so interested service providers, researchers, or collaborators can effectively understand your research project.
+        %br
         %li
           %i.icon-check
-          Projects may be removed at any time or change restriction levels so your project is only viewed by who you specify.
+          Your project is only viewed by who you specify in your visibility settings. Projects may be removed at anytime. 
         %hr
-        %li
-          .smaller BitBio does not allow the use of solicitation of any outside services
+        %li.smaller
+          Please contact
+          = mail_to "info@bitbio.org", "info@bitbio.org", target: "_blank"
+          if you have any questions.
+        %li.smaller BitBio does not allow the use of solicitation of any outside services.
       %br
-      = link_to "Start", new_project_path, class: "btn btn-large"
+      = link_to "Begin", new_project_path, class: "btn btn-large btn-info"
       %br

@@ -1,2 +1,9 @@
-.span9.pull-right
-  = render 'form'
+.row
+  .span3
+    - if !@project.active?
+      = render "projects/progress", stage: "confirm"
+  .span9
+    .bigger-shell.pull-right.blue-top
+      %h1.info_header.light.blue-text.info_header_3
+        Editing: #{@project.name}
+      = render 'form'

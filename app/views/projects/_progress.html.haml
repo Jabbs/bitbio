@@ -1,0 +1,29 @@
+- if stage == "design"
+  - x1 = "blue"
+  - x2 = "grey"
+  - x3 = "grey"
+- elsif stage == "confirm"
+  - x1 = "grey"
+  - x2 = "blue"
+  - x3 = "grey"
+- elsif stage == "share"
+  - x1 = "grey"
+  - x2 = "grey"
+  - x3 = "blue"
+%h2.no-margin Progress
+.progress.progress-striped.active
+  .bar{style: "width: 33%;"}
+%h4{class: "#{x1}"} 1. Design Project
+%p
+  .div{class: "#{x1}"}
+    Complete the project submission form to submit to the marketplace. Projects can be reviewed/edited prior to activation.
+%br
+%h4{class: "#{x2}"} 2. Confirm / Activate
+%p
+  .div{class: "#{x2}"}
+    Preview your project, correct any errors or misspellings, and activate your project on the marketplace.
+%br
+%h4{class: "#{x3}"} 3. Share, Collaborate, Connect
+%p
+  .div{class: "#{x3}"}
+    Share your project through the marketplace, social media, or email. Collaborate with researchers or service providers. Connect with interested providers or researchers.
