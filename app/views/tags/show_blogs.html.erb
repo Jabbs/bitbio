@@ -26,8 +26,13 @@
   <div class="row">
     <div class="span9 pull-right">
       <hr>
-        <p style="text-align:center;"><em>***No blogs matched your search. Please check back another time or 
-        sign up for <%= link_to 'project alert emails', '#' %>.***</em></p>
+        <% if current_user %>
+          <p style="text-align:center;"><em>***No blogs matched your search. Please check back another time or 
+          subscribe to receive <%= link_to 'project alert emails', user_settings_path(current_user) %>.***</em></p>
+        <% else %>
+          <p style="text-align:center;"><em>***No blogs matched your search. Please check back another time or 
+          login and adjust your settings to receive <%= link_to 'project alert emails', login_path %>.***</em></p>
+        <% end %>
       <hr>
     </div>
   </div>

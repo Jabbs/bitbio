@@ -46,6 +46,7 @@ Bitbio::Application.routes.draw do
   resources :messages, only: [:show]
   resources :users, path: "/members" do
     get 'resend'
+    get 'settings'
     get 'project_listings'
     get 'service_listings'
     get 'connections', to: "users#all_connections"

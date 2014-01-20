@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   http_basic_authenticate_with :name => "bitbio", :password => "bitbio"
-  before_filter :signed_in_user, only: [:edit, :update, :project_listings, :all_connections]
+  before_filter :signed_in_user, only: [:edit, :update, :project_listings, :all_connections, :settings]
   before_filter :admin_user, only: [:researchers_index]
   before_filter :correct_user, only: [:edit, :update]
-  before_filter :correct_user_different_params, only: [:project_listings, :all_connections]
+  before_filter :correct_user_different_params, only: [:project_listings, :all_connections, :settings]
   before_filter :signed_in_user_go_to_dash, only: [:new, :create]
   
   def new
@@ -12,6 +12,10 @@ class UsersController < ApplicationController
   
   def index
     redirect_to root_path
+  end
+  
+  def settings
+    @user = User.find(params[:user_id])
   end
   
   def project_listings

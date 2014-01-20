@@ -1,0 +1,28 @@
+.row
+  .span3
+    = link_to "&#8592; back".html_safe, current_user
+  .span9
+    %h2.underline-header Settings
+    %br
+    .row
+      .span9.bigger-shell.pull-right
+        .div{style: "padding:20px;"}
+          %h3.dark Account type: <span class="red tiny">#{current_user.membership + " (free)"}</span>
+          %hr
+          %h3.dark Alert emails:
+          = form_for @user do |f|
+            .div{style: "margin-left:10px;"}
+              %label.checkbox
+                .left
+                  Send me new project alert emails
+                  = f.check_box :project_alerts
+              %label.checkbox
+                .left
+                  Send me new blog alert emails
+                  = f.check_box :blog_alerts
+              %label.checkbox
+                .left
+                  Send me new event alert emails
+                  = f.check_box :event_alerts
+              = f.submit "Update", class: "btn btn-info", style: "margin-top:10px;"
+                          

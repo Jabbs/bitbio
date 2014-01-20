@@ -20,7 +20,7 @@
         %p{:style => "text-align:center;"}
           %em
             ***No projects matched your search. Please check back another time or
-            sign up for #{link_to 'project alert emails', '#'}.***
+            subscribe to receive #{link_to 'project alert emails', user_settings_path(current_user)}.***
         %hr/
 - else
   .row

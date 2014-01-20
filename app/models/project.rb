@@ -102,7 +102,7 @@ class Project < ActiveRecord::Base
     errors.add :name, *errors.delete(:friendly_id) if errors[:friendly_id].present?
   end
 
-  def self.search(any=nil, na=nil, eur=nil, asia=nil, aus=nil, science=nil, tag=nil)
+  def self.search(any=nil, na=nil, eur=nil, asia=nil, aus=nil, science=nil, category=nil, tag=nil)
     projects = self.where(active: true)
     # unless keyword.blank? || keyword == nil
     #   projects = projects.where("name LIKE ? OR description LIKE ? OR protocol LIKE ?", "%#{keyword}%","%#{keyword}%","%#{keyword}%")
@@ -115,6 +115,9 @@ class Project < ActiveRecord::Base
     # end
     unless science.blank? || science == nil
       projects = projects.where(service_need: science)
+    end
+    unless category.blank? || category == nil
+      projects = projects.joins(:tags).where(tags: {name: category})
     end
     unless tag.blank? || tag == nil
       # projects = projects.joins(:instruments).where(instruments: {alias: instrument})

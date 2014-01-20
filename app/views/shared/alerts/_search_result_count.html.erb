@@ -1,7 +1,7 @@
 <div style="height: 0px;">
   <div id="search-results">
     <h4 class="inline" style="margin:0px;"><%= pluralize(@projects.count, 'project') %> found.</h4>
-     <p class="inline" style="margin:0px;"><span style="font-size: 83%"><%= link_to 'Sign up for project alert emails', '#' %>.</span>
+     <p class="inline" style="margin:0px;"><span style="font-size: 83%"><%= link_to 'subscribe to receive project alert emails', user_settings_path(current_user) %>.</span>
      </p>
   </div>
 </div>

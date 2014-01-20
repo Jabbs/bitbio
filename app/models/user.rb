@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   friendly_id :full_name, use: [:slugged, :history]
   attr_accessible :account_type, :bio, :email, :first_name, :last_name, :password, :password_confirmation, 
                   :phone, :country, :membership, :continent, :attachments_attributes, :_destroy,
-                  :facility_id, :lab_id, :organization
+                  :facility_id, :lab_id, :organization, :project_alerts, :blog_alerts, :event_alerts
   attr_accessor   :_destroy
   has_secure_password
   
