@@ -1,8 +1,11 @@
 class FacilitiesController < ApplicationController
   http_basic_authenticate_with :name => "bitbio", :password => "bitbio"
-  before_filter :admin_user, except: [:index]
+  before_filter :signed_in_user, except: [:index]
+  before_filter :verified_user, except: [:index]
   
   def index
+    @facility = Facility.new
+    @facility.build_location
     @facilities = Facility.order("id ASC").paginate(page: params[:page], per_page: 100)
     @locations = Location.geocoded.facilities.where(display_on_map: true)
     @json = @locations.to_gmaps4rails do |location, marker|
@@ -23,9 +26,9 @@ class FacilitiesController < ApplicationController
   def create
     @facility = Facility.new(params[:facility])
     if @facility.save
-      redirect_to facilities_path, notice: "Facility added."
+      redirect_to facilities_path, notice: "Facility has been submitted."
     else
-      render 'new'
+      render 'index'
     end
   end
   
@@ -55,5 +58,9 @@ class FacilitiesController < ApplicationController
   private
     def admin_user
       redirect_to(root_path) unless current_user && current_user.admin?
+    end
+    
+    def verified_user
+      redirect_to current_user, alert: 'Please verify your account first.' unless current_user.verified
     end
 end

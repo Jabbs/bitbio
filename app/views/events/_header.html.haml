@@ -36,9 +36,10 @@
             %li= @event.location.address1
             %li= @event.location.address2
             %li= @event.location.address3
-            %li
-              = @event.location.city
-              , #{@event.location.state}, #{@event.location.zip}
+            - if @event.location.city_state_zip?
+              %li #{@event.location.city}, #{@event.location.state}, #{@event.location.zip}
+            - elsif @event.location.city_state?
+              %li #{@event.location.city}, #{@event.location.state}
             %li= country_with_us_shortened(@event.location.country)
       - if @event.tags.any?
         .smaller.inline

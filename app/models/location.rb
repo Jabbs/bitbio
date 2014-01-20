@@ -21,6 +21,22 @@ class Location < ActiveRecord::Base
     attrs.any?{|a| send "#{a}_changed?"}
   end
   
+  def city_state?
+    if !self.city.blank? && !self.state.blank?
+      true
+    else
+      false
+    end
+  end
+  
+  def city_state_zip?
+    if !self.city.blank? && !self.state.blank? && !self.zip.blank?
+      true
+    else
+      false
+    end
+  end
+  
   def full_address
     "#{address1}, #{address2}, #{address3}, #{city}, #{state}, #{zip}, #{country}"
   end

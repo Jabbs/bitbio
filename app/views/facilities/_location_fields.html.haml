@@ -1,0 +1,15 @@
+%fieldset
+  = f.text_field :address1, class: 'span3', placeholder: "street address 1", style: "width: 190px;"
+  = f.text_field :address2, class: 'span3', placeholder: "street address 2", style: "width: 190px;"
+  %br/
+  = f.text_field :city, class: 'span2', placeholder: "city"
+  = f.text_field :state, class: 'span2', placeholder: "state/province"
+  = f.text_field :zip, class: 'span2', placeholder: "postal code"
+  = f.select :country, Ravibhim::Continents::COUNTRIES, { prompt: "--country--" }, class: "span2"
+  %br/
+  - if admin_user?
+    %label Display on Map:
+    = f.select :display_on_map, [true, false]
+  - else
+    = f.hidden_field :display_on_map, value: false
+  

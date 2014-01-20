@@ -5,7 +5,7 @@ class Facility < ActiveRecord::Base
   
   has_many :labs, dependent: :destroy
   has_many :users
-  validates :name, uniqueness: true
+  validates :name, presence: true, uniqueness: true
   
   has_one :location, as: :locationable, dependent: :destroy
   accepts_nested_attributes_for :location, allow_destroy: true

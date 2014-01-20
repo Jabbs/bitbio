@@ -1,0 +1,20 @@
+.row
+  .span3
+    = render 'shared/sidebar/image_tagline'
+  .span9
+    - if @blogs && @blogs.any?
+      - if current_user
+        %div{style: "height: 0px;"}= link_to "<i class='icon-plus'></i> ADD BLOG".html_safe, new_blog_path, class: 'my-button-blue', style: 'position:relative; left: 591px; top: -40px; z-index: 12;'
+      = render 'tags/tag_list_blogs'
+      - @blogs.each do |blog|
+        = render 'blogs/blog_list_item', blog: blog
+      .row
+        .span9
+          = will_paginate @blogs
+    - elsif @blogs.empty?
+      %hr
+      %p{style: "text-align:center;"}
+        %em
+          ***No blogs matched your search. Please check back another time or
+          sign up for #{link_to 'project alert emails', '#'}.***
+      

@@ -6,7 +6,10 @@
 <% end %>
 
 <div class="row">
-  <div class="span9 offset3">
+  <div class="span3">
+    <%= render 'shared/sidebar/image_tagline' %>
+  </div>
+  <div class="span9">
       <%= render 'events/header' %>
       <p><%= simple_format(Rinku.auto_link(@event.description).html_safe) %></p>
     <hr>
