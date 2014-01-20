@@ -8,3 +8,17 @@ en:
       description: "BitBio is an online science community and marketplace to exchange science, collaborate on research, and discover new methods or techniques."
       title: "Science Community, Marketplace, and Resource | BitBio"
       title_with_tag_line: "%{tag_line} | BitBio"
+  exception:
+    show:
+      not_found:
+        title: "Not Found"
+        description: "The page you were looking for does not exist."
+      internal_server_error:
+        title: "Internal Server Error"
+        description: "Sorry, something went wrong while processing your request."
+      bad_request:
+        title: "Bad Request"
+        description: "The server did not understand your request. It may have been malformed."
+        bad_taste:
+          title: "Bad Taste"
+          description: "Sorry, the server thinks you've got a bad taste for food (%{exception_message})."

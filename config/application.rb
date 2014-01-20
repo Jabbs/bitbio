@@ -18,6 +18,13 @@ end
 module Bitbio
   class Application < Rails::Application
     
+    # see http://robots.thoughtbot.com/content-compression-with-rack-deflater/ for reference
+    config.middleware.insert_before ActionDispatch::Static, Rack::Deflater
+    
+    # customized exception handling
+    config.exceptions_app = ->(env) { ExceptionsController.action(:show).call(env) }
+    config.action_dispatch.rescue_responses["BadTaste"] = :bad_request
+    
     # assets precompiling error fix - reference here
     # http://www.simonecarletti.com/blog/2012/02/heroku-and-rails-3-2-assetprecompile-error/
     config.assets.initialize_on_precompile = false
