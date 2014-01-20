@@ -23,6 +23,10 @@ $silver-stripe-color: #D8D8D8;
 $link_color: #0088cc;
 $grey: #E5E5E5;
 $grey_light: #F6F6F6;
+$fb_color: #3B5998;
+$tw_color: #4099FF;
+$gp_color: #d34836;
+$li_color: #4875B4;
 
 /* MIXINS */
 
@@ -140,6 +144,10 @@ h1.light, h2.light { font-weight: 500; }
 .red { color: $red; }
 .black { color: black; }
 .white { color: white; }
+.fb-color {color: $fb_color;}
+.tw-color {color: $tw_color;}
+.gp-color {color: $gp_color;}
+.li-color {color: $li_color;}
 .bigger { font-size: 150%; }
 .no-decoration { text-decoration: none; }
 .no-height { height: 0px; }

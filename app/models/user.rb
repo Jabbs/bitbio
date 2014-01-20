@@ -15,8 +15,8 @@ class User < ActiveRecord::Base
   before_create { generate_number_token(:invite_token) }
   
   # validations
-  validates :first_name, presence: true, length: { maximum: 30 }
-  validates :last_name, presence: true, length: { maximum: 30 }
+  validates :first_name, presence: true, length: { maximum: 40 }
+  validates :last_name, presence: true, length: { maximum: 40 }
   validates :email, presence: true, uniqueness: true
   validates_format_of :email, :with => /@/
   validates :organization, presence: true

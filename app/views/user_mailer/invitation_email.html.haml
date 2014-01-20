@@ -1,0 +1,10 @@
+%tr
+  %td{style: "padding-top:20px"}
+    = link_to @user.full_name, user_url(@user)
+    is inviting you to join BitBio's Science Community, Marketplace, and Resource
+%tr
+  %td{style: "padding-top:20px; padding-right:10px"}
+    = link_to "Join BitBio", root_url + "?invite_token=#{@user.invite_token}", class: "btn"
+%tr
+  %td{style: "padding-top:20px; padding-right:10px"}
+    = @invitation.message

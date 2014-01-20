@@ -12,7 +12,7 @@ Bitbio::Application.routes.draw do
 
   resources :contacts
 
-  resources :invitations, only: [:new, :create]
+  resources :invitations
 
   resources :events do
     resources :comments, only: [:create]
