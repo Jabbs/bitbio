@@ -1,22 +1,28 @@
 .row
-  .span9.offset3.bigger-shell
-    %h2.info_header Before you begin the project submission process:
+  .span3
+    = render 'shared/sidebar/image_project_tagline'
+  .span9.bigger-shell
+    %h2.info_header
+      Congrats on taking your first step towards submitting a project!
     .small-padding
       %ul.unstyled
+        %li
+          %i.icon-check
+          Connect with 1000's of researchers and service providers worldwide!
         %br
         %li
           %i.icon-check
-          Please include as much information needed so interested service providers, researchers, or collaborators can effectively understand your research project.
+          Gain insight from colleagues, connect with interested service providers, or find collaborators to fuel your research project!
         %br
         %li
           %i.icon-check
-          Your project is only viewed by who you specify in your visibility settings. Projects may be removed at anytime. 
+          Include detailed information so interested service providers, researchers, or collaborators can effectively understand your research goals.
+        %br
+        %li
+          %i.icon-check
+          Specify who can view your project in your visibility settings.
         %hr
-        %li.smaller
-          Please contact
-          = mail_to "info@bitbio.org", "info@bitbio.org", target: "_blank"
-          if you have any questions.
         %li.smaller BitBio does not allow the use of solicitation of any outside services.
       %br
-      = link_to "Begin", new_project_path, class: "btn btn-large btn-info"
+      = link_to "Begin <i class='icon-arrow-right' style='padding-left:5px'></i>".html_safe, new_project_path, class: "btn btn-large btn-info"
       %br

@@ -1,10 +1,7 @@
 .row
   .span3
-    .no-height
-      %h2.no-margin{style: "position:relative; z-index:3;"} Submit a project to the science marketplace!
-      = link_to "Begin!", new_project_path, class: "btn btn-large", style: "position:relative; z-index:3;"
-    = image_tag "lab_bench.jpg"
     = render 'shared/sidebar/project_search'
+    = render 'shared/sidebar/image_tagline'
     - unless @featured_users.empty?
       = render 'shared/sidebar/featured_users'
   .span9

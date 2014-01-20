@@ -296,6 +296,13 @@ h1.info_header_3 {
   border: 1px solid $header_background;
   border-top: 4px solid $header_background;
 }
+.smaller-image-shell {
+  width: 218px;
+  margin-bottom: 19px;
+  margin-top: 1px;
+  border: 1px solid $header_background;
+  border-top: 4px solid $header_background;
+}
 
 #science-search {
   input[name="start_date"] {

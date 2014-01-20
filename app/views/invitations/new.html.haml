@@ -3,7 +3,9 @@
 - tw_link = "https://twitter.com/share?url=#{u(share_url)}&text=#{u(share_text)}&via=#{t('application.root.twitter_name')}"
 - li_link = "http://www.linkedin.com/shareArticle?mini=true&url=#{u(share_url)}&title=#{u(share_text)}&summary=#{t('application.root.description')}"
 .row
-  .span9.pull-right
+  .span3
+    = render 'shared/sidebar/image_tagline'
+  .span9
     %h2.underline-header Invite Colleagues
     %br
     %br

@@ -1,0 +1,9 @@
+.smaller-image-shell
+  .no-height
+    .div{style: "padding:15px;"}
+      %h2.no-margin.white{style: "position:relative; z-index:3;"} Submit a project to the science marketplace!
+      = link_to "GET STARTED!", information_projects_path, class: "my-button-blue", style: "position:relative; z-index:3; top:30px;"
+  - if request.path == '/'
+    = image_tag "lab_bench.jpg"
+  - else
+    = image_tag "lab_bench2.jpg"

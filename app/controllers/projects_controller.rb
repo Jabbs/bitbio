@@ -90,9 +90,12 @@ class ProjectsController < ApplicationController
   
   def destroy
     @project = Project.find(params[:id])
-    @project.destroy
-    
-    redirect_to user_project_listings_path(current_user), alert: "Your project has been removed."
+    @project.active = false
+    if @project.save
+      redirect_to user_project_listings_path(current_user), notice: "Your project has been deactivated."
+    else
+      redirect_to user_project_listings_path(current_user), alert: "There was a problem deactivating your project. Please contact support for more information."
+    end
   end
   
   private

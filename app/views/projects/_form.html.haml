@@ -51,29 +51,30 @@
     = f.text_field :start_date, placeholder: 'YYYY-MM-DD', style: 'margin-bottom: 0; width: 90px;'
   %hr
   .right-left-padding
-    %label Visibility:
-    .radio-account-types.body-width
-      - Project::VISABILITY_OPTIONS.each do |option|
-        = f.radio_button :visability, option
-        %label{:style => "width: 90px; margin-right: 5px;"}
-          - if option == 'public'
-            %i.icon-globe{:style => "margin-right: 9px; margin-left: 2px;"}
-          - elsif option == 'private'
-            %i.icon-group{:style => "margin-right: 7px;"}
-          - elsif option == 'locked'
-            %i.icon-lock{:style => "margin-right: 9px; margin-left: 4px;"}
-          = option.capitalize
-        %em
-          = visability_text(option)
-        %br/
-    %hr/
+    - unless action_name == 'edit' || action_name == 'update'
+      %label Visibility:
+      .radio-account-types.body-width
+        - Project::VISABILITY_OPTIONS.each do |option|
+          = f.radio_button :visability, option
+          %label{:style => "width: 90px; margin-right: 5px;"}
+            - if option == 'public'
+              %i.icon-globe{:style => "margin-right: 9px; margin-left: 2px;"}
+            - elsif option == 'private'
+              %i.icon-group{:style => "margin-right: 7px;"}
+            - elsif option == 'locked'
+              %i.icon-lock{:style => "margin-right: 9px; margin-left: 4px;"}
+            = option.capitalize
+          %em
+            = visability_text(option)
+          %br/
+      %hr/
 
     .row
       .span9
         - if action_name == 'edit' || action_name == 'update'
-          - if current_user?(@project.user)
-            = link_to "Remove", project_path(@project), method: :delete, confirm: "Are you sure?", class: 'my-button-red large-button pull-right', style: "margin-right:40px;"
-          = f.submit 'Update Project', class: "btn btn-large", disable_with: 'Submitting...', style: 'margin-bottom: 8px;'
+          - if current_user?(@project.user) && @project.active?
+            = link_to "Deactivate", project_path(@project), method: :delete, confirm: "Are you sure?", class: 'my-button-red large-button pull-right', style: "margin-right:40px;"
+          = f.submit 'Update Project', class: "btn btn-large btn-info", disable_with: 'Submitting...', style: 'margin-bottom: 8px;'
           |
           \#{link_to 'cancel', @project}
         - else
