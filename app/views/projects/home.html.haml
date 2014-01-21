@@ -8,7 +8,7 @@
     - unless current_user
       = render 'shared/sign_up_box'
     = render 'shared/word_cloud'
-    - unless @blogs.empty?
+    - if @blogs.count > 4
       = render 'blogs/blogs', blogs: @blogs
     - unless @events.empty?
       = render 'events/events', events: @events

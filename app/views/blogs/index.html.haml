@@ -16,9 +16,10 @@
       %p{style: "text-align:center;"}
         %em
           - if current_user
-            ***No blogs matched your search. Please check back another time or
-            subscribe to receive #{link_to 'project alert emails', user_settings_path(current_user)}.***
+            No blogs matched your search. Please check back another time or
+            subscribe to receive #{link_to 'project alert emails', user_settings_path(current_user)}.
           - else
-            ***No blogs matched your search. Please check back another time or
-            login and adjust your settings to receive #{link_to 'project alert emails', login_path}.***
+            No blogs matched your search. Please check back another time or
+            login and adjust your settings to receive #{link_to 'project alert emails', login_path}.
+      %hr
       
