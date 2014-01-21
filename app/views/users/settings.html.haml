@@ -9,24 +9,24 @@
         .div{style: "padding:20px;"}
           %h3.dark Account type: <span class="red tiny">#{current_user.membership + " (free)"}</span>
           %hr
-          %h3.dark Alert emails:
+          %h3.dark Notification emails:
           = form_for @user do |f|
             .div{style: "margin-left:10px;"}
               %label.checkbox
                 .left
-                  Send me new project alert emails
-                  = f.check_box :subscribed
+                  BitBio newsletter
+                  = f.check_box :newsletter
               %label.checkbox
                 .left
-                  Send me new project alert emails
+                  Send me new project alerts
                   = f.check_box :project_alerts
               %label.checkbox
                 .left
-                  Send me new blog alert emails
+                  Send me new blog alerts
                   = f.check_box :blog_alerts
               %label.checkbox
                 .left
-                  Send me new event alert emails
+                  Send me new event alerts
                   = f.check_box :event_alerts
               = f.submit "Update", class: "btn btn-info", style: "margin-top:10px;"
                           

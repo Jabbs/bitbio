@@ -6,20 +6,26 @@ class UserMailer < ActionMailer::Base
     @message = message
     @user = message.receiver
     @sender = message.sender
-    mail(to: "#{@user.full_name} <#{@user.email}>", subject: "BitBio - Message Alert")
+    if @user.subscribed?
+      mail(to: "#{@user.full_name} <#{@user.email}>", subject: "BitBio - Message Alert")
+    end
   end
   
   def new_connection_request_email(connection_request)
     @connection_request = connection_request
     @user = connection_request.receiver
     @sender = connection_request.sender
-    mail(to: "#{@user.full_name} <#{@user.email}>", subject: "BitBio - Connection Request")
+    if @user.subscribed?
+      mail(to: "#{@user.full_name} <#{@user.email}>", subject: "BitBio - Connection Request")
+    end
   end
   
   def new_comment_email(comment)
     @user = comment.commentable.user
     @comment = comment
-    mail(to: "#{@user.full_name} <#{@user.email}>", subject: "BitBio - New Comment Alert")
+    if @user.subscribed?
+      mail(to: "#{@user.full_name} <#{@user.email}>", subject: "BitBio - New Comment Alert")
+    end
   end
   
   def password_reset_email(user)
@@ -34,7 +40,6 @@ class UserMailer < ActionMailer::Base
   
   def invitation_email(invitation)
     @invitation = invitation
-    @user = @invitation.user
-    mail(to: "<#{@invitation.email}>", subject: "#{@user.full_name} has sent you an invitation to join BitBio!")
+    mail(to: "<#{@invitation.email}>", subject: "#{@invitation.user.full_name} has sent you an invitation to join BitBio!")
   end
 end

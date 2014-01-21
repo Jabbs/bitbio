@@ -4,13 +4,14 @@ class User < ActiveRecord::Base
   attr_accessible :account_type, :bio, :email, :first_name, :last_name, :password, :password_confirmation, 
                   :phone, :country, :membership, :continent, :attachments_attributes, :_destroy,
                   :facility_id, :lab_id, :organization, :project_alerts, :blog_alerts, :event_alerts,
-                  :subscribed
+                  :subscribed, :newsletter
   attr_accessor   :_destroy
   has_secure_password
   
   # callbacks
   before_validation :update_continent
   before_save :correct_case_of_inputs
+  before_save :check_to_resubscribe_user, on: :update
   before_create { generate_token(:auth_token) }
   before_create { generate_token(:verification_token) }
   before_create { generate_number_token(:invite_token) }
@@ -46,6 +47,21 @@ class User < ActiveRecord::Base
   has_many :connected_users, through: :connections, source: :connected
   has_many :connecter_users, through: :reverse_connections, source: :connecter
     
+  def check_to_resubscribe_user
+    if self.subscribed == false
+      if self.project_alerts_was == false && self.project_alerts_changed?
+        self.update_attribute(:subscribed, true)
+      elsif self.blog_alerts_was == false && self.blog_alerts_changed?
+        self.update_attribute(:subscribed, true)
+      elsif self.newsletter_was == false && self.newsletter_changed?
+        self.update_attribute(:subscribed, true)
+      elsif self.event_alerts_was == false && self.event_alerts_changed?
+        self.update_attribute(:subscribed, true)
+      end
+    end
+  end
+      
+  
   def self.featured
     User.last(3)
   end
