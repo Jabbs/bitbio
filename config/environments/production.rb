@@ -1,6 +1,13 @@
 Bitbio::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
   
+  config.middleware.use ExceptionNotification::Rack,
+    :email => {
+      :email_prefix => ENV['STAGING'].present? ? "[BITBIO ERROR STAGING] " : "[BITBIO ERROR PRODUCTION] ",
+      :sender_address => %{"BitBio" <noreply@bitbio.com>},
+      :exception_recipients => %w{petejabbour1@gmail.com}
+    }
+  
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = true
   
