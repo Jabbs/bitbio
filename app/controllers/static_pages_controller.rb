@@ -17,4 +17,7 @@ class StaticPagesController < ApplicationController
   
   def press
   end
+  
+  def unsubscribed
+  end
 end

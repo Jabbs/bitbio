@@ -1,4 +1,4 @@
-Dear <%= @receiver.first_name %>,
+Dear <%= @user.first_name %>,
 
 <%= @sender.full_name %> has sent you a message:
 
@@ -6,4 +6,4 @@ Dear <%= @receiver.first_name %>,
 
 <%= truncate(@message.content, length: 200) %>
 
-<%= link_to "View Full Message", user_messages_url(@receiver) %>
+<%= link_to "View Full Message", user_messages_url(@user) %>

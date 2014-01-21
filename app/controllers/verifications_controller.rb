@@ -11,4 +11,14 @@ class VerificationsController < ApplicationController
                                      for more details."
     end
   end
+  
+  def unsubscribe
+    if @user = User.find_by_verification_token(params[:unsubscribe_id].to_s)
+      @user.update_attribute(:subscribed, false)
+      redirect_to unsubscribed_path
+    else
+      redirect_to root_path, notice: "There was a problem unsubscribing your email. Please contact support@bitbio.org 
+                                     for more details."
+    end
+  end
 end

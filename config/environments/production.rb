@@ -4,7 +4,7 @@ Bitbio::Application.configure do
   config.middleware.use ExceptionNotification::Rack,
     :email => {
       :email_prefix => ENV['STAGING'].present? ? "[BITBIO ERROR STAGING] " : "[BITBIO ERROR PRODUCTION] ",
-      :sender_address => %{"BitBio" <noreply@bitbio.com>},
+      :sender_address => %{"BitBio" <noreply@bitbio.org>},
       :exception_recipients => %w{petejabbour1@gmail.com}
     }
   

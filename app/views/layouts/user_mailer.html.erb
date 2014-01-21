@@ -154,6 +154,10 @@
 					This email was sent from BitBio.
 					Please direct any inquiries to
 					<a href="mailto:info@bitbio.org?" title="info@bitbio.org">info@bitbio.org</a>.
+					<% if @user && @user.verification_token %>
+					  If you no longer want to receive email notifications from Civic ArtWorks please
+					  <%= link_to 'unsubscribe', unsubscribe_url(unsubscribe_id: @user.verification_token) %>.
+					<% end %>
 				</td>
 			</tr>
 		</table>

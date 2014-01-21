@@ -4,16 +4,16 @@ class UserMailer < ActionMailer::Base
   
   def new_message_email(message)
     @message = message
-    @receiver = message.receiver
+    @user = message.receiver
     @sender = message.sender
-    mail(to: "#{@receiver.full_name} <#{@receiver.email}>", subject: "BitBio - Message Alert")
+    mail(to: "#{@user.full_name} <#{@user.email}>", subject: "BitBio - Message Alert")
   end
   
   def new_connection_request_email(connection_request)
     @connection_request = connection_request
-    @receiver = connection_request.receiver
+    @user = connection_request.receiver
     @sender = connection_request.sender
-    mail(to: "#{@receiver.full_name} <#{@receiver.email}>", subject: "BitBio - Connection Request")
+    mail(to: "#{@user.full_name} <#{@user.email}>", subject: "BitBio - Connection Request")
   end
   
   def new_comment_email(comment)

@@ -1,6 +1,6 @@
 <tr>
 	<td style="padding-top:10px">
-		Dear <%= @receiver.first_name %>,
+		Dear <%= @user.first_name %>,
 	</td>
 </tr>
 <tr>
@@ -20,6 +20,6 @@
 </tr>
 <tr>
 	<td style="padding-top:20px; padding-right:10px">
-		<%= link_to "View Full Message", user_messages_url(@receiver) %>
+		<%= link_to "View Full Message", user_messages_url(@user) %>
 	</td>
 </tr>
