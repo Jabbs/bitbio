@@ -52,8 +52,6 @@ Bitbio::Application.routes.draw do
     get 'connections', to: "users#all_connections"
     resources :messages, only: [:create, :index]
   end
-  match '/unsubscribe', to: "verifications#unsubscribe", via: :get
-  match '/unsubscribed', to: "static_pages#unsubscribed", via: :get
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :projects do
     get 'activate'
@@ -67,6 +65,8 @@ Bitbio::Application.routes.draw do
     end
   end
   resources :verifications, only: [:show]
+  match '/unsubscribe', to: "verifications#unsubscribe", via: :get
+  match '/unsubscribed', to: "static_pages#unsubscribed", via: :get
   
   match '/researchers', to: 'users#researchers_index', via: :get
   match '/providers', to: 'users#providers_index', via: :get
