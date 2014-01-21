@@ -2,8 +2,8 @@
   .span3
     = render 'shared/sidebar/project_search'
     = render 'shared/sidebar/image_tagline'
-    - unless @featured_users.empty?
-      = render 'shared/sidebar/featured_users'
+    / - unless @featured_users.empty?
+    /   = render 'shared/sidebar/featured_users'
   .span9
     - unless current_user
       = render 'shared/sign_up_box'
