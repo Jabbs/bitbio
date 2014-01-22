@@ -52,6 +52,7 @@
       %label
         Location:
     .span8{style: "width: 590px;"}
+      = f.text_field :location_name, class: "span6", placeholder: "Name of Location"
       = f.fields_for :location do |builder|
         = render 'location_fields', f: builder
   %hr/

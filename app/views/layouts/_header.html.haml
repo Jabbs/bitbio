@@ -32,6 +32,11 @@
                       (#{current_user.new_message_count})
                   %b.caret
                 %ul.dropdown-menu{style: "min-width: 160px; padding-left: 0px;"}
+                  - if admin_user?
+                    %li
+                      %a{href: admin_path}
+                        %i.icon-male{style: "margin-right: 9px; margin-left:3px;"}
+                        Admin Panel
                   %li
                     %a{href: user_path(current_user)}
                       %i.icon-user{style: "margin-right: 8px; margin-left:1px;"}

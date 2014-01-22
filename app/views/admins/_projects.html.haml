@@ -1,0 +1,91 @@
+.row
+  .span12    
+    %table.table-hover.table-condensed.table-striped{style: "background: white"}
+      %thead
+        %tr
+          %th.small Today
+          %th.small 7 days
+          %th.small 30 days
+          %th.small With Comment(s)
+          %th.small With Message(s)
+          %th.small With Instrument(s)
+          %th.small Total
+      %tbody
+        %tr
+          %td.small= Project.where("created_at > ?", Time.zone.now.beginning_of_day).count
+          %td.small= Project.where("created_at > ?", (Date.today - 6)).count
+          %td.small= Project.where("created_at > ?", (Date.today - 29)).count
+          %td.small= Project.select { |project| project.comments.size > 0 }.count
+          %td.small= Project.select { |project| project.messages.size > 0 }.count
+          %td.small= Project.select { |project| project.instruments.size > 0 }.count
+          %td.small= Project.count
+%br
+.row
+  .span12    
+    %table.table-hover.table-condensed.table-striped{style: "background: white"}
+      %thead
+        %tr
+          %th.small Services Only
+          %th.small Science + Services
+          %th.small Collaboration
+          %th.small Data Analysis
+          %th.small Research Validation
+          %th.small Clinical Studies
+      %tbody
+        %tr
+          %td.small= Project.where(service_need: "Services Only").count
+          %td.small= Project.where(service_need: "Science + Services").count
+          %td.small= Project.where(service_need: "Collaboration").count
+          %td.small= Project.where(service_need: "Data Analysis").count
+          %td.small= Project.where(service_need: "Research Validation").count
+          %td.small= Project.where(service_need: "Clinical Studies").count
+          
+%hr{style: "margin-top:10px;margin-bottom:10px;"}
+  
+.row
+  .span12    
+    %table.table-hover.table-condensed.table-striped{style: "background: white"}
+      %thead
+        %tr
+          %th.small= link_to 'ID', admin_path(project_order: "id")
+          %th.small= link_to 'Created', admin_path(project_order: "created_at")
+          %th.small= link_to 'Starts', admin_path(project_order: "created_at")
+          %th.small= link_to 'Type', admin_path(project_order: "type")
+          %th.small= link_to 'Name', admin_path(project_order: "name")
+          %th.small= link_to 'Protocol', admin_path(project_order: "protocol")
+          %th.small Created By
+          %th.small= link_to 'Visibility', admin_path(project_order: "visibility")
+          %th.small= link_to 'Searchable', admin_path(project_order: "searchable")
+          %th.small= link_to 'Views', admin_path(project_order: "views")
+          %th.small= link_to 'Comments', admin_path(project_order: "comments")
+          %th.small= link_to 'Messages', admin_path(project_order: "messages")
+          %th.small= link_to 'Active', admin_path(project_order: "active")
+          %th.small= link_to 'Country', admin_path(project_order: "country")
+          %th.small Tags
+          %th.small Actions
+      %tbody
+        - @projects.each do |project|
+          %tr
+            %td.small= project.id
+            %td.small= project.created_at.strftime("%m/%e/%y %l:%M%P")
+            %td.small= project.start_date.strftime("%m/%e/%y")
+            %td.small= project.service_need
+            %td.small= link_to project.name, project
+            %td.small= project.protocol
+            %td.small= link_to project.user.full_name, project.user
+            %td.small= project.visability
+            %td.small= project.searchable == true ? "Yes" : "No"
+            %td.small= project.view_count
+            %td.small= project.comments.count
+            %td.small= project.messages.count
+            %td.small= project.active == true ? "Yes" : "No"
+            %td.small= project.user.country
+            %td.small= project.tag_list
+            %td.small
+              = link_to project, title: "view project" do
+                %i.icon-eye-open
+              = link_to edit_project_path(project), title: "edit project" do
+                %i.icon-edit
+.row
+  .span12
+    = will_paginate @projects

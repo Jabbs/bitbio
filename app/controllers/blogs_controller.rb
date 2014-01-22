@@ -9,7 +9,7 @@ class BlogsController < ApplicationController
   
   def show
     @blog = Blog.find(params[:id])
-    @blog.add_view_count unless current_user?(@blog.user)
+    @blog.add_view_count unless current_user?(@blog.user) || admin_user?
     @comment = @blog.comments.new
     @comments = @blog.comments.roots.order("created_at ASC")
     @commentable = @blog

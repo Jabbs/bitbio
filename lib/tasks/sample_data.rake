@@ -56,6 +56,7 @@ namespace :db do
         project.save!
       end
       project.view_count = [7,20,25,30,34,40,80,90,100,123,44,2,234,300,23,10,50].shuffle.first
+      project.active = true
       project.save!
     end
     

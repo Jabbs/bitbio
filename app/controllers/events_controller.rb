@@ -9,7 +9,7 @@ class EventsController < ApplicationController
   
   def show
     @event = Event.find(params[:id])
-    @event.add_view_count unless current_user?(@event.user)
+    @event.add_view_count unless current_user?(@event.user) || admin_user?
     @comment = @event.comments.new
     @comments = @event.comments.roots.order("created_at ASC")
     @commentable = @event

@@ -1,0 +1,65 @@
+.row
+  .span12    
+    %table.table-hover.table-condensed.table-striped{style: "background: white"}
+      %thead
+        %tr
+          %th.small Today
+          %th.small 7 days
+          %th.small 30 days
+          %th.small With User(s)
+          %th.small With Lab(s)
+          %th.small Total
+      %tbody
+        %tr
+          %td.small= Facility.where("created_at > ?", Time.zone.now.beginning_of_day).count
+          %td.small= Facility.where("created_at > ?", (Date.today - 6)).count
+          %td.small= Facility.where("created_at > ?", (Date.today - 29)).count
+          %td.small= Facility.select { |facility| facility.users.size > 0 }.count
+          %td.small= Facility.select { |facility| facility.labs.size > 0 }.count
+          %td.small= Facility.count
+          
+%hr{style: "margin-top:10px;margin-bottom:10px;"}
+  
+.row
+  .span12    
+    %table.table-hover.table-condensed.table-striped{style: "background: white"}
+      %thead
+        %tr
+          %th.small= link_to 'ID', admin_path(facility_order: "id")
+          %th.small= link_to 'Created', admin_path(facility_order: "created_at")
+          %th.small= link_to 'Name', admin_path(facility_order: "name")
+          %th.small Website
+          %th.small Email
+          %th.small Phone
+          %th.small City
+          %th.small State
+          %th.small Country
+          %th.small Zip
+          %th.small Lat
+          %th.small Long
+          %th.small Display
+          %th.small Actions
+      %tbody
+        - @facilities.each do |facility|
+          %tr
+            %td.small= facility.id
+            %td.small= facility.created_at.strftime("%m/%e/%y %l:%M%P")
+            %td.small= link_to facility.name, facility
+            %td.small= facility.website
+            %td.small= facility.email
+            %td.small= facility.phone
+            %td.small= facility.location.city
+            %td.small= facility.location.state
+            %td.small= facility.location.country
+            %td.small= facility.location.zip
+            %td.small= facility.location.latitude
+            %td.small= facility.location.longitude
+            %td.small= facility.location.display_on_map == true ? "Yes" : "No"
+            %td.small
+              = link_to facility, title: "view facility" do
+                %i.icon-eye-open
+              = link_to edit_facility_path(facility), title: "edit facility" do
+                %i.icon-edit
+.row
+  .span12
+    = will_paginate @facilities

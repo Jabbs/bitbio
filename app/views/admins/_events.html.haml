@@ -1,0 +1,60 @@
+.row
+  .span12    
+    %table.table-hover.table-condensed.table-striped{style: "background: white"}
+      %thead
+        %tr
+          %th.small Today
+          %th.small 7 days
+          %th.small 30 days
+          %th.small With Comment(s)
+          %th.small Total
+      %tbody
+        %tr
+          %td.small= Event.where("created_at > ?", Time.zone.now.beginning_of_day).count
+          %td.small= Event.where("created_at > ?", (Date.today - 6)).count
+          %td.small= Event.where("created_at > ?", (Date.today - 29)).count
+          %td.small= Event.select { |event| event.comments.size > 0 }.count
+          %td.small= Event.count
+          
+%hr{style: "margin-top:10px;margin-bottom:10px;"}
+  
+.row
+  .span12    
+    %table.table-hover.table-condensed.table-striped{style: "background: white"}
+      %thead
+        %tr
+          %th.small= link_to 'ID', admin_path(event_order: "id")
+          %th.small= link_to 'Created', admin_path(event_order: "created_at")
+          %th.small= link_to 'Starts', admin_path(event_order: "start_date")
+          %th.small= link_to 'Ends', admin_path(event_order: "end_date")
+          %th.small= link_to 'Title', admin_path(event_order: "title")
+          %th.small Location Name
+          %th.small= link_to 'Country', admin_path(event_order: "country")
+          %th.small Created By
+          %th.small= link_to 'Views', admin_path(event_order: "views")
+          %th.small= link_to 'Comments', admin_path(event_order: "comments")
+          %th.small Tags
+          %th.small Actions
+      %tbody
+        - @events.each do |event|
+          %tr
+            %td.small= event.id
+            %td.small= event.created_at.strftime("%m/%e/%y %l:%M%P")
+            %td.small= event.start_date.strftime("%m/%e/%y %l:%M%P")
+            %td.small= event.end_date.strftime("%m/%e/%y %l:%M%P")
+            %td.small= link_to event.title, event
+            %td.small= event.location_name
+            %td.small= event.location.country
+            %td.small= link_to event.user.full_name, event.user
+            %td.small= event.view_count
+            %td.small= event.comments.count
+            %td.small= event.tag_list
+            %td.small
+              = link_to event, title: "view event" do
+                %i.icon-eye-open
+              = link_to edit_event_path(event), title: "edit event" do
+                %i.icon-edit
+.row
+  .span12
+    = will_paginate @events
+    

@@ -70,6 +70,9 @@ Bitbio::Application.routes.draw do
   
   match '/researchers', to: 'users#researchers_index', via: :get
   match '/providers', to: 'users#providers_index', via: :get
+  
+  # admin
+  match '/admin', to: 'admins#admin', via: :get
 
   controller :sessions do
     get 'login' => :new

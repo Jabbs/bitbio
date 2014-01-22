@@ -1,0 +1,44 @@
+.row
+  .span12
+    %h3.center Admin Dashboard
+%ul#myTab.nav.nav-tabs
+  %li.active
+    %a#user_tab{href: "#users_tab"}
+      Users
+      - if User.where("created_at > ?", Time.zone.now.beginning_of_day).any?
+        <span class="orange-dark">(#{User.where("created_at > ?", Time.zone.now.beginning_of_day).count} new)</span>
+  %li
+    %a#project_tab{href: "#projects_tab"}
+      Projects
+      - if Project.where("created_at > ?", Time.zone.now.beginning_of_day).any?
+        <span class="orange-dark">(#{Project.where("created_at > ?", Time.zone.now.beginning_of_day).count} new)</span>
+  %li
+    %a#blog_tab{href: "#blogs_tab"}
+      Blogs
+      - if Blog.where("created_at > ?", Time.zone.now.beginning_of_day).any?
+        <span class="orange-dark">(#{Blog.where("created_at > ?", Time.zone.now.beginning_of_day).count} new)</span>
+  %li
+    %a#event_tab{href: "#events_tab"}
+      Events
+      - if Event.where("created_at > ?", Time.zone.now.beginning_of_day).any?
+        <span class="orange-dark">(#{Event.where("created_at > ?", Time.zone.now.beginning_of_day).count} new)</span>
+  %li
+    %a#facility_tab{href: "#facilities_tab"}
+      Facilities
+      - if Facility.where("created_at > ?", Time.zone.now.beginning_of_day).any?
+        <span class="orange-dark">(#{Facility.where("created_at > ?", Time.zone.now.beginning_of_day).count} new)</span>
+.tab-content
+  #users_tab.tab-pane.active
+    = render "users"
+  #projects_tab.tab-pane
+    = render "projects"
+  #blogs_tab.tab-pane
+    = render "blogs"
+  #events_tab.tab-pane
+    = render "events"
+  #facilities_tab.tab-pane
+    = render "facilities"
+%br
+%br
+%br
+  

@@ -1,0 +1,55 @@
+.row
+  .span12    
+    %table.table-hover.table-condensed.table-striped{style: "background: white"}
+      %thead
+        %tr
+          %th.small Today
+          %th.small 7 days
+          %th.small 30 days
+          %th.small With Comment(s)
+          %th.small With Like(s)
+          %th.small Total
+      %tbody
+        %tr
+          %td.small= Blog.where("created_at > ?", Time.zone.now.beginning_of_day).count
+          %td.small= Blog.where("created_at > ?", (Date.today - 6)).count
+          %td.small= Blog.where("created_at > ?", (Date.today - 29)).count
+          %td.small= Blog.select { |blog| blog.comments.size > 0 }.count
+          %td.small= Blog.select { |blog| blog.likes.size > 0 }.count
+          %td.small= Blog.count
+          
+%hr{style: "margin-top:10px;margin-bottom:10px;"}
+  
+.row
+  .span12    
+    %table.table-hover.table-condensed.table-striped{style: "background: white"}
+      %thead
+        %tr
+          %th.small= link_to 'ID', admin_path(blog_order: "id")
+          %th.small= link_to 'Created', admin_path(blog_order: "created_at")
+          %th.small= link_to 'Title', admin_path(blog_order: "title")
+          %th.small Created By
+          %th.small= link_to 'Views', admin_path(blog_order: "views")
+          %th.small= link_to 'Comments', admin_path(blog_order: "comments")
+          %th.small= link_to 'Likes', admin_path(blog_order: "messages")
+          %th.small Tags
+          %th.small Actions
+      %tbody
+        - @blogs.each do |blog|
+          %tr
+            %td.small= blog.id
+            %td.small= blog.created_at.strftime("%m/%e/%y %l:%M%P")
+            %td.small= link_to blog.title, blog
+            %td.small= link_to blog.user.full_name, blog.user
+            %td.small= blog.view_count
+            %td.small= blog.comments.count
+            %td.small= blog.likes.count
+            %td.small= blog.tag_list
+            %td.small
+              = link_to blog, title: "view blog" do
+                %i.icon-eye-open
+              = link_to edit_blog_path(blog), title: "edit blog" do
+                %i.icon-edit
+.row
+  .span12
+    = will_paginate @blogs
