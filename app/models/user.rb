@@ -93,7 +93,7 @@ class User < ActiveRecord::Base
   end
   
   def has_links?
-    if self.tw_url.blank? || self.li_url.blank? || self.website.blank? || self.mend_url.blank? || self.fb_url.blank?
+    if self.tw_url.blank? && self.li_url.blank? && self.website.blank? && self.mend_url.blank? && self.fb_url.blank?
       false
     else
       true
@@ -101,7 +101,7 @@ class User < ActiveRecord::Base
   end
   
   def has_social_links?
-    if self.tw_url.blank? || self.li_url.blank? || self.mend_url.blank? || self.fb_url.blank?
+    if self.tw_url.blank? && self.li_url.blank? && self.mend_url.blank? && self.fb_url.blank?
       false
     else
       true
@@ -124,7 +124,7 @@ class User < ActiveRecord::Base
     self.email = self.email.strip.downcase
     self.first_name = self.first_name.strip.capitalize
     self.last_name = self.last_name.strip.capitalize
-    self.organization = self.organization.strip.titleize
+    self.organization = self.organization.strip
   end
   
   def new_message_count
