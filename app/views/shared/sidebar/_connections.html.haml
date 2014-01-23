@@ -1,5 +1,7 @@
-#conncetions.smaller-shell{style: "padding-bottom:10px;"}
-  %h2.info_header{ style: "margin-bottom: 10px;"} Connections (#{@number_of_connections})
+.smaller-shell{style: "padding-bottom:10px;"}
+  %h2.info_header{ style: "margin-bottom: 10px;"}
+    %i.icon-group{style: "padding-right:3px;"}
+    Connections (#{@number_of_connections})
   .div{style: "padding-left:5px;"}
     - if @connection_users.any?
       - @connection_users.each do |user|
@@ -13,4 +15,4 @@
           = link_to "view all", user_connections_path(@user)
     - else
       .div{style: "padding-left:10px; margin-bottom: 10px;"}
-        No Connections.
+        %em No Connections.

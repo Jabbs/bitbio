@@ -39,7 +39,7 @@
                 &#8594;
               #{instrument.try(:resource_type)}:
               = instrument.try(:alias)
-        %hr
+          %hr
         = simple_format(Rinku.auto_link(@project.description).html_safe)
         %hr
         - if @project.tags.any?

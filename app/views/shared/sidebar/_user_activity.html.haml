@@ -1,0 +1,13 @@
+.smaller-shell{style: "padding-bottom:10px;"}
+  %h2.info_header{ style: "margin-bottom: 10px;"}
+    %i.icon-bar-chart{style: "padding-right:3px;"}
+    Activity
+  .div{style: "padding-left:15px; padding-right:15px;"}
+    %ul.unstyled
+      %li
+        Projects:
+        %strong= @user.projects.count
+      %hr{style: "margin-top:5px;margin-bottom:5px;"}
+      %li
+        Blogs:
+        %strong= @user.blogs.count

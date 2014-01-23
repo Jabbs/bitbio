@@ -82,7 +82,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:project_id])
     @project.active = true
     if @project.save
-      redirect_to @project, notice: "Congradulations, your project is now active on the marketplace!"
+      redirect_to @project, notice: "Congradulations, your project is now active!"
     else
       redirect_to @project, alert: "There was a problem activating your project."
     end

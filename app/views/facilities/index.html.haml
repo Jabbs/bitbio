@@ -14,7 +14,7 @@
           = f.text_field :website, class: 'span3', placeholder: "website", style: "width: 190px;"
           = f.text_field :email, class: 'span3', placeholder: "email", style: "width: 190px;"
           = f.text_field :phone, class: 'span3', placeholder: "phone", style: "width: 190px;"
-          = f.submit 'List facility', class: "btn btn-info", disable_with: 'Submitting...'
+          = f.submit 'Submit', class: "btn btn-info", disable_with: 'Submitting...'
   .span9
     = gmaps4rails(@json)
 - if current_user && current_user.admin?

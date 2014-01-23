@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   before_validation :update_continent
   before_save :correct_case_of_inputs
   before_save :check_to_resubscribe_user, on: :update
+  before_save :check_if_organization_changed, on: :update
   before_create { generate_token(:auth_token) }
   before_create { generate_token(:verification_token) }
   before_create { generate_number_token(:invite_token) }
@@ -61,7 +62,18 @@ class User < ActiveRecord::Base
       end
     end
   end
-      
+  
+  def check_if_organization_changed
+    if self.organization_changed?
+      if facility = Facility.find_by_name(self.organization)
+      else
+        facility = Facility.new(name: self.organization)
+        facility.build_location(country:  self.country, display_on_map: false)
+        facility.save
+      end
+      self.facility_id = facility.id
+    end
+  end
   
   def self.featured
     User.last(3)
