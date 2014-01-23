@@ -1,0 +1,38 @@
+.row
+  .span12    
+    %table.table-hover.table-condensed.table-striped{style: "background: white"}
+      %thead
+        %tr
+          %th.small Today
+          %th.small 7 days
+          %th.small 30 days
+          %th.small Total
+      %tbody
+        %tr
+          %td.small= Contact.where("created_at > ?", Time.zone.now.beginning_of_day).count
+          %td.small= Contact.where("created_at > ?", (Date.today - 6)).count
+          %td.small= Contact.where("created_at > ?", (Date.today - 29)).count
+          %td.small= Contact.count
+          
+%hr{style: "margin-top:10px;margin-bottom:10px;"}
+  
+.row
+  .span12    
+    %table.table-hover.table-condensed.table-striped{style: "background: white"}
+      %thead
+        %tr
+          %th.small= link_to 'ID', admin_path(contact_order: "id")
+          %th.small= link_to 'Created', admin_path(contact_order: "created_at")
+          %th.small= link_to 'Name', admin_path(contact_order: "name")
+          %th.small Type
+      %tbody
+        - @contacts.each do |contact|
+          %tr
+            %td.small= contact.id
+            %td.small= contact.created_at.strftime("%m/%e/%y %l:%M%P")
+            %td.small= contact.full_name
+            %td.small= contact.user_type
+
+.row
+  .span12
+    = will_paginate @contacts

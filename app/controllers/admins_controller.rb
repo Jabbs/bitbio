@@ -24,6 +24,7 @@ class AdminsController < ApplicationController
     @blogs = Blog.order("created_at DESC").paginate(page: params[:page], per_page: 50)
     @events = Event.order("created_at DESC").paginate(page: params[:page], per_page: 50)
     @facilities = Facility.order("created_at DESC").paginate(page: params[:page], per_page: 50)
+    @contacts = Contact.order("created_at DESC").paginate(page: params[:page], per_page: 50)
   end
   
   private

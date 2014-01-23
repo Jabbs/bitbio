@@ -20,4 +20,6 @@ $ ->
     $('#myTab a#event_tab').tab('show')
   if url.indexOf("facility_order") != -1
     $('#myTab a#facility_tab').tab('show')
+  if url.indexOf("contact_order") != -1
+    $('#myTab a#contact_tab').tab('show')
       

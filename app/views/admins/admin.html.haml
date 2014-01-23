@@ -27,6 +27,11 @@
       Facilities
       - if Facility.where("created_at > ?", Time.zone.now.beginning_of_day).any?
         <span class="orange-dark">(#{Facility.where("created_at > ?", Time.zone.now.beginning_of_day).count} new)</span>
+  %li
+    %a#contact_tab{href: "#contacts_tab"}
+      Contacts
+      - if Contact.where("created_at > ?", Time.zone.now.beginning_of_day).any?
+        <span class="orange-dark">(#{Contact.where("created_at > ?", Time.zone.now.beginning_of_day).count} new)</span>
 .tab-content
   #users_tab.tab-pane.active
     = render "users"
@@ -38,6 +43,8 @@
     = render "events"
   #facilities_tab.tab-pane
     = render "facilities"
+  #contacts_tab.tab-pane
+    = render "contacts"
 %br
 %br
 %br

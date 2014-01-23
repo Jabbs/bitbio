@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   def check_if_alpha
     if ENV["ALPHA"] == "true" && action_name != 'coming_soon'
-      redirect_to root_path unless controller_name == "contacts" || admin_user?
+      redirect_to root_path unless controller_name == "contacts" || controller_name == "sessions" || admin_user?
     end
   end
   
