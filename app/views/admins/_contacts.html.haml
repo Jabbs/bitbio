@@ -24,6 +24,7 @@
           %th.small= link_to 'ID', admin_path(contact_order: "id")
           %th.small= link_to 'Created', admin_path(contact_order: "created_at")
           %th.small= link_to 'Name', admin_path(contact_order: "name")
+          %th.small= link_to 'Email', admin_path(contact_order: "email")
           %th.small Type
       %tbody
         - @contacts.each do |contact|
@@ -31,6 +32,7 @@
             %td.small= contact.id
             %td.small= contact.created_at.strftime("%m/%e/%y %l:%M%P")
             %td.small= contact.full_name
+            %td.small= contact.email
             %td.small= contact.user_type
 
 .row
