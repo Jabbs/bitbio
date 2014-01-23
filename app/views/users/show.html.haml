@@ -3,45 +3,104 @@
 - content_for :description do
   = @user.full_name
   \- #{@user.bio}
-.span9.pull-right
-  - if current_user && current_user?(@user) && !current_user.verified
-    %div{style: "height: 0px;"}
-      #search-results
-        %p.inline.red{style: "margin:0px; margin-left: 10px;"}
-          %span{style: "font-size: 83%"}
-            Your account has not been verified. #{link_to 'Resend verification email', user_resend_url(current_user), disable_with: 'Sending...'}.
-.span3.no-left-margin
-  = render 'shared/sidebar/connections'
-.span9.pull-right
-  .row
-    .span2{style: "width: 80px;"}
-      - if @user.attachments.any?
-        = image_tag(@user.attachments.first.image.url, title: @user.full_name).to_s
-      - else
-        = image_tag 'blank_avatar.jpg', title: @user.full_name, id: 'user-avatar'
-    .span5{style: "margin-top: -8px;"}
-      %h2= @user.full_name
-      %i.icon-building.blue{ style: "padding-left:1px; padding-right:3px"}
-      %h6.inline= @user.facility.name
-      %br
-      %i.icon-map-marker.green{ style: "padding-left:2px; padding-right:5px"}
-      = country_with_us_shortened(@user.country)
-    .span2.pull-right{style: "margin-top: -8px;"}
-      - if current_user?(@user)
-        = link_to '<i class="icon-edit"></i> edit profile'.html_safe, edit_user_path(@user), class: 'pull-right my-button-red'
-      - elsif current_user && !current_user.connected_with(@user)
-        = link_to 'Connect'.html_safe, connection_requests_path(receiver_id: @user.id), class: 'pull-right my-button-red', method: :post, disable_with: "sending..."
-        /
-          <haml_loud> link_to '<i class="icon-plus"></i> add services'.html_safe, new_service_path,
-          class: 'pull-right my-button-silver', style: 'margin:5px 0px;' </haml_loud>
-  %hr{style: "margin-top:0;"}/
-.span9.pull-right
-  %h3 BIO
-  %p
-    - if @user.bio && !@user.bio.empty?
-      .well
-        %p= @user.bio
-    - else
-      .well{ style: "min-height: 200px;"}
-        %p
-          %em Empty.
+.row
+  .span9.offset3
+    - if current_user && current_user?(@user) && !current_user.verified
+      %div{style: "height: 0px;"}
+        #search-results
+          %p.inline.red{style: "margin:0px; margin-left: 10px;"}
+            %span{style: "font-size: 83%"}
+              Your account has not been verified. #{link_to 'Resend verification email', user_resend_url(current_user), disable_with: 'Sending...'}.
+.row
+  .span3
+    = render 'shared/sidebar/connections'
+  .span9
+    .row
+      .no-height
+        .right
+          - if current_user?(@user)
+            = link_to '<i class="icon-edit"></i> edit profile'.html_safe, edit_user_path(@user), class: 'my-button-red', style: "position:relative; z-index:10;"
+          - elsif current_user && !current_user.connected_with(@user)
+            = link_to 'Connect'.html_safe, connection_requests_path(receiver_id: @user.id), class: 'my-button-red', method: :post, disable_with: "sending...", style: "position:relative; z-index:10;"
+      .span2{style: "width: 80px;"}
+        - if @user.attachments.any?
+          = image_tag(@user.attachments.first.image.url, title: @user.full_name, id: 'user-avatar').to_s
+        - else
+          = image_tag 'blank_avatar.jpg', title: @user.full_name, id: 'user-avatar'
+      .span7{style: "width: 600px;"}
+        %h1{style: "line-height:.8em; margin-bottom:5px;"}= @user.full_name
+        - if @user.title.blank?
+          .div{style: "height:37px;"}
+        - else
+          %h3{style: "margin-bottom:8px;margin-top:3px;"}= @user.title
+        .no-height
+          .div{style: "position:relative;"}
+            .right              
+              = country_with_us_shortened(@user.country)
+              %i.icon-map-marker.green{ style: "padding-left:2px;"}
+        %i.icon-building{style: "padding-right:3px;"}
+        = @user.facility.name
+
+    %hr{style: "margin-top:0;"}/
+    %br
+    .row
+      .span9
+        %h3{style: "line-height:.3em;"}
+          .blue_dark BIO
+        - if @user.bio && !@user.bio.empty?
+          .well
+            %p= simple_format(Rinku.auto_link(@user.bio).html_safe)
+        - else
+          .well
+            %p
+              %em Empty.
+    %br
+    .row
+      .span9
+        %h3{style: "line-height:.3em;"}
+          .blue_dark INTERESTS
+        - if @user.interest_description && !@user.interest_description.empty?
+          .well
+            %p= simple_format(Rinku.auto_link(@user.interest_description).html_safe)
+        - else
+          .well
+            %p
+              %em Empty.
+    %br
+    .row
+      .span9
+        %h3{style: "line-height:.3em;"}
+          .blue_dark LINKS
+        - if @user.has_links?
+          .well
+            - if !@user.website.blank?
+              %ul.unstyled
+                %label Website:
+                %li
+                  = link_to "#{@user.website}", url_with_protocol(@user.website), target: "_blank", class: "no-decoration"
+            - if @user.has_social_links?
+              %ul.unstyled
+                %label Social:
+                - if !@user.tw_url.blank?
+                  %li.inline.big-right-margin
+                    = link_to url_with_protocol(@user.tw_url), target: "_blank", class: "no-decoration" do
+                      %i.icon-twitter.big
+                      twitter
+                - if !@user.li_url.blank?
+                  %li.inline.big-right-margin
+                    = link_to url_with_protocol(@user.li_url), target: "_blank", class: "no-decoration" do
+                      %i.icon-linkedin.big
+                      linkedin
+                - if !@user.mend_url.blank?
+                  %li.inline.big-right-margin
+                    = link_to url_with_protocol(@user.mend_url), target: "_blank", class: "no-decoration" do
+                      mendeley
+                - if !@user.fb_url.blank?
+                  %li.inline
+                    = link_to url_with_protocol(@user.fb_url), target: "_blank", class: "no-decoration" do
+                      %i.icon-facebook.big
+                      facebook
+        - else
+          .well
+            %p
+              %em Empty.

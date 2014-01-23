@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  http_basic_authenticate_with :name => "bitbio", :password => "bitbio"
+  if Rails.env.production?
+    http_basic_authenticate_with :name => "bitbio", :password => "bitbio"
+  end
   before_filter :signed_in_user, only: [:edit, :update, :project_listings, :all_connections, :settings]
   before_filter :admin_user, only: [:researchers_index]
   before_filter :correct_user, only: [:edit, :update]
@@ -37,6 +39,8 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     @user.attachments.build
+    @number_of_connections = @user.number_of_connections
+    @connection_users = @user.connection_users_limit_nine
   end
   
   def update

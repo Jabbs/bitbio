@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140121231025) do
+ActiveRecord::Schema.define(:version => 20140123162949) do
 
   create_table "attachments", :force => true do |t|
     t.string   "attachable_type"
@@ -363,6 +363,13 @@ ActiveRecord::Schema.define(:version => 20140121231025) do
     t.boolean  "event_alerts",           :default => false
     t.boolean  "subscribed",             :default => true
     t.boolean  "newsletter",             :default => true
+    t.string   "title"
+    t.string   "tw_url"
+    t.string   "li_url"
+    t.string   "mend_url"
+    t.string   "fb_url"
+    t.string   "website"
+    t.text     "interest_description"
   end
 
   add_index "users", ["account_type"], :name => "index_users_on_account_type"

@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   attr_accessible :account_type, :bio, :email, :first_name, :last_name, :password, :password_confirmation, 
                   :phone, :country, :membership, :continent, :attachments_attributes, :_destroy,
                   :facility_id, :lab_id, :organization, :project_alerts, :blog_alerts, :event_alerts,
-                  :subscribed, :newsletter
+                  :subscribed, :newsletter, :title, :tw_url, :li_url, :website, :interest_description,
+                  :mend_url, :fb_url
   attr_accessor   :_destroy
   has_secure_password
   
@@ -77,6 +78,22 @@ class User < ActiveRecord::Base
   
   def number_of_connections
     self.connected_users.size + self.connecter_users.size
+  end
+  
+  def has_links?
+    if self.tw_url.blank? || self.li_url.blank? || self.website.blank? || self.mend_url.blank? || self.fb_url.blank?
+      false
+    else
+      true
+    end
+  end
+  
+  def has_social_links?
+    if self.tw_url.blank? || self.li_url.blank? || self.mend_url.blank? || self.fb_url.blank?
+      false
+    else
+      true
+    end
   end
   
   def connected_with(user)

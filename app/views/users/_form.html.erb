@@ -1,19 +1,21 @@
 <%= form_for @user, :html=>{:multipart => true } do |f| %>
-  <div class="row" style="margin-top: 10px;">
+  <div class="row">
     <div class="span9">
       <%= render 'shared/error_messages', object: f.object %>
-      <% if action_name == "edit" %>
-        <h2 style="margin-top: 5px;">Editing Account</h2>
-      <% else %>
+      <% unless action_name == "edit" %>
         <h2 style="margin-top: 5px;">Join the <i class="icon-beaker"></i> <span class="logo-font">BitBio</span> science community!</h2>
+        <hr style="margin-top: 5px;">
       <% end %>
-      <hr style="margin-top: 5px;">
       
       <% if action_name == "edit" || action_name == "update" %>
-        
+        <div class="no-height">
+          <div class="right">
+            <%= link_to '<i class="icon-user"></i> back to profile'.html_safe, @user, class: 'my-button-red', style: "position:relative;" %>
+          </div>
+        </div>
         <div class="row" style="margin-bottom: 20px;">
-          <div class="span2">
-             <label>Profile Picture:</label>
+          <div class="span1">
+             <label>Picture:</label>
            </div>
            <div class="span6">
             <%= f.fields_for :attachments do |attch| %>
@@ -35,41 +37,54 @@
       <hr>
       <% end %>
       <div class="row">
-        <div class="span2">
+        <div class="span1">
   				<label>Name:</label>
   			</div>
-  			<div class="span6">
-  		    <%= f.text_field :first_name, class: "span2", placeholder: "First" %> 
-  				<%= f.text_field :last_name, class: "span2", placeholder: "Last" %>
+  			<div class="span7">
+  		    <%= f.text_field :first_name, class: "span3", placeholder: "First" %> 
+  				<%= f.text_field :last_name, class: "span3", placeholder: "Last" %>
   			</div>
       </div>
 
       <div class="row">
-        <div class="span2">
+        <div class="span1">
   				<label>Email:</label>
   			</div>
-  			<div class="span6">
-  		    <%= f.text_field :email, class: "span3", placeholder: "Email", style: 'width: 273px' %> 
+  			<div class="span7">
+  		    <%= f.text_field :email, class: "span4" %> 
   			</div>
       </div>
       <% if action_name == "edit" || action_name == "update" %>
       <div class="row">
-        <div class="span2">
-  				<label>Phone:</label>
+        <div class="span1"><label>Phone:</label></div>
+  			<div class="span7">
+  		    <%= f.text_field :phone, class: "span4" %> 
   			</div>
-  			<div class="span6">
-  		    <%= f.text_field :phone, class: "span3", placeholder: "Phone", style: 'width: 273px' %> 
+      </div>
+      <div class="row">
+        <div class="span1"><label>Website:</label></div>
+  			<div class="span7">
+  		    <%= f.text_field :website, class: "span4" %> 
+  			</div>
+      </div>
+      <div class="row">
+        <div class="span1"><label>Links:</label></div>
+  			<div class="span8">
+  		    <%= f.text_field :tw_url, class: "span4", placeholder: "Twitter (https://twitter.com/gregmendel)" %> 
+  		    <%= f.text_field :li_url, class: "span4", placeholder: "Linkedin (https://linkedin.com/in/gregmendel)" %> 
+  		    <%= f.text_field :mend_url, class: "span4", placeholder: "Mendeley (http://www.mendeley.com/profiles/greg-mendel/)" %> 
+  		    <%= f.text_field :fb_url, class: "span4", placeholder: "Facebook (https://www.facebook.com/greg.mendel)" %> 
   			</div>
       </div>
       <hr>
       <% end %>
       <div class="row">
-        <div class="span2">
-  				<label>Organization:</label>
+        <div class="span1">
+  				<label>Org:</label>
   			</div>
-  			<div class="span6">
+  			<div class="span8">
   		  
-  		    <input style="width: 373px;" id="user_organization" name="user[organization]" 
+  		    <input style="width: 366px;" id="user_organization" name="user[organization]" 
           placeholder="Organization name" size="30" type="text" 
           data-provide="typeahead" data-source="<%= Facility.scoped.pluck(:name).uniq.sort %>"
           autocomplete="off" 
@@ -77,30 +92,44 @@
             value="<%= @user.organization %>"
           <% end %>
            />
-  		    
   			</div>
       </div>
       <% if action_name == "edit" || action_name == "update"  %>
-      <div class="row">
-        <div class="span2">
-  				<label>Bio:</label>
-  			</div>
-  			<div class="span6">
-  		    <%= f.text_area :bio, class: 'span6', rows: 7, 
-  		        placeholder: "Please describe your scientific background." %> 
-  			</div>
-      </div>
-      <hr>
+        <div class="row">
+          <div class="span1"><label>Title:</label></div>
+          <div class="span8">
+            <%= f.text_field :title, class: "span5" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="span1">
+    				<label>Bio:</label>
+    			</div>
+    			<div class="span8">
+    		    <%= f.text_area :bio, class: 'span8', rows: 8, 
+    		        placeholder: "Please describe your scientific background." %> 
+    			</div>
+        </div>
+        <div class="row">
+          <div class="span1">
+    				<label>Interests:</label>
+    			</div>
+    			<div class="span8">
+    		    <%= f.text_area :interest_description, class: 'span8', rows: 4, 
+    		        placeholder: "Please describe your scientific interests." %> 
+    			</div>
+        </div>
+        <hr>
       <% end %>
       <div class="row">
-        <div class="span2">
+        <div class="span1">
   				<label>Country:</label>
   			</div>
-  			<div class="span6">
+  			<div class="span8">
   			  <% request.location.country == "United States" ? country = "United States of America" : country = "" %>
   			  <% if action_name == "edit" || action_name == "update"  %>
     			  <%= f.select :country, Ravibhim::Continents::COUNTRIES, 
-    		      { prompt: "--select--" }, style: 'width: 283px' %>
+    		      { prompt: "--select--" }, class: "span4" %>
   		    <% else %>
     		    <%= f.select :country, Ravibhim::Continents::COUNTRIES, 
     		      { prompt: "--select--", selected: country }, style: 'width: 283px' %>
@@ -122,7 +151,7 @@
       <div class="row">
         <div class="span9">
           <% if action_name == 'edit' || action_name == 'update' %>
-            <%= f.submit "Update Account", class: "btn", disable_with: 'Submitting...' %> |
+            <%= f.submit "Update Profile", class: "btn btn-info btn-large", disable_with: 'Submitting...' %> |
             <%= link_to "cancel", @user%>
           <% else %>
             <p class="small" style: "margin-top:0px; margin-bottom:20px;">
