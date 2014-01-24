@@ -1,0 +1,63 @@
+.row
+  .span3
+    = render 'shared/sidebar/image_tagline1'
+  .span9
+    %h2.underline-header how it works
+    %br
+    %br
+    .row
+      .span1{style: "width:40px;"}
+        .large.silver{style: "line-height:100%;"} 1.
+      .span8{style: "width:640px;"}
+        %p
+          %strong Make it official.
+          - if current_user
+            Join the BitBio community
+          - else
+            %a{"data-toggle" => "modal", href: "#signupModal"} Join the BitBio community
+          and complete your personal profile to let other life scientists and potential
+          collaborators know more about your research interests and goals.
+    %hr.small-top-bottom-margin
+    .row
+      .span1{style: "width:40px;"}
+        .large.silver{style: "line-height:100%;"} 2.
+      .span8{style: "width:640px;"}
+        %strong Create a project.
+        Design research projects to connect with service providers, collaborators, or the scientific community.
+    %hr.small-top-bottom-margin
+    .row
+      .span1{style: "width:40px;"}
+        .large.silver{style: "line-height:100%;"} 3.
+      .span8{style: "width:640px;"}
+        %strong Share your expertise.
+        Write a #{ link_to "blog post", new_blog_path }, add an #{ link_to "event", new_event_path } you are hosting, or #{link_to "add your facility", facilities_path } to get on the map!
+    %hr.small-top-bottom-margin
+    .row
+      .span1{style: "width:40px;"}
+        .large.silver{style: "line-height:100%;"} 4.
+      .span8{style: "width:640px;"}
+        %strong Search research projects.
+        Whether you are a service provider, researcher, or interested in collaboration, search the #{ link_to "forum", projects_path } for projects that fit your scientific expertise or interests.
+    %hr.small-top-bottom-margin
+    .row
+      .span1{style: "width:40px;"}
+        .large.silver{style: "line-height:100%;"} 5.
+      .span8{style: "width:640px;"}
+        %strong Discover.
+        Find new technologies, methods, or techniques you had not considered. Connect with researchers or organizations that interest you.
+    %br
+    %br
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
