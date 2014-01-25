@@ -16,7 +16,7 @@
             %i.icon-time
             = date_time_info(@event)
             %small
-              %span{style: "margin-left: 5px;"}= pluralize(@event.view_count, 'VIEW', 'VIEWS')
+              %span{style: "margin-left: 5px;"}= pluralize(@event.comments.count, 'COMMENT', 'COMMENTS')
           - if @event.website.present?
             %p
               %i.icon-link
