@@ -1,7 +1,4 @@
 class FacilitiesController < ApplicationController
-  if Rails.env.production?
-    http_basic_authenticate_with :name => "bitbio", :password => "bitbio"
-  end
   before_filter :signed_in_user, except: [:index]
   before_filter :verified_user, except: [:index]
   

@@ -80,11 +80,7 @@ Bitbio::Application.routes.draw do
     delete 'logout' => :destroy
   end
   
-  if ENV["ALPHA"] == "true"
-    root :to => 'static_pages#coming_soon'
-  else
-    root :to => 'projects#home'
-  end
+  root :to => 'projects#home'
   # root :to => 'static_pages#coming_soon'
   mount Sidekiq::Web, at: '/sidekiq'
 end
