@@ -22,7 +22,7 @@ class Event < ActiveRecord::Base
   validates :end_date, presence: true
   
   def self.featured
-    Event.order("start_date DESC").first(6)
+    Event.order("start_date ASC").first(6)
   end
   
   def self.tagged_with(name)

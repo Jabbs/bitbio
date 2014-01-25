@@ -9,6 +9,7 @@ class FacilitiesController < ApplicationController
     @facility = Facility.new
     @facility.build_location
     @facilities = Facility.order("id ASC").paginate(page: params[:page], per_page: 100)
+    @facilities_off_map = Facility.order("id ASC").joins(:location).where(locations: {display_on_map: false}).paginate(page: params[:page], per_page: 100)
     @locations = Location.geocoded.facilities.where(display_on_map: true)
     @json = @locations.to_gmaps4rails do |location, marker|
       marker.infowindow render_to_string(partial: "/facilities/info_window", locals: { location: location })

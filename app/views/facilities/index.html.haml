@@ -22,7 +22,10 @@
 - if current_user && current_user.admin?
   .row
     .span12
-      %h2 Facilities
+      = will_paginate @facilities_off_map
+  .row
+    .span12
+      %h2 Facilities not on map
       = link_to 'add new', new_facility_path, class: 'btn'
       %table.table.table-striped
         %thead
@@ -33,7 +36,7 @@
             %th Address
             %th On Map?
         %tbody
-          - @facilities.each do |f|
+          - @facilities_off_map.each do |f|
             %tr
               %td= f.id
               %td= f.name
@@ -75,4 +78,4 @@
                 = link_to 'remove', facility_path(f), class: 'btn btn-small btn-danger', method: :delete, confirm: "Are you sure?"
   .row
     .span12
-      = will_paginate @facilities
+      = will_paginate @facilities_off_map
