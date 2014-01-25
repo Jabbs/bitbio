@@ -30,7 +30,7 @@ class EventsController < ApplicationController
      @event = current_user.events.build(params[:event])
     create_tags
     if @event.save
-      # create_bitly_url(event_url(@event)) if Rails.env.production? && ENV['STAGING'].nil?
+      create_bitly_url(event_url(@event)) if Rails.env.production? && ENV['STAGING'].nil?
       redirect_to @event, notice: "Your event entry has been created!"
     else
       @event.attachments.build
@@ -60,7 +60,7 @@ class EventsController < ApplicationController
     def create_bitly_url(long_url)
       bitly = Bitly.client
       u = bitly.shorten(long_url)
-      @event.bitly_url = u
+      @event.bitly_url = u.short_url
       @event.save!
     end
 

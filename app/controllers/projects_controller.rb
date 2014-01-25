@@ -103,7 +103,7 @@ class ProjectsController < ApplicationController
     def create_bitly_url(long_url)
       bitly = Bitly.client
       u = bitly.shorten(long_url)
-      @project.bitly_url = u
+      @project.bitly_url = u.short_url
       @project.save!
     end
     

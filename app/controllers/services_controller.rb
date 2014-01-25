@@ -68,7 +68,7 @@ class ServicesController < ApplicationController
     def create_bitly_url(long_url)
       bitly = Bitly.client
       u = bitly.shorten(long_url)
-      @service.bitly_url = u
+      @service.bitly_url = u.short_url
       @service.save!
     end
     

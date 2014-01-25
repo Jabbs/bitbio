@@ -55,7 +55,7 @@ class BlogsController < ApplicationController
     def create_bitly_url(long_url)
       bitly = Bitly.client
       u = bitly.shorten(long_url)
-      @blog.bitly_url = u
+      @blog.bitly_url = u.short_url
       @blog.save!
     end
 
