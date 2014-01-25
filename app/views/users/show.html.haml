@@ -26,7 +26,7 @@
             = link_to 'Connect'.html_safe, connection_requests_path(receiver_id: @user.id), class: 'my-button-red', method: :post, disable_with: "sending...", style: "position:relative; z-index:10;"
       .span2{style: "width: 80px;"}
         - if @user.attachments.any?
-          = image_tag(@user.attachments.first.image.url, title: @user.full_name, id: 'user-avatar').to_s
+          = image_tag(@user.attachments.first.image.url(:thumb), title: @user.full_name, id: 'user-avatar').to_s
         - else
           = image_tag 'blank_avatar.jpg', title: @user.full_name, id: 'user-avatar'
       .span7{style: "width: 600px;"}

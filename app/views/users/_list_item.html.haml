@@ -1,7 +1,7 @@
 .row
   .span2{style: "width: 80px;"}
     - if user.attachments.any?
-      = link_to image_tag(user.attachments.first.image.url, title: user.full_name).to_s, user_path(user)
+      = link_to image_tag(user.attachments.first.image.url(:thumb), title: user.full_name).to_s, user_path(user)
     - else
       = link_to image_tag('blank_avatar.jpg', title: user.full_name, id: 'user-avatar'), user_path(user)
   .span5{style: "margin-top: -8px;"}

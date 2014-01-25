@@ -5,7 +5,7 @@
   .row
     .span2{style: "width: 80px;"}
       - if @event.attachments.any?
-        = image_tag(@event.attachments.first.image.url, title: @event.title).to_s
+        = image_tag(@event.attachments.first.image.url(:thumb), title: @event.title).to_s
       - else
         %i.icon-calendar-empty.huge.dark
     .span7{style: "width: 600px;"}

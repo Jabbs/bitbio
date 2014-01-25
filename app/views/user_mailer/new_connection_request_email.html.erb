@@ -1,7 +1,7 @@
 <tr>
 	<td style="padding-top:10px">
 		<% if @sender.attachments.any? %>
-		  <%= link_to image_tag(@sender.attachments.first.image.url, title: @sender.full_name).to_s, user_url(@sender) %>
+		  <%= link_to image_tag(@sender.attachments.first.image.url(:thumb), title: @sender.full_name).to_s, user_url(@sender) %>
 		<% else %>
 		  <%= link_to image_tag('blank_avatar_thumb.jpg', title: @sender.full_name), user_url(@sender) %>
 		<% end %>
