@@ -4,7 +4,7 @@
     <div class="span3" style="width: 204px;">
       <div class="event">
         <% if event.attachments.any? %>
-          <%= link_to image_tag(event.attachments.first.image.url(:tiny), 
+          <%= link_to image_tag(event.attachments.first.image.url(:thumb), 
               title: event.user.full_name).to_s, event_path(event) %>
         <% else %>
           <%= link_to "<i class='icon-calendar-empty'></i>".html_safe, event_path(event), title: event.title %>

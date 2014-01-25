@@ -9,7 +9,7 @@ style: 'position:relative; left: 591px; top: -40px' %></div>
   <div class="row">
     <div class="span2" style="width: 80px;">
       <% if @blog.user.attachments.any? %>
-        <%= image_tag(@blog.user.attachments.first.image.url(:tiny), title: @blog.user.full_name).to_s %>
+        <%= image_tag(@blog.user.attachments.first.image.url(:thumb), title: @blog.user.full_name).to_s %>
       <% else %>
         <%= image_tag 'blank_avatar.jpg', title: @blog.user.full_name, id: 'user-avatar' %>
       <% end %>
