@@ -7,10 +7,13 @@
   <% end %>
 <% end %>
 
-
-<% if @events && @events.any? %>
-  <div class="row">
-    <div class="span9 pull-right">
+<div class="row">
+  <div class="span3">
+    <%= render 'shared/sidebar/image_tagline1' %>
+  </div>
+  <div class="span9">
+    <h2 class="underline-header bottom-margin">events</h2>
+    <% if @events && @events.any? %>
       <% if current_user %>
       <div style="height: 0px;"><%= link_to "<i class='icon-plus'></i> ADD EVENT".html_safe, new_event_path, class: 'my-button-blue',
       style: 'position:relative; left: 587px; top: -40px; z-index: 12;' %></div>
@@ -20,11 +23,7 @@
       <%= render 'events/event_list_item', event: event %>
     <% end %>
     <div class="row"><div class="span9"><%= will_paginate @events %></div></div>
-    </div>
-  </div>
-<% elsif @events.empty? %>
-  <div class="row">
-    <div class="span9 pull-right">
+    <% elsif @events.empty? %>
       <hr>
         <% if current_user %>
           <p style="text-align:center;"><em>***No events matched your search. Please check back another time or 
@@ -34,6 +33,6 @@
           login and adjust your settings to receive <%= link_to 'project alert emails', login_path %>.***</em></p>
         <% end %>
       <hr>
-    </div>
+    <% end %>
   </div>
-<% end %>
+</div>

@@ -2,6 +2,7 @@
   .span3
     = render 'shared/sidebar/image_tagline2'
   .span9
+    %h2.underline-header.bottom-margin events
     - if @events && @events.any?
       - if current_user
         %div{style: "height: 0px;"}= link_to "<i class='icon-plus'></i> ADD EVENT".html_safe, new_event_path, class: 'my-button-blue', style: 'position:relative; left: 587px; top: -40px; z-index: 12;'

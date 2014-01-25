@@ -158,6 +158,7 @@ h1.light, h2.light { font-weight: 500; }
 .no-left-margin {margin-left: 0;}
 .no-right-margin {margin-right: 0;}
 .no-bottom-margin {margin-bottom: 0;}
+.bottom-margin {margin-bottom:10px;}
 .left-margin { margin-left: 20px;}
 .small-top-bottom-margin { margin-top:8px; margin-bottom:8px; }
 .small-left-margin { margin-left: 10px;}
@@ -176,9 +177,8 @@ h1.light, h2.light { font-weight: 500; }
 .span1minus30 { width: 30px; }
 .span5plus20 {width: 400px;}
 .span3-input-width {width: 190px;}
-.pointer-enabled {
-  cursor: pointer;
-}
+.pointer-enabled { cursor: pointer; }
+.blue-background {background: lighten($blue, 20%);}
 
 .alert {
   border-radius: 0;
@@ -249,9 +249,7 @@ label {
 }
 
 #message-form {
-  margin-top: 10px;
   margin-bottom: 10px;
-  background: lighten($blue, 20%);
   .to {
     margin: 10px 0 0 10px;
   }

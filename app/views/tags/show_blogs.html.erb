@@ -7,10 +7,13 @@
   <% end %>
 <% end %>
 
-
-<% if @blogs && @blogs.any? %>
-  <div class="row">
-    <div class="span9 pull-right">
+<div class="row">
+  <div class="span3">
+    <%= render 'shared/sidebar/image_tagline1' %>
+  </div>
+  <div class="span9">
+    <h2 class="underline-header bottom-margin">blogs</h2>
+    <% if @blogs && @blogs.any? %>
       <% if current_user %>
       <div style="height: 0px;"><%= link_to "<i class='icon-plus'></i> ADD BLOG".html_safe, new_blog_path, class: 'my-button-blue',
       style: 'position:relative; left: 591px; top: -40px; z-index: 12;' %></div>
@@ -20,11 +23,7 @@
       <%= render 'blogs/blog_list_item', blog: blog %>
     <% end %>
     <div class="row"><div class="span9"><%= will_paginate @blogs %></div></div>
-    </div>
-  </div>
-<% elsif @blogs.empty? %>
-  <div class="row">
-    <div class="span9 pull-right">
+    <% elsif @blogs.empty? %>
       <hr>
         <% if current_user %>
           <p style="text-align:center;"><em>***No blogs matched your search. Please check back another time or 
@@ -34,6 +33,6 @@
           login and adjust your settings to receive <%= link_to 'project alert emails', login_path %>.***</em></p>
         <% end %>
       <hr>
-    </div>
+    <% end %>
   </div>
-<% end %>
+</div>

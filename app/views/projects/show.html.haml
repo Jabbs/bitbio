@@ -11,6 +11,9 @@
     - else
       = render "projects/progress", stage: "confirm"
   .span9
+    - if current_user
+      = render 'messages/form'
+    %h2.underline-header.bottom-margin projects
     = render 'projects/project_full'
     - if @project.active?
       = render 'comments/comments'

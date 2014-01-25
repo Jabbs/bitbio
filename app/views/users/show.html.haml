@@ -5,6 +5,7 @@
   \- #{@user.bio}
 .row
   .span9.offset3
+    %h2.underline-header.bottom-margin members
     - if current_user && current_user?(@user) && !current_user.verified
       %div{style: "height: 0px;"}
         #search-results

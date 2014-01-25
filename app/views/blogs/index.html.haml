@@ -2,6 +2,7 @@
   .span3
     = render 'shared/sidebar/image_tagline2'
   .span9
+    %h2.underline-header.bottom-margin blogs
     - if @blogs && @blogs.any?
       - if current_user
         %div{style: "height: 0px;"}= link_to "<i class='icon-plus'></i> ADD BLOG".html_safe, new_blog_path, class: 'my-button-blue', style: 'position:relative; left: 591px; top: -40px; z-index: 12;'

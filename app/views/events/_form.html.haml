@@ -1,19 +1,10 @@
 = form_for @event do |f|
+  %br
   = render 'shared/error_messages', object: f.object
-  - if @event.new_record?
-    %h2
-      %i.icon-calendar-empty
-      New Event
-  - else
-    %h2
-      %i.icon-calendar-empty
-      Editing Event
-  %hr/
   %label
     Title:
-  = f.text_field :title, class: 'span6', placeholder: "Choose a title that best fits your event", autocomplete: :off
-  %br/
-  %br/
+  = f.text_field :title, class: 'span9', placeholder: "Choose a title that best fits your event", autocomplete: :off
+  %hr
   .row
     .span1
       %label Photo:
@@ -26,8 +17,7 @@
           - else
             = image_tag(attch.object.image.url).to_s
             = f.hidden_field :_destroy
-            = link_to "<i class='icon-trash'></i> remove".html_safe, '#', class: 'remove_fields', |
-              style: 'margin-left: 5px;'                                                          |
+            = link_to "<i class='icon-trash'></i> remove".html_safe, '#', class: 'remove_fields', style: 'margin-left: 5px;'
       %p{style: "margin-top: 5px;"}
         %small Accepted file formats: jpg jpeg gif png.
   %hr/
@@ -37,14 +27,14 @@
         Event Dates:
   %br/
   .row
-    .span2
-      Start
+    .span1
+      Starting...
     .span8
       = f.datetime_select :start_date, { minute_step: 15, use_short_month: true }, { class: "span1" }
   .row
-    .span2
-      End
-    .span7
+    .span1
+      Ending...
+    .span8
       = f.datetime_select :end_date, { minute_step: 15, use_short_month: true }, { class: "span1" }
   %hr/
   .row
@@ -58,44 +48,36 @@
   %hr/
   .row
     .span4
-      Organized by:
+      %label Organized by:
       \#{f.text_field :organizer, class: 'span4'}
     .span5
-      Phone:
-      %br/
+      %label Phone:
       = f.text_field :phone, class: 'span4'
   .row
     .span9
-      Website:
+      %label Website:
   .row
     .span9
       = f.text_field :website, class: 'span6'
   %hr/
   .row
     .span9
-      Description:
-  %br/
+      %label Description:
   = f.cktext_area :description
-  %br/
   .row{style: "margin-top: 20px;"}
-    .span1{style: "width: 90px;"}
-      %label
-        %strong Tags:
-    .span8{style: "width: 590px;"}
-      %p Tag your event for optimal search queries (delimiters: tab, enter, comma). Maximum: 6.
+    .span9
+      %label Tag your event for optimal search queries (delimiters: tab, enter, comma). Maximum: 6.
       #event-tags{"data-tags" => Project::TAGS}
       #event-prefilled-tags{"data-tags" => @event.tag_list}
       %input.event-tm-input{autocomplete: "off", name: "event[tag_list]", placeholder: "tag", style: "width: 100px;", type: "text"}/
-      %hr/
-      .row{style: "margin-top: 20px;"}
-        .span9
-          - if @event.new_record?
-            = f.submit 'Submit Event Entry', class: "btn btn-large btn-info", disable_with: 'Submitting...', |
-              style: 'margin-bottom: 5px;'                                                                   |
-            |
-            \#{link_to 'cancel', root_path}
-          - else
-            = f.submit 'Update Event Entry', class: "btn btn-large", disable_with: 'Submitting...', |
-              style: 'margin-bottom: 5px;'                                                                   |
-            |
-            \#{link_to 'cancel', @event}
+  %hr/
+  .row{style: "margin-top: 20px;"}
+    .span9
+      - if @event.new_record?
+        = f.submit 'Submit Event Entry', class: "btn btn-large btn-info", disable_with: 'Submitting...', style: 'margin-bottom: 5px;'
+        |
+        \#{link_to 'cancel', root_path}
+      - else
+        = f.submit 'Update Event Entry', class: "btn btn-large", disable_with: 'Submitting...', style: 'margin-bottom: 5px;'
+        |
+        \#{link_to 'cancel', @event}

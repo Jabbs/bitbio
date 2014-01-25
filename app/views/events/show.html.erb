@@ -10,8 +10,9 @@
     <%= render 'shared/sidebar/image_tagline1' %>
   </div>
   <div class="span9">
-      <%= render 'events/header' %>
-      <p><%= simple_format(Rinku.auto_link(@event.description).html_safe) %></p>
+    <h2 class="underline-header bottom-margin">events</h2>
+    <%= render 'events/header' %>
+    <p><%= simple_format(Rinku.auto_link(@event.description).html_safe) %></p>
     <hr>
     <%= render 'comments/comments' %>
     <%= render 'comments/form_info' %>

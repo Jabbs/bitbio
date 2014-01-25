@@ -1,0 +1,26 @@
+.span9.pull-right#message-form
+  .blue-background
+    .div{style: "padding:10px;"}
+      = form_for @message, url: user_messages_path(current_user) do |f|
+        = render 'shared/error_messages', object: f.object
+        .field
+          = f.hidden_field :sender_id, value: current_user.id
+          - if @project
+            = f.hidden_field :project_id, value: @project.id
+        - if controller_name == 'messages' && @contacts && !@contacts.empty?
+          .field{style: "margin-top: 10px;"}
+            %label.inline{style: "margin-left: 10px;"} TO:
+            = f.select :receiver_id, options_from_collection_for_select(@contacts, 'id', "full_name"), {prompt: "TO: select a contact --"}, {class: "span5"}
+        - else
+          = f.hidden_field :receiver_id
+        - if @project && !@project.new_record?
+          .field{style: "margin-top: 10px;"}
+            = f.text_field :subject, value: "Project - #{@project.name}", placeholder: "Subject", style: 'width: 645px'
+        - else
+          .field
+            = f.text_field :subject, placeholder: "Subject", style: "width: 645px;"
+        .field
+          = f.text_area :content, rows: 3, placeholder: "Message content", style: "width: 645px;"
+        .cancel cancel
+        = f.submit 'Send', class: "btn pull-right", style: "margin-top: 0px; margin-right:10px;", disable_with: 'Submitting...'
+       
