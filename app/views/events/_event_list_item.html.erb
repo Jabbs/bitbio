@@ -18,7 +18,10 @@
           </div>
         </div>
         <h4 style="height:40px; overflow:hidden;"><%= link_to truncate(event.title, length: 80), event_path(event), title: event.title %></h4>
-        <p style="height:15px; overflow:hidden;"><%= event.organizer %></p>
+        <p style="height:15px; overflow:hidden;">
+          <i class="icon-map-marker dark" style="padding-right:2px;"></i>:
+          <%= event.location.city_country %>
+        </p>
       </div>
       <div class="row" style="margin-top:.5em;">
         <div class="span3" style="width: 204px;">

@@ -21,6 +21,16 @@ class Location < ActiveRecord::Base
     attrs.any?{|a| send "#{a}_changed?"}
   end
   
+  def city_country
+    if self.city
+      if self.country == "United States of America"
+        "#{self.city}, #{self.state}, USA"
+      else
+        "#{self.city}, #{self.country}"
+      end
+    end
+  end
+  
   def city_state?
     if !self.city.blank? && !self.state.blank?
       true

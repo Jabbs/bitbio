@@ -143,7 +143,7 @@ namespace :db do
       event = user.events.build(title: Faker::Lorem.sentence, description: description, start_date: start_date,
                                 end_date: end_date, organizer: organizer, phone: phone)
       event.view_count = [7,20,25,30,34,40,80,90,100,123,44,2,234,300,23,10,50].shuffle.first
-      country = "United States"
+      country = "United States of America"
       event.build_location(country: country)
       event.approved = true
       x = [1,2,3].shuffle.first
