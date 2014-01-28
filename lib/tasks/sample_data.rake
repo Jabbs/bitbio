@@ -145,6 +145,7 @@ namespace :db do
       event.view_count = [7,20,25,30,34,40,80,90,100,123,44,2,234,300,23,10,50].shuffle.first
       country = "United States"
       event.build_location(country: country)
+      event.approved = true
       x = [1,2,3].shuffle.first
       Project::TAGS.uniq.shuffle[0..x].each do |tag|
         if Tag.find_by_name(tag)
