@@ -977,7 +977,7 @@ h1.info_header_3 {
     position:relative;
     z-index:5; 
     left:120px;
-    top: -105px;
+    top: -96px;
     .inside { border: 1px solid $header_background; padding: .5em; border-top:none; } 
   }
   &:nth-child(3n+1) {
@@ -990,8 +990,8 @@ h1.info_header_3 {
     width: 203px;
   }
   .event {
-    height: 90px;
-    a { text-decoration: none; color: $header_background; font-size: 600%; }
+    height: 80px;
+    a { text-decoration: none; color: $header_background; font-size: 500%; }
   }
 }
 .change-border {

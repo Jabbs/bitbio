@@ -17,7 +17,7 @@
             <i class="icon-comment dark"></i><span class="dark">: <%= event.comments.count %></span>
           </div>
         </div>
-        <h4 style="height:40px; overflow:hidden;"><%= link_to truncate(event.title, length: 80), event_path(event), title: event.title %></h4>
+        <h4 style="height:60px; overflow:hidden;"><%= link_to truncate(event.title, length: 80), event_path(event), title: event.title %></h4>
         <p style="height:15px; overflow:hidden;">
           <i class="icon-map-marker dark" style="padding-right:2px;"></i>:
           <%= event.location.city_country %>
