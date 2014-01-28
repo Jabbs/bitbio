@@ -52,7 +52,7 @@
         .span1{style: "width:80px"}
           %a.twitter-share-button{"data-counturl" => share_url, "data-text" => @event.title, "data-url" => share_url, "data-via" => "BitBiology", href: "https://twitter.com/share"} Tweet
         .span1{style: "padding-top: 1px; width:80px;"}
-          .fb-like{"data-font" => "arial", "data-href" => request.url, "data-layout" => "button_count", "data-send" => "false", "data-show-faces" => "false", "data-width" => "80"}
+          .fb-like{"data-font" => "arial", "data-href" => share_url, "data-layout" => "button_count", "data-send" => "false", "data-show-faces" => "false", "data-width" => "80"}
         .span1{style: "width:80px"}
           %script{src: "//platform.linkedin.com/in.js", type: "text/javascript"}
             :cdata
