@@ -62,6 +62,14 @@ module ApplicationHelper
     end
   end
   
+  def get_request_country
+    if request.location && request.location.country == "United States"
+      country = "United States of America"
+    else
+      country = ""
+    end
+  end
+  
   def is_liked?(item)
     if current_user && item.likes.where(user_id: current_user.id).any?
       true

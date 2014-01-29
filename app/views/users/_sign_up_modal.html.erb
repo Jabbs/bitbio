@@ -46,7 +46,7 @@
     				<label>Country:</label>
     			</div>
     			<div class="span4">
-    			  <% request.location.country == "United States" ? country = "United States of America" : country = "" %>
+    			  <% get_request_country %>
       		    <%= f.select :country, Ravibhim::Continents::COUNTRIES, 
       		      { prompt: "--select--", selected: country }, style: 'width: 295px' %>
     			</div>
