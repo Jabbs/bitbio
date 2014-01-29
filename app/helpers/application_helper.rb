@@ -64,9 +64,9 @@ module ApplicationHelper
   
   def get_request_country
     if request.location && request.location.country == "United States"
-      country = "United States of America"
+      @country = "United States of America"
     else
-      country = ""
+      @country = ""
     end
   end
   
