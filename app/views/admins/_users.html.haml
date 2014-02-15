@@ -35,7 +35,7 @@
           %th.small= link_to 'Created', admin_path(user_order: "created_at")
           %th.small= link_to 'Name', admin_path(user_order: "name")
           %th.small= link_to 'Email', admin_path(user_order: "email")
-          %th.small{title: "Projects/Comments/Likes/Events"} P/C/L/E
+          %th.small{title: "Projects/Comments/Likes/Events"} P/C/L/E/B
           %th.small{title: "Verified"} Ver
           %th.small{title: "Newsletter"} News
           %th.small Facility
@@ -48,7 +48,7 @@
             %td.small= user.created_at.strftime("%m/%e/%y %l:%M%P")
             %td.small= link_to user.full_name, user
             %td.small= user.email
-            %td.small #{user.projects.size}-#{user.comments.size}-#{user.likes.size}-#{user.events.size}
+            %td.small #{user.projects.size}-#{user.comments.size}-#{user.likes.size}-#{user.events.size}-#{user.blogs.size}
             %td.small= user.verified == true ? "Yes" : "No"
             %td.small= user.newsletter == true ? "Yes" : "No"
             %td.small= user.facility.name
