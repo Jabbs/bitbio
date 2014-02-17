@@ -126,7 +126,11 @@
   				<label>Country:</label>
   			</div>
   			<div class="span8">
-  			  <% request.location.country == "United States" ? country = "United States of America" : country = "" %>
+  			  <% if request.location %>
+  			    <% request.location.country == "United States" ? country = "United States of America" : country = "" %>
+  			  <% else %>
+  			    <% country = "" %>
+  			  <% end %>
   			  <% if action_name == "edit" || action_name == "update"  %>
     			  <%= f.select :country, Ravibhim::Continents::COUNTRIES, 
     		      { prompt: "--select--" }, class: "span4" %>
