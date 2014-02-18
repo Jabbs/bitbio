@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140216183101) do
+ActiveRecord::Schema.define(:version => 20140218184945) do
 
   create_table "attachments", :force => true do |t|
     t.string   "attachable_type"
@@ -94,6 +94,16 @@ ActiveRecord::Schema.define(:version => 20140216183101) do
   add_index "connections", ["connecter_id", "connected_id"], :name => "index_connections_on_connecter_id_and_connected_id", :unique => true
   add_index "connections", ["connecter_id"], :name => "index_connections_on_connecter_id"
 
+  create_table "contact_notifications", :force => true do |t|
+    t.integer  "contact_id"
+    t.datetime "email_sent_at"
+    t.string   "action"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "contact_notifications", ["contact_id"], :name => "index_contact_notifications_on_contact_id"
+
   create_table "contacts", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -101,6 +111,7 @@ ActiveRecord::Schema.define(:version => 20140216183101) do
     t.datetime "created_at",                           :null => false
     t.datetime "updated_at",                           :null => false
     t.string   "user_type",  :default => "Researcher"
+    t.boolean  "subscribed", :default => true
   end
 
   create_table "events", :force => true do |t|

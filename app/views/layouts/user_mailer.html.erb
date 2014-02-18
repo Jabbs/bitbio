@@ -158,6 +158,9 @@
 					<% if @user && @user.verification_token %>
 					  If you no longer want to receive email notifications from BitBio please
 					  <%= link_to 'unsubscribe', unsubscribe_url(unsubscribe_id: @user.verification_token) %>.
+					<% elsif @contact %>
+					  If you no longer want to receive email notifications from BitBio please
+					  <%= link_to 'unsubscribe', unsubscribe_url(unsubscribe_email: @contact.email) %>.
 					<% end %>
 				</td>
 			</tr>

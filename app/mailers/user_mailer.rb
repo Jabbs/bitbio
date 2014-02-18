@@ -47,4 +47,14 @@ class UserMailer < ActionMailer::Base
     @invitation = invitation
     mail(to: "<#{@invitation.email}>", subject: "#{@invitation.user.full_name} has sent you an invitation to join BitBio!")
   end
+  
+  def newsletter_email(contact)
+    @contact = contact
+    if @contact.subscribed?
+      unless @contact.contact_notifications.where(action: "newsletter1").any?
+        mail(to: "#{contact.full_name} <#{contact.email}>", subject: "BitBio - Science Community, Forum, and Resource")
+        @contact.contact_notifications.create! action: "newsletter1", email_sent_at: DateTime.now
+      end
+    end
+  end
 end
