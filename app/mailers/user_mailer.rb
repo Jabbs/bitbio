@@ -39,7 +39,7 @@ class UserMailer < ActionMailer::Base
   end
   
   def welcome_email(user)
-    @user = user
+    @contact = user
     mail(to: "#{user.first_name} #{user.last_name} <#{user.email}>", subject: "Welcome to BitBio - Science Community, Forum, and Resource")
   end
   
