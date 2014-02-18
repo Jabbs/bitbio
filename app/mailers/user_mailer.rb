@@ -38,6 +38,11 @@ class UserMailer < ActionMailer::Base
     mail(to: "#{user.first_name} #{user.last_name} <#{user.email}>", subject: "Verify your BitBio Account")
   end
   
+  def welcome_email(user)
+    @user = user
+    mail(to: "#{user.first_name} #{user.last_name} <#{user.email}>", subject: "Welcome to BitBio - Science Community, Forum, and Resource")
+  end
+  
   def invitation_email(invitation)
     @invitation = invitation
     mail(to: "<#{@invitation.email}>", subject: "#{@invitation.user.full_name} has sent you an invitation to join BitBio!")
