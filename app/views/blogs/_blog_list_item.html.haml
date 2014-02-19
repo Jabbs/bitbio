@@ -8,7 +8,7 @@
         - else
           = link_to image_tag('blank_avatar_thumb.jpg', title: blog.user.full_name), user_path(blog.user)
       .top
-        %h4= link_to truncate(blog.title, length: 80), blog_path(blog), title: blog.title
+        %h4= link_to truncate(blog.title, length: 75), blog_path(blog), title: blog.title
         %p
           = blog.created_at.strftime("%D")
           by #{link_to "#{blog.user.full_name}", user_path(blog.user),  title: blog.user.full_name}
