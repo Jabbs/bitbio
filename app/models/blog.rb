@@ -34,7 +34,7 @@ class Blog < ActiveRecord::Base
   end
   
   def self.featured
-    Blog.where(featured: true)
+    Blog.where(featured: true).order("created_at DESC")
   end
   
   def add_view_count
