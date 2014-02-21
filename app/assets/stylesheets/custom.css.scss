@@ -137,7 +137,7 @@ h1.light, h2.light { font-weight: 500; }
 .silver { color: $silver; }
 .grey { color: $grey;}
 .grey_light { color: $grey_light;}
-.dark { color: $header_background;}
+.dark { color: $header_background; }
 .green { color: $green-dark; }
 .blue { color: darken($blue, 15%); }
 .blue_dark { color: darken($blue, 35%); }
@@ -179,6 +179,7 @@ h1.light, h2.light { font-weight: 500; }
 .span3-input-width {width: 190px;}
 .pointer-enabled { cursor: pointer; }
 .blue-background {background: lighten($blue, 20%);}
+.dark-link { color: $header_background; &:hover { color: $header_background; text-decoration: none;}}
 
 .alert {
   border-radius: 0;

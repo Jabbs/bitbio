@@ -9,7 +9,7 @@
       - else
         %i.icon-calendar-empty.huge.dark
     .span7{style: "width: 600px;"}
-      %h2{style: "margin-top:0px; padding-top:0px;"}= @event.title
+      %h2{style: "margin-top:0px; padding-top:0px;"}= link_to @event.title, @event, class: "dark-link"
       .row
         .span4{style: "width: 400px;margin-right:20px;"}
           %p

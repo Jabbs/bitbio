@@ -15,7 +15,7 @@ style: 'position:relative; left: 591px; top: -40px' %></div>
       <% end %>
     </div>
     <div class="span7" style="width: 600px;">
-      <h2><%= @blog.title %></h2>
+      <h2><%= link_to @blog.title, @blog, class: "dark-link" %></h2>
       <p>
         <small>
           posted by <%= link_to "#{@blog.user.full_name}", user_path(@blog.user) %> on 
