@@ -622,9 +622,23 @@ h1.info_header_3 {
 }
 
 .step {
-  font-size: 120%;
+  font-size: 170%;
+  font-weight: 600;
   line-height: 120%;
-  margin-top: 10px;
+  margin-top: 0px;
+}
+
+.home-link, .home-link h2, .home-link:hover, .home-link h2:hover {
+  color: black;
+  text-decoration: none;
+  i {font-size: 2em; }
+}
+.home-link:hover {
+  color: darken($blue, 15%);
+  i {color: darken($blue, 15%);}
+}
+.word-cloud {
+  background-image: url("stripe4.png");
 }
 
 /* projects/show */

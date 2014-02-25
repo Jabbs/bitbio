@@ -1,25 +1,21 @@
-.span9.bigger-shell.pull-right{:style => "padding-bottom: 10px;"}
-  %h2.info_header
-    What do you need?
-  %div{:style => "height: 0px;"}= link_to "SEARCH PROJECTS <i class='icon-arrow-right' style='padding-left:5px'></i>".html_safe, projects_path, class: 'btn add-services-button'
-  / %div{:style => "height: 0px;"}= link_to "SEARCH SERVICES <i class='icon-arrow-right'></i>".html_safe, services_path, class: 'my-button-blue add-projects-button'
+.span9.bigger-shell.pull-right.word-cloud{:style => "padding-bottom: 30px;padding-top:20px;"}
   .row
-    .span6{ style: "border-right: 1px solid black"}
-      = image_tag 'science_types_word_cloud.png', style: "margin-top:10px;", id: "word_cloud"
-    .span3.no-left-margin{ style: "width: 218px; margin-top:25px;"}
+    .span3
       .center
-        #word_cloud_1
-          %h2{style: "margin-top:10px;"}
+        = link_to new_project_path, class: "home-link" do
+          %h2
             %i.icon-list-alt.bigger
-          .step{style: "margin-top:0px; font-size:110%; font-weight: 300; margin-bottom:20px;"} 1. List Research Projects
-        / %h4.center{style: "margin-top:10px;"}
-        /   %i.icon-arrow-down
-        %h2
-          %i.icon-search
-        .step{style: "margin-top:0px; font-size:110%; font-weight: 300; margin-bottom:20px;"} 2. Search and Find Projects
-        / %h4.center{style: "margin-top:10px;"}
-        /   %i.icon-arrow-down
-        %h2
-          %i.icon-group
-        .step{style: "margin-top:0px; font-size:110%; font-weight: 300;"} 3. Collaborate
+          .step List Research Projects
+    .span3
+      .center
+        = link_to projects_path, class: "home-link" do
+          %h2
+            %i.icon-search
+          .step Search and Find Projects
+    .span3{style: "margin-left:18px;"}
+      .center
+        = link_to new_project_path, class: "home-link" do
+          %h2
+            %i.icon-group
+          .step Collaborate
         

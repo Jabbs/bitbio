@@ -5,8 +5,8 @@ en:
   application:
     root:
       twitter_name: "BitBiology"
-      description: "BitBio is an online science community to connect with service providers, collaborate on research, and discover new methods, technologies or techniques."
-      title: "Science Community, Forum, and Resource | BitBio"
+      description: "BitBio is an online science marketplace and community to connect with service providers, collaborate on research, and discover new methods, technologies or techniques."
+      title: "Science Marketplace, Community, and Resource | BitBio"
       title_with_tag_line: "%{tag_line} | BitBio"
   exception:
     show:

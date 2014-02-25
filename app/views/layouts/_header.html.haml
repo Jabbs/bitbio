@@ -10,7 +10,7 @@
               = render "layouts/breadcrumbs"
           .span7{style: "padding-top: 6px;"}
             %h1.slogan
-              Science Community, Forum, and Resource
+              Science Marketplace, Community, and Resource
                 
         .row{style: "margin-top: 5px;"}
           - if request.path == '/'
@@ -74,7 +74,8 @@
                     %a{"data-method" => "delete", href: logout_path, rel: "nofollow"}
                       %i.icon-signout{method: "delete", style: "margin-right: 6px; margin-left:2px;"}
                       Logout
-            = link_to '<i class="icon-plus"></i> PROJECT'.html_safe, information_projects_path,                                           class: 'pull-right btn', style: 'position: relative; z-index: 8; padding-top:7px; padding-bottom:5px; top: -4px; font-size:90%;'
+            - unless request.path == "/projects/information" || request.path == "/projects/new"
+              = link_to '<i class="icon-plus"></i> PROJECT'.html_safe, information_projects_path,                                           class: 'pull-right btn btn-success', style: 'position: relative; z-index: 8; padding-top:7px; padding-bottom:5px; top: -4px; font-size:90%;'
             /
               <div class="pull-right">
               <ul class="unstyled">

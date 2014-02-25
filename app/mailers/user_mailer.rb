@@ -40,7 +40,7 @@ class UserMailer < ActionMailer::Base
   
   def welcome_email(user)
     @user = user
-    mail(to: "#{user.first_name} #{user.last_name} <#{user.email}>", subject: "Welcome to BitBio - Science Community, Forum, and Resource")
+    mail(to: "#{user.first_name} #{user.last_name} <#{user.email}>", subject: "Welcome to BitBio - Science Marketplace, Community, and Resource")
   end
   
   def invitation_email(invitation)
@@ -52,7 +52,7 @@ class UserMailer < ActionMailer::Base
     @contact = contact
     if @contact.subscribed?
       unless @contact.contact_notifications.where(action: "newsletter1").any?
-        mail(to: "#{contact.full_name} <#{contact.email}>", subject: "BitBio - Science Community, Forum, and Resource")
+        mail(to: "#{contact.full_name} <#{contact.email}>", subject: "BitBio - Science Marketplace, Community, and Resource")
         @contact.contact_notifications.create! action: "newsletter1", email_sent_at: DateTime.now
       end
     end
