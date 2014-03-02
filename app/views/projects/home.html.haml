@@ -9,6 +9,7 @@
     - unless current_user
       = render 'shared/sign_up_box'
     = render 'shared/word_cloud'
-    = render 'blogs/blogs', blogs: @blogs
+    - if @blogs.any?
+      = render 'blogs/blogs', blogs: @blogs
     - unless @events.empty?
       = render 'events/events', events: @events
